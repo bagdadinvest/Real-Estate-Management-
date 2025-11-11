@@ -1,0 +1,1315 @@
+# Arabic translations for CoralCity newfrontend
+#: templates/newfrontend/index.html:238
+msgid ""
+msgstr ""
+"Project-Id-Version: KoralCity\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-11 03:39+0000\n"
+"PO-Revision-Date: 2025-11-11 06:10+0000\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Project-Id-Version: coralcity\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-11 03:39+0000\n"
+"PO-Revision-Date: 2025-01-01 00:00+0000\n"
+"Last-Translator: \n"
+"Language-Team: ar\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: templates/accounts/dashborad.html:5
+msgid "Dashboard"
+msgstr "لوحة التحكم"
+
+#: templates/accounts/dashborad.html:15
+msgid "User Dashboard"
+msgstr "لوحة تحكم المستخدم"
+
+#: templates/accounts/dashborad.html:16
+msgid "Manage your KoralCity Properties account"
+msgstr "إدارة حسابك في KoralCity Properties"
+
+#: templates/accounts/dashborad.html:26
+msgid "Welcome"
+msgstr "مرحبًا"
+
+#: templates/accounts/dashborad.html:28
+msgid "Here are the property listings that you have inquired about"
+msgstr "هذه هي إعلانات العقارات التي استفسرت عنها"
+
+# Detail page
+#: templates/accounts/dashborad.html:33
+#: templates/newfrontend/property-details.html:12
+msgid "Property"
+msgstr "عقار"
+
+#: templates/accounts/dashborad.html:43
+msgid "View Listing"
+msgstr "عرض الإعلان"
+
+#: templates/accounts/dashborad.html:52
+msgid "You Don't Have Any Inquiries"
+msgstr "ليس لديك أي استفسارات"
+
+#: templates/accounts/login.html:13 templates/partials/_footer.html:25
+#: templates/partials/_navbar.html:53
+msgid "Agents"
+msgstr "وكلاء"
+
+#: templates/accounts/login.html:17
+msgid "You wish to be a realtor agent? here is all you have to do."
+msgstr ""
+
+# Navigation
+#: templates/accounts/login.html:20 templates/accounts/register.html:23
+#: templates/listings/listing.html:18 templates/listings/listings.html:20
+#: templates/newfrontend/base.html:135 templates/newfrontend/contact.html:11
+#: templates/newfrontend/financing.html:29 templates/newfrontend/map.html:54
+#: templates/newfrontend/properties.html:12
+#: templates/newfrontend/property-details.html:12 templates/pages/about.html:25
+#: templates/pages/agesverification.html:20 templates/partials/_navbar.html:42
+msgid "Home"
+msgstr "الرئيسية"
+
+#: templates/accounts/login.html:22 templates/pages/about.html:27
+#: templates/pages/agesverification.html:22 templates/partials/_footer.html:30
+#: templates/partials/_navbar.html:43
+msgid "About"
+msgstr "من نحن"
+
+#: templates/accounts/login.html:36
+msgid "How it works?"
+msgstr "كيف يعمل؟"
+
+#: templates/accounts/login.html:37
+msgid ""
+"You wish be a realtor agent with Koralcity? <br> All you have to do.<br>is "
+"complete some few steps and arrange all relevant information <br>while "
+"pending for your response before the end of the day."
+msgstr "هل ترغب أن تكون وكيلاً عقاريًا مع Koralcity؟ <br> إليك ما يجب عليك فعله.<br>أكمل بعض الخطوات ورتّب جميع المعلومات ذات الصلة <br>بانتظار ردنا قبل نهاية اليوم."
+
+#: templates/accounts/login.html:48
+msgid "Find Your Location"
+msgstr "ابحث عن موقعك"
+
+#: templates/accounts/login.html:51
+msgid ""
+"Here you search for the location you want to cover in your listings and then "
+"move to the next step."
+msgstr "هنا تبحث عن الموقع الذي تريد تغطيته في إعلاناتك ثم تنتقل إلى الخطوة التالية."
+
+#: templates/accounts/login.html:62
+msgid "Find Apartment"
+msgstr "ابحث عن شقة"
+
+#: templates/accounts/login.html:65
+msgid ""
+"After you've picked a location, now you search for available properties in "
+"that location for your listings."
+msgstr "بعد اختيار موقع، ابحث الآن عن العقارات المتاحة في ذلك الموقع لإعلاناتك."
+
+#: templates/accounts/login.html:76
+msgid "Make Contact"
+msgstr "تواصل"
+
+#: templates/accounts/login.html:79
+msgid ""
+"Once you've completed step one and two now you can contact us and you'll get "
+"back to you with a confirmation."
+msgstr "بعد إكمال الخطوتين الأولى والثانية يمكنك التواصل معنا وسنعود إليك بتأكيد."
+
+#: templates/accounts/login.html:87
+msgid "Services"
+msgstr "الخدمات"
+
+#: templates/accounts/login.html:88
+msgid ""
+"At Koralcity Limited, we handle the operations, consulting, maintenance,<br> "
+"and administration of properties rentals to prospective clients."
+msgstr "في Koralcity Limited نتولى العمليات والاستشارات والصيانة<br> وإدارة تأجير العقارات للعملاء المحتملين."
+
+#: templates/accounts/login.html:97 templates/partials/_footer.html:42
+msgid "Renting"
+msgstr "التأجير"
+
+#: templates/accounts/login.html:100 templates/partials/_footer.html:43
+msgid "Selling"
+msgstr "البيع"
+
+#: templates/accounts/login.html:103
+msgid "Building"
+msgstr "البناء"
+
+#: templates/accounts/login.html:178 templates/accounts/login.html:195
+msgid "Login"
+msgstr "تسجيل الدخول"
+
+#: templates/accounts/login.html:186 templates/accounts/register.html:57
+msgid "Username"
+msgstr "اسم المستخدم"
+
+#: templates/accounts/login.html:191 templates/accounts/register.html:65
+msgid "Password"
+msgstr "كلمة المرور"
+
+#: templates/accounts/register.html:5 templates/accounts/register.html:25
+#: templates/accounts/register.html:41 templates/accounts/register.html:72
+msgid "Register"
+msgstr "تسجيل"
+
+#: templates/accounts/register.html:16
+msgid "Become an Agent"
+msgstr "كن وكيلاً"
+
+#: templates/accounts/register.html:20
+msgid "Register now and receive a mail from us within 2 working days."
+msgstr "سجّل الآن وستتلقى رسالة منا خلال يومي عمل."
+
+#: templates/accounts/register.html:49
+msgid "First Name"
+msgstr "الاسم الأول"
+
+#: templates/accounts/register.html:53
+msgid "Last Name"
+msgstr "اسم العائلة"
+
+#: templates/accounts/register.html:61 templates/pages/agesverification.html:51
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#: templates/accounts/register.html:69
+msgid "Confirm Password"
+msgstr "تأكيد كلمة المرور"
+
+#: templates/base.html:7
+msgid "KoralCity Properties"
+msgstr "عقارات KoralCity"
+
+#: templates/blog/base.html:45
+msgid "Blog App"
+msgstr "تطبيق المدونة"
+
+#: templates/blog/blog_detail.html:15 templates/blog/blog_list.html:13
+#: templates/blog/category_list.html:14 templates/blog/search_list.html:13
+msgid "Production:"
+msgstr "الإنتاج:"
+
+#: templates/blog/blog_detail.html:30 templates/blog/blog_list.html:27
+#: templates/blog/category_list.html:28
+msgid "by"
+msgstr "بواسطة"
+
+#: templates/blog/blog_detail.html:30 templates/blog/blog_detail.html:55
+#: templates/blog/blog_list.html:27 templates/blog/category_list.html:28
+msgid "Comments"
+msgstr "تعليقات"
+
+#: templates/blog/blog_detail.html:40
+msgid "To comment, first"
+msgstr "للتعليق، أولاً"
+
+#: templates/blog/blog_detail.html:40
+msgid "log in"
+msgstr "سجّل الدخول"
+
+#: templates/blog/blog_detail.html:40
+msgid "to your account"
+msgstr "إلى حسابك"
+
+#: templates/blog/blog_detail.html:48 templates/newfrontend/contact.html:74
+#: templates/newfrontend/financing.html:214
+#: templates/newfrontend/index.html:368 templates/newfrontend/map.html:265
+#: templates/newfrontend/properties.html:137
+msgid "Message"
+msgstr "الرسالة"
+
+#: templates/blog/blog_detail.html:49
+msgid "Add Comment"
+msgstr "أضف تعليقًا"
+
+#: templates/blog/blog_detail.html:66
+msgid "There is no comment"
+msgstr "لا توجد تعليقات"
+
+#: templates/blog/blog_list.html:32 templates/blog/category_list.html:33
+#: templates/blog/search_list.html:32
+msgid "Continue Reading"
+msgstr "متابعة القراءة"
+
+#: templates/blog/blog_list.html:66 templates/blog/category_list.html:64
+#: templates/blog/search_list.html:69
+msgid "Enter keywords & hit enter...."
+msgstr "أدخل كلمات مفتاحية واضغط إدخال..."
+
+#: templates/blog/blog_list.html:72 templates/blog/category_list.html:70
+#: templates/blog/search_list.html:75
+msgid "About Me"
+msgstr "نبذة عني"
+
+#: templates/blog/blog_list.html:85 templates/blog/category_list.html:83
+msgid "Recent Post"
+msgstr "منشور حديث"
+
+#: templates/blog/blog_list.html:101 templates/blog/category_list.html:99
+#: templates/blog/search_list.html:104
+msgid "Categories"
+msgstr "الفئات"
+
+#: templates/blog/blog_list.html:113 templates/blog/category_list.html:121
+#: templates/blog/search_list.html:126
+msgid "Tags"
+msgstr "الوسوم"
+
+#: templates/blog/blog_list.html:126 templates/blog/category_list.html:160
+#: templates/blog/search_list.html:165
+msgid "Subscribe to our newsletter"
+msgstr "اشترك في نشرتنا البريدية"
+
+#: templates/blog/blog_list.html:130 templates/blog/category_list.html:164
+#: templates/blog/search_list.html:169
+msgid "Enter your email"
+msgstr "أدخل بريدك الإلكتروني"
+
+#: templates/blog/blog_list.html:131 templates/blog/category_list.html:165
+#: templates/blog/search_list.html:170
+msgid "Subscribe"
+msgstr "اشترك"
+
+#: templates/blog/category_list.html:109
+msgid "Live stream"
+msgstr "بث مباشر"
+
+#: templates/blog/category_list.html:132 templates/blog/search_list.html:137
+msgid "Gallery"
+msgstr "معرض"
+
+#: templates/blog/search_list.html:37
+msgid "No results found!"
+msgstr "لم يتم العثور على نتائج!"
+
+#: templates/blog/search_list.html:38
+msgid "There were no results matching your search"
+msgstr "لا توجد نتائج مطابقة لبحثك"
+
+#: templates/listings/listing.html:13 templates/listings/listings.html:15
+#: templates/listings/listings.html:22 templates/newfrontend/base.html:136
+#: templates/newfrontend/properties.html:12
+#: templates/newfrontend/properties.html:13 templates/partials/_navbar.html:45
+msgid "Properties"
+msgstr "العقارات"
+
+# Map page
+#: templates/listings/listing.html:20
+msgid "Listing"
+msgstr "إعلان"
+
+#: templates/listings/listing.html:37
+msgid "Back To Listings"
+msgstr "العودة إلى الإعلانات"
+
+#: templates/listings/listing.html:92
+msgid "Asking Price:"
+msgstr "السعر المطلوب:"
+
+#: templates/listings/listing.html:96
+msgid "Bedrooms:"
+msgstr "غرف النوم:"
+
+#: templates/listings/listing.html:100
+msgid "Bathrooms:"
+msgstr "الحمامات:"
+
+#: templates/listings/listing.html:104
+msgid "Type:"
+msgstr "النوع:"
+
+#: templates/listings/listing.html:113
+msgid "Square Feet:"
+msgstr "قدم مربع:"
+
+#: templates/listings/listing.html:117
+msgid "Lot Size:"
+msgstr ""
+
+# Map page
+#: templates/listings/listing.html:122
+#, fuzzy
+#| msgid "Listings Map"
+msgid "Listing Date:"
+msgstr "خريطة العقارات"
+
+#: templates/listings/listing.html:126
+msgid "Realtor:"
+msgstr ""
+
+#: templates/listings/listing.html:147
+#, fuzzy
+#| msgid "Property Details"
+msgid "Property Realtor"
+msgstr "تفاصيل العقار"
+
+#: templates/listings/listing.html:148
+msgid "Realtor name:"
+msgstr ""
+
+#: templates/listings/listing.html:149
+msgid "Number:"
+msgstr ""
+
+#: templates/listings/listing.html:150 templates/listings/listing.html:186
+msgid "Email:"
+msgstr ""
+
+#: templates/listings/listing.html:153 templates/listings/listing.html:164
+msgid "Make An Inquiry"
+msgstr ""
+
+# Detail page
+#: templates/listings/listing.html:178
+#, fuzzy
+#| msgid "Property"
+msgid "Property:"
+msgstr "عقار"
+
+#: templates/listings/listing.html:182
+msgid "Name:"
+msgstr ""
+
+#: templates/listings/listing.html:190
+msgid "Phone:"
+msgstr ""
+
+#: templates/listings/listing.html:194
+#, fuzzy
+#| msgid "Message"
+msgid "Message:"
+msgstr "الرسالة"
+
+#: templates/listings/listing.html:198
+msgid "Send"
+msgstr ""
+
+#: templates/listings/listings.html:18
+msgid "More Than 500+ Apartment For Sale & Rent"
+msgstr ""
+
+#: templates/listings/listings.html:61 templates/pages/index.html:86
+msgid "Type"
+msgstr ""
+
+#: templates/listings/listings.html:63 templates/pages/index.html:88
+#, fuzzy
+#| msgid "Bathrooms"
+msgid "Bathroom"
+msgstr "الحمامات"
+
+#: templates/listings/listings.html:67 templates/listings/search.html:97
+#: templates/pages/index.html:92
+msgid "Garage"
+msgstr ""
+
+#: templates/listings/listings.html:69 templates/pages/index.html:94
+#, fuzzy
+#| msgid "Bedrooms"
+msgid "Bedroom"
+msgstr "غرف النوم"
+
+#: templates/listings/listings.html:71 templates/listings/search.html:106
+#: templates/newfrontend/financing.html:142
+#: templates/newfrontend/properties.html:48 templates/pages/index.html:96
+msgid "More Info"
+msgstr "المزيد من المعلومات"
+
+#: templates/listings/listings.html:79 templates/listings/search.html:114
+#: templates/newfrontend/index.html:304
+#: templates/newfrontend/properties.html:56 templates/pages/index.html:104
+msgid "No Listings Available"
+msgstr "لا توجد عقارات متاحة"
+
+#: templates/listings/search.html:11
+msgid "Search for your Appartments<br>and make your inquiries"
+msgstr ""
+
+#: templates/listings/search.html:19
+msgid "Keywords"
+msgstr ""
+
+#: templates/listings/search.html:20
+msgid "Keyword (Pool, Garage, etc)"
+msgstr ""
+
+#: templates/listings/search.html:24 templates/listings/search.html:25
+#: templates/newfrontend/financing.html:138
+#: templates/newfrontend/index.html:292
+#: templates/newfrontend/properties.html:44
+msgid "City"
+msgstr "المدينة"
+
+#: templates/listings/search.html:29 templates/newfrontend/financing.html:139
+#: templates/newfrontend/index.html:293
+#: templates/newfrontend/properties.html:45
+msgid "State"
+msgstr "الولاية"
+
+#: templates/listings/search.html:31
+#, fuzzy
+#| msgid "State"
+msgid "State (All)"
+msgstr "الولاية (الكل)"
+
+#: templates/listings/search.html:43 templates/listings/search.html:101
+#: templates/newfrontend/financing.html:136
+#: templates/newfrontend/index.html:290
+#: templates/newfrontend/properties.html:42
+#: templates/newfrontend/property-details.html:41
+msgid "Bedrooms"
+msgstr "غرف النوم"
+
+#: templates/listings/search.html:45
+msgid "Bedrooms (Any)"
+msgstr "غرف النوم (أيّ)"
+
+#: templates/listings/search.html:55
+msgid "Max Price (All)"
+msgstr "السعر الأقصى (الكل)"
+
+#: templates/listings/search.html:64
+msgid "Submit form"
+msgstr "إرسال النموذج"
+
+#: templates/listings/search.html:95
+msgid "Sqft"
+msgstr "قدم²"
+
+#: templates/listings/search.html:103 templates/newfrontend/financing.html:137
+#: templates/newfrontend/index.html:291
+#: templates/newfrontend/properties.html:43
+#: templates/newfrontend/property-details.html:45
+msgid "Bathrooms"
+msgstr "الحمامات"
+
+#: templates/newfrontend/base.html:79 templates/partials/_navbar.html:67
+msgid "Select language"
+msgstr "اختر اللغة"
+
+#: templates/newfrontend/base.html:85 templates/partials/_navbar.html:73
+msgid "Available languages"
+msgstr "اللغات المتاحة"
+
+#: templates/newfrontend/base.html:137 templates/newfrontend/contact.html:23
+#: templates/newfrontend/financing.html:41 templates/newfrontend/index.html:188
+#: templates/newfrontend/map.html:54 templates/newfrontend/map.html:67
+#: templates/newfrontend/properties.html:25
+msgid "Map"
+msgstr "الخريطة"
+
+#: templates/newfrontend/base.html:140
+#: templates/newfrontend/property-details.html:6
+msgid "Property Details"
+msgstr "تفاصيل العقار"
+
+#: templates/newfrontend/base.html:142 templates/newfrontend/contact.html:11
+#: templates/newfrontend/contact.html:12 templates/newfrontend/contact.html:32
+#: templates/newfrontend/index.html:315 templates/newfrontend/map.html:223
+#: templates/newfrontend/properties.html:95
+msgid "Contact Us"
+msgstr "اتصل بنا"
+
+#: templates/newfrontend/base.html:143
+msgid "Financing"
+msgstr "التمويل"
+
+#: templates/newfrontend/base.html:146 templates/newfrontend/index.html:213
+#: templates/newfrontend/index.html:263 templates/newfrontend/index.html:296
+msgid "Schedule a visit"
+msgstr "حدد موعد زيارة"
+
+# Properties list
+#: templates/newfrontend/contact.html:20
+#: templates/newfrontend/financing.html:38 templates/newfrontend/map.html:64
+#: templates/newfrontend/properties.html:22
+msgid "Show All"
+msgstr "عرض الكل"
+
+#: templates/newfrontend/contact.html:21
+#: templates/newfrontend/financing.html:39 templates/newfrontend/index.html:182
+#: templates/newfrontend/map.html:65 templates/newfrontend/properties.html:23
+#: templates/partials/_footer.html:37
+msgid "Apartment"
+msgstr "شقة"
+
+#: templates/newfrontend/contact.html:22
+#: templates/newfrontend/financing.html:40 templates/newfrontend/index.html:185
+#: templates/newfrontend/map.html:66 templates/newfrontend/properties.html:24
+msgid "Villa House"
+msgstr "فيلا"
+
+# Contact page
+#: templates/newfrontend/contact.html:33 templates/newfrontend/index.html:316
+#: templates/newfrontend/map.html:224 templates/newfrontend/properties.html:96
+msgid "Get In Touch With Our Agents"
+msgstr "تواصل مع وكلائنا"
+
+#: templates/newfrontend/contact.html:56
+#: templates/newfrontend/financing.html:196
+#: templates/newfrontend/index.html:350 templates/newfrontend/map.html:247
+#: templates/newfrontend/properties.html:119
+#: templates/pages/agesverification.html:47
+msgid "Full Name"
+msgstr "الاسم الكامل"
+
+#: templates/newfrontend/contact.html:62
+#: templates/newfrontend/financing.html:202
+#: templates/newfrontend/index.html:356 templates/newfrontend/map.html:253
+#: templates/newfrontend/properties.html:125
+msgid "Email Address"
+msgstr "البريد الإلكتروني"
+
+#: templates/newfrontend/contact.html:68
+#: templates/newfrontend/financing.html:208
+#: templates/newfrontend/index.html:362 templates/newfrontend/map.html:259
+#: templates/newfrontend/properties.html:131
+msgid "Subject"
+msgstr "الموضوع"
+
+#: templates/newfrontend/contact.html:80
+#: templates/newfrontend/financing.html:220
+#: templates/newfrontend/index.html:374 templates/newfrontend/map.html:271
+#: templates/newfrontend/properties.html:143
+msgid "Send Message"
+msgstr "إرسال الرسالة"
+
+#: templates/newfrontend/financing.html:29
+msgid "Banking in Turkey"
+msgstr "الخدمات المصرفية في تركيا"
+
+#: templates/newfrontend/financing.html:30
+msgid "Banking & Mortgages for Buying Property in Turkey"
+msgstr "الخدمات المصرفية والرهون العقارية لشراء العقارات في تركيا"
+
+#: templates/newfrontend/financing.html:48
+msgid "Overview"
+msgstr "نظرة عامة"
+
+#: templates/newfrontend/financing.html:49
+msgid "How financing works for property purchases in Turkey"
+msgstr "كيف يعمل التمويل لشراء العقارات في تركيا"
+
+#: templates/newfrontend/financing.html:52
+msgid ""
+"Turkey offers bank mortgages and developer installments for both residents "
+"and foreign buyers. Terms, documentation, and maximum loan amounts vary by "
+"bank, buyer profile, and property valuation. Below is a practical summary to "
+"help you prepare."
+msgstr "توفر تركيا رهونًا عقارية بنكية وخطط أقساط من المطورين لكلٍ من المقيمين والمشترين الأجانب. تختلف الشروط والمستندات والمبالغ القصوى حسب البنك وملف المشتري وتقييم العقار. فيما يلي ملخص عملي لمساعدتك على الاستعداد."
+
+#: templates/newfrontend/financing.html:55
+msgid "Who can apply"
+msgstr "من يمكنه التقديم"
+
+#: templates/newfrontend/financing.html:57
+msgid "Turkish citizens and residents: broad bank options and terms."
+msgstr "المواطنون والمقيمون الأتراك: خيارات وشروط مصرفية واسعة."
+
+#: templates/newfrontend/financing.html:58
+msgid ""
+"Foreign buyers: mortgages are available at selected banks, subject to "
+"valuation and local policy."
+msgstr "المشترون الأجانب: تتوفر الرهون العقارية لدى بعض البنوك، وفقًا للتقييم والسياسة المحلية."
+
+#: templates/newfrontend/financing.html:61
+msgid "Typical loan terms"
+msgstr "شروط القرض النموذجية"
+
+#: templates/newfrontend/financing.html:63
+msgid "Currency: mostly TRY-denominated mortgages; FX loans are limited."
+msgstr "العملة: غالبًا قروض مقومة بالليرة التركية؛ القروض بالعملات الأجنبية محدودة."
+
+#: templates/newfrontend/financing.html:64
+msgid "Tenor: commonly 5–10 years depending on bank and profile."
+msgstr "المدة: عادة 5–10 سنوات حسب البنك والملف."
+
+#: templates/newfrontend/financing.html:65
+msgid ""
+"Loan-to-Value (LTV): determined by the bank’s appraisal; foreigners often "
+"qualify for lower LTVs than residents."
+msgstr "نسبة القرض إلى القيمة (LTV): تُحدد بتقييم البنك؛ غالبًا ما يحصل الأجانب على نسب أقل من المقيمين."
+
+#: templates/newfrontend/financing.html:66
+msgid "Interest: variable by bank and market; request an up-to-date quote."
+msgstr "الفائدة: تختلف حسب البنك والسوق؛ اطلب عرضًا محدثًا."
+
+#: templates/newfrontend/financing.html:69
+msgid "Required documents (common)"
+msgstr "المستندات المطلوبة (الشائعة)"
+
+#: templates/newfrontend/financing.html:71
+msgid "Passport/ID and biometric photo"
+msgstr "جواز السفر/الهوية وصورة بيومترية"
+
+#: templates/newfrontend/financing.html:72
+msgid "Turkish tax number (Vergi Numarası)"
+msgstr "الرقم الضريبي التركي (Vergi Numarası)"
+
+#: templates/newfrontend/financing.html:73
+msgid "Proof of income (salary slips, tax returns, bank statements)"
+msgstr "إثبات الدخل (قسائم الرواتب، الإقرارات الضريبية، كشوف الحساب البنكي)"
+
+#: templates/newfrontend/financing.html:74
+msgid "Address proof (utility bill or residency document)"
+msgstr "إثبات العنوان (فاتورة خدمات أو مستند إقامة)"
+
+#: templates/newfrontend/financing.html:75
+msgid "Property appraisal report (SPK valuation) arranged via bank"
+msgstr "تقرير تقييم العقار (تقييم SPK) عبر البنك"
+
+#: templates/newfrontend/financing.html:78
+msgid "Process at a glance"
+msgstr "العملية باختصار"
+
+#: templates/newfrontend/financing.html:80
+msgid ""
+"Pre-qualification: discuss budget, LTV, and estimated rates with the bank."
+msgstr "ما قبل التأهيل: ناقش الميزانية، ونسبة LTV، والأسعار التقديرية مع البنك."
+
+#: templates/newfrontend/financing.html:81
+msgid ""
+"Open a Turkish bank account and obtain a tax number if you don’t have one."
+msgstr "افتح حسابًا بنكيًا تركيًا واحصل على رقم ضريبي إن لم يكن لديك."
+
+#: templates/newfrontend/financing.html:82
+msgid "Submit documents; bank orders independent valuation of the property."
+msgstr "قدّم المستندات؛ يطلب البنك تقييماً مستقلاً للعقار."
+
+#: templates/newfrontend/financing.html:83
+msgid "Final approval: the loan amount is set based on the valuation report."
+msgstr "الموافقة النهائية: يحدد مبلغ القرض بناءً على تقرير التقييم."
+
+#: templates/newfrontend/financing.html:84
+msgid ""
+"Signing and disbursement: earthquake insurance (DASK) is typically required "
+"before deed transfer."
+msgstr "التوقيع والصرف: عادة ما يُطلب تأمين الزلازل (DASK) قبل نقل الملكية."
+
+#: templates/newfrontend/financing.html:87
+msgid "Fees and mandatory items"
+msgstr "الرسوم والمتطلبات الإلزامية"
+
+#: templates/newfrontend/financing.html:89
+msgid "Appraisal (valuation) fee"
+msgstr "رسوم التقييم"
+
+#: templates/newfrontend/financing.html:90
+msgid "Loan allocation/processing fee (varies by bank)"
+msgstr "رسوم فتح/معالجة القرض (تختلف حسب البنك)"
+
+#: templates/newfrontend/financing.html:91
+msgid "DASK earthquake insurance (mandatory) and property insurance"
+msgstr "تأمين الزلازل DASK (إلزامي) وتأمين العقار"
+
+#: templates/newfrontend/financing.html:92
+msgid "Title deed taxes and notary fees (paid at transfer)"
+msgstr "ضرائب سند الملكية وأتعاب الكاتب بالعدل (تدفع عند النقل)"
+
+#: templates/newfrontend/financing.html:95
+msgid "Money transfers"
+msgstr "التحويلات المالية"
+
+#: templates/newfrontend/financing.html:97
+msgid ""
+"International buyers typically fund down payments and closing via SWIFT "
+"transfers in foreign currency. Banks may request source-of-funds "
+"documentation. Currency conversion and payment documentation for the title "
+"office are handled in coordination with your bank and notary."
+msgstr "يموّل المشترون الدوليون عادة الدفعة الأولى والإغلاق عبر تحويلات SWIFT بالعملة الأجنبية. قد تطلب البنوك مستندات مصدر الأموال. تتم تحويلات العملة ووثائق الدفع لمكتب السجل بالتنسيق مع بنكك وكاتب العدل."
+
+#: templates/newfrontend/financing.html:100
+msgid "Alternatives to bank mortgages"
+msgstr "بدائل الرهن العقاري البنكي"
+
+#: templates/newfrontend/financing.html:102
+msgid ""
+"Developer installment plans: staged payments during constrinsuction or short-"
+"term post-handover schedules."
+msgstr "خطط أقساط المطوّر: دفعات مرحلية أثناء البناء أو جداول قصيرة بعد التسليم."
+
+#: templates/newfrontend/financing.html:103
+msgid "Personal loans or home equity from your home country (if applicable)."
+msgstr "قروض شخصية أو تمويل مقابل المنزل في بلدك (إن وُجد)."
+
+#: templates/newfrontend/financing.html:107
+msgid "Popular banks to consider"
+msgstr "بنوك شائعة يُنصح بالنظر فيها"
+
+#: templates/newfrontend/financing.html:108
+msgid "Major institutions active in retail mortgages include:"
+msgstr "أهم المؤسسات النشطة في الرهون العقارية للأفراد تشمل:"
+
+#: templates/newfrontend/financing.html:110
+msgid "Ziraat Bankası, VakıfBank, Halkbank"
+msgstr "Ziraat Bankası, VakıfBank, Halkbank"
+
+#: templates/newfrontend/financing.html:111
+msgid "İşbank, Garanti BBVA, Akbank, Yapı Kredi"
+msgstr "İşbank, Garanti BBVA, Akbank, Yapı Kredi"
+
+#: templates/newfrontend/financing.html:113
+msgid ""
+"Availability and terms for foreign buyers vary by branch and policy; please "
+"confirm locally."
+msgstr "تختلف الإتاحة والشروط للمشترين الأجانب حسب الفرع والسياسة؛ يرجى التأكيد محليًا."
+
+#: templates/newfrontend/financing.html:120
+msgid "Related"
+msgstr "ذات صلة"
+
+#: templates/newfrontend/financing.html:121
+msgid "Featured properties you can finance"
+msgstr "عقارات مميزة يمكنك تمويلها"
+
+#: templates/newfrontend/financing.html:153
+msgid "Quick facts"
+msgstr "معلومات سريعة"
+
+#: templates/newfrontend/financing.html:155
+msgid "Independent valuation sets the maximum loanable amount."
+msgstr "التقييم المستقل يحدد الحد الأقصى للقرض."
+
+#: templates/newfrontend/financing.html:156
+msgid "Earthquake insurance (DASK) is mandatory."
+msgstr "تأمين الزلازل (DASK) إلزامي."
+
+#: templates/newfrontend/financing.html:157
+msgid "Bring a tax number and recent bank statements."
+msgstr "أحضر رقمًا ضريبيًا وكشوف حساب بنكية حديثة."
+
+#: templates/newfrontend/financing.html:158
+msgid "Expect 2–4 weeks for full approval and disbursement."
+msgstr "توقع 2–4 أسابيع للموافقة الكاملة والصرف."
+
+#: templates/newfrontend/financing.html:172
+msgid "Financing Inquiry"
+msgstr "طلب تمويل"
+
+#: templates/newfrontend/financing.html:173
+msgid "Get in touch about mortgages in Turkey"
+msgstr "تواصل معنا بخصوص الرهون العقارية في تركيا"
+
+#: templates/newfrontend/financing.html:175
+msgid ""
+"We guide you through bank pre-approval, valuation, and deed transfer, and "
+"coordinate with lenders and developers to secure a suitable financing option "
+"for your purchase in Turkey."
+msgstr "نرشدك خلال مرحلة ما قبل الموافقة البنكية، والتقييم، ونقل الملكية، ونتعاون مع المقرضين والمطورين للحصول على خيار تمويل مناسب لشراءك في تركيا."
+
+# Index page
+#: templates/newfrontend/index.html:6
+msgid "Villa Agency - Home"
+msgstr "وكالة فيلا - الرئيسية"
+
+#: templates/newfrontend/index.html:13
+msgid "Hurry!"
+msgstr ""
+
+#: templates/newfrontend/index.html:13
+msgid "Get the Best Villa for you"
+msgstr ""
+
+#: templates/newfrontend/index.html:19
+msgid "Be Quick!"
+msgstr ""
+
+#: templates/newfrontend/index.html:19
+msgid "Get the best villa in town"
+msgstr ""
+
+#: templates/newfrontend/index.html:25
+msgid "Act Now!"
+msgstr ""
+
+#: templates/newfrontend/index.html:25
+msgid "Get the highest level Map"
+msgstr ""
+
+#: templates/newfrontend/index.html:42
+msgid "Featured"
+msgstr "مميزة"
+
+#: templates/newfrontend/index.html:43
+msgid "Best Appartment & Sea view"
+msgstr "أفضل شقة وإطلالة بحرية"
+
+#: templates/newfrontend/index.html:49
+msgid "What properties do you offer?"
+msgstr "ما العقارات التي تقدمونها؟"
+
+#: templates/newfrontend/index.html:54
+msgid ""
+"We offer a wide selection of premium properties including villas, "
+"apartments, and luxury residences across Istanbul, Antalya, and Ankara. Each "
+"property is carefully selected to meet the highest standards of quality and "
+"location."
+msgstr "نقدّم مجموعة واسعة من العقارات الراقية بما في ذلك الفلل والشقق والإقامات الفاخرة في إسطنبول وأنطاليا وأنقرة. يتم اختيار كل عقار بعناية ليلبي أعلى معايير الجودة والموقع."
+
+#: templates/newfrontend/index.html:61
+msgid "How do I schedule a property viewing?"
+msgstr "كيف أحدد موعدًا لمعاينة العقار؟"
+
+#: templates/newfrontend/index.html:66
+msgid ""
+"Scheduling a viewing is simple. Click the 'Schedule a visit' button on any "
+"property listing, or contact our team directly via phone or email. Our "
+"agents are available 24/7 to assist you."
+msgstr "تحديد موعد للمعاينة أمر سهل. انقر زر 'حدد موعد زيارة' في أي إعلان عقار، أو تواصل مع فريقنا مباشرة عبر الهاتف أو البريد الإلكتروني. وكلاؤنا متاحون على مدار الساعة للمساعدة."
+
+#: templates/newfrontend/index.html:73
+msgid "What financing options are available?"
+msgstr "ما خيارات التمويل المتاحة؟"
+
+#: templates/newfrontend/index.html:78
+msgid ""
+"We work with leading financial institutions to offer flexible payment plans "
+"and bank financing options. Our team can guide you through the entire "
+"process to make your property purchase seamless."
+msgstr "نتعاون مع مؤسسات مالية رائدة لتقديم خطط سداد مرنة وخيارات تمويل بنكي. يمكن لفريقنا إرشادك خلال العملية كاملة لجعل شراء العقار سلسًا."
+
+#: templates/newfrontend/index.html:89
+msgid "Total Flat Space"
+msgstr "المساحة الإجمالية للشقة"
+
+#: templates/newfrontend/index.html:93
+msgid "Contract"
+msgstr "عقد"
+
+#: templates/newfrontend/index.html:93
+msgid "Contract Ready"
+msgstr "عقد جاهز"
+
+#: templates/newfrontend/index.html:97
+#: templates/newfrontend/partials/loan_calculator.html:76
+#: templates/newfrontend/partials/loan_calculator.html:104
+msgid "Payment"
+msgstr "الدفع"
+
+#: templates/newfrontend/index.html:97
+msgid "Payment Process"
+msgstr "عملية الدفع"
+
+#: templates/newfrontend/index.html:101
+msgid "Safety"
+msgstr "السلامة"
+
+#: templates/newfrontend/index.html:101
+msgid "24/7 Under Control"
+msgstr "تحت السيطرة على مدار الساعة"
+
+#: templates/newfrontend/index.html:115
+msgid "Video View"
+msgstr "عرض الفيديو"
+
+#: templates/newfrontend/index.html:116
+msgid "Get Closer View & Different Feeling"
+msgstr "رؤية أقرب وإحساس مختلف"
+
+#: templates/newfrontend/index.html:145
+msgid "Buildings"
+msgstr "المباني"
+
+#: templates/newfrontend/index.html:145
+msgid "Finished Now"
+msgstr "اكتمل الآن"
+
+#: templates/newfrontend/index.html:151
+msgid "Years"
+msgstr "سنوات"
+
+#: templates/newfrontend/index.html:151
+msgid "Experience"
+msgstr "خبرة"
+
+#: templates/newfrontend/index.html:157 templates/pages/about.html:64
+msgid "Awards"
+msgstr "جوائز"
+
+#: templates/newfrontend/index.html:157
+msgid "Won 2023"
+msgstr "جوائز 2023"
+
+#: templates/newfrontend/index.html:172
+msgid "Best Deal"
+msgstr "أفضل صفقة"
+
+#: templates/newfrontend/index.html:173
+msgid "Find Your Best Deal Right Now!"
+msgstr "اعثر على أفضل صفقة الآن!"
+
+#: templates/newfrontend/index.html:210
+msgid "All Info About Apartment"
+msgstr "كل المعلومات عن الشقة"
+
+# Map page
+#: templates/newfrontend/map.html:4
+msgid "Listings Map"
+msgstr "خريطة العقارات"
+
+#: templates/newfrontend/map.html:55
+msgid "Map of Listings"
+msgstr "خريطة العقارات"
+
+#: templates/newfrontend/partials/loan_calculator.html:4
+#: templates/newfrontend/partials/loan_calculator.html:5
+msgid "Home Loan Calculator"
+msgstr "حاسبة قرض المنزل"
+
+#: templates/newfrontend/partials/loan_calculator.html:6
+msgid "Estimate your monthly payment and view an amortization schedule."
+msgstr "احسب الدفعة الشهرية واعرض جدول الإهلاك."
+
+#: templates/newfrontend/partials/loan_calculator.html:10
+msgid "Loan Amount"
+msgstr "مبلغ القرض"
+
+#: templates/newfrontend/partials/loan_calculator.html:12
+msgid "Loan amount slider"
+msgstr "شريط تمرير مبلغ القرض"
+
+#: templates/newfrontend/partials/loan_calculator.html:15
+msgid "Drag the slider or type a value."
+msgstr "اسحب شريط التمرير أو أدخل قيمة."
+
+#: templates/newfrontend/partials/loan_calculator.html:19
+msgid "Term"
+msgstr "المدة"
+
+#: templates/newfrontend/partials/loan_calculator.html:19
+msgid "months"
+msgstr "أشهر"
+
+#: templates/newfrontend/partials/loan_calculator.html:21
+msgid "Term slider"
+msgstr "شريط تمرير المدة"
+
+#: templates/newfrontend/partials/loan_calculator.html:27
+msgid "Interest Rate"
+msgstr "سعر الفائدة"
+
+#: templates/newfrontend/partials/loan_calculator.html:32
+msgid "Annual nominal interest."
+msgstr "الفائدة الاسمية السنوية."
+
+#: templates/newfrontend/partials/loan_calculator.html:36
+msgid "Calculate"
+msgstr "احسب"
+
+#: templates/newfrontend/partials/loan_calculator.html:45
+msgid "Monthly Payment"
+msgstr "الدفعة الشهرية"
+
+#: templates/newfrontend/partials/loan_calculator.html:51
+msgid "Total Interest"
+msgstr "إجمالي الفوائد"
+
+#: templates/newfrontend/partials/loan_calculator.html:57
+msgid "Total Paid"
+msgstr "إجمالي المدفوع"
+
+#: templates/newfrontend/partials/loan_calculator.html:64
+msgid "Amortization Schedule"
+msgstr "جدول الإهلاك"
+
+#: templates/newfrontend/partials/loan_calculator.html:66
+msgid "Show/Hide"
+msgstr "إظهار/إخفاء"
+
+#: templates/newfrontend/partials/loan_calculator.html:67
+msgid "Download CSV"
+msgstr "تنزيل CSV"
+
+#: templates/newfrontend/partials/loan_calculator.html:77
+#: templates/newfrontend/partials/loan_calculator.html:105
+msgid "Principal"
+msgstr "الأصل"
+
+#: templates/newfrontend/partials/loan_calculator.html:78
+#: templates/newfrontend/partials/loan_calculator.html:106
+msgid "Interest"
+msgstr "الفائدة"
+
+#: templates/newfrontend/partials/loan_calculator.html:79
+#: templates/newfrontend/partials/loan_calculator.html:107
+msgid "Balance"
+msgstr "الرصيد"
+
+#: templates/newfrontend/partials/loan_calculator.html:86
+msgid ""
+"This calculator provides estimates for illustration only and does not "
+"constitute a loan offer."
+msgstr ""
+
+#: templates/newfrontend/partials/loan_calculator.html:108
+msgid "amortization"
+msgstr "الإهلاك"
+
+#: templates/newfrontend/property-details.html:37
+msgid "Price"
+msgstr "السعر"
+
+#: templates/newfrontend/property-details.html:49
+msgid "Location"
+msgstr "الموقع"
+
+#: templates/newfrontend/whatsappwidget.html:85
+msgid "Typically replies within a day"
+msgstr "يرد عادة خلال يوم"
+
+#: templates/newfrontend/whatsappwidget.html:97
+msgid "Hey There, How can I help you?"
+msgstr "مرحبًا، كيف يمكنني مساعدتك؟"
+
+#: templates/pages/about.html:7 templates/pages/about.html:18
+msgid "About Us"
+msgstr "من نحن"
+
+#: templates/pages/about.html:41
+msgid "Our Company<br>Koralcity Limited"
+msgstr "شركتنا<br>Koralcity Limited"
+
+#: templates/pages/about.html:42
+msgid ""
+"Koralcity Limited offers property owners, developers and buyers/renters a "
+"viable housing market. Customers can source and connect with professional "
+"agents for the most advanced and eco-friendly housing. Established in 2021, "
+"Koral City believes everyone deserves a home with the most advanced "
+"technology and Eco-Friendly means. All lives matter."
+msgstr "توفر Koralcity Limited لسوق الإسكان حلولًا مجدية للمالكين والمطورين والمشترين/المستأجرين. يمكن للعملاء العثور على وكلاء محترفين لمساكن حديثة وصديقة للبيئة. تأسست في 2021 وتؤمن Koral City بأن للجميع الحق في منزل بتقنيات متقدمة ووسائل صديقة للبيئة."
+
+#: templates/pages/about.html:43
+msgid "Why you should choose us"
+msgstr "لماذا تختارنا"
+
+#: templates/pages/about.html:45
+msgid "1. We offer land verification and authentication."
+msgstr "1. نقدّم التحقق من الأراضي وإثبات الملكية."
+
+#: templates/pages/about.html:46
+msgid "2. We sell, buy, and rent luxury properties at affordable rates."
+msgstr "2. نبيع ونشتري ونؤجر عقارات فاخرة بأسعار مناسبة."
+
+#: templates/pages/about.html:47
+msgid ""
+"3. We offer a conducive platform for property owners to showcase their "
+"services."
+msgstr "3. نوفر منصة مناسبة لمالكي العقارات لعرض خدماتهم."
+
+#: templates/pages/about.html:48
+msgid ""
+"4. We have well trained professionals as consultants, developers and agents."
+msgstr "4. لدينا محترفون مؤهلون: مستشارون ومطورون ووكلاء."
+
+#: templates/pages/about.html:49
+msgid "5. We are budget friendly."
+msgstr "5. أسعارنا مناسبة للميزانية."
+
+#: templates/pages/about.html:56
+msgid "Clients"
+msgstr ""
+
+#: templates/pages/about.html:60
+#, fuzzy
+#| msgid "Apartment"
+msgid "Apartments"
+msgstr "شقة"
+
+#: templates/pages/about.html:68
+msgid "Employees"
+msgstr ""
+
+# Contact page
+#: templates/pages/about.html:79
+#, fuzzy
+#| msgid "Get In Touch With Our Agents"
+msgid "Meet Our Agents"
+msgstr "تواصل مع وكلائنا"
+
+#: templates/pages/about.html:80
+msgid ""
+"They provide one of the most professional, informative, loyal and dedicated "
+"services<br> in the real estate industry. Client’s satisfaction is their "
+"number one priority."
+msgstr ""
+
+#: templates/pages/about.html:98
+msgid "Realtor"
+msgstr ""
+
+#: templates/pages/about.html:117
+msgid "No Realtors Available"
+msgstr "لا يوجد وكلاء متاحون"
+
+#: templates/pages/agesverification.html:13
+#: templates/pages/agesverification.html:39 templates/pages/index.html:38
+#: templates/partials/_footer.html:44 templates/partials/_navbar.html:47
+msgid "Verification"
+msgstr "التحقق"
+
+#: templates/pages/agesverification.html:17
+msgid "Upload your documents and fill the contact form."
+msgstr "ارفع مستنداتك واملأ نموذج الاتصال."
+
+#: templates/pages/agesverification.html:55
+msgid "Phone Number"
+msgstr "رقم الهاتف"
+
+#: templates/pages/agesverification.html:59
+msgid "Document File:"
+msgstr "ملف المستند:"
+
+#: templates/pages/agesverification.html:63
+msgid "Upload"
+msgstr "رفع"
+
+#: templates/pages/agesverification.html:66
+msgid "Return to home"
+msgstr "العودة إلى الرئيسية"
+
+#: templates/pages/index.html:14
+msgid "Find Your New<br>Modern Apartment"
+msgstr "اعثر على شقتك الحديثة الجديدة"
+
+#: templates/pages/index.html:18
+msgid "Keyword"
+msgstr "كلمة مفتاحية"
+
+#: templates/pages/index.html:19
+msgid "Search"
+msgstr "بحث"
+
+#: templates/pages/index.html:28
+msgid "Buy"
+msgstr "شراء"
+
+#: templates/pages/index.html:33
+msgid "Sell"
+msgstr "بيع"
+
+#: templates/pages/index.html:44
+msgid "Scroll Down"
+msgstr "مرر للأسفل"
+
+#: templates/pages/index.html:63
+msgid "More Than 500+<br>Apartments For Sale & Rent"
+msgstr "أكثر من 500+ شقة للبيع والإيجار"
+
+#: templates/pages/index.html:164
+msgid "Consulting Services"
+msgstr "خدمات استشارية"
+
+#: templates/pages/index.html:165
+msgid ""
+"KoralCity Limited gives specialized investment and financial advice to "
+"clients looking to buy, sell or invest in property. We'll work closely with "
+"you throughout the process of buying and selling of your properties."
+msgstr "تقدّم KoralCity Limited استشارات متخصصة في الاستثمار والتمويل للعملاء الراغبين في شراء أو بيع أو الاستثمار في العقارات. سنعمل معك عن قرب طوال عملية البيع والشراء."
+
+#: templates/pages/index.html:170
+msgid "Property Management"
+msgstr "إدارة العقارات"
+
+#: templates/pages/index.html:171
+msgid ""
+"At KoralCity Limited, we handle the operations, maintenance, and "
+"administration of properties rentals for the owners and also market rentals "
+"rates at competitive price while complying with rental laws."
+msgstr "في KoralCity Limited نتولى عمليات التشغيل والصيانة وإدارة تأجير العقارات للمالكين، كما نروّج للإيجارات بأسعار تنافسية مع الالتزام بقوانين الإيجار."
+
+#: templates/pages/index.html:176
+msgid "Renting & Selling"
+msgstr "التأجير والبيع"
+
+#: templates/pages/index.html:177
+msgid ""
+"Our property managers at KoralCity Limited set competitive rent prices and "
+"strategies to attract clients to the property for rent or sell very fast "
+"with the first impression on potential clients."
+msgstr "يحدّد مديرو العقارات لدينا في KoralCity Limited إيجارات تنافسية واستراتيجيات لجذب العملاء إلى العقار وتأجيره أو بيعه بسرعة، مع الاعتماد على الانطباع الأول الإيجابي."
+
+#: templates/partials/_alerts.html:11
+msgid "Error:"
+msgstr "خطأ:"
+
+#: templates/partials/_footer.html:10
+msgid "Explore Real Estate"
+msgstr "استكشف العقارات"
+
+#: templates/partials/_footer.html:13
+msgid "Subscribe To Our Newsletter"
+msgstr "اشترك في نشرتنا الإخبارية"
+
+#: templates/partials/_footer.html:20
+msgid "All Right Reserved"
+msgstr "جميع الحقوق محفوظة"
+
+#: templates/partials/_footer.html:26 templates/partials/_navbar.html:58
+msgid "Become an agent"
+msgstr "كن وكيلاً"
+
+#: templates/partials/_footer.html:29
+msgid "COMPANY"
+msgstr "الشركة"
+
+#: templates/partials/_footer.html:31
+msgid "FAQ"
+msgstr "الأسئلة الشائعة"
+
+#: templates/partials/_footer.html:32 templates/partials/_navbar.html:48
+msgid "Contact"
+msgstr "اتصال"
+
+#: templates/partials/_footer.html:33
+msgid "Social"
+msgstr "التواصل الاجتماعي"
+
+#: templates/partials/_footer.html:36
+msgid "PRODUCT"
+msgstr "المنتج"
+
+#: templates/partials/_footer.html:38
+msgid "How It Works"
+msgstr "كيف يعمل"
+
+#: templates/partials/_footer.html:41
+msgid "SERVICES"
+msgstr "الخدمات"
+
+#: templates/partials/_navbar.html:44
+msgid "Blog"
+msgstr "مدونة"
+
+#: templates/partials/_topbar.html:8
+msgid "inquiries@coralcity.com"
+msgstr "inquiries@coralcity.com"
+
+# Index page
+#, fuzzy
+#~| msgid "Villa Agency - Home"
+#~ msgid "Why is Villa Agency the best ?"
+#~ msgstr "وكالة فيلا - الرئيسية"
+
+#~ msgid "Fit to Results"
+#~ msgstr "ملاءمة للنتائج"
+
+#~ msgid "Back to Properties"
+#~ msgstr "عودة إلى العقارات"
+
+#~ msgid "Data endpoint:"
+#~ msgstr "نقطة بيانات:"
+
+#~ msgid "Penthouse"
+#~ msgstr "بنتهاوس"

@@ -1,0 +1,158 @@
+{% load static %}
+{% load i18n %}
+<!-- Navbar -->
+ <header id="home">
+
+<nav class="animate">
+        <div class="container">
+          <div class="logo left">
+            <!-- Logo -->
+            <img src="{% static './images/logo.png' %} " height="50", width="80" alt="Logo">
+          </div>
+          <div class="menu-button hide right pointer" style=" color:  black;">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="menu left">
+            <style>
+              /* Inline styles to ensure language switcher looks good in navbar */
+              nav .language-switcher { margin-left: 12px; }
+              nav .lang-switcher { position: relative; }
+              nav .lang-current { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border: 1px solid #e5e7eb; border-radius: 999px; background: #fff; color: #111827; box-shadow: 0 2px 8px rgba(0,0,0,0.06); cursor: pointer; line-height: 1; }
+              nav .lang-current .flag { width: 18px; height: 18px; border-radius: 2px; object-fit: cover; }
+              nav .lang-current .code { font-weight: 600; font-size: 12px; letter-spacing: .3px; }
+              nav .lang-current .chev { font-size: 12px; opacity: .7; }
+              nav .lang-current:focus { outline: none; box-shadow: 0 0 0 3px rgba(59,130,246,.25); }
+
+              nav .lang-menu { position: absolute; right: 0; top: calc(100% + 8px); min-width: 180px; background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; box-shadow: 0 10px 28px rgba(0,0,0,0.12); padding: 6px; display: none; z-index: 10000; }
+              nav .lang-switcher.open .lang-menu { display: block; }
+              nav .lang-item { margin: 0; }
+              nav .lang-item + .lang-item { margin-top: 2px; }
+              nav .lang-item button { width: 100%; display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: transparent; border: 0; border-radius: 8px; cursor: pointer; font-size: 13px; color: #111827; text-align: left; }
+              nav .lang-item button .flag { width: 18px; height: 18px; border-radius: 2px; object-fit: cover; }
+              nav .lang-item button:hover { background: #f3f4f6; }
+              @media (max-width: 768px) {
+                nav .language-switcher { width: 100%; justify-content: center; margin: 10px 0 0; }
+                nav .lang-menu { right: auto; left: 0; min-width: 200px; }
+              }
+            </style>
+            <div class="page-menu left">
+              <!-- Navigation -->
+              <li><a href="{% url 'pages:index' %}">{% trans "Home" %}</a></li>
+              <li><a href="{% url 'pages:about' %}">{% trans "About" %}</a></li>
+              <li><a href="{% url 'blog:blog' %}">{% trans "Blog" %}</a></li>
+              <li><a href="{% url 'listings:listings' %}">{% trans "Properties" %}</a></li>
+                            <!-- Navigation -->
+              <li><a href="{% url 'Ages:Ages' %}">{% trans "Verification" %}</a></li>
+              <li><a href="#contact">{% trans "Contact" %}</a></li>
+            </div>
+            <div class="registration flex-center">
+              <div class="join-us">
+                <!-- Join Us Button -->
+                    <li class="pointer animate"><a href="{% url 'accounts:login_view' %}">{% trans "Agents" %}</a>
+                 </li>    
+                </div>
+                  <div class="getting-started">
+                    <!-- Get Started Button
+                   <a href="{% url 'accounts:register_view' %}"><li class="main-btn pointer text-center animate">{% trans "Become an agent" %}</li></a>
+                  </div> -->
+                </div>
+                <!-- Language Switcher -->
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                <div class="language-switcher">
+                  <div class="lang-switcher" data-lang-current="{{ LANGUAGE_CODE }}">
+                    {% with current_flag='flags/'|add:LANGUAGE_CODE|add:'.svg' %}
+                      <button type="button" class="lang-current" aria-haspopup="true" aria-expanded="false" aria-label="{% trans 'Select language' %}">
+                        <img class="flag" src="{% static current_flag %}" alt="{{ LANGUAGE_CODE }}">
+                        <span class="code">{{ LANGUAGE_CODE|upper }}</span>
+                        <span class="chev" aria-hidden="true">▾</span>
+                      </button>
+                    {% endwith %}
+                    <div class="lang-menu" role="menu" aria-label="{% trans 'Available languages' %}">
+                      {% for lang in LANGUAGES %}
+                        {% with flag_file='flags/'|add:lang.0|add:'.svg' %}
+                        <form action="{% url 'set_language' %}" method="post" class="lang-item">
+                          {% csrf_token %}
+                          <input name="next" type="hidden" value="{{ request.path }}">
+                          <input type="hidden" name="language" value="{{ lang.0 }}">
+                          <button type="submit" role="menuitem" aria-label="{{ lang.1 }}">
+                            <img class="flag" src="{% static flag_file %}" alt="" aria-hidden="true">
+                            <span class="label">{{ lang.1 }}</span>
+                          </button>
+                        </form>
+                        {% endwith %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <script>
+                  document.addEventListener('DOMContentLoaded', function() {
+                    const langSwitcher = document.querySelector('.lang-switcher');
+                    const langButton = langSwitcher.querySelector('.lang-current');
+                    let isTouch = false;
+                    
+                    // Detect touch capability
+                    window.addEventListener('touchstart', function onFirstTouch() {
+                      isTouch = true;
+                      window.removeEventListener('touchstart', onFirstTouch);
+                    });
+
+                    // Function to close menu
+                    function closeMenu() {
+                      langSwitcher.classList.remove('open');
+                      langButton.setAttribute('aria-expanded', 'false');
+                    }
+                    
+                    // Function to open menu
+                    function openMenu() {
+                      langSwitcher.classList.add('open');
+                      langButton.setAttribute('aria-expanded', 'true');
+                    }
+
+                    // Function to close menu when clicking outside
+                    function closeMenuOutside(event) {
+                      if (!langSwitcher.contains(event.target)) {
+                        closeMenu();
+                      }
+                    }
+
+                    // Toggle on click for both mobile and desktop
+                    langButton.addEventListener('click', function(e) {
+                      const isOpen = langSwitcher.classList.contains('open');
+                      if (isOpen) {
+                        closeMenu();
+                      } else {
+                        openMenu();
+                      }
+                    });
+
+                    // Only add hover behavior for non-touch devices
+                    if (!isTouch && window.matchMedia('(min-width: 768px)').matches) {
+                      langSwitcher.addEventListener('mouseenter', openMenu);
+                      langSwitcher.addEventListener('mouseleave', closeMenu);
+                    }
+
+                    // Close when clicking outside
+                    document.addEventListener('click', closeMenuOutside);
+
+                    // Clean up event listener when page changes
+                    window.addEventListener('unload', function() {
+                      document.removeEventListener('click', closeMenuOutside);
+                    });
+                  });
+                </script>
+
+                <div class="registration flex-center">
+                  <div class="join-us">
+                    <!-- Join Us Button -->
+                 
+              </div>
+              <div class="getting-started">
+                <!-- Get Started Button -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>

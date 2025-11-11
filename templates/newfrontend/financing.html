@@ -1,0 +1,235 @@
+{% extends 'newfrontend/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% block nav_financing_active %}active{% endblock %}
+{% block title %}Villa Agency - Banking in Turkey{% endblock %}
+{% block extra_css %}
+<style>
+  /* Page-specific polish for financing page */
+  .financing-page .section-heading h2 { font-size: 28px; line-height: 1.35; margin: 8px 0 14px; }
+  .financing-page h4 { font-size: 20px; margin-top: 18px; margin-bottom: 10px; }
+  .financing-page p { color: #4b5563; margin-bottom: 12px; }
+  .financing-page ul, .financing-page ol { padding-left: 20px; margin-bottom: 12px; }
+  .financing-page ul li, .financing-page ol li { margin-bottom: 6px; }
+  .financing-page .info-box { border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.08); }
+  .financing-page .aside { position: sticky; top: 20px; }
+  .financing-page .properties-box .item img { border-radius: 10px; }
+  @media (max-width: 992px) {
+    .financing-page .section-heading h2 { font-size: 22px; }
+    .financing-page h4 { font-size: 18px; }
+  }
+</style>
+{% endblock %}
+{% block content %}
+  <div class="page-heading header-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <span class="breadcrumb"><a href="{% url 'new_index' %}">{% trans "Home" %}</a> / {% trans "Banking in Turkey" %}</span>
+          <h3>{% trans "Banking & Mortgages for Buying Property in Turkey" %}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section properties">
+    <div class="container">
+      <ul class="properties-filter">
+        <li><a class="is_active" href="#!" data-filter="*">{% trans "Show All" %}</a></li>
+        <li><a href="#!" data-filter=".adv">{% trans "Apartment" %}</a></li>
+        <li><a href="#!" data-filter=".str">{% trans "Villa House" %}</a></li>
+        <li><a href="{% url 'new_map' %}" >{% trans "Map" %}</a></li>
+      </ul>
+             {% include 'newfrontend/partials/loan_calculator.html' %}
+  <div class="section financing-page">
+    <div class="container">
+      <div class="row">
+          <div class="section-heading">
+            <h6>| {% trans "Overview" %}</h6>
+            <h2>{% trans "How financing works for property purchases in Turkey" %}</h2>
+          </div>
+          <p>
+            {% trans "Turkey offers bank mortgages and developer installments for both residents and foreign buyers. Terms, documentation, and maximum loan amounts vary by bank, buyer profile, and property valuation. Below is a practical summary to help you prepare." %}
+          </p>
+
+          <h4 class="mt-4">{% trans "Who can apply" %}</h4>
+          <ul>
+            <li>{% trans "Turkish citizens and residents: broad bank options and terms." %}</li>
+            <li>{% trans "Foreign buyers: mortgages are available at selected banks, subject to valuation and local policy." %}</li>
+          </ul>
+
+          <h4 class="mt-4">{% trans "Typical loan terms" %}</h4>
+          <ul>
+            <li>{% trans "Currency: mostly TRY-denominated mortgages; FX loans are limited." %}</li>
+            <li>{% trans "Tenor: commonly 5–10 years depending on bank and profile." %}</li>
+            <li>{% trans "Loan-to-Value (LTV): determined by the bank’s appraisal; foreigners often qualify for lower LTVs than residents." %}</li>
+            <li>{% trans "Interest: variable by bank and market; request an up-to-date quote." %}</li>
+          </ul>
+
+          <h4 class="mt-4">{% trans "Required documents (common)" %}</h4>
+          <ul>
+            <li>{% trans "Passport/ID and biometric photo" %}</li>
+            <li>{% trans "Turkish tax number (Vergi Numarası)" %}</li>
+            <li>{% trans "Proof of income (salary slips, tax returns, bank statements)" %}</li>
+            <li>{% trans "Address proof (utility bill or residency document)" %}</li>
+            <li>{% trans "Property appraisal report (SPK valuation) arranged via bank" %}</li>
+          </ul>
+
+          <h4 class="mt-4">{% trans "Process at a glance" %}</h4>
+          <ol>
+            <li>{% trans "Pre-qualification: discuss budget, LTV, and estimated rates with the bank." %}</li>
+            <li>{% trans "Open a Turkish bank account and obtain a tax number if you don’t have one." %}</li>
+            <li>{% trans "Submit documents; bank orders independent valuation of the property." %}</li>
+            <li>{% trans "Final approval: the loan amount is set based on the valuation report." %}</li>
+            <li>{% trans "Signing and disbursement: earthquake insurance (DASK) is typically required before deed transfer." %}</li>
+          </ol>
+
+          <h4 class="mt-4">{% trans "Fees and mandatory items" %}</h4>
+          <ul>
+            <li>{% trans "Appraisal (valuation) fee" %}</li>
+            <li>{% trans "Loan allocation/processing fee (varies by bank)" %}</li>
+            <li>{% trans "DASK earthquake insurance (mandatory) and property insurance" %}</li>
+            <li>{% trans "Title deed taxes and notary fees (paid at transfer)" %}</li>
+          </ul>
+
+          <h4 class="mt-4">{% trans "Money transfers" %}</h4>
+          <p>
+            {% trans "International buyers typically fund down payments and closing via SWIFT transfers in foreign currency. Banks may request source-of-funds documentation. Currency conversion and payment documentation for the title office are handled in coordination with your bank and notary." %}
+          </p>
+
+          <h4 class="mt-4">{% trans "Alternatives to bank mortgages" %}</h4>
+          <ul>
+            <li>{% trans "Developer installment plans: staged payments during constrinsuction or short-term post-handover schedules." %}</li>
+            <li>{% trans "Personal loans or home equity from your home country (if applicable)." %}</li>
+          </ul>
+
+          <div class="mt-5 p-4 info-box">
+            <h4 class="mb-3">{% trans "Popular banks to consider" %}</h4>
+            <p class="mb-2">{% trans "Major institutions active in retail mortgages include:" %}</p>
+            <ul class="mb-0">
+              <li>{% trans "Ziraat Bankası, VakıfBank, Halkbank" %}</li>
+              <li>{% trans "İşbank, Garanti BBVA, Akbank, Yapı Kredi" %}</li>
+            </ul>
+            <small class="d-block mt-2 text-muted">{% trans "Availability and terms for foreign buyers vary by branch and policy; please confirm locally." %}</small>
+          </div>
+          
+                              <!-- ON hOLD FOR NOW - Property Details 
+
+          {% if listings %}
+          <div class="section-heading mt-5">
+            <h6>| {% trans "Related" %}</h6>
+            <h2>{% trans "Featured properties you can finance" %}</h2>
+          </div>
+          <div class="row properties-box">
+            {% for listing in listings %}
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="{% url 'new_listing_detail' listing.id %}">
+                    <img src="{{ listing.photo_main.url }}" alt="{{ listing.title }}">
+                  </a>
+                  <span class="category">{{ listing.property_type }}</span>
+                  <h6>₺{{ listing.price|intcomma }}</h6>
+                  <h4>
+                    <a href="{% url 'new_listing_detail' listing.id %}">{{ listing.title }}</a>
+                  </h4>
+                  <ul>
+                    <li>{% trans "Bedrooms" %}: <span>{{ listing.bedrooms }}</span></li>
+                    <li>{% trans "Bathrooms" %}: <span>{{ listing.bathrooms }}</span></li>
+                    <li>{% trans "City" %}: <span>{{ listing.city }}</span></li>
+                    <li>{% trans "State" %}: <span>{{ listing.state }}</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="{% url 'new_listing_detail' listing.id %}">{% trans "More Info" %}</a>
+                    <a href="{% url 'new_map' %}"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+        <div class="col-lg-4">
+          <div class="p-4 info-box aside">
+            <h4 class="mb-3">{% trans "Quick facts" %}</h4>
+            <ul style="margin-bottom: 0;">
+              <li>{% trans "Independent valuation sets the maximum loanable amount." %}</li>
+              <li>{% trans "Earthquake insurance (DASK) is mandatory." %}</li>
+              <li>{% trans "Bring a tax number and recent bank statements." %}</li>
+              <li>{% trans "Expect 2–4 weeks for full approval and disbursement." %}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   -->
+
+  <div class="contact-page section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="section-heading">
+            <h6>| {% trans "Financing Inquiry" %}</h6>
+            <h2>{% trans "Get in touch about mortgages in Turkey" %}</h2>
+          </div>
+          <p>{% trans "We guide you through bank pre-approval, valuation, and deed transfer, and coordinate with lenders and developers to secure a suitable financing option for your purchase in Turkey." %}</p>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="item phone">
+                <img src="{% static 'newfront/assets/images/phone-icon.png' %}" alt="" style="max-width: 52px;">
+                <h6>+90 542 363 74 36<br><span>Phone Number</span></h6>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="item email">
+                <img src="{% static 'newfront/assets/images/email-icon.png' %}" alt="" style="max-width: 52px;">
+                <h6>financing@villa.co<br><span>Financing Email</span></h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <form id="contact-form" action="" method="post">
+            <div class="row">
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="name">{% trans "Full Name" %}</label>
+                  <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="email">{% trans "Email Address" %}</label>
+                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required="">
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="subject">{% trans "Subject" %}</label>
+                  <input type="subject" name="subject" id="subject" placeholder="Subject..." autocomplete="on" >
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="message">{% trans "Message" %}</label>
+                  <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <button type="submit" id="form-submit" class="orange-button">{% trans "Send Message" %}</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-12">
+          <div id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.917679336842!2d28.667998876457077!3d41.02705691826774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b55f5b9fdc13c7%3A0xd7a65415d511d2cd!2sSar%20Life%20Residence!5e0!3m2!1sen!2str!4v1762775177625!5m2!1sen!2str" width="100%" height="500px" frameborder="0" style="border:0; border-radius: 10px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);" allowfullscreen=""></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

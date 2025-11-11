@@ -1,0 +1,1314 @@
+#: templates/newfrontend/index.html:238
+msgid ""
+msgstr ""
+"Project-Id-Version: KoralCity\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-11 03:39+0000\n"
+"PO-Revision-Date: 2025-11-09 21:55+0000\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: templates/accounts/dashborad.html:5
+msgid "Dashboard"
+msgstr "Panel"
+
+#: templates/accounts/dashborad.html:15
+msgid "User Dashboard"
+msgstr "Panel de usuario"
+
+#: templates/accounts/dashborad.html:16
+msgid "Manage your KoralCity Properties account"
+msgstr "Administra tu cuenta de KoralCity Properties"
+
+#: templates/accounts/dashborad.html:26
+msgid "Welcome"
+msgstr "Bienvenido"
+
+#: templates/accounts/dashborad.html:28
+msgid "Here are the property listings that you have inquired about"
+msgstr "Aquí están las propiedades sobre las que has consultado"
+
+#: templates/accounts/dashborad.html:33
+#: templates/newfrontend/property-details.html:12
+msgid "Property"
+msgstr "Propiedad"
+
+#: templates/accounts/dashborad.html:43
+msgid "View Listing"
+msgstr "Ver anuncio"
+
+#: templates/accounts/dashborad.html:52
+msgid "You Don't Have Any Inquiries"
+msgstr "No tienes consultas"
+
+#: templates/accounts/login.html:13 templates/partials/_footer.html:25
+#: templates/partials/_navbar.html:53
+msgid "Agents"
+msgstr "Agentes"
+
+#: templates/accounts/login.html:17
+msgid "You wish to be a realtor agent? here is all you have to do."
+msgstr "¿Quieres ser agente inmobiliario? Esto es lo que debes hacer."
+
+#: templates/accounts/login.html:20 templates/accounts/register.html:23
+#: templates/listings/listing.html:18 templates/listings/listings.html:20
+#: templates/newfrontend/base.html:135 templates/newfrontend/contact.html:11
+#: templates/newfrontend/financing.html:29 templates/newfrontend/map.html:54
+#: templates/newfrontend/properties.html:12
+#: templates/newfrontend/property-details.html:12 templates/pages/about.html:25
+#: templates/pages/agesverification.html:20 templates/partials/_navbar.html:42
+msgid "Home"
+msgstr "Inicio"
+
+#: templates/accounts/login.html:22 templates/pages/about.html:27
+#: templates/pages/agesverification.html:22 templates/partials/_footer.html:30
+#: templates/partials/_navbar.html:43
+msgid "About"
+msgstr "Acerca de"
+
+# Accounts pages
+#: templates/accounts/login.html:36
+msgid "How it works?"
+msgstr "¿Cómo funciona?"
+
+#: templates/accounts/login.html:37
+msgid ""
+"You wish be a realtor agent with Koralcity? <br> All you have to do.<br>is "
+"complete some few steps and arrange all relevant information <br>while "
+"pending for your response before the end of the day."
+msgstr ""
+"¿Quieres ser agente inmobiliario con Koralcity? <br> Todo lo que tienes que "
+"hacer <br>es completar unos pocos pasos y organizar toda la información "
+"relevante <br>mientras esperamos tu respuesta antes de que termine el día."
+
+#: templates/accounts/login.html:48
+msgid "Find Your Location"
+msgstr "Encuentra tu ubicación"
+
+#: templates/accounts/login.html:51
+msgid ""
+"Here you search for the location you want to cover in your listings and then "
+"move to the next step."
+msgstr "Aquí buscas la ubicación que quieres cubrir en tus anuncios y luego pasas al siguiente paso."
+
+#: templates/accounts/login.html:62
+msgid "Find Apartment"
+msgstr "Encontrar apartamento"
+
+#: templates/accounts/login.html:65
+msgid ""
+"After you've picked a location, now you search for available properties in "
+"that location for your listings."
+msgstr "Después de elegir una ubicación, busca las propiedades disponibles en ese lugar para tus anuncios."
+
+#: templates/accounts/login.html:76
+msgid "Make Contact"
+msgstr "Ponerse en contacto"
+
+#: templates/accounts/login.html:79
+msgid ""
+"Once you've completed step one and two now you can contact us and you'll get "
+"back to you with a confirmation."
+msgstr "Cuando completes los pasos uno y dos, podrás contactarnos y te enviaremos una confirmación."
+
+#: templates/accounts/login.html:87
+msgid "Services"
+msgstr "Servicios"
+
+#: templates/accounts/login.html:88
+msgid ""
+"At Koralcity Limited, we handle the operations, consulting, maintenance,<br> "
+"and administration of properties rentals to prospective clients."
+msgstr "En Koralcity Limited nos encargamos de la operación, consultoría, mantenimiento<br> y administración de propiedades en alquiler para clientes potenciales."
+
+#: templates/accounts/login.html:97 templates/partials/_footer.html:42
+msgid "Renting"
+msgstr "Alquiler"
+
+#: templates/accounts/login.html:100 templates/partials/_footer.html:43
+msgid "Selling"
+msgstr "Venta"
+
+#: templates/accounts/login.html:103
+msgid "Building"
+msgstr "Construcción"
+
+#: templates/accounts/login.html:178 templates/accounts/login.html:195
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#: templates/accounts/login.html:186 templates/accounts/register.html:57
+msgid "Username"
+msgstr "Usuario"
+
+#: templates/accounts/login.html:191 templates/accounts/register.html:65
+msgid "Password"
+msgstr "Contraseña"
+
+#: templates/accounts/register.html:5 templates/accounts/register.html:25
+#: templates/accounts/register.html:41 templates/accounts/register.html:72
+msgid "Register"
+msgstr "Registrarse"
+
+#: templates/accounts/register.html:16
+msgid "Become an Agent"
+msgstr "Hazte agente"
+
+#: templates/accounts/register.html:20
+msgid "Register now and receive a mail from us within 2 working days."
+msgstr "Regístrate ahora y recibirás un correo nuestro en 2 días hábiles."
+
+#: templates/accounts/register.html:49
+msgid "First Name"
+msgstr "Nombre"
+
+#: templates/accounts/register.html:53
+msgid "Last Name"
+msgstr "Apellido"
+
+#: templates/accounts/register.html:61 templates/pages/agesverification.html:51
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: templates/accounts/register.html:69
+msgid "Confirm Password"
+msgstr "Confirmar contraseña"
+
+# Core/navigation
+#: templates/base.html:7
+msgid "KoralCity Properties"
+msgstr "Propiedades KoralCity"
+
+# Blog
+#: templates/blog/base.html:45
+msgid "Blog App"
+msgstr "Aplicación Blog"
+
+#: templates/blog/blog_detail.html:15 templates/blog/blog_list.html:13
+#: templates/blog/category_list.html:14 templates/blog/search_list.html:13
+msgid "Production:"
+msgstr "Producción:"
+
+#: templates/blog/blog_detail.html:30 templates/blog/blog_list.html:27
+#: templates/blog/category_list.html:28
+msgid "by"
+msgstr "por"
+
+#: templates/blog/blog_detail.html:30 templates/blog/blog_detail.html:55
+#: templates/blog/blog_list.html:27 templates/blog/category_list.html:28
+msgid "Comments"
+msgstr "Comentarios"
+
+#: templates/blog/blog_detail.html:40
+msgid "To comment, first"
+msgstr "Para comentar, primero"
+
+#: templates/blog/blog_detail.html:40
+msgid "log in"
+msgstr "inicia sesión"
+
+#: templates/blog/blog_detail.html:40
+msgid "to your account"
+msgstr "en tu cuenta"
+
+#: templates/blog/blog_detail.html:48 templates/newfrontend/contact.html:74
+#: templates/newfrontend/financing.html:214
+#: templates/newfrontend/index.html:368 templates/newfrontend/map.html:265
+#: templates/newfrontend/properties.html:137
+msgid "Message"
+msgstr "Mensaje"
+
+#: templates/blog/blog_detail.html:49
+msgid "Add Comment"
+msgstr "Añadir comentario"
+
+#: templates/blog/blog_detail.html:66
+msgid "There is no comment"
+msgstr "No hay comentarios"
+
+#: templates/blog/blog_list.html:32 templates/blog/category_list.html:33
+#: templates/blog/search_list.html:32
+msgid "Continue Reading"
+msgstr "Seguir leyendo"
+
+#: templates/blog/blog_list.html:66 templates/blog/category_list.html:64
+#: templates/blog/search_list.html:69
+msgid "Enter keywords & hit enter...."
+msgstr "Introduce palabras clave y pulsa Enter..."
+
+#: templates/blog/blog_list.html:72 templates/blog/category_list.html:70
+#: templates/blog/search_list.html:75
+msgid "About Me"
+msgstr "Sobre mí"
+
+#: templates/blog/blog_list.html:85 templates/blog/category_list.html:83
+msgid "Recent Post"
+msgstr "Publicación reciente"
+
+#: templates/blog/blog_list.html:101 templates/blog/category_list.html:99
+#: templates/blog/search_list.html:104
+msgid "Categories"
+msgstr "Categorías"
+
+#: templates/blog/blog_list.html:113 templates/blog/category_list.html:121
+#: templates/blog/search_list.html:126
+msgid "Tags"
+msgstr "Etiquetas"
+
+#: templates/blog/blog_list.html:126 templates/blog/category_list.html:160
+#: templates/blog/search_list.html:165
+msgid "Subscribe to our newsletter"
+msgstr "Suscríbete a nuestro boletín"
+
+#: templates/blog/blog_list.html:130 templates/blog/category_list.html:164
+#: templates/blog/search_list.html:169
+msgid "Enter your email"
+msgstr "Introduce tu correo electrónico"
+
+#: templates/blog/blog_list.html:131 templates/blog/category_list.html:165
+#: templates/blog/search_list.html:170
+msgid "Subscribe"
+msgstr "Suscribirse"
+
+#: templates/blog/category_list.html:109
+msgid "Live stream"
+msgstr "Transmisión en vivo"
+
+#: templates/blog/category_list.html:132 templates/blog/search_list.html:137
+msgid "Gallery"
+msgstr "Galería"
+
+#: templates/blog/search_list.html:37
+msgid "No results found!"
+msgstr "¡No se encontraron resultados!"
+
+#: templates/blog/search_list.html:38
+msgid "There were no results matching your search"
+msgstr "No hubo resultados que coincidan con tu búsqueda"
+
+#: templates/listings/listing.html:13 templates/listings/listings.html:15
+#: templates/listings/listings.html:22 templates/newfrontend/base.html:136
+#: templates/newfrontend/properties.html:12
+#: templates/newfrontend/properties.html:13 templates/partials/_navbar.html:45
+msgid "Properties"
+msgstr "Propiedades"
+
+# Listings pages
+#: templates/listings/listing.html:20
+msgid "Listing"
+msgstr "Anuncio"
+
+#: templates/listings/listing.html:37
+msgid "Back To Listings"
+msgstr "Volver a anuncios"
+
+#: templates/listings/listing.html:92
+msgid "Asking Price:"
+msgstr "Precio solicitado:"
+
+#: templates/listings/listing.html:96
+msgid "Bedrooms:"
+msgstr "Dormitorios:"
+
+#: templates/listings/listing.html:100
+msgid "Bathrooms:"
+msgstr "Baños:"
+
+#: templates/listings/listing.html:104
+msgid "Type:"
+msgstr "Tipo:"
+
+#: templates/listings/listing.html:113
+msgid "Square Feet:"
+msgstr "Pies cuadrados:"
+
+#: templates/listings/listing.html:117
+msgid "Lot Size:"
+msgstr "Tamaño del lote:"
+
+#: templates/listings/listing.html:122
+msgid "Listing Date:"
+msgstr "Fecha de listado:"
+
+#: templates/listings/listing.html:126
+msgid "Realtor:"
+msgstr "Agente:"
+
+#: templates/listings/listing.html:147
+msgid "Property Realtor"
+msgstr "Agente inmobiliario"
+
+#: templates/listings/listing.html:148
+msgid "Realtor name:"
+msgstr "Nombre del agente:"
+
+#: templates/listings/listing.html:149
+msgid "Number:"
+msgstr "Número:"
+
+#: templates/listings/listing.html:150 templates/listings/listing.html:186
+msgid "Email:"
+msgstr "Correo electrónico:"
+
+#: templates/listings/listing.html:153 templates/listings/listing.html:164
+msgid "Make An Inquiry"
+msgstr "Hacer una consulta"
+
+#: templates/listings/listing.html:178
+msgid "Property:"
+msgstr "Propiedad:"
+
+#: templates/listings/listing.html:182
+msgid "Name:"
+msgstr "Nombre:"
+
+#: templates/listings/listing.html:190
+msgid "Phone:"
+msgstr "Teléfono:"
+
+#: templates/listings/listing.html:194
+msgid "Message:"
+msgstr "Mensaje:"
+
+#: templates/listings/listing.html:198
+msgid "Send"
+msgstr "Enviar"
+
+#: templates/listings/listings.html:18
+#, fuzzy
+#| msgid "More Than 500+<br>Apartments For Sale & Rent"
+msgid "More Than 500+ Apartment For Sale & Rent"
+msgstr "Más de 500+<br>apartamentos en venta y alquiler"
+
+#: templates/listings/listings.html:61 templates/pages/index.html:86
+msgid "Type"
+msgstr "Tipo"
+
+#: templates/listings/listings.html:63 templates/pages/index.html:88
+msgid "Bathroom"
+msgstr "Baño"
+
+#: templates/listings/listings.html:67 templates/listings/search.html:97
+#: templates/pages/index.html:92
+msgid "Garage"
+msgstr "Garaje"
+
+#: templates/listings/listings.html:69 templates/pages/index.html:94
+msgid "Bedroom"
+msgstr "Dormitorio"
+
+#: templates/listings/listings.html:71 templates/listings/search.html:106
+#: templates/newfrontend/financing.html:142
+#: templates/newfrontend/properties.html:48 templates/pages/index.html:96
+msgid "More Info"
+msgstr "Más información"
+
+#: templates/listings/listings.html:79 templates/listings/search.html:114
+#: templates/newfrontend/index.html:304
+#: templates/newfrontend/properties.html:56 templates/pages/index.html:104
+msgid "No Listings Available"
+msgstr "No hay anuncios disponibles"
+
+#: templates/listings/search.html:11
+msgid "Search for your Appartments<br>and make your inquiries"
+msgstr "Busca tus apartamentos<br>y realiza tus consultas"
+
+# Search
+#: templates/listings/search.html:19
+msgid "Keywords"
+msgstr "Palabras clave"
+
+#: templates/listings/search.html:20
+msgid "Keyword (Pool, Garage, etc)"
+msgstr "Palabra clave (Piscina, Garaje, etc.)"
+
+#: templates/listings/search.html:24 templates/listings/search.html:25
+#: templates/newfrontend/financing.html:138
+#: templates/newfrontend/index.html:292
+#: templates/newfrontend/properties.html:44
+msgid "City"
+msgstr "Ciudad"
+
+#: templates/listings/search.html:29 templates/newfrontend/financing.html:139
+#: templates/newfrontend/index.html:293
+#: templates/newfrontend/properties.html:45
+msgid "State"
+msgstr "Estado"
+
+#: templates/listings/search.html:31
+msgid "State (All)"
+msgstr "Estado (Todos)"
+
+#: templates/listings/search.html:43 templates/listings/search.html:101
+#: templates/newfrontend/financing.html:136
+#: templates/newfrontend/index.html:290
+#: templates/newfrontend/properties.html:42
+#: templates/newfrontend/property-details.html:41
+msgid "Bedrooms"
+msgstr "Dormitorios"
+
+#: templates/listings/search.html:45
+msgid "Bedrooms (Any)"
+msgstr "Dormitorios (Cualquiera)"
+
+#: templates/listings/search.html:55
+msgid "Max Price (All)"
+msgstr "Precio máx (Todos)"
+
+#: templates/listings/search.html:64
+msgid "Submit form"
+msgstr "Enviar formulario"
+
+#: templates/listings/search.html:95
+msgid "Sqft"
+msgstr "Pies²"
+
+#: templates/listings/search.html:103 templates/newfrontend/financing.html:137
+#: templates/newfrontend/index.html:291
+#: templates/newfrontend/properties.html:43
+#: templates/newfrontend/property-details.html:45
+#, fuzzy
+#| msgid "Bathrooms:"
+msgid "Bathrooms"
+msgstr "Baños:"
+
+#: templates/newfrontend/base.html:79 templates/partials/_navbar.html:67
+msgid "Select language"
+msgstr "Seleccionar idioma"
+
+#: templates/newfrontend/base.html:85 templates/partials/_navbar.html:73
+msgid "Available languages"
+msgstr "Idiomas disponibles"
+
+#: templates/newfrontend/base.html:137 templates/newfrontend/contact.html:23
+#: templates/newfrontend/financing.html:41 templates/newfrontend/index.html:188
+#: templates/newfrontend/map.html:54 templates/newfrontend/map.html:67
+#: templates/newfrontend/properties.html:25
+msgid "Map"
+msgstr "Mapa"
+
+#: templates/newfrontend/base.html:140
+#: templates/newfrontend/property-details.html:6
+msgid "Property Details"
+msgstr "Detalles de la propiedad"
+
+#: templates/newfrontend/base.html:142 templates/newfrontend/contact.html:11
+#: templates/newfrontend/contact.html:12 templates/newfrontend/contact.html:32
+#: templates/newfrontend/index.html:315 templates/newfrontend/map.html:223
+#: templates/newfrontend/properties.html:95
+msgid "Contact Us"
+msgstr "Contáctanos"
+
+#: templates/newfrontend/base.html:143
+msgid "Financing"
+msgstr "Financiación"
+
+#: templates/newfrontend/base.html:146 templates/newfrontend/index.html:213
+#: templates/newfrontend/index.html:263 templates/newfrontend/index.html:296
+msgid "Schedule a visit"
+msgstr "Programar una visita"
+
+#: templates/newfrontend/contact.html:20
+#: templates/newfrontend/financing.html:38 templates/newfrontend/map.html:64
+#: templates/newfrontend/properties.html:22
+msgid "Show All"
+msgstr "Mostrar todo"
+
+#: templates/newfrontend/contact.html:21
+#: templates/newfrontend/financing.html:39 templates/newfrontend/index.html:182
+#: templates/newfrontend/map.html:65 templates/newfrontend/properties.html:23
+#: templates/partials/_footer.html:37
+msgid "Apartment"
+msgstr "Apartamento"
+
+#: templates/newfrontend/contact.html:22
+#: templates/newfrontend/financing.html:40 templates/newfrontend/index.html:185
+#: templates/newfrontend/map.html:66 templates/newfrontend/properties.html:24
+msgid "Villa House"
+msgstr "Villa"
+
+#: templates/newfrontend/contact.html:33 templates/newfrontend/index.html:316
+#: templates/newfrontend/map.html:224 templates/newfrontend/properties.html:96
+msgid "Get In Touch With Our Agents"
+msgstr "Ponte en contacto con nuestros agentes"
+
+# AGIS Verification
+#: templates/newfrontend/contact.html:56
+#: templates/newfrontend/financing.html:196
+#: templates/newfrontend/index.html:350 templates/newfrontend/map.html:247
+#: templates/newfrontend/properties.html:119
+#: templates/pages/agesverification.html:47
+msgid "Full Name"
+msgstr "Nombre completo"
+
+#: templates/newfrontend/contact.html:62
+#: templates/newfrontend/financing.html:202
+#: templates/newfrontend/index.html:356 templates/newfrontend/map.html:253
+#: templates/newfrontend/properties.html:125
+msgid "Email Address"
+msgstr "Dirección de correo"
+
+#: templates/newfrontend/contact.html:68
+#: templates/newfrontend/financing.html:208
+#: templates/newfrontend/index.html:362 templates/newfrontend/map.html:259
+#: templates/newfrontend/properties.html:131
+msgid "Subject"
+msgstr "Asunto"
+
+#: templates/newfrontend/contact.html:80
+#: templates/newfrontend/financing.html:220
+#: templates/newfrontend/index.html:374 templates/newfrontend/map.html:271
+#: templates/newfrontend/properties.html:143
+msgid "Send Message"
+msgstr "Enviar mensaje"
+
+#: templates/newfrontend/financing.html:29
+msgid "Banking in Turkey"
+msgstr "Banca en Turquía"
+
+#: templates/newfrontend/financing.html:30
+msgid "Banking & Mortgages for Buying Property in Turkey"
+msgstr "Banca e hipotecas para comprar propiedades en Turquía"
+
+#: templates/newfrontend/financing.html:48
+msgid "Overview"
+msgstr "Descripción general"
+
+#: templates/newfrontend/financing.html:49
+msgid "How financing works for property purchases in Turkey"
+msgstr "Cómo funciona la financiación para compras de propiedades en Turquía"
+
+#: templates/newfrontend/financing.html:52
+msgid ""
+"Turkey offers bank mortgages and developer installments for both residents "
+"and foreign buyers. Terms, documentation, and maximum loan amounts vary by "
+"bank, buyer profile, and property valuation. Below is a practical summary to "
+"help you prepare."
+msgstr ""
+"Turquía ofrece hipotecas bancarias y planes de pago de promotores para "
+"residentes y compradores extranjeros. Las condiciones, la documentación y el "
+"importe máximo del préstamo varían según el banco, el perfil del comprador y "
+"la tasación. A continuación, un resumen práctico para ayudarte a prepararte."
+
+#: templates/newfrontend/financing.html:55
+msgid "Who can apply"
+msgstr "Quién puede solicitar"
+
+#: templates/newfrontend/financing.html:57
+msgid "Turkish citizens and residents: broad bank options and terms."
+msgstr "Ciudadanos turcos y residentes: amplias opciones y condiciones bancarias."
+
+#: templates/newfrontend/financing.html:58
+msgid ""
+"Foreign buyers: mortgages are available at selected banks, subject to "
+"valuation and local policy."
+msgstr "Compradores extranjeros: las hipotecas están disponibles en bancos seleccionados, sujetas a tasación y política local."
+
+#: templates/newfrontend/financing.html:61
+msgid "Typical loan terms"
+msgstr "Condiciones típicas del préstamo"
+
+#: templates/newfrontend/financing.html:63
+msgid "Currency: mostly TRY-denominated mortgages; FX loans are limited."
+msgstr "Moneda: en su mayoría hipotecas denominadas en TRY; los préstamos en divisas son limitados."
+
+#: templates/newfrontend/financing.html:64
+msgid "Tenor: commonly 5–10 years depending on bank and profile."
+msgstr "Plazo: normalmente de 5 a 10 años según el banco y el perfil."
+
+#: templates/newfrontend/financing.html:65
+msgid ""
+"Loan-to-Value (LTV): determined by the bank’s appraisal; foreigners often "
+"qualify for lower LTVs than residents."
+msgstr "Relación préstamo-valor (LTV): determinada por la tasación del banco; los extranjeros suelen calificar para LTV más bajos que los residentes."
+
+#: templates/newfrontend/financing.html:66
+msgid "Interest: variable by bank and market; request an up-to-date quote."
+msgstr "Interés: variable según el banco y el mercado; solicita una cotización actualizada."
+
+#: templates/newfrontend/financing.html:69
+msgid "Required documents (common)"
+msgstr "Documentos requeridos (comunes)"
+
+#: templates/newfrontend/financing.html:71
+msgid "Passport/ID and biometric photo"
+msgstr "Pasaporte/ID y foto biométrica"
+
+#: templates/newfrontend/financing.html:72
+msgid "Turkish tax number (Vergi Numarası)"
+msgstr "Número fiscal turco (Vergi Numarası)"
+
+#: templates/newfrontend/financing.html:73
+msgid "Proof of income (salary slips, tax returns, bank statements)"
+msgstr "Justificante de ingresos (nóminas, declaraciones de impuestos, extractos bancarios)"
+
+#: templates/newfrontend/financing.html:74
+msgid "Address proof (utility bill or residency document)"
+msgstr "Comprobante de domicilio (recibo de servicios o documento de residencia)"
+
+#: templates/newfrontend/financing.html:75
+msgid "Property appraisal report (SPK valuation) arranged via bank"
+msgstr "Informe de tasación de la propiedad (valoración SPK) gestionado por el banco"
+
+#: templates/newfrontend/financing.html:78
+msgid "Process at a glance"
+msgstr "Proceso de un vistazo"
+
+#: templates/newfrontend/financing.html:80
+msgid ""
+"Pre-qualification: discuss budget, LTV, and estimated rates with the bank."
+msgstr "Precalificación: comenta presupuesto, LTV y tasas estimadas con el banco."
+
+#: templates/newfrontend/financing.html:81
+msgid ""
+"Open a Turkish bank account and obtain a tax number if you don’t have one."
+msgstr "Abre una cuenta bancaria en Turquía y obtén un número fiscal si no lo tienes."
+
+#: templates/newfrontend/financing.html:82
+msgid "Submit documents; bank orders independent valuation of the property."
+msgstr "Entrega los documentos; el banco encarga una tasación independiente de la propiedad."
+
+#: templates/newfrontend/financing.html:83
+msgid "Final approval: the loan amount is set based on the valuation report."
+msgstr "Aprobación final: el importe del préstamo se fija según el informe de tasación."
+
+#: templates/newfrontend/financing.html:84
+msgid ""
+"Signing and disbursement: earthquake insurance (DASK) is typically required "
+"before deed transfer."
+msgstr "Firma y desembolso: normalmente se requiere seguro contra terremotos (DASK) antes de la transferencia de la escritura."
+
+#: templates/newfrontend/financing.html:87
+msgid "Fees and mandatory items"
+msgstr "Comisiones y elementos obligatorios"
+
+#: templates/newfrontend/financing.html:89
+msgid "Appraisal (valuation) fee"
+msgstr "Tarifa de tasación"
+
+#: templates/newfrontend/financing.html:90
+msgid "Loan allocation/processing fee (varies by bank)"
+msgstr "Comisión de apertura/tramitación del préstamo (varía según el banco)"
+
+#: templates/newfrontend/financing.html:91
+msgid "DASK earthquake insurance (mandatory) and property insurance"
+msgstr "Seguro de terremotos DASK (obligatorio) y seguro de hogar"
+
+#: templates/newfrontend/financing.html:92
+msgid "Title deed taxes and notary fees (paid at transfer)"
+msgstr "Impuestos de escritura y honorarios notariales (se pagan en la transferencia)"
+
+#: templates/newfrontend/financing.html:95
+msgid "Money transfers"
+msgstr "Transferencias de dinero"
+
+#: templates/newfrontend/financing.html:97
+msgid ""
+"International buyers typically fund down payments and closing via SWIFT "
+"transfers in foreign currency. Banks may request source-of-funds "
+"documentation. Currency conversion and payment documentation for the title "
+"office are handled in coordination with your bank and notary."
+msgstr ""
+"Los compradores internacionales suelen financiar los anticipos y el cierre "
+"mediante transferencias SWIFT en moneda extranjera. Los bancos pueden "
+"solicitar documentación del origen de los fondos. La conversión de moneda y "
+"la documentación de pago para el registro de la propiedad se gestionan en "
+"coordinación con tu banco y el notario."
+
+#: templates/newfrontend/financing.html:100
+msgid "Alternatives to bank mortgages"
+msgstr "Alternativas a las hipotecas bancarias"
+
+#: templates/newfrontend/financing.html:102
+msgid ""
+"Developer installment plans: staged payments during constrinsuction or short-"
+"term post-handover schedules."
+msgstr "Planes de pago del promotor: pagos escalonados durante la construcción o calendarios cortos tras la entrega."
+
+#: templates/newfrontend/financing.html:103
+msgid "Personal loans or home equity from your home country (if applicable)."
+msgstr "Préstamos personales o crédito con garantía hipotecaria en tu país (si aplica)."
+
+#: templates/newfrontend/financing.html:107
+msgid "Popular banks to consider"
+msgstr "Bancos populares a considerar"
+
+#: templates/newfrontend/financing.html:108
+msgid "Major institutions active in retail mortgages include:"
+msgstr "Las principales instituciones activas en hipotecas minoristas incluyen:"
+
+#: templates/newfrontend/financing.html:110
+msgid "Ziraat Bankası, VakıfBank, Halkbank"
+msgstr ""
+
+#: templates/newfrontend/financing.html:111
+msgid "İşbank, Garanti BBVA, Akbank, Yapı Kredi"
+msgstr ""
+
+#: templates/newfrontend/financing.html:113
+msgid ""
+"Availability and terms for foreign buyers vary by branch and policy; please "
+"confirm locally."
+msgstr "La disponibilidad y condiciones para compradores extranjeros varían según la sucursal y la política; confirma localmente."
+
+#: templates/newfrontend/financing.html:120
+msgid "Related"
+msgstr "Relacionado"
+
+#: templates/newfrontend/financing.html:121
+msgid "Featured properties you can finance"
+msgstr "Propiedades destacadas que puedes financiar"
+
+#: templates/newfrontend/financing.html:153
+msgid "Quick facts"
+msgstr "Datos rápidos"
+
+#: templates/newfrontend/financing.html:155
+msgid "Independent valuation sets the maximum loanable amount."
+msgstr "La tasación independiente establece el importe máximo financiable."
+
+#: templates/newfrontend/financing.html:156
+msgid "Earthquake insurance (DASK) is mandatory."
+msgstr "El seguro contra terremotos (DASK) es obligatorio."
+
+#: templates/newfrontend/financing.html:157
+msgid "Bring a tax number and recent bank statements."
+msgstr "Lleva un número fiscal y extractos bancarios recientes."
+
+#: templates/newfrontend/financing.html:158
+msgid "Expect 2–4 weeks for full approval and disbursement."
+msgstr "Calcula entre 2 y 4 semanas para la aprobación total y el desembolso."
+
+#: templates/newfrontend/financing.html:172
+msgid "Financing Inquiry"
+msgstr "Consulta de financiación"
+
+#: templates/newfrontend/financing.html:173
+msgid "Get in touch about mortgages in Turkey"
+msgstr "Ponte en contacto sobre hipotecas en Turquía"
+
+#: templates/newfrontend/financing.html:175
+msgid ""
+"We guide you through bank pre-approval, valuation, and deed transfer, and "
+"coordinate with lenders and developers to secure a suitable financing option "
+"for your purchase in Turkey."
+msgstr ""
+"Te guiamos por la precalificación bancaria, la tasación y la transferencia "
+"de la escritura, y coordinamos con prestamistas y promotores para asegurar "
+"una opción de financiación adecuada para tu compra en Turquía."
+
+#: templates/newfrontend/index.html:6
+msgid "Villa Agency - Home"
+msgstr ""
+
+#: templates/newfrontend/index.html:13
+msgid "Hurry!"
+msgstr ""
+
+#: templates/newfrontend/index.html:13
+msgid "Get the Best Villa for you"
+msgstr ""
+
+#: templates/newfrontend/index.html:19
+msgid "Be Quick!"
+msgstr ""
+
+#: templates/newfrontend/index.html:19
+msgid "Get the best villa in town"
+msgstr ""
+
+#: templates/newfrontend/index.html:25
+msgid "Act Now!"
+msgstr ""
+
+#: templates/newfrontend/index.html:25
+msgid "Get the highest level Map"
+msgstr ""
+
+#: templates/newfrontend/index.html:42
+msgid "Featured"
+msgstr ""
+
+#: templates/newfrontend/index.html:43
+msgid "Best Appartment & Sea view"
+msgstr ""
+
+#: templates/newfrontend/index.html:49
+msgid "What properties do you offer?"
+msgstr ""
+
+#: templates/newfrontend/index.html:54
+msgid ""
+"We offer a wide selection of premium properties including villas, "
+"apartments, and luxury residences across Istanbul, Antalya, and Ankara. Each "
+"property is carefully selected to meet the highest standards of quality and "
+"location."
+msgstr ""
+
+#: templates/newfrontend/index.html:61
+msgid "How do I schedule a property viewing?"
+msgstr ""
+
+#: templates/newfrontend/index.html:66
+msgid ""
+"Scheduling a viewing is simple. Click the 'Schedule a visit' button on any "
+"property listing, or contact our team directly via phone or email. Our "
+"agents are available 24/7 to assist you."
+msgstr ""
+
+#: templates/newfrontend/index.html:73
+msgid "What financing options are available?"
+msgstr ""
+
+#: templates/newfrontend/index.html:78
+msgid ""
+"We work with leading financial institutions to offer flexible payment plans "
+"and bank financing options. Our team can guide you through the entire "
+"process to make your property purchase seamless."
+msgstr ""
+
+#: templates/newfrontend/index.html:89
+msgid "Total Flat Space"
+msgstr ""
+
+#: templates/newfrontend/index.html:93
+#, fuzzy
+#| msgid "Contact"
+msgid "Contract"
+msgstr "Contacto"
+
+#: templates/newfrontend/index.html:93
+#, fuzzy
+#| msgid "Contact"
+msgid "Contract Ready"
+msgstr "Contacto"
+
+#: templates/newfrontend/index.html:97
+#: templates/newfrontend/partials/loan_calculator.html:76
+#: templates/newfrontend/partials/loan_calculator.html:104
+msgid "Payment"
+msgstr ""
+
+#: templates/newfrontend/index.html:97
+msgid "Payment Process"
+msgstr ""
+
+#: templates/newfrontend/index.html:101
+msgid "Safety"
+msgstr ""
+
+#: templates/newfrontend/index.html:101
+msgid "24/7 Under Control"
+msgstr ""
+
+#: templates/newfrontend/index.html:115
+msgid "Video View"
+msgstr ""
+
+#: templates/newfrontend/index.html:116
+msgid "Get Closer View & Different Feeling"
+msgstr ""
+
+#: templates/newfrontend/index.html:145
+msgid "Buildings"
+msgstr "Edificios"
+
+#: templates/newfrontend/index.html:145
+msgid "Finished Now"
+msgstr "Terminados ahora"
+
+#: templates/newfrontend/index.html:151
+msgid "Years"
+msgstr "Años"
+
+#: templates/newfrontend/index.html:151
+msgid "Experience"
+msgstr "Experiencia"
+
+#: templates/newfrontend/index.html:157 templates/pages/about.html:64
+msgid "Awards"
+msgstr "Premios"
+
+#: templates/newfrontend/index.html:157
+msgid "Won 2023"
+msgstr "Ganado en 2023"
+
+#: templates/newfrontend/index.html:172
+msgid "Best Deal"
+msgstr "La mejor oferta"
+
+#: templates/newfrontend/index.html:173
+msgid "Find Your Best Deal Right Now!"
+msgstr "¡Encuentra tu mejor oferta ahora mismo!"
+
+#: templates/newfrontend/index.html:210
+msgid "All Info About Apartment"
+msgstr "Toda la información sobre el apartamento"
+
+# Listings pages
+#: templates/newfrontend/map.html:4
+#, fuzzy
+#| msgid "Listing"
+msgid "Listings Map"
+msgstr "Anuncio"
+
+#: templates/newfrontend/map.html:55
+#, fuzzy
+#| msgid "Back To Listings"
+msgid "Map of Listings"
+msgstr "Volver a anuncios"
+
+#: templates/newfrontend/partials/loan_calculator.html:4
+#: templates/newfrontend/partials/loan_calculator.html:5
+msgid "Home Loan Calculator"
+msgstr "Calculadora de hipoteca"
+
+#: templates/newfrontend/partials/loan_calculator.html:6
+msgid "Estimate your monthly payment and view an amortization schedule."
+msgstr "Estima tu pago mensual y consulta un cuadro de amortización."
+
+#: templates/newfrontend/partials/loan_calculator.html:10
+msgid "Loan Amount"
+msgstr "Importe del préstamo"
+
+#: templates/newfrontend/partials/loan_calculator.html:12
+msgid "Loan amount slider"
+msgstr "Control deslizante del importe"
+
+#: templates/newfrontend/partials/loan_calculator.html:15
+msgid "Drag the slider or type a value."
+msgstr "Arrastra el control o escribe un valor."
+
+#: templates/newfrontend/partials/loan_calculator.html:19
+msgid "Term"
+msgstr "Plazo"
+
+#: templates/newfrontend/partials/loan_calculator.html:19
+msgid "months"
+msgstr "meses"
+
+#: templates/newfrontend/partials/loan_calculator.html:21
+msgid "Term slider"
+msgstr "Control deslizante de plazo"
+
+#: templates/newfrontend/partials/loan_calculator.html:27
+msgid "Interest Rate"
+msgstr "Tasa de interés"
+
+#: templates/newfrontend/partials/loan_calculator.html:32
+msgid "Annual nominal interest."
+msgstr "Interés nominal anual."
+
+#: templates/newfrontend/partials/loan_calculator.html:36
+msgid "Calculate"
+msgstr "Calcular"
+
+#: templates/newfrontend/partials/loan_calculator.html:45
+msgid "Monthly Payment"
+msgstr "Pago mensual"
+
+#: templates/newfrontend/partials/loan_calculator.html:51
+msgid "Total Interest"
+msgstr "Interés total"
+
+#: templates/newfrontend/partials/loan_calculator.html:57
+msgid "Total Paid"
+msgstr "Total pagado"
+
+#: templates/newfrontend/partials/loan_calculator.html:64
+msgid "Amortization Schedule"
+msgstr "Calendario de amortización"
+
+#: templates/newfrontend/partials/loan_calculator.html:66
+msgid "Show/Hide"
+msgstr "Mostrar/Ocultar"
+
+#: templates/newfrontend/partials/loan_calculator.html:67
+msgid "Download CSV"
+msgstr "Descargar CSV"
+
+#: templates/newfrontend/partials/loan_calculator.html:77
+#: templates/newfrontend/partials/loan_calculator.html:105
+msgid "Principal"
+msgstr "Capital"
+
+#: templates/newfrontend/partials/loan_calculator.html:78
+#: templates/newfrontend/partials/loan_calculator.html:106
+msgid "Interest"
+msgstr "Interés"
+
+#: templates/newfrontend/partials/loan_calculator.html:79
+#: templates/newfrontend/partials/loan_calculator.html:107
+msgid "Balance"
+msgstr "Saldo"
+
+#: templates/newfrontend/partials/loan_calculator.html:86
+msgid ""
+"This calculator provides estimates for illustration only and does not "
+"constitute a loan offer."
+msgstr "Esta calculadora proporciona estimaciones solo con fines ilustrativos y no constituye una oferta de préstamo."
+
+#: templates/newfrontend/partials/loan_calculator.html:108
+msgid "amortization"
+msgstr "amortización"
+
+#: templates/newfrontend/property-details.html:37
+msgid "Price"
+msgstr "Precio"
+
+#: templates/newfrontend/property-details.html:49
+msgid "Location"
+msgstr "Ubicación"
+
+#: templates/newfrontend/whatsappwidget.html:85
+msgid "Typically replies within a day"
+msgstr "Suele responder en un día"
+
+#: templates/newfrontend/whatsappwidget.html:97
+msgid "Hey There, How can I help you?"
+msgstr "Hola, ¿en qué puedo ayudarte?"
+
+#: templates/pages/about.html:7 templates/pages/about.html:18
+msgid "About Us"
+msgstr "Acerca de nosotros"
+
+#: templates/pages/about.html:41
+msgid "Our Company<br>Koralcity Limited"
+msgstr "Nuestra empresa<br>Koralcity Limited"
+
+#: templates/pages/about.html:42
+msgid ""
+"Koralcity Limited offers property owners, developers and buyers/renters a "
+"viable housing market. Customers can source and connect with professional "
+"agents for the most advanced and eco-friendly housing. Established in 2021, "
+"Koral City believes everyone deserves a home with the most advanced "
+"technology and Eco-Friendly means. All lives matter."
+msgstr ""
+"Koralcity Limited ofrece a propietarios, promotores y compradores/inquilinos "
+"un mercado inmobiliario viable. Los clientes pueden encontrar y contactar "
+"con agentes profesionales para viviendas de última generación y respetuosas "
+"con el medio ambiente. Fundada en 2021, Koral City cree que todo el mundo "
+"merece un hogar con la tecnología más avanzada y medios eco‑amigables."
+
+#: templates/pages/about.html:43
+msgid "Why you should choose us"
+msgstr "Por qué deberías elegirnos"
+
+#: templates/pages/about.html:45
+msgid "1. We offer land verification and authentication."
+msgstr "1. Ofrecemos verificación y autenticación de terrenos."
+
+#: templates/pages/about.html:46
+msgid "2. We sell, buy, and rent luxury properties at affordable rates."
+msgstr "2. Vendemos, compramos y alquilamos propiedades de lujo a precios asequibles."
+
+#: templates/pages/about.html:47
+msgid ""
+"3. We offer a conducive platform for property owners to showcase their "
+"services."
+msgstr "3. Ofrecemos una plataforma adecuada para que los propietarios muestren sus servicios."
+
+#: templates/pages/about.html:48
+msgid ""
+"4. We have well trained professionals as consultants, developers and agents."
+msgstr "4. Contamos con profesionales bien formados como consultores, desarrolladores y agentes."
+
+#: templates/pages/about.html:49
+msgid "5. We are budget friendly."
+msgstr "5. Somos amigables con el presupuesto."
+
+#: templates/pages/about.html:56
+msgid "Clients"
+msgstr "Clientes"
+
+#: templates/pages/about.html:60
+msgid "Apartments"
+msgstr "Apartamentos"
+
+#: templates/pages/about.html:68
+msgid "Employees"
+msgstr "Empleados"
+
+#: templates/pages/about.html:79
+msgid "Meet Our Agents"
+msgstr "Conoce a nuestros agentes"
+
+#: templates/pages/about.html:80
+msgid ""
+"They provide one of the most professional, informative, loyal and dedicated "
+"services<br> in the real estate industry. Client’s satisfaction is their "
+"number one priority."
+msgstr ""
+"Ofrecen uno de los servicios más profesionales, informativos, leales y "
+"dedicados<br> del sector inmobiliario. La satisfacción del cliente es su "
+"prioridad número uno."
+
+#: templates/pages/about.html:98
+msgid "Realtor"
+msgstr "Agente inmobiliario"
+
+#: templates/pages/about.html:117
+msgid "No Realtors Available"
+msgstr "No hay agentes disponibles"
+
+#: templates/pages/agesverification.html:13
+#: templates/pages/agesverification.html:39 templates/pages/index.html:38
+#: templates/partials/_footer.html:44 templates/partials/_navbar.html:47
+msgid "Verification"
+msgstr "Verificación"
+
+#: templates/pages/agesverification.html:17
+msgid "Upload your documents and fill the contact form."
+msgstr "Sube tus documentos y completa el formulario de contacto."
+
+#: templates/pages/agesverification.html:55
+msgid "Phone Number"
+msgstr "Número de teléfono"
+
+#: templates/pages/agesverification.html:59
+msgid "Document File:"
+msgstr "Archivo del documento:"
+
+#: templates/pages/agesverification.html:63
+msgid "Upload"
+msgstr "Subir"
+
+#: templates/pages/agesverification.html:66
+msgid "Return to home"
+msgstr "Volver al inicio"
+
+#: templates/pages/index.html:14
+msgid "Find Your New<br>Modern Apartment"
+msgstr "Encuentra tu nuevo<br>apartamento moderno"
+
+#: templates/pages/index.html:18
+msgid "Keyword"
+msgstr "Palabra clave"
+
+# Index & common
+#: templates/pages/index.html:19
+msgid "Search"
+msgstr "Buscar"
+
+#: templates/pages/index.html:28
+msgid "Buy"
+msgstr "Comprar"
+
+#: templates/pages/index.html:33
+msgid "Sell"
+msgstr "Vender"
+
+#: templates/pages/index.html:44
+msgid "Scroll Down"
+msgstr "Desplazar hacia abajo"
+
+#: templates/pages/index.html:63
+msgid "More Than 500+<br>Apartments For Sale & Rent"
+msgstr "Más de 500+<br>apartamentos en venta y alquiler"
+
+#: templates/pages/index.html:164
+msgid "Consulting Services"
+msgstr "Servicios de consultoría"
+
+#: templates/pages/index.html:165
+msgid ""
+"KoralCity Limited gives specialized investment and financial advice to "
+"clients looking to buy, sell or invest in property. We'll work closely with "
+"you throughout the process of buying and selling of your properties."
+msgstr ""
+"KoralCity Limited ofrece asesoramiento especializado en inversión y finanzas "
+"a clientes que desean comprar, vender o invertir en propiedades. Trabajaremos "
+"contigo durante todo el proceso de compra y venta de tus inmuebles."
+
+#: templates/pages/index.html:170
+msgid "Property Management"
+msgstr "Administración de propiedades"
+
+#: templates/pages/index.html:171
+msgid ""
+"At KoralCity Limited, we handle the operations, maintenance, and "
+"administration of properties rentals for the owners and also market rentals "
+"rates at competitive price while complying with rental laws."
+msgstr ""
+"En KoralCity Limited gestionamos la operación, el mantenimiento y la "
+"administración de propiedades en alquiler para los propietarios y también "
+"comercializamos los alquileres a precios competitivos cumpliendo la normativa."
+
+#: templates/pages/index.html:176
+msgid "Renting & Selling"
+msgstr "Alquiler y venta"
+
+#: templates/pages/index.html:177
+msgid ""
+"Our property managers at KoralCity Limited set competitive rent prices and "
+"strategies to attract clients to the property for rent or sell very fast "
+"with the first impression on potential clients."
+msgstr ""
+"Nuestros administradores de propiedades en KoralCity Limited establecen "
+"precios de alquiler competitivos y estrategias para atraer clientes a la "
+"propiedad, logrando alquileres o ventas rápidas gracias a una gran primera "
+"impresión en los potenciales interesados."
+
+#: templates/partials/_alerts.html:11
+msgid "Error:"
+msgstr "Error:"
+
+#: templates/partials/_footer.html:10
+msgid "Explore Real Estate"
+msgstr "Explora bienes raíces"
+
+#: templates/partials/_footer.html:13
+#, fuzzy
+#| msgid "Subscribe to our newsletter"
+msgid "Subscribe To Our Newsletter"
+msgstr "Suscríbete a nuestro boletín"
+
+#: templates/partials/_footer.html:20
+msgid "All Right Reserved"
+msgstr "Todos los derechos reservados"
+
+#: templates/partials/_footer.html:26 templates/partials/_navbar.html:58
+msgid "Become an agent"
+msgstr "Hazte agente"
+
+#: templates/partials/_footer.html:29
+msgid "COMPANY"
+msgstr "EMPRESA"
+
+#: templates/partials/_footer.html:31
+msgid "FAQ"
+msgstr "Preguntas frecuentes"
+
+#: templates/partials/_footer.html:32 templates/partials/_navbar.html:48
+msgid "Contact"
+msgstr "Contacto"
+
+#: templates/partials/_footer.html:33
+msgid "Social"
+msgstr "Redes sociales"
+
+#: templates/partials/_footer.html:36
+msgid "PRODUCT"
+msgstr "PRODUCTO"
+
+# Accounts pages
+#: templates/partials/_footer.html:38
+#, fuzzy
+#| msgid "How it works?"
+msgid "How It Works"
+msgstr "¿Cómo funciona?"
+
+#: templates/partials/_footer.html:41
+msgid "SERVICES"
+msgstr "SERVICIOS"
+
+#: templates/partials/_navbar.html:44
+msgid "Blog"
+msgstr "Blog"
+
+#: templates/partials/_topbar.html:8
+msgid "inquiries@coralcity.com"
+msgstr "inquiries@coralcity.com"

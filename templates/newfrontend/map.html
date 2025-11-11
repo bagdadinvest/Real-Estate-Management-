@@ -1,0 +1,285 @@
+{% extends 'newfrontend/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans "Listings Map" %}{% endblock %}
+{% block content %}
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
+>
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
+>
+
+<style>
+  #map { width: 100%; height: 70vh; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .map-toolbar { margin: 15px 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .legend { font-size: 12px; color: #555; margin-left: auto; }
+
+  /* Tooltip preview */
+  .coral-tooltip { background: #0b1120; color: #fff; border-radius: 8px; border: none; box-shadow: 0 10px 24px rgba(0,0,0,0.2); padding: 0; }
+  .coral-tip-content { display: flex; align-items: center; gap: 10px; padding: 8px 10px; }
+  .coral-tip-thumb { width: 56px; height: 42px; border-radius: 6px; object-fit: cover; }
+  .coral-tip-title { font-weight: 600; line-height: 1.2; font-size: 13px; }
+  .coral-tip-price { opacity: 0.9; font-size: 12px; }
+
+  /* Popup carousel (match classic map for consistency) */
+  .popup-card { width: 300px; max-width: 78vw; }
+  .popup-carousel { position: relative; width: 100%; overflow: hidden; border-radius: 8px; background: #111827; }
+  .carousel-track { display: flex; width: 100%; transition: transform 350ms ease; }
+  .carousel-slide { min-width: 100%; height: 180px; position: relative; }
+  .carousel-slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .carousel-nav { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; pointer-events: none; padding: 0 6px; }
+  .carousel-btn { pointer-events: all; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; border: 0; background: rgba(255,255,255,0.85); color: #111; box-shadow: 0 2px 10px rgba(0,0,0,0.15); transition: background 160ms ease, transform 160ms ease; }
+  .carousel-btn:hover { background: #fff; transform: translateY(-1px); }
+  .carousel-dots { position: absolute; bottom: 8px; left: 0; right:0; display: flex; justify-content: center; gap: 6px; }
+  .carousel-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.6); transition: transform 160ms ease, background 160ms ease; }
+  .carousel-dot.active { transform: scale(1.15); background: #fff; }
+
+  .popup-title { font-weight: 700; font-size: 15px; margin: 0 0 4px; }
+  .popup-price { color: #0f766e; font-weight: 700; }
+  .popup-meta { color: #475569; font-size: 12px; }
+</style>
+<div class="page-heading header-text">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+              <span class="breadcrumb"><a href="{% url 'new_index' %}">{% trans "Home" %}</a> / {% trans "Map" %}</span>
+              <h3>{% trans "Map of Listings" %}</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <div class="section properties">
+    <div class="container">
+      <ul class="properties-filter">
+        <li><a class="is_active" href="#!" data-filter="*">{% trans "Show All" %}</a></li>
+        <li><a href="#!" data-filter=".adv">{% trans "Apartment" %}</a></li>
+        <li><a href="#!" data-filter=".str">{% trans "Villa House" %}</a></li>
+        <li><a href="{% url 'new_map' %}" >{% trans "Map" %}</a></li>
+      </ul>
+
+
+      <div id="map"></div>
+    </div>
+  </div>
+</div>
+
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+
+<script>
+  (function () {
+    var map = L.map('map');
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
+
+    var markers = L.markerClusterGroup();
+    var bounds = L.latLngBounds();
+
+    function fmtCurrency(n) {
+      try { return new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n); }
+      catch (e) { return n; }
+    }
+
+    function buildPopupHTML(p) {
+      var photos = Array.isArray(p.photos) && p.photos.length ? p.photos : (p.photo_url ? [p.photo_url] : []);
+      var id = p.id || Math.random().toString(36).slice(2);
+      var slides = photos.map(function(src){ return '<div class="carousel-slide"><img src="' + src + '" alt="photo"></div>'; }).join('');
+      var dots = photos.map(function(_,i){ return '<div class="carousel-dot' + (i===0?' active':'') + '"></div>'; }).join('');
+      var addr = [p.address, p.city, p.state].filter(Boolean).join(', ');
+      var openUrl = '/new/listing/' + (p.id || '') + '/';
+      var html = ''+
+        '<div class="popup-card" data-listing-id="' + id + '">' +
+          '<div class="popup-carousel js-carousel">' +
+            '<div class="carousel-track">' + slides + '</div>' +
+            (photos.length>1 ? (
+              '<div class="carousel-nav">' +
+                '<button class="carousel-btn js-prev" aria-label="Previous">&#10094;</button>' +
+                '<button class="carousel-btn js-next" aria-label="Next">&#10095;</button>' +
+              '</div>' +
+              '<div class="carousel-dots">' + dots + '</div>'
+            ) : '') +
+          '</div>' +
+          '<div class="popup-meta" style="padding:8px 4px 0; line-height:1.25">' +
+            '<div class="popup-title">' + (p.title || 'Listing') + '</div>' +
+            (p.price ? '<div class="popup-price">' + fmtCurrency(p.price) + '</div>' : '') +
+            (addr ? '<div class="popup-meta">' + addr + '</div>' : '') +
+            ((p.bedrooms||p.bathrooms) ? '<div class="popup-meta">' + (p.bedrooms||'-') + ' bd · ' + (p.bathrooms||'-') + ' ba</div>' : '') +
+            (p.id ? '<div style="margin-top:6px"><a class="btn btn-primary btn-sm" href="' + openUrl + '">View details</a></div>' : '') +
+          '</div>' +
+        '</div>';
+      return html;
+    }
+
+    function featureToMarker(f) {
+      var coords = f.geometry.coordinates; // [lng, lat]
+      var latlng = L.latLng(coords[1], coords[0]);
+      bounds.extend(latlng);
+      var p = f.properties || {};
+      var marker = L.marker(latlng);
+      marker.bindPopup(buildPopupHTML(p));
+
+      var tipImg = (p.photos && p.photos.length ? p.photos[0] : (p.photo_url || ''));
+      var tip = '<div class="coral-tip-content">' +
+        (tipImg ? ('<img class="coral-tip-thumb" src="' + tipImg + '" alt="preview">') : '') +
+        '<div>' +
+          '<div class="coral-tip-title">' + (p.title || 'Listing') + '</div>' +
+          (p.price ? ('<div class="coral-tip-price">' + fmtCurrency(p.price) + '</div>') : '') +
+        '</div>' +
+      '</div>';
+      marker.bindTooltip(tip, { direction: 'top', sticky: true, offset: [0, -10], opacity: 0.96, className: 'coral-tooltip' });
+      return marker;
+    }
+
+    fetch('{% url 'listings:map_data' %}')
+      .then(function (r) { return r.json(); })
+      .then(function (geojson) {
+        if (!geojson || !geojson.features) return;
+        geojson.features.forEach(function (f) { markers.addLayer(featureToMarker(f)); });
+        map.addLayer(markers);
+        if (!bounds.isValid()) { map.setView([0,0], 2); } else { map.fitBounds(bounds.pad(0.08)); }
+      })
+      .catch(function (e) { console.warn('Map data error', e); });
+
+    document.getElementById('fit-btn').addEventListener('click', function () {
+      if (bounds.isValid()) map.fitBounds(bounds.pad(0.08));
+    });
+
+    // Initialize carousel when popup opens
+    map.on('popupopen', function(e){
+      var root = e && e.popup && e.popup._contentNode ? e.popup._contentNode : null;
+      if (!root) return;
+      var car = root.querySelector('.js-carousel');
+      if (!car) return;
+      setupCarousel(car);
+    });
+
+    function setupCarousel(container){
+      var track = container.querySelector('.carousel-track');
+      if (!track) return;
+      var slides = Array.from(track.children);
+      var prevBtn = container.querySelector('.js-prev');
+      var nextBtn = container.querySelector('.js-next');
+      var dotsWrap = container.querySelector('.carousel-dots');
+      var dots = dotsWrap ? Array.from(dotsWrap.children) : [];
+      var index = 0;
+
+      function update(){
+        track.style.transform = 'translateX(' + (-index * 100) + '%)';
+        dots.forEach(function(d,i){ d.classList.toggle('active', i===index); });
+      }
+      function go(delta){ index = (index + delta + slides.length) % slides.length; update(); }
+
+      if (prevBtn) prevBtn.addEventListener('click', function(){ go(-1); });
+      if (nextBtn) nextBtn.addEventListener('click', function(){ go(1); });
+      if (dotsWrap) dots.forEach(function(d,i){ d.addEventListener('click', function(){ index=i; update(); }); });
+
+      // Touch swipe
+      var startX = 0; var dx = 0; var touching = false;
+      container.addEventListener('touchstart', function(ev){
+        touching = true; startX = (ev.touches && ev.touches[0] ? ev.touches[0].clientX : 0); dx = 0;
+      }, {passive: true});
+      container.addEventListener('touchmove', function(ev){
+        if (!touching) return; var x = ev.touches && ev.touches[0] ? ev.touches[0].clientX : 0; dx = x - startX;
+      }, {passive: true});
+      container.addEventListener('touchend', function(){
+        if (!touching) return; touching = false; if (Math.abs(dx) > 30) { go(dx > 0 ? -1 : 1); }
+      });
+
+      // Keyboard navigation
+      container.setAttribute('tabindex', '0');
+      container.addEventListener('keydown', function(ev){
+        if (ev.key === 'ArrowLeft') { go(-1); }
+        else if (ev.key === 'ArrowRight') { go(1); }
+      });
+
+      update();
+    }
+  })();
+</script>
+
+
+  <div class="contact-page section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="section-heading">
+            <h6>| {% trans "Contact Us" %}</h6>
+            <h2>{% trans "Get In Touch With Our Agents" %}</h2>
+          </div>
+          <p>When you really need to download free CSS templates, please remember our website TemplateMo. Also, tell your friends about our website. Thank you for visiting. There is a variety of Bootstrap HTML CSS templates on our website. If you need more information, please contact us.</p>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="item phone">
+                <img src="{% static 'newfront/assets/images/phone-icon.png' %}" alt="" style="max-width: 52px;">
+                <h6>+90 542 363 74 36<br><span>Phone Number</span></h6>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="item email">
+                <img src="{% static 'newfront/assets/images/email-icon.png' %}" alt="" style="max-width: 52px;">
+                <h6>info@villa.co<br><span>Business Email</span></h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <form id="contact-form" action="" method="post">
+            <div class="row">
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="name">{% trans "Full Name" %}</label>
+                  <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="email">{% trans "Email Address" %}</label>
+                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required="">
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="subject">{% trans "Subject" %}</label>
+                  <input type="subject" name="subject" id="subject" placeholder="Subject..." autocomplete="on" >
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="message">{% trans "Message" %}</label>
+                  <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <button type="submit" id="form-submit" class="orange-button">{% trans "Send Message" %}</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-12">
+          <div id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.917679336842!2d28.667998876457077!3d41.02705691826774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b55f5b9fdc13c7%3A0xd7a65415d511d2cd!2sSar%20Life%20Residence!5e0!3m2!1sen!2str!4v1762775177625!5m2!1sen!2str" width="100%" height="500px" frameborder="0" style="border:0; border-radius: 10px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);" allowfullscreen=""></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

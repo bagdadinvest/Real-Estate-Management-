@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}
+     {% trans "Register" %}
+{% endblock title %}
+
+{% block content %}
+<section class="home_banner_area hero"  id="about">
+    <div class="banner_inner d-flex align-items-center">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-7">
+            <div class="banner_content d-flex flex-md-row flex-column">
+              <div class="banner-left text-md-right">
+                <h1 class="text-uppercase">{% trans "Become an Agent" %}</h1>
+              </div>
+              <div class="banner-right position-relative">
+                <p>
+                  {% blocktrans %}Register now and receive a mail from us within 2 working days.{% endblocktrans %}
+                </p>
+                <span class="main_btn mt-4 mt-md-0" href="#">
+                  <a href="" >{% trans "Home" %}</a> 
+                  <i class="fa fa-arrow-right mx-2"></i>
+                  <a href="#">{% trans "Register" %}</a> 
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="register" class="bg-light py-5">
+    <div class="container my-5">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card">
+            <div class="card-header bg-primary text-white">
+              <h4>
+                <i class="fas fa-user-plus"></i> {% trans "Register" %}</h4>
+            </div>
+            <div class="card-body">
+            	<!-- Alerts -->
+            	{% include 'partials/_alerts.html' %}
+                <form action="{% url "accounts:register_view" %}" method="POST">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                  <label for="first_name">{% trans "First Name" %}</label>
+                  <input type="text" name="first_name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label for="last_name">{% trans "Last Name" %}</label>
+                  <input type="text" name="last_name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label for="username">{% trans "Username" %}</label>
+                  <input type="text" name="username" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label for="email">{% trans "Email" %}</label>
+                  <input type="email" name="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password2">{% trans "Password" %}</label>
+                  <input type="password" name="password" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password">{% trans "Confirm Password" %}</label>
+                  <input type="password" name="password2" class="form-control" required>
+                </div>
+                <input type="submit" value="{% trans "Register" %}" class="btn btn-secondary w-100">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

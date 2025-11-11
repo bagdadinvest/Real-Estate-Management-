@@ -1,0 +1,383 @@
+{% extends 'newfrontend/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% block nav_home_active %}active{% endblock %}
+{% block title %}{% trans "Villa Agency - Home" %}{% endblock %}
+{% block content %}
+  <div class="main-banner">
+    <div class="owl-carousel owl-banner">
+      <div class="item item-1">
+        <div class="header-text">
+          <span class="category">Istanbul, <em>Turkiye</em></span>
+          <h2 class="tangerine-regular"><span data-typing-effect data-typing-speed="50">{% trans "Hurry!" %}</span><br><span data-typing-effect data-typing-speed="50" data-typing-delay="1000">{% trans "Get the Best Villa for you" %}</span></h2>
+        </div>
+      </div>
+      <div class="item item-2">
+        <div class="header-text">
+          <span class="category">Antalya, <em>Turkiye</em></span>
+          <h2 class="tangerine-regular"><span data-typing-effect data-typing-speed="50">{% trans "Be Quick!" %}</span><br><span data-typing-effect data-typing-speed="50" data-typing-delay="1000">{% trans "Get the best villa in town" %}</span></h2>
+        </div>
+      </div>
+      <div class="item item-3">
+        <div class="header-text">
+          <span class="category">Ankara, <em>Turkiye</em></span>
+          <h2 class="tangerine-regular"><span data-typing-effect data-typing-speed="50">{% trans "Act Now!" %}</span><br><span data-typing-effect data-typing-speed="50" data-typing-delay="1000">{% trans "Get the highest level Map" %}</span></h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="featured section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="left-image">
+            <img src="{% static 'newfront/assets/images/featured.jpg' %}" alt="">
+            <a href="{% url 'new_property_details' %}"><img src="{% static 'newfront/assets/images/featured-icon.png' %}" alt="" style="max-width: 60px; padding: 0px;"></a>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <div class="section-heading">
+            <h6>| {% trans "Featured" %}</h6>
+            <h2>{% trans "Best Appartment & Sea view" %}</h2>
+          </div>
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                {% trans "What properties do you offer?" %}
+              </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                {% trans "We offer a wide selection of premium properties including villas, apartments, and luxury residences across Istanbul, Antalya, and Ankara. Each property is carefully selected to meet the highest standards of quality and location." %}
+              </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                {% trans "How do I schedule a property viewing?" %}
+              </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                {% trans "Scheduling a viewing is simple. Click the 'Schedule a visit' button on any property listing, or contact our team directly via phone or email. Our agents are available 24/7 to assist you." %}
+              </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                {% trans "What financing options are available?" %}
+              </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                {% trans "We work with leading financial institutions to offer flexible payment plans and bank financing options. Our team can guide you through the entire process to make your property purchase seamless." %}
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="info-table">
+            <ul>
+              <li>
+                <img src="{% static 'newfront/assets/images/info-icon-01.png' %}" alt="" style="max-width: 52px;">
+                <h4>250 m2<br><span>{% trans "Total Flat Space" %}</span></h4>
+              </li>
+              <li>
+                <img src="{% static 'newfront/assets/images/info-icon-02.png' %}" alt="" style="max-width: 52px;">
+                <h4>{% trans "Contract" %}<br><span>{% trans "Contract Ready" %}</span></h4>
+              </li>
+              <li>
+                <img src="{% static 'newfront/assets/images/info-icon-03.png' %}" alt="" style="max-width: 52px;">
+                <h4>{% trans "Payment" %}<br><span>{% trans "Payment Process" %}</span></h4>
+              </li>
+              <li>
+                <img src="{% static 'newfront/assets/images/info-icon-04.png' %}" alt="" style="max-width: 52px;">
+                <h4>{% trans "Safety" %}<br><span>{% trans "24/7 Under Control" %}</span></h4>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="video section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+          <div class="section-heading text-center">
+            <h6>| {% trans "Video View" %}</h6>
+            <h2>{% trans "Get Closer View & Different Feeling" %}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="video-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+          <div class="video-frame">
+            <img src="{% static 'newfront/assets/images/video-frame.jpg' %}" alt="">
+            <a href="https://youtube.com" target="_blank"><i class="fa fa-play"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fun-facts">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="wrapper">
+            <div class="row">
+              <div class="col-lg-4">
+                <div class="counter">
+                  <h2 class="timer count-title count-number" data-to="34" data-speed="1000"></h2>
+                   <p class="count-text ">{% trans "Buildings" %}<br>{% trans "Finished Now" %}</p>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="counter">
+                  <h2 class="timer count-title count-number" data-to="12" data-speed="1000"></h2>
+                  <p class="count-text ">{% trans "Years" %}<br>{% trans "Experience" %}</p>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="counter">
+                  <h2 class="timer count-title count-number" data-to="24" data-speed="1000"></h2>
+                  <p class="count-text ">{% trans "Awards" %}<br>{% trans "Won 2023" %}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section best-deal">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="section-heading">
+            <h6>| {% trans "Best Deal" %}</h6>
+            <h2>{% trans "Find Your Best Deal Right Now!" %}</h2>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="tabs-content">
+            <div class="row">
+              <div class="nav-wrapper ">
+                <ul class="nav nav-tabs" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="appartment-tab" data-bs-toggle="tab" data-bs-target="#appartment" type="button" role="tab" aria-controls="appartment" aria-selected="true">{% trans "Apartment" %}</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="villa-tab" data-bs-toggle="tab" data-bs-target="#villa" type="button" role="tab" aria-controls="villa" aria-selected="false">{% trans "Villa House" %}</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="Map-tab" data-bs-toggle="tab" data-bs-target="#Map" type="button" role="tab" aria-controls="Map" aria-selected="false">{% trans "Map" %}</button>
+                  </li>
+                </ul>
+              </div>              
+              <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="appartment" role="tabpanel" aria-labelledby="appartment-tab">
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <div class="info-table">
+                        <ul>
+                          <li>Total Flat Space <span>540 m2</span></li>
+                          <li>Floor number <span>3</span></li>
+                          <li>Number of rooms <span>8</span></li>
+                          <li>Parking Available <span>Yes</span></li>
+                          <li>Payment Process <span>Bank</span></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <img src="{% static 'newfront/assets/images/deal-01.jpg' %}" alt="">
+                    </div>
+                    <div class="col-lg-3">
+                      <h4>{% trans "All Info About Apartment" %}</h4>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor pack incididunt ut labore et dolore magna aliqua quised ipsum suspendisse. <br><br>Swag fanny pack lyft blog twee. JOMO ethical copper mug, succulents typewriter shaman DIY kitsch twee taiyaki fixie hella venmo after messenger poutine next level humblebrag swag franzen.</p>
+                      <div class="icon-button">
+                        <a href="https://cal.com/lotfi-kanouni-lbueh8"><i class="fa fa-calendar"></i> {% trans "Schedule a visit" %}</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="villa" role="tabpanel" aria-labelledby="villa-tab">
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <div class="info-table">
+                        <ul>
+                          <li>Total Flat Space <span>250 m2</span></li>
+                          <li>Floor number <span>26th</span></li>
+                          <li>Number of rooms <span>5</span></li>
+                          <li>Parking Available <span>Yes</span></li>
+                          <li>Payment Process <span>Bank</span></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <img src="{% static 'newfront/assets/images/deal-02.jpg' %}" alt="">
+                    </div>
+                    <div class="col-lg-3">
+                      <h4>Detail Info About New Villa</h4>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor pack incididunt ut labore et dolore magna aliqua quised ipsum suspendisse. <br><br>Swag fanny pack lyft blog twee. JOMO ethical copper mug, succulents typewriter shaman DIY kitsch twee taiyaki fixie hella venmo after messenger poutine next level humblebrag swag franzen.</p>
+                      <div class="icon-button">
+                        <a href="https://cal.com/lotfi-kanouni-lbueh8"><i class="fa fa-calendar"></i> {% trans "" %}</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="Map" role="tabpanel" aria-labelledby="Map-tab">
+                  <div class="row">
+                    <div class="col-lg-3">
+                      <div class="info-table">
+                        <ul>
+                          <li>Total Flat Space <span>320 m2</span></li>
+                          <li>Floor number <span>34th</span></li>
+                          <li>Number of rooms <span>6</span></li>
+                          <li>Parking Available <span>Yes</span></li>
+                          <li>Payment Process <span>Bank</span></li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <img src="{% static 'newfront/assets/images/deal-03.jpg' %}" alt="">
+                    </div>
+                    <div class="col-lg-3">
+                      <h4>Extra Info About Map</h4>
+                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor pack incididunt ut Kinfolk tonx seitan crucifix 3 wolf moon bicycle rights keffiyeh snackwave wolf same vice, chillwave vexillologistlabore et dolore magna aliqua quised ipsum suspendisse. <br><br>Swag fanny pack lyft blog twee. JOMO ethical copper mug, succulents typewriter shaman DIY kitsch twee taiyaki fixie hella venmo after messenger poutine next level humblebrag swag franzen.</p>
+                      <div class="icon-button">
+                        <a href="https://cal.com/lotfi-kanouni-lbueh8"><i class="fa fa-calendar"></i> {% trans "Schedule a visit" %}</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="section properties">
+    {% if listings %}
+    <div class="container">
+        <div class="row">
+            {% for listing in listings %}
+            <div class="col-lg-4 col-md-6"> 
+                <div class="item">
+                    <a href="{% url 'new_listing_detail' listing.id %}"><img src="{{ listing.photo_main.url }}" alt="{{ listing.title }}"></a>
+                    <span class="category">{{ listing.property_type }}</span>
+                    <h6>₦{{ listing.price|intcomma }}</h6>
+                    <h4>
+                        <a href="{% url 'new_listing_detail' listing.id %}">{{ listing.title }}</a>
+                    </h4>
+                    <ul>
+                        <li>{% trans "Bedrooms" %}: <span>{{ listing.bedrooms }}</span></li>
+                        <li>{% trans "Bathrooms" %}: <span>{{ listing.bathrooms }}</span></li>
+                        <li>{% trans "City" %}: <span>{{ listing.city }}</span></li>
+                        <li>{% trans "State" %}: <span>{{ listing.state }}</span></li>
+                    </ul>
+                    <div class="main-button">
+                        <a href="{% url 'new_listing_detail' listing.id %}">{% trans "Schedule a visit" %}</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div> </div> {% else %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12"><p>{% trans "No Listings Available" %}</p></div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<div class="contact section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+          <div class="section-heading text-center">
+            <h6>            <h6>{% trans "Contact Us" %}</h6></h6>
+            <h2>{% trans "Get In Touch With Our Agents" %}</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <div id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.917679336842!2d28.667998876457077!3d41.02705691826774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b55f5b9fdc13c7%3A0xd7a65415d511d2cd!2sSar%20Life%20Residence!5e0!3m2!1sen!2str!4v1762775177625!5m2!1sen!2str" width="100%" height="500px" frameborder="0" style="border:0; border-radius: 10px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);" allowfullscreen=""></iframe>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="item phone">
+                <img src="{% static 'newfront/assets/images/phone-icon.png' %}" alt="" style="max-width: 52px;">
+                <h6>+90 542 363 74 36<br><span>Phone Number</span></h6>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="item email">
+                <img src="{% static 'newfront/assets/images/email-icon.png' %}" alt="" style="max-width: 52px;">
+                <h6>info@villa.co<br><span>Business Email</span></h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <form id="contact-form" action="" method="post">
+            <div class="row">
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="name">{% trans "Full Name" %}</label>
+                  <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="email">{% trans "Email Address" %}</label>
+                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required="">
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="subject">{% trans "Subject" %}</label>
+                  <input type="subject" name="subject" id="subject" placeholder="Subject..." autocomplete="on" >
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="message">{% trans "Message" %}</label>
+                  <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <button type="submit" id="form-submit" class="orange-button">{% trans "Send Message" %}</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,53 @@
+ {% load static %}
+ {% load i18n %}
+ <!------------------------------------------------ FOOTER SECTION -->
+    <footer id="contact">
+      <div class="container">
+        <div class="row footer-top">
+          <div class="col-12 col-md-6">
+            <!-- logo -->
+            <h3>KoralCity LTD </h3>
+            <h3>{% trans "Explore Real Estate" %}</h3>
+          </div>
+          <div class="col-12 col-md-6 Newsletter">
+            <input type="text" placeholder="{% trans 'Subscribe To Our Newsletter' %}" class="left">
+            <button class="newsletter-btn left"></button>
+          </div>
+        </div>
+        <div class="row footer-bottom">
+          <div class="col-sm-12 col-md-4 footer-logo">
+            <h4>Greamhouse</h4>
+            <p>© 2021 - Greamhouse,<br>{% trans "All Right Reserved" %}</p>
+           
+          </div>
+          <div class="col-sm-3 col-md-2 footer-column">
+            <h5>KoralCity</h5>
+            <a href="{% url 'accounts:login_view' %}">{% trans "Agents" %}</a>
+            <a href="{% url 'accounts:register_view' %}">{% trans "Become an agent" %}</a>
+          </div>
+          <div class="col-sm-3 col-md-2 footer-column">
+            <h5>{% trans "COMPANY" %}</h5>
+            <a href="{% url 'pages:about' %}">{% trans "About" %}</a>
+            <a href="{% url 'accounts:login_view' %}">{% trans "FAQ" %}</a>
+            <a href="{% url 'accounts:login_view' %}">{% trans "Contact" %}</a>
+            <a href="{% url 'accounts:login_view' %}">{% trans "Social" %}</a>
+          </div>          
+          <div class="col-sm-3 col-md-2 footer-column">
+            <h5>{% trans "PRODUCT" %}</h5>
+            <a href="{% url 'listings:listings' %}">{% trans "Apartment" %}</a>
+            <a href="{% url 'accounts:login_view' %}">{% trans "How It Works" %}</a>
+          </div>
+          <div class="col-sm-3 col-md-2 footer-column">
+            <h5>{% trans "SERVICES" %}</h5>
+            <a href="{% url 'accounts:login_view' %}">{% trans "Renting" %}</a>
+            <a href="{% url 'accounts:login_view' %}">{% trans "Selling" %}</a>
+            <a href="{% url 'Ages:Ages' %}">AGIS {% trans "Verification" %}</a>
+          </div>
+          <div class="col-sm-3 col-md-2">
+            <a href=" https://www.facebook.com/Koral-City-ltd-100737889187297"> <img src="{% static './images/facebook.png' %}" height="40" width="40"></a>
+            <a href="https://www.instagram.com/koralcityltd/"> <img src="{% static './images/instagram.png' %} "height="40" width="40"></a>
+            <a href="https://twitter.com/Koralcityltd"><img src="{% static './images/twitter.png' %} "height="40" width="40"></a>
+          </div>
+        </div>
+      </div>
+    </footer>

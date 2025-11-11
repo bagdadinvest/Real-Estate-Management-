@@ -1,0 +1,57 @@
+{% extends 'newfrontend/base.html' %}
+{% load static %}
+{% load humanize %}
+{% load i18n %}
+{% block nav_details_active %}active{% endblock %}
+{% block title %}{{ listing.title }} - {% trans "Property Details" %}{% endblock %}
+{% block content %}
+  <div class="page-heading header-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <span class="breadcrumb"><a href="{% url 'new_index' %}">{% trans "Home" %}</a>  /  {% trans "Property" %}</span>
+          <h3>{{ listing.title }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="single-property section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="main-image">
+            <img src="{{ listing.photo_main.url }}" alt="{{ listing.title }}">
+          </div>
+          <div class="main-content">
+            <span class="category">{{ listing.property_type }}</span>
+            <h4>{{ listing.address }}</h4>
+            <p>{{ listing.description }}</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="info-table">
+            <ul>
+              <li>
+                <img src="{% static 'newfront/assets/images/info-icon-01.png' %}" alt="" style="max-width: 52px;">
+                <h4>{% trans "Price" %}<br><span>₦{{ listing.price|intcomma }}</span></h4>
+              </li>
+              <li>
+                <img src="{% static 'newfront/assets/images/info-icon-02.png' %}" alt="" style="max-width: 52px;">
+                <h4>{% trans "Bedrooms" %}<br><span>{{ listing.bedrooms }}</span></h4>
+              </li>
+              <li>
+                <img src="{% static 'newfront/assets/images/info-icon-03.png' %}" alt="" style="max-width: 52px;">
+                <h4>{% trans "Bathrooms" %}<br><span>{{ listing.bathrooms }}</span></h4>
+              </li>
+              <li>
+                <img src="{% static 'newfront/assets/images/info-icon-04.png' %}" alt="" style="max-width: 52px;">
+                <h4>{% trans "Location" %}<br><span>{{ listing.city }}, {{ listing.state }}</span></h4>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

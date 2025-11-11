@@ -1,0 +1,7 @@
+realtor,title,address,city,state,zipcode,description,price,bedrooms,property_type,bathrooms,garage,sqft,lot_size,is_published
+1,Bosphorus View Apartment,"İstiklal Cd. No: 123, Beyoğlu",Istanbul,Istanbul,34433,"Renovated 2+1 apartment near Taksim; partial Bosphorus view.",9500000,2,Apartment,1,0,970,0.0,True
+2,Kadıköy Modern Flat,"Bağdat Cd. No: 245, Kadıköy",Istanbul,Istanbul,34710,"Modern 3+1 on Bağdat Avenue; close to Marmaray.",12500000,3,Apartment,2,1,1400,0.0,True
+1,Beşiktaş Penthouse,"Barbaros Bulvarı No: 67, Beşiktaş",Istanbul,Istanbul,34353,"Top-floor duplex with terrace and city skyline.",18500000,4,Penthouse,3,2,2200,0.0,True
+3,Üsküdar Historic House,"Kuzguncuk İcadiye Cd. No: 12, Üsküdar",Istanbul,Istanbul,34660,"Charming wooden house on a quiet street.",14500000,3,House,2,0,1600,2.0,False
+2,Nişantaşı Luxury Residence,"Abdi İpekçi Cd. No: 5, Şişli",Istanbul,Istanbul,34365,"Luxury 2+1 in boutique residence; concierge and gym.",21000000,2,Apartment,2,1,1500,0.0,True
+3,Tarabya Bosphorus Villa,"Ferahevler Mah. No: 20, Sarıyer",Istanbul,Istanbul,34457,"Detached villa with large garden; sea view.",35000000,5,Villa,4,2,3500,8.5,True

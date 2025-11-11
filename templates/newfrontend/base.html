@@ -1,0 +1,206 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+
+    <title>{% block title %}Estate Agency - Demo{% endblock %}</title>
+
+    <!-- Vendor Bootstrap (shipped with newfront) -->
+    <link href="{% static 'newfront/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="{% static 'newfront/assets/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static 'newfront/assets/css/templatemo-villa-agency.css' %}">
+    <link rel="stylesheet" href="{% static 'newfront/assets/css/owl.css' %}">
+    <link rel="stylesheet" href="{% static 'newfront/assets/css/animate.css' %}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="{% static 'newfront/assets/css/typing-effect.css' %}">
+
+    
+
+    {% block extra_css %}{% endblock %}
+    <style>
+      /* Language switcher styles (global) */
+      .top-language-bar { position: relative; z-index: 1000; background: #fff; }
+      .top-language-inner { display: flex; justify-content: center; padding: 8px 0; }
+      .lang-switcher { position: relative; }
+      .lang-current { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border: 1px solid #e5e7eb; border-radius: 999px; background: #fff; color: #111827; box-shadow: 0 2px 8px rgba(0,0,0,0.06); cursor: pointer; line-height: 1; }
+      .lang-current .flag { width: 18px; height: 18px; border-radius: 2px; object-fit: cover; }
+      .lang-current .code { font-weight: 600; font-size: 12px; letter-spacing: .3px; }
+      .lang-current .chev { font-size: 12px; opacity: .7; }
+      .lang-current:focus { outline: none; box-shadow: 0 0 0 3px rgba(59,130,246,.25); }
+      .lang-menu { position: absolute; right: 0; top: calc(100% + 8px); min-width: 200px; background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; box-shadow: 0 10px 28px rgba(0,0,0,0.12); padding: 6px; display: none; z-index: 100000; }
+      .lang-switcher.open .lang-menu { display: block; z-index: 100000; }
+      .lang-item { margin: 0; }
+      .lang-item + .lang-item { margin-top: 2px; }
+      .lang-item button { width: 100%; display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: transparent; border: 0; border-radius: 8px; cursor: pointer; font-size: 13px; color: #111827; text-align: left; }
+      .lang-item button .flag { width: 18px; height: 18px; border-radius: 2px; object-fit: cover; }
+      .lang-item button:hover { background: #f3f4f6; }
+      @media (max-width: 768px) {
+        .lang-menu { right: auto; left: 50%; transform: translateX(-50%); min-width: 220px; }
+      }
+      
+      /* Tangerine Font for Banner Headings */
+      .tangerine-regular {
+        font-family: "Tangerine", cursive;
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Global Language Switcher (top-centered, outside nav) -->
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_available_languages as LANGUAGES %}
+    <div class="top-language-bar">
+      <div class="container">
+        <div class="top-language-inner">
+          <div class="lang-switcher" data-lang-current="{{ LANGUAGE_CODE }}">
+            {% with current_flag='flags/'|add:LANGUAGE_CODE|add:'.svg' %}
+              <button type="button" class="lang-current" aria-haspopup="true" aria-expanded="false" aria-label="{% trans 'Select language' %}">
+                <img class="flag" src="{% static current_flag %}" alt="{{ LANGUAGE_CODE }}">
+                <span class="code">{{ LANGUAGE_CODE|upper }}</span>
+                <span class="chev" aria-hidden="true">▾</span>
+              </button>
+            {% endwith %}
+            <div class="lang-menu" role="menu" aria-label="{% trans 'Available languages' %}">
+              {% for lang in LANGUAGES %}
+                {% with flag_file='flags/'|add:lang.0|add:'.svg' %}
+                <form action="{% url 'set_language' %}" method="post" class="lang-item">
+                  {% csrf_token %}
+                  <input name="next" type="hidden" value="{{ request.path }}">
+                  <input type="hidden" name="language" value="{{ lang.0 }}">
+                  <button type="submit" role="menuitem" aria-label="{{ lang.1 }}">
+                    <img class="flag" src="{% static flag_file %}" alt="" aria-hidden="true">
+                    <span class="label">{{ lang.1 }}</span>
+                  </button>
+                </form>
+                {% endwith %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top sub-header -->
+    <div class="sub-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-8">
+            <ul class="info">
+              <li><i class="fa fa-envelope"></i> info@company.com</li>
+              <li><i class="fa fa-map"></i> Beylikduzu, IS. TR 33160</li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <ul class="social-links">
+              <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+              <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main header/nav -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <a href="{% url 'new_index' %}" class="logo"><h1>VL</h1></a>
+              <ul class="nav">
+                <li><a href="{% url 'new_index' %}" class="{% block nav_home_active %}{% endblock %}">{% trans "Home" %}</a></li>
+                <li><a href="{% url 'new_properties' %}" class="{% block nav_properties_active %}{% endblock %}">{% trans "Properties" %}</a></li>
+                <li><a href="{% url 'new_map' %}" class="{% block nav_map_active %}{% endblock %}">{% trans "Map" %}</a></li>
+                    <!-- Property Details 
+
+                <li><a href="{% url 'new_properties' %}" class="{% block nav_details_active %}{% endblock %}">{% trans "Property Details" %}</a></li>    -->
+
+                <li><a href="{% url 'new_contact' %}" class="{% block nav_contact_active %}{% endblock %}">{% trans "Contact Us" %}</a></li>
+                <li><a href="{% url 'new_financing' %}" class="{% block nav_financing_active %}{% endblock %}">{% trans "Financing" %}</a></li>
+
+                <!-- Keep CTA as last-child styling -->
+                <li><a href="https://cal.com/lotfi-kanouni-lbueh8"><i class="fa fa-calendar"></i> {% trans "Schedule a visit" %}</a></li>
+              </ul>
+              <a class="menu-trigger"><span>Menu</span></a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer>
+      <div class="container">
+        <div class="col-lg-12">
+            <p>Copyright © 2025 ∞ Lotfinity ∞ tech Co., Ltd. All rights reserved.
+            <!-- Scripts
+
+            Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+             -->
+          </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{% static 'newfront/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'newfront/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'newfront/assets/js/isotope.min.js' %}"></script>
+    <script src="{% static 'newfront/assets/js/owl-carousel.js' %}"></script>
+    <script src="{% static 'newfront/assets/js/counter.js' %}"></script>
+    <script src="{% static 'newfront/assets/js/custom.js' %}"></script>
+    <script src="{% static 'newfront/assets/js/typing-effect.js' %}"></script>
+
+    <script>
+      // Language switcher interactions (global)
+      document.addEventListener('DOMContentLoaded', function() {
+        var langSwitcher = document.querySelector('.top-language-bar .lang-switcher') || document.querySelector('.lang-switcher');
+        if (!langSwitcher) return;
+        var langButton = langSwitcher.querySelector('.lang-current');
+        var isTouch = false;
+        function onFirstTouch(){ isTouch = true; window.removeEventListener('touchstart', onFirstTouch); }
+        window.addEventListener('touchstart', onFirstTouch);
+        function closeMenu(){ langSwitcher.classList.remove('open'); langButton && langButton.setAttribute('aria-expanded', 'false'); }
+        function openMenu(){ langSwitcher.classList.add('open'); langButton && langButton.setAttribute('aria-expanded', 'true'); }
+        function closeMenuOutside(event){ if (!langSwitcher.contains(event.target)) { closeMenu(); } }
+        if (langButton) {
+          langButton.addEventListener('click', function(){
+            var isOpen = langSwitcher.classList.contains('open');
+            if (isOpen) closeMenu(); else openMenu();
+          });
+        }
+        // Hover disabled on desktop; click only
+        document.addEventListener('click', closeMenuOutside);
+        window.addEventListener('unload', function(){ document.removeEventListener('click', closeMenuOutside); });
+      });
+    </script>
+
+    
+    {% include 'newfrontend/whatsappwidget.html' %}
+    {% block extra_js %}{% endblock %}
+  </body>
+ </html>
