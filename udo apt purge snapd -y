@@ -1,0 +1,152 @@
+34.527s snapd.seeded.service
+29.554s e2scrub_reap.service
+24.274s containerd.service
+21.426s NetworkManager.service
+21.292s casaos-app-management.service
+20.191s snapd.service
+18.830s tailscaled.service
+17.131s gpu-manager.service
+15.617s nmbd.service
+15.264s dev-sda2.device
+14.462s systemd-journal-flush.service
+13.503s casaos-local-storage.service
+13.033s fwupd.service
+12.666s samba-ad-dc.service
+11.792s udisks2.service
+11.160s accounts-daemon.service
+10.477s power-profiles-daemon.service
+10.401s polkit.service
+10.235s pmcd.service
+ 9.005s avahi-daemon.service
+ 9.004s bluetooth.service
+ 8.984s dbus.service
+ 8.517s switcheroo-control.service
+ 8.510s thermald.service
+ 8.510s systemd-machined.service
+ 8.035s neon-apt-mark-kernels-auto.service
+ 7.663s pmlogger.service
+ 7.599s ModemManager.service
+ 6.541s apparmor.service
+ 6.468s pmie.service
+ 5.893s NetworkManager-wait-online.service
+ 4.752s smbd.service
+ 4.289s virtlockd.service
+ 4.287s virtlogd.service
+ 3.895s cups.service
+ 3.806s systemd-udevd.service
+ 3.769s rsyslog.service
+ 3.556s smartmontools.service
+ 3.391s systemd-tmpfiles-clean.service
+ 3.200s dev-loop8.device
+ 3.180s dev-loop10.device
+ 3.084s dev-loop9.device
+ 2.907s libvirtd.service
+ 2.535s casaos.service
+ 2.503s plymouth-start.service
+ 2.382s casaos-user-service.service
+ 2.176s dev-loop1.device
+ 2.174s dev-loop0.device
+ 2.171s dev-loop3.device
+ 2.166s dev-loop2.device
+ 2.133s casaos-message-bus.service
+ 2.121s lvm2-monitor.service
+ 2.074s dev-loop5.device
+ 2.041s systemd-resolved.service
+ 1.900s systemd-logind.service
+ 1.888s upower.service
+ 1.807s dev-loop4.device
+ 1.796s systemd-sysctl.service
+ 1.767s dev-loop6.device
+ 1.763s grub-common.service
+ 1.752s nfs-server.service
+ 1.751s casaos-gateway.service
+ 1.677s pmproxy.service
+ 1.670s qemu-kvm.service
+ 1.657s dev-loop7.device
+ 1.493s systemd-modules-load.service
+ 1.464s systemd-tmpfiles-setup-dev-early.service
+ 1.420s systemd-tmpfiles-setup.service
+ 1.412s sysstat.service
+ 1.297s snap-core20-2669.mount
+ 1.268s run-qemu.mount
+ 1.236s libvirt-guests.service
+ 1.173s snap-qt515\x2dcore20-44.mount
+ 1.170s media-captain.mount
+ 1.138s mnt.mount
+ 1.138s snap-bare-5.mount
+ 1.132s snap-qt515\x2dcore20-46.mount
+ 1.098s systemd-udev-trigger.service
+ 1.087s proc-fs-nfsd.mount
+ 1.078s snap-core18-2952.mount
+ 1.034s secureboot-db.service
+ 1.013s snap-core18-2959.mount
+  921ms snap-core20-2682.mount
+  909ms systemd-rfkill.service
+  897ms snap-gtk\x2dcommon\x2dthemes-1535.mount
+  877ms wpa_supplicant.service
+  821ms snap-snapd-25202.mount
+  771ms snap-snapd-25577.mount
+  724ms systemd-binfmt.service
+  716ms cockpit.socket
+  682ms lm-sensors.service
+  674ms systemd-random-seed.service
+  651ms keyboard-setup.service
+  640ms grub-initrd-fallback.service
+  596ms update-notifier-download.service
+  575ms systemd-timesyncd.service
+  517ms nfs-idmapd.service
+  494ms user@1000.service
+  455ms console-setup.service
+  449ms rpc-statd.service
+  434ms ssh.service
+  417ms snap-whatsie-165.mount
+  416ms plymouth-read-write.service
+  412ms live-tools.service
+  354ms nfsdcld.service
+  333ms swapfile.swap
+  312ms fwupd-refresh.service
+  308ms systemd-remount-fs.service
+  294ms rpcbind.service
+  283ms rpc-statd-notify.service
+  278ms nfs-mountd.service
+  259ms cockpit-motd.service
+  257ms systemd-journald.service
+  231ms ufw.service
+  207ms systemd-user-sessions.service
+  180ms rtkit-daemon.service
+  127ms dev-hugepages.mount
+  126ms dev-mqueue.mount
+  124ms sys-kernel-debug.mount
+  123ms sys-kernel-tracing.mount
+  117ms kmod-static-nodes.service
+  115ms modprobe@configfs.service
+  113ms modprobe@drm.service
+  108ms modprobe@fuse.service
+  106ms systemd-update-utmp.service
+   87ms proc-sys-fs-binfmt_misc.mount
+   77ms nfs-blkmap.service
+   65ms pmie_farm.service
+   35ms setvtrgb.service
+   32ms plymouth-quit-wait.service
+   31ms plymouth-quit.service
+   24ms packagekit.service
+   23ms run-rpc_pipefs.mount
+   22ms pmlogger_farm.service
+   15ms user-runtime-dir@1000.service
+   14ms alsa-restore.service
+    8ms docker.socket
+    8ms systemd-tmpfiles-setup-dev.service
+    7ms modprobe@loop.service
+    7ms systemd-update-utmp-runlevel.service
+    7ms modprobe@efi_pstore.service
+    7ms libvirtd.socket
+    5ms sysstat-collect.service
+    5ms snapd.socket
+    5ms sys-fs-fuse-connections.mount
+    5ms sys-kernel-config.mount
+    3ms modprobe@dm_mod.service
+    2ms pmie_check.service
+    1ms pmlogger_check.service
+    1ms pmlogger_farm_check.service
+  807us pmie_farm_check.service
+   33us blk-availability.service

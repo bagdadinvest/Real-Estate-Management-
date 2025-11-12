@@ -1,0 +1,125 @@
+25.249s e2scrub_reap.service
+19.533s casaos-app-management.service
+19.137s NetworkManager.service
+17.449s systemd-journal-flush.service
+16.315s gpu-manager.service
+15.999s tailscaled.service
+14.151s nmbd.service
+13.452s casaos-local-storage.service
+13.095s fwupd.service
+12.429s dev-sda2.device
+10.957s pmcd.service
+10.729s samba-ad-dc.service
+ 9.844s udisks2.service
+ 9.798s dpkg-db-backup.service
+ 8.030s power-profiles-daemon.service
+ 8.027s accounts-daemon.service
+ 7.755s polkit.service
+ 7.108s neon-apt-mark-kernels-auto.service
+ 6.875s pmie.service
+ 6.726s logrotate.service
+ 6.557s pmlogger.service
+ 6.381s ModemManager.service
+ 6.308s avahi-daemon.service
+ 6.307s bluetooth.service
+ 6.288s dbus.service
+ 6.064s smbd.service
+ 5.867s switcheroo-control.service
+ 5.860s systemd-machined.service
+ 5.860s thermald.service
+ 5.135s libvirtd.service
+ 4.807s apparmor.service
+ 3.360s smartmontools.service
+ 3.227s casaos.service
+ 3.168s virtlockd.service
+ 3.166s virtlogd.service
+ 3.139s packagekit.service
+ 3.032s casaos-user-service.service
+ 2.860s rsyslog.service
+ 2.613s mnt.mount
+ 2.447s lvm2-monitor.service
+ 2.266s casaos-message-bus.service
+ 2.257s NetworkManager-wait-online.service
+ 2.205s systemd-udevd.service
+ 1.876s upower.service
+ 1.786s nfs-server.service
+ 1.719s pmproxy.service
+ 1.708s qemu-kvm.service
+ 1.595s casaos-gateway.service
+ 1.568s grub-common.service
+ 1.440s plymouth-start.service
+ 1.382s systemd-tmpfiles-setup-dev-early.service
+ 1.358s systemd-udev-trigger.service
+ 1.302s proc-fs-nfsd.mount
+ 1.250s wpa_supplicant.service
+ 1.017s systemd-resolved.service
+  936ms systemd-sysctl.service
+  930ms ssh.service
+  930ms secureboot-db.service
+  919ms libvirt-guests.service
+  906ms systemd-modules-load.service
+  889ms systemd-logind.service
+  875ms sysstat.service
+  815ms systemd-random-seed.service
+  759ms lm-sensors.service
+  700ms keyboard-setup.service
+  648ms systemd-journald.service
+  588ms grub-initrd-fallback.service
+  537ms swapfile.swap
+  528ms plymouth-read-write.service
+  528ms live-tools.service
+  508ms systemd-timesyncd.service
+  500ms user@1000.service
+  414ms rpcbind.service
+  362ms systemd-binfmt.service
+  361ms rpc-statd.service
+  356ms rpc-statd-notify.service
+  345ms console-setup.service
+  305ms nfsdcld.service
+  296ms nfs-idmapd.service
+  286ms systemd-tmpfiles-setup.service
+  281ms systemd-rfkill.service
+  223ms ufw.service
+  218ms cockpit.socket
+  176ms systemd-localed.service
+  155ms systemd-remount-fs.service
+  152ms setvtrgb.service
+  149ms run-rpc_pipefs.mount
+  144ms nfs-mountd.service
+  125ms cockpit-motd.service
+  119ms systemd-user-sessions.service
+  117ms systemd-update-utmp.service
+  111ms pmlogger_farm_check.service
+  111ms pmie_farm.service
+   98ms rtkit-daemon.service
+   95ms dev-hugepages.mount
+   94ms dev-mqueue.mount
+   92ms sys-kernel-debug.mount
+   91ms sys-kernel-tracing.mount
+   86ms kmod-static-nodes.service
+   84ms modprobe@configfs.service
+   82ms modprobe@drm.service
+   80ms proc-sys-fs-binfmt_misc.mount
+   80ms modprobe@fuse.service
+   74ms nfs-blkmap.service
+   57ms pmlogger_farm.service
+   30ms plymouth-quit-wait.service
+   28ms plymouth-quit.service
+   15ms cups.service
+   13ms alsa-restore.service
+   10ms sysstat-collect.service
+    9ms systemd-tmpfiles-setup-dev.service
+    8ms user-runtime-dir@1000.service
+    7ms systemd-update-utmp-runlevel.service
+    7ms docker.socket
+    7ms modprobe@efi_pstore.service
+    6ms modprobe@loop.service
+    6ms pmlogger_check.service
+    5ms sys-fs-fuse-connections.mount
+    5ms pmie_check.service
+    5ms libvirtd.socket
+    5ms sys-kernel-config.mount
+    3ms modprobe@dm_mod.service
+    3ms run-qemu.mount
+    1ms pmie_farm_check.service
+   30us blk-availability.service
