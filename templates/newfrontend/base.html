@@ -83,17 +83,17 @@
               </button>
             {% endwith %}
             <div class="lang-menu" role="menu" aria-label="{% trans 'Available languages' %}">
+              {% comment %} Static-site friendly: swap the '/xx/' prefix {% endcomment %}
               {% for lang in LANGUAGES %}
                 {% with flag_file='flags/'|add:lang.0|add:'.svg' %}
-                <form action="{% url 'set_language' %}" method="post" class="lang-item">
-                  {% csrf_token %}
-                  <input name="next" type="hidden" value="{{ request.path }}">
-                  <input type="hidden" name="language" value="{{ lang.0 }}">
-                  <button type="submit" role="menuitem" aria-label="{{ lang.1 }}">
-                    <img class="flag" src="{% static flag_file %}" alt="" aria-hidden="true">
-                    <span class="label">{{ lang.1 }}</span>
-                  </button>
-                </form>
+                  {% with new_path='/'|add:lang.0|add:request.path|slice:'3:' %}
+                    <div class="lang-item">
+                      <a href="{{ new_path }}" role="menuitem" aria-label="{{ lang.1 }}" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="{% static flag_file %}" alt="{{ lang.0 }}">
+                        <span class="name">{{ lang.1 }}</span>
+                      </a>
+                    </div>
+                  {% endwith %}
                 {% endwith %}
               {% endfor %}
             </div>
@@ -130,7 +130,7 @@
         <div class="row">
           <div class="col-12">
             <nav class="main-nav">
-              <a href="{% url 'new_index' %}" class="logo"><h1>VL</h1></a>
+              <a href="{% url 'new_index' %}" class="logo"><h3>KUZEY EMLAK</h3></a>
               <ul class="nav">
                 <li><a href="{% url 'new_index' %}" class="{% block nav_home_active %}{% endblock %}">{% trans "Home" %}</a></li>
                 <li><a href="{% url 'new_properties' %}" class="{% block nav_properties_active %}{% endblock %}">{% trans "Properties" %}</a></li>

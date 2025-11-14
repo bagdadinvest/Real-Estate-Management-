@@ -33,3 +33,8 @@ def financing(request):
         'price_choices' : price_choices,
 
 		})
+
+
+def custom_404(request, exception):
+    """Render custom 404 page with new frontend template."""
+    return render(request, 'newfrontend/page-404.html', status=404)

@@ -1,0 +1,1005 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+
+    <title>Villa Agency - Banking in Turkey</title>
+
+    <!-- Vendor Bootstrap (shipped with newfront) -->
+    <link href="/static/newfront/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="/static/newfront/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/static/newfront/assets/css/templatemo-villa-agency.css">
+    <link rel="stylesheet" href="/static/newfront/assets/css/owl.css">
+    <link rel="stylesheet" href="/static/newfront/assets/css/animate.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/static/newfront/assets/css/typing-effect.css">
+
+    
+
+    
+<style>
+  /* Page-specific polish for financing page */
+  .financing-page .section-heading h2 { font-size: 28px; line-height: 1.35; margin: 8px 0 14px; }
+  .financing-page h4 { font-size: 20px; margin-top: 18px; margin-bottom: 10px; }
+  .financing-page p { color: #4b5563; margin-bottom: 12px; }
+  .financing-page ul, .financing-page ol { padding-left: 20px; margin-bottom: 12px; }
+  .financing-page ul li, .financing-page ol li { margin-bottom: 6px; }
+  .financing-page .info-box { border-radius: 10px; box-shadow: 0 0 15px rgba(0,0,0,0.08); }
+  .financing-page .aside { position: sticky; top: 20px; }
+  .financing-page .properties-box .item img { border-radius: 10px; }
+  @media (max-width: 992px) {
+    .financing-page .section-heading h2 { font-size: 22px; }
+    .financing-page h4 { font-size: 18px; }
+  }
+</style>
+
+    <style>
+      /* Language switcher styles (global) */
+      .top-language-bar { position: relative; z-index: 1000; background: #fff; }
+      .top-language-inner { display: flex; justify-content: center; padding: 8px 0; }
+      .lang-switcher { position: relative; }
+      .lang-current { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border: 1px solid #e5e7eb; border-radius: 999px; background: #fff; color: #111827; box-shadow: 0 2px 8px rgba(0,0,0,0.06); cursor: pointer; line-height: 1; }
+      .lang-current .flag { width: 18px; height: 18px; border-radius: 2px; object-fit: cover; }
+      .lang-current .code { font-weight: 600; font-size: 12px; letter-spacing: .3px; }
+      .lang-current .chev { font-size: 12px; opacity: .7; }
+      .lang-current:focus { outline: none; box-shadow: 0 0 0 3px rgba(59,130,246,.25); }
+      .lang-menu { position: absolute; right: 0; top: calc(100% + 8px); min-width: 200px; background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; box-shadow: 0 10px 28px rgba(0,0,0,0.12); padding: 6px; display: none; z-index: 100000; }
+      .lang-switcher.open .lang-menu { display: block; z-index: 100000; }
+      .lang-item { margin: 0; }
+      .lang-item + .lang-item { margin-top: 2px; }
+      .lang-item button { width: 100%; display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: transparent; border: 0; border-radius: 8px; cursor: pointer; font-size: 13px; color: #111827; text-align: left; }
+      .lang-item button .flag { width: 18px; height: 18px; border-radius: 2px; object-fit: cover; }
+      .lang-item button:hover { background: #f3f4f6; }
+      @media (max-width: 768px) {
+        .lang-menu { right: auto; left: 50%; transform: translateX(-50%); min-width: 220px; }
+      }
+      
+      /* Tangerine Font for Banner Headings */
+      .tangerine-regular {
+        font-family: "Tangerine", cursive;
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Global Language Switcher (top-centered, outside nav) -->
+    
+    
+    <div class="top-language-bar">
+      <div class="container">
+        <div class="top-language-inner">
+          <div class="lang-switcher" data-lang-current="ru">
+            
+              <button type="button" class="lang-current" aria-haspopup="true" aria-expanded="false" aria-label="Выбрать язык">
+                <img class="flag" src="/static/flags/ru.svg" alt="ru">
+                <span class="code">RU</span>
+                <span class="chev" aria-hidden="true">▾</span>
+              </button>
+            
+            <div class="lang-menu" role="menu" aria-label="Доступные языки">
+              
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/ru/new/financing/" role="menuitem" aria-label="Английский" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/en.svg" alt="en">
+                        <span class="name">Английский</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/ru/new/financing/" role="menuitem" aria-label="Türkçe" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/tr.svg" alt="tr">
+                        <span class="name">Türkçe</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/ru/new/financing/" role="menuitem" aria-label="Français" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/fr.svg" alt="fr">
+                        <span class="name">Français</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/ru/new/financing/" role="menuitem" aria-label="Español" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/es.svg" alt="es">
+                        <span class="name">Español</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/ru/new/financing/" role="menuitem" aria-label="Italiano" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/it.svg" alt="it">
+                        <span class="name">Italiano</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/ru/new/financing/" role="menuitem" aria-label="Polski" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/pl.svg" alt="pl">
+                        <span class="name">Polski</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/ru/new/financing/" role="menuitem" aria-label="Português" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/pt.svg" alt="pt">
+                        <span class="name">Português</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/ru/new/financing/" role="menuitem" aria-label="Magyar" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/hu.svg" alt="hu">
+                        <span class="name">Magyar</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/ru/new/financing/" role="menuitem" aria-label="Русский" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/ru.svg" alt="ru">
+                        <span class="name">Русский</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/ru/new/financing/" role="menuitem" aria-label="العربية" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/ar.svg" alt="ar">
+                        <span class="name">العربية</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/ru/new/financing/" role="menuitem" aria-label="Deutsch" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/de.svg" alt="de">
+                        <span class="name">Deutsch</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/ru/new/financing/" role="menuitem" aria-label="български" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/bg.svg" alt="bg">
+                        <span class="name">български</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/ru/new/financing/" role="menuitem" aria-label="Nederlands" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/nl.svg" alt="nl">
+                        <span class="name">Nederlands</span>
+                      </a>
+                    </div>
+                  
+                
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top sub-header -->
+    <div class="sub-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-8">
+            <ul class="info">
+              <li><i class="fa fa-envelope"></i> info@company.com</li>
+              <li><i class="fa fa-map"></i> Beylikduzu, IS. TR 33160</li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <ul class="social-links">
+              <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+              <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main header/nav -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+              <a href="/ru/new/" class="logo"><h3>KUZEY EMLAK</h3></a>
+              <ul class="nav">
+                <li><a href="/ru/new/" class="">Главная</a></li>
+                <li><a href="/ru/new/properties/" class="">Объекты</a></li>
+                <li><a href="/ru/new/map/" class="">Карта</a></li>
+                    <!-- Property Details 
+
+                <li><a href="/ru/new/properties/" class="">Характеристики объекта</a></li>    -->
+
+                <li><a href="/ru/new/contact/" class="">Связаться с нами</a></li>
+                <li><a href="/ru/new/financing/" class="active">Финансирование</a></li>
+
+                <!-- Keep CTA as last-child styling -->
+                <li><a href="https://cal.com/lotfi-kanouni-lbueh8"><i class="fa fa-calendar"></i> Записаться на просмотр</a></li>
+              </ul>
+              <a class="menu-trigger"><span>Menu</span></a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    
+  <div class="page-heading header-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <span class="breadcrumb"><a href="/ru/new/">Главная</a> / Banking in Turkey</span>
+          <h3>Banking & Mortgages for Buying Property in Turkey</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section properties">
+    <div class="container">
+      <ul class="properties-filter">
+        <li><a class="is_active" href="#!" data-filter="*">Показать все</a></li>
+        <li><a href="#!" data-filter=".adv">Квартира</a></li>
+        <li><a href="#!" data-filter=".str">Вилла</a></li>
+        <li><a href="/ru/new/map/" >Карта</a></li>
+      </ul>
+             
+
+
+<section class="loan-calculator card p-4" id="loan-calculator" aria-label="Ипотечный калькулятор">
+  <h3 class="mb-3">Ипотечный калькулятор</h3>
+  <p class="text-muted mb-4">Оцените ежемесячный платеж и посмотрите график амортизации.</p>
+
+  <div class="row g-3 align-items-end">
+    <div class="col-md-6">
+      <label for="lc-amount" class="form-label">Сумма кредита (₺)</label>
+      <div class="d-flex align-items-center gap-2">
+        <input type="range" class="form-range flex-grow-1" id="lc-amount-range" min="10000" max="20000000" step="1000" value="500000" aria-label="Ползунок суммы кредита">
+        <input type="text" class="form-control" id="lc-amount" value="500000" inputmode="numeric" aria-describedby="lc-amount-help" autocomplete="off" spellcheck="false">
+      </div>
+      <div id="lc-amount-help" class="form-text">Перетащите ползунок или введите значение.</div>
+    </div>
+
+    <div class="col-md-3">
+      <label for="lc-term" class="form-label">Срок (месяцев)</label>
+      <div class="d-flex align-items-center gap-2">
+        <input type="range" class="form-range flex-grow-1" id="lc-term-range" min="12" max="240" step="1" value="120" aria-label="Ползунок срока">
+        <input type="text" class="form-control" id="lc-term" value="120" inputmode="numeric" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <label for="lc-rate" class="form-label">Процентная ставка (%)</label>
+      <div class="input-group">
+        <span class="input-group-text">%</span>
+        <input type="text" class="form-control" id="lc-rate" value="3,25" inputmode="decimal" aria-describedby="lc-rate-help" autocomplete="off" spellcheck="false" placeholder="3,25">
+      </div>
+      <div id="lc-rate-help" class="form-text">Годовая номинальная ставка.</div>
+    </div>
+
+    <div class="col-12 d-flex justify-content-end mt-2">
+      <button type="button" class="btn btn-primary" id="lc-calc-btn">Рассчитать</button>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <div id="lc-results" class="row g-3" aria-live="polite">
+    <div class="col-md-4">
+      <div class="p-3 border rounded-3 bg-light h-100">
+        <div class="small text-muted">Ежемесячный платеж</div>
+        <div class="fs-4 fw-semibold" id="lc-monthly">—</div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-3 border rounded-3 bg-light h-100">
+        <div class="small text-muted">Всего процентов</div>
+        <div class="fs-5" id="lc-total-interest">—</div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="p-3 border rounded-3 bg-light h-100">
+        <div class="small text-muted">Всего к оплате</div>
+        <div class="fs-5" id="lc-total-paid">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mt-4">
+    <h5 class="mb-0">График амортизации</h5>
+    <div class="d-flex gap-2">
+      <button class="btn btn-outline-secondary btn-sm" id="lc-toggle-table" type="button">Показать/Скрыть</button>
+      <button class="btn btn-outline-primary btn-sm" id="lc-download-csv" type="button">Скачать CSV</button>
+    </div>
+  </div>
+
+  <div class="table-responsive mt-2" id="lc-table-wrap" hidden>
+    <table class="table table-sm align-middle" id="lc-table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col" class="text-end">Payment</th>
+          <th scope="col" class="text-end">Основной долг</th>
+          <th scope="col" class="text-end">Проценты</th>
+          <th scope="col" class="text-end">Остаток</th>
+        </tr>
+      </thead>
+      <tbody id="lc-tbody"></tbody>
+    </table>
+  </div>
+
+  <p class="mt-3 small text-muted">Этот калькулятор дает ориентировочные оценки и не является предложением кредита.</p>
+
+  <style>
+    /* Minimal polish scoped to this component */
+    #loan-calculator .form-range { max-width: 220px; }
+    #loan-calculator .gap-2 { gap: .5rem !important; }
+    #loan-calculator .gap-3 { gap: 1rem !important; }
+    #loan-calculator .fs-4 { font-size: 1.4rem; }
+    #loan-calculator .fs-5 { font-size: 1.15rem; }
+  </style>
+
+  <script>
+  (function(){
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    // i18n strings for JS-generated content
+    const i18n = {
+      payment: "Payment",
+      principal: "Основной долг",
+      interest: "Проценты",
+      balance: "Остаток",
+      csvName: "амортизация",
+    };
+
+    const el = {
+      amount: $('#lc-amount'),
+      amountRange: $('#lc-amount-range'),
+      term: $('#lc-term'),
+      termRange: $('#lc-term-range'),
+      rate: $('#lc-rate'),
+      calcBtn: $('#lc-calc-btn'),
+      monthly: $('#lc-monthly'),
+      totalInterest: $('#lc-total-interest'),
+      totalPaid: $('#lc-total-paid'),
+      toggleTable: $('#lc-toggle-table'),
+      tableWrap: $('#lc-table-wrap'),
+      tbody: $('#lc-tbody'),
+      csvBtn: $('#lc-download-csv'),
+    };
+
+    // If the partial is not fully present, do nothing.
+    if (Object.values(el).some(function(n){ return !n; })) return;
+
+    const locale = "ru" || document.documentElement.getAttribute('lang') || (navigator.language || 'tr-TR');
+    const fmt = new Intl.NumberFormat(locale, { style: 'currency', currency: 'TRY', maximumFractionDigits: 2 });
+    const fmtNum = new Intl.NumberFormat(locale, { maximumFractionDigits: 2 });
+
+    function clamp(val, min, max) { return Math.min(Math.max(val, min), max); }
+
+    // Parsing helpers tolerant to TR formatting
+    const parseIntTR = (v, {min=0, max=Number.MAX_SAFE_INTEGER}={}) => {
+      if (typeof v !== 'string') v = String(v ?? '');
+      const digits = v.replace(/[^0-9]/g, '');
+      let n = digits ? parseInt(digits, 10) : 0;
+      if (!Number.isFinite(n)) n = 0;
+      return clamp(n, min, max);
+    };
+    const parseRateTR = (v, {min=0, max=200}={}) => {
+      if (typeof v !== 'string') v = String(v ?? '');
+      // Accept "3,25" or "3.25"; remove thousands separators if any
+      const cleaned = v.trim().replace(/\s/g,'').replace(/\.(?=\d{3}(?:\D|$))/g,'').replace(/,/g,'.');
+      let n = Number(cleaned);
+      if (!Number.isFinite(n)) n = 0;
+      return clamp(n, min, max);
+    };
+
+    function syncPairInt(rangeEl, inputEl, min, max, step){
+      function toStep(v){ return Math.round(v/step)*step; }
+      rangeEl.addEventListener('input', () => { inputEl.value = rangeEl.value; });
+      inputEl.addEventListener('input', () => {
+        const v = parseIntTR(inputEl.value, {min:Number(min), max:Number(max)});
+        inputEl.value = toStep(v);
+        rangeEl.value = inputEl.value;
+      });
+      rangeEl.addEventListener('change', () => { inputEl.dispatchEvent(new Event('input')); });
+    }
+
+    // Set min/max on text inputs for info; enforce via parser
+    el.amount.setAttribute('data-min','10000');
+    el.amount.setAttribute('data-max','20000000');
+    el.term.setAttribute('data-min','12');
+    el.term.setAttribute('data-max','240');
+
+    syncPairInt(el.amountRange, el.amount, 10000, 20000000, 1000);
+    syncPairInt(el.termRange, el.term, 12, 240, 1);
+
+    function calculateSchedule(P, annualRatePct, nMonths) {
+      const rMonthly = (annualRatePct/100)/12; // monthly nominal
+      const schedule = [];
+      let balance = P;
+      let M;
+      if (rMonthly > 0) {
+        const pow = Math.pow(1 + rMonthly, nMonths);
+        M = P * rMonthly * pow / (pow - 1);
+      } else {
+        M = P / nMonths;
+      }
+      for (let i=1; i<=nMonths; i++) {
+        const interest = rMonthly > 0 ? balance * rMonthly : 0;
+        let principal = M - interest;
+        if (i === nMonths) { // avoid residual rounding
+          principal = balance;
+        }
+        balance = Math.max(0, balance - principal);
+        schedule.push({
+          idx: i,
+          payment: M,
+          principal: principal,
+          interest: interest,
+          balance: balance,
+        });
+      }
+      const totals = schedule.reduce((acc, r) => {
+        acc.paid += r.payment; acc.interest += r.interest; return acc; }, { paid: 0, interest: 0 });
+      return { schedule, monthly: M, totalInterest: totals.interest, totalPaid: totals.paid };
+    }
+
+    function renderResults(res) {
+      el.monthly.textContent = fmt.format(res.monthly);
+      el.totalInterest.textContent = fmt.format(res.totalInterest);
+      el.totalPaid.textContent = fmt.format(res.totalPaid);
+    }
+
+    function renderTable(schedule) {
+      el.tbody.innerHTML = '';
+      const frag = document.createDocumentFragment();
+      for (const row of schedule) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${row.idx}</td>
+          <td class="text-end">${fmt.format(row.payment)}</td>
+          <td class="text-end">${fmt.format(row.principal)}</td>
+          <td class="text-end">${fmt.format(row.interest)}</td>
+          <td class="text-end">${fmt.format(row.balance)}</td>
+        `;
+        frag.appendChild(tr);
+      }
+      el.tbody.appendChild(frag);
+    }
+
+    function toCSV(schedule) {
+      const header = ['#', i18n.payment, i18n.principal, i18n.interest, i18n.balance];
+      const rows = schedule.map(r => [r.idx, fmtNum.format(r.payment), fmtNum.format(r.principal), fmtNum.format(r.interest), fmtNum.format(r.balance)]);
+      const all = [header, ...rows].map(r => r.join(',')).join('\n');
+      return new Blob([all], { type: 'text/csv;charset=utf-8;' });
+    }
+
+    function runCalc() {
+      const P = parseIntTR(el.amount.value, {min:10000, max:20000000});
+      const n = parseIntTR(el.term.value, {min:12, max:240});
+      const rate = parseRateTR(el.rate.value, {min:0, max:200});
+      el.amount.value = P; el.term.value = n; el.rate.value = fmtNum.format(rate);
+      const res = calculateSchedule(P, rate, n);
+      renderResults(res);
+      renderTable(res.schedule);
+      return res;
+    }
+
+    el.calcBtn.addEventListener('click', runCalc);
+    el.toggleTable.addEventListener('click', () => { el.tableWrap.hidden = !el.tableWrap.hidden; });
+    el.csvBtn.addEventListener('click', () => {
+      const res = runCalc();
+      const blob = toCSV(res.schedule);
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = (i18n.csvName || 'amortization') + '.csv';
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    // Initial calc
+    runCalc();
+  })();
+  </script>
+</section>
+
+  <div class="section financing-page">
+    <div class="container">
+      <div class="row">
+          <div class="section-heading">
+            <h6>| Overview</h6>
+            <h2>How financing works for property purchases in Turkey</h2>
+          </div>
+          <p>
+            Turkey offers bank mortgages and developer installments for both residents and foreign buyers. Terms, documentation, and maximum loan amounts vary by bank, buyer profile, and property valuation. Below is a practical summary to help you prepare.
+          </p>
+
+          <h4 class="mt-4">Who can apply</h4>
+          <ul>
+            <li>Turkish citizens and residents: broad bank options and terms.</li>
+            <li>Foreign buyers: mortgages are available at selected banks, subject to valuation and local policy.</li>
+          </ul>
+
+          <h4 class="mt-4">Typical loan terms</h4>
+          <ul>
+            <li>Currency: mostly TRY-denominated mortgages; FX loans are limited.</li>
+            <li>Tenor: commonly 5–10 years depending on bank and profile.</li>
+            <li>Loan-to-Value (LTV): determined by the bank’s appraisal; foreigners often qualify for lower LTVs than residents.</li>
+            <li>Interest: variable by bank and market; request an up-to-date quote.</li>
+          </ul>
+
+          <h4 class="mt-4">Required documents (common)</h4>
+          <ul>
+            <li>Passport/ID and biometric photo</li>
+            <li>Turkish tax number (Vergi Numarası)</li>
+            <li>Proof of income (salary slips, tax returns, bank statements)</li>
+            <li>Address proof (utility bill or residency document)</li>
+            <li>Property appraisal report (SPK valuation) arranged via bank</li>
+          </ul>
+
+          <h4 class="mt-4">Process at a glance</h4>
+          <ol>
+            <li>Pre-qualification: discuss budget, LTV, and estimated rates with the bank.</li>
+            <li>Open a Turkish bank account and obtain a tax number if you don’t have one.</li>
+            <li>Submit documents; bank orders independent valuation of the property.</li>
+            <li>Final approval: the loan amount is set based on the valuation report.</li>
+            <li>Signing and disbursement: earthquake insurance (DASK) is typically required before deed transfer.</li>
+          </ol>
+
+          <h4 class="mt-4">Fees and mandatory items</h4>
+          <ul>
+            <li>Appraisal (valuation) fee</li>
+            <li>Loan allocation/processing fee (varies by bank)</li>
+            <li>DASK earthquake insurance (mandatory) and property insurance</li>
+            <li>Title deed taxes and notary fees (paid at transfer)</li>
+          </ul>
+
+          <h4 class="mt-4">Денежные переводы</h4>
+          <p>
+            Иностранные покупатели обычно оплачивают аванс и расчет через SWIFT‑переводы в иностранной валюте. Банки могут запрашивать подтверждение источника средств. Конвертация валюты и документы для регистрации права оформляются совместно с вашим банком и нотариусом.
+          </p>
+
+          <h4 class="mt-4">Альтернативы банковской ипотеке</h4>
+          <ul>
+            <li>Рассрочка от застройщика: поэтапные платежи в период строительства или короткие графики после сдачи.</li>
+            <li>Потребительские кредиты или кредит под залог жилья в вашей стране (если применимо).</li>
+          </ul>
+
+          <div class="mt-5 p-4 info-box">
+            <h4 class="mb-3">Популярные банки</h4>
+            <p class="mb-2">К крупнейшим участникам рынка ипотеки относятся:</p>
+            <ul class="mb-0">
+              <li>Ziraat Bankası, VakıfBank, Halkbank</li>
+              <li>İşbank, Garanti BBVA, Akbank, Yapı Kredi</li>
+            </ul>
+            <small class="d-block mt-2 text-muted">Доступность и условия для иностранных покупателей зависят от филиала и политики; уточняйте на месте.</small>
+          </div>
+          
+                              <!-- ON hOLD FOR NOW - Property Details 
+
+          
+          <div class="section-heading mt-5">
+            <h6>| Похожее</h6>
+            <h2>Объекты, которые можно профинансировать</h2>
+          </div>
+          <div class="row properties-box">
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ru/new/listing/1/">
+                    <img src="/media/photos/2025/11/09/portfolio_image_a4fa1e350022fc10ae2709db0c5ee4df_8w4i7pW.webp" alt="Bosphorus View Apartment">
+                  </a>
+                  <span class="category">Apartment</span>
+                  <h6>₺9 500 000</h6>
+                  <h4>
+                    <a href="/ru/new/listing/1/">Bosphorus View Apartment</a>
+                  </h4>
+                  <ul>
+                    <li>Спальни: <span>2</span></li>
+                    <li>Ванные: <span>1</span></li>
+                    <li>Город: <span>Istanbul</span></li>
+                    <li>Регион: <span>Istanbul</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ru/new/listing/1/">Подробнее</a>
+                    <a href="/ru/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ru/new/listing/2/">
+                    <img src="/media/photos/2025/11/09/portfolio_image_a4fa1e350022fc10ae2709db0c5ee4df.webp" alt="Kadıköy Modern Flat">
+                  </a>
+                  <span class="category">Apartment</span>
+                  <h6>₺12 500 000</h6>
+                  <h4>
+                    <a href="/ru/new/listing/2/">Kadıköy Modern Flat</a>
+                  </h4>
+                  <ul>
+                    <li>Спальни: <span>3</span></li>
+                    <li>Ванные: <span>2</span></li>
+                    <li>Город: <span>Istanbul</span></li>
+                    <li>Регион: <span>Istanbul</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ru/new/listing/2/">Подробнее</a>
+                    <a href="/ru/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ru/new/listing/3/">
+                    <img src="/media/photos/2025/11/09/portfolio_image_964e5d1fb1f830ec29661411a3b39aa6.webp" alt="Beşiktaş Penthouse">
+                  </a>
+                  <span class="category">Penthouse</span>
+                  <h6>₺18 500 000</h6>
+                  <h4>
+                    <a href="/ru/new/listing/3/">Beşiktaş Penthouse</a>
+                  </h4>
+                  <ul>
+                    <li>Спальни: <span>4</span></li>
+                    <li>Ванные: <span>3</span></li>
+                    <li>Город: <span>Istanbul</span></li>
+                    <li>Регион: <span>Istanbul</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ru/new/listing/3/">Подробнее</a>
+                    <a href="/ru/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ru/new/listing/4/">
+                    <img src="/media/photos/2025/11/09/nisantasi-koru-terrace-view.webp" alt="Nişantaşı Luxury Residence">
+                  </a>
+                  <span class="category">Apartment</span>
+                  <h6>₺21 000 000</h6>
+                  <h4>
+                    <a href="/ru/new/listing/4/">Nişantaşı Luxury Residence</a>
+                  </h4>
+                  <ul>
+                    <li>Спальни: <span>2</span></li>
+                    <li>Ванные: <span>2</span></li>
+                    <li>Город: <span>Istanbul</span></li>
+                    <li>Регион: <span>Istanbul</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ru/new/listing/4/">Подробнее</a>
+                    <a href="/ru/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+          
+        </div>
+        <div class="col-lg-4">
+          <div class="p-4 info-box aside">
+            <h4 class="mb-3">Краткие факты</h4>
+            <ul style="margin-bottom: 0;">
+              <li>Независимая оценка определяет максимальную сумму кредита.</li>
+              <li>Страхование от землетрясений (DASK) обязательно.</li>
+              <li>Подготовьте ИНН и свежие банковские выписки.</li>
+              <li>Ожидайте 2–4 недели до полного одобрения и выдачи.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+   -->
+
+  <div class="contact-page section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="section-heading">
+            <h6>| Запрос по финансированию</h6>
+            <h2>Свяжитесь с нами по ипотеке в Турции</h2>
+          </div>
+          <p>Мы поможем с предодобрением, оценкой и оформлением прав, а также скоординируем работу с банками и застройщиками, чтобы подобрать подходящее финансирование для вашей покупки в Турции.</p>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="item phone">
+                <img src="/static/newfront/assets/images/phone-icon.png" alt="" style="max-width: 52px;">
+                <h6>+90 542 363 74 36<br><span>Phone Number</span></h6>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="item email">
+                <img src="/static/newfront/assets/images/email-icon.png" alt="" style="max-width: 52px;">
+                <h6>financing@villa.co<br><span>Financing Email</span></h6>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <form id="contact-form" action="" method="post">
+            <div class="row">
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="name">Полное имя</label>
+                  <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="email">Адрес эл. почты</label>
+                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required="">
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="subject">Тема</label>
+                  <input type="subject" name="subject" id="subject" placeholder="Subject..." autocomplete="on" >
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="message">Сообщение</label>
+                  <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <button type="submit" id="form-submit" class="orange-button">Отправить сообщение</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-12">
+          <div id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3009.917679336842!2d28.667998876457077!3d41.02705691826774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b55f5b9fdc13c7%3A0xd7a65415d511d2cd!2sSar%20Life%20Residence!5e0!3m2!1sen!2str!4v1762775177625!5m2!1sen!2str" width="100%" height="500px" frameborder="0" style="border:0; border-radius: 10px; box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.15);" allowfullscreen=""></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+    <footer>
+      <div class="container">
+        <div class="col-lg-12">
+            <p>Copyright © 2025 ∞ Lotfinity ∞ tech Co., Ltd. All rights reserved.
+            <!-- Scripts
+
+            Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
+             -->
+          </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="/static/newfront/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/newfront/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/newfront/assets/js/isotope.min.js"></script>
+    <script src="/static/newfront/assets/js/owl-carousel.js"></script>
+    <script src="/static/newfront/assets/js/counter.js"></script>
+    <script src="/static/newfront/assets/js/custom.js"></script>
+    <script src="/static/newfront/assets/js/typing-effect.js"></script>
+
+    <script>
+      // Language switcher interactions (global)
+      document.addEventListener('DOMContentLoaded', function() {
+        var langSwitcher = document.querySelector('.top-language-bar .lang-switcher') || document.querySelector('.lang-switcher');
+        if (!langSwitcher) return;
+        var langButton = langSwitcher.querySelector('.lang-current');
+        var isTouch = false;
+        function onFirstTouch(){ isTouch = true; window.removeEventListener('touchstart', onFirstTouch); }
+        window.addEventListener('touchstart', onFirstTouch);
+        function closeMenu(){ langSwitcher.classList.remove('open'); langButton && langButton.setAttribute('aria-expanded', 'false'); }
+        function openMenu(){ langSwitcher.classList.add('open'); langButton && langButton.setAttribute('aria-expanded', 'true'); }
+        function closeMenuOutside(event){ if (!langSwitcher.contains(event.target)) { closeMenu(); } }
+        if (langButton) {
+          langButton.addEventListener('click', function(){
+            var isOpen = langSwitcher.classList.contains('open');
+            if (isOpen) closeMenu(); else openMenu();
+          });
+        }
+        // Hover disabled on desktop; click only
+        document.addEventListener('click', closeMenuOutside);
+        window.addEventListener('unload', function(){ document.removeEventListener('click', closeMenuOutside); });
+      });
+    </script>
+
+    
+    
+
+
+<style>
+  /* WhatsApp widget styles (inlined for efficiency) */
+  .WA_Chat_Widget *{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif}
+  .WA_Chat_Widget .WA_FloatingButton{position:fixed;width:70px;height:70px;display:flex;justify-content:center;align-items:center;box-shadow:0 4px 10px 0 rgba(0,0,0,.185);border-radius:50%;background:#fff;cursor:pointer;z-index:1000}
+  .WA_Chat_Widget .WA_FloatingButton svg{width:40px;height:40px;fill:#4fce5d}
+  .WA_Chat_Widget[data-position^="top-"] .WA_FloatingButton{top:20px}
+  .WA_Chat_Widget[data-position^="bottom-"] .WA_FloatingButton{bottom:20px}
+  .WA_Chat_Widget[data-position$="-left"] .WA_FloatingButton{left:20px}
+  .WA_Chat_Widget[data-position$="-right"] .WA_FloatingButton{right:20px}
+  .WA_Chat_Widget[data-position$="-center"] .WA_FloatingButton{left:50%;transform:translateX(-50%)}
+  .WA_Chat_Widget[data-position^="top-"] .WA_ChatBox{top:110px}
+  .WA_Chat_Widget[data-position^="bottom-"] .WA_ChatBox{bottom:110px}
+  .WA_Chat_Widget[data-position$="-left"] .WA_ChatBox{left:30px}
+  .WA_Chat_Widget[data-position$="-right"] .WA_ChatBox{right:30px}
+  .WA_Chat_Widget[data-position$="-center"] .WA_ChatBox{left:50%;transform:translateX(-50%)}
+  .WA_Chat_Widget .WA_ChatBox{position:fixed;width:360px;height:auto;overflow:hidden;border-radius:8px;background-color:#fff;box-shadow:0 5px 25px 0 rgba(0,0,0,.1);display:none;z-index:9999}
+  .WA_Chat_Widget .WA_ChatBox[style*="display: block"] {z-index:99999}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header{width:auto;background:#095e54;padding:20px;display:flex;justify-content:flex-start;align-items:center;flex-wrap:wrap;gap:20px}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header .avatarBox{width:65px;height:65px;border-radius:50%;overflow:hidden}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header .avatarBox img{width:100%;height:100%;object-fit:cover}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header .infoBox .name{color:#fff;font-weight:600}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header .infoBox .answer_time{color:#e4e4e4;font-size:14px}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header .WA_Close{background:transparent;color:#fff;border:none;outline:none;font-size:20px;position:absolute;top:10px;right:10px;cursor:pointer}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header .WA_Close svg{fill:#fff}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Body{padding:20px;background:#e6ddd4;position:relative}
+  /* Background pattern removed to avoid missing asset */
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Body .message{max-width:280px;background:#fff;padding:20px 20px 10px;border-radius:8px;z-index:1;position:relative}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Body .message::before{content:"";position:absolute;width:20px;height:20px;background:#fff;left:-10px;top:0;border-radius:3px;clip-path:polygon(100% 0,0 0,100% 100%)}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Body .message .username{color:darkgray;font-weight:500}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Body .message .message_content{font-size:14px;color:#000}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Footer{padding:20px;background-color:#fff;width:100%}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Footer .btn{width:100%;outline:none;border:none;padding:10px;border-radius:1000px;font-size:16px;cursor:pointer;text-decoration:none}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Footer .btn.btn-whatsapp{background:#095e54;color:#fff;display:block;text-align:center}
+
+  /* Responsive styles for small screens */
+  @media screen and (max-width: 480px) {
+    .WA_Chat_Widget .WA_ChatBox {
+      width: 300px;
+      margin: 0 10px;
+    }
+    .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header {
+      padding: 15px;
+      gap: 10px;
+    }
+    .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header .avatarBox {
+      width: 50px;
+      height: 50px;
+    }
+    .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Body .message {
+      max-width: 230px;
+    }
+    .WA_Chat_Widget .WA_FloatingButton {
+      width: 60px;
+      height: 60px;
+    }
+    .WA_Chat_Widget .WA_FloatingButton svg {
+      width: 35px;
+      height: 35px;
+    }
+    .WA_Chat_Widget[data-position$="-left"] .WA_FloatingButton,
+    .WA_Chat_Widget[data-position$="-right"] .WA_FloatingButton {
+      bottom: 15px;
+    }
+    .WA_Chat_Widget[data-position$="-left"] .WA_ChatBox,
+    .WA_Chat_Widget[data-position$="-right"] .WA_ChatBox {
+      left: 50%;
+      transform: translateX(-50%);
+      right: auto;
+      bottom: 90px;
+    }
+  }
+</style>
+
+<div class="WA_Chat_Widget" data-position="bottom-right" aria-live="polite">
+  <div class="WA_ChatBox" role="dialog" aria-label="WhatsApp Chat">
+    <div class="WA_ChatBox_Header">
+      <div class="avatarBox">
+        <img src="/static/newfront/assets/images/property-01.jpg" alt="Chat avatar">
+      </div>
+      <div class="infoBox">
+        <h4 class="name">Lotfi Kanouni</h4>
+        <span class="answer_time">Обычно отвечает в течение дня</span>
+      </div>
+      <button class="WA_Close" type="button" aria-label="Close chat" onclick="(function(){var el=document.querySelector('.WA_Chat_Widget .WA_ChatBox'); if(el){el.style.display='none';}})()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+          <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s-9.4-24.6 0-33.9l-47-47 47-47c-9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/>
+        </svg>
+      </button>
+    </div>
+    <div class="WA_ChatBox_Body">
+      <div class="message">
+        <h4 class="username">Lotfi Kanouni</h4>
+        <div class="message_content">
+          <p>Привет! Чем могу помочь?</p>
+        </div>
+      </div>
+    </div>
+    <div class="WA_ChatBox_Footer">
+      <a class="btn btn-whatsapp" href="http://wa.me/905380546393" target="_blank" rel="noopener">Start Chat</a>
+    </div>
+  </div>
+  <div class="WA_FloatingButton" role="button" tabindex="0" aria-label="Open WhatsApp chat" onclick="(function(){var el=document.querySelector('.WA_Chat_Widget .WA_ChatBox'); if(el){el.style.display=(el.style.display==='block'?'none':'block');}})()" onkeydown="(function(e){if(e.key==='Enter' || e.key===' '){var el=document.querySelector('.WA_Chat_Widget .WA_ChatBox'); if(el){el.style.display=(el.style.display==='block'?'none':'block');} e.preventDefault();}})(event)">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#4FCE5D" viewBox="0 0 90 90">
+      <path d="M90 43.841c0 24.213-19.779 43.841-44.182 43.841a44.256 44.256 0 01-21.357-5.455L0 90l7.975-23.522a43.38 43.38 0 01-6.34-22.637C1.635 19.628 21.416 0 45.818 0 70.223 0 90 19.628 90 43.841zM45.818 6.982c-20.484 0-37.146 16.535-37.146 36.859 0 8.065 2.629 15.534 7.076 21.61L11.107 79.14l14.275-4.537A37.122 37.122 0 0045.819 80.7c20.481 0 37.146-16.533 37.146-36.857S66.301 6.982 45.818 6.982zm22.311 46.956c-.273-.447-.994-.717-2.076-1.254-1.084-.537-6.41-3.138-7.4-3.495-.993-.358-1.717-.538-2.438.537-.721 1.076-2.797 3.495-3.43 4.212-.632.719-1.263.809-2.347.271-1.082-.537-4.571-1.673-8.708-5.333-3.219-2.848-5.393-6.364-6.025-7.441-.631-1.075-.066-1.656.475-2.191.488-.482 1.084-1.255 1.625-1.882.543-.628.723-1.075 1.082-1.793.363-.717.182-1.344-.09-1.883-.27-.537-2.438-5.825-3.34-7.977-.902-2.15-1.803-1.792-2.436-1.792-.631 0-1.354-.09-2.076-.09s-1.896.269-2.889 1.344c-.992 1.076-3.789 3.676-3.789 8.963 0 5.288 3.879 10.397 4.422 11.113.541.716 7.49 11.92 18.5 16.223C58.2 65.771 58.2 64.336 60.186 64.156c1.984-.179 6.406-2.599 7.312-5.107.9-2.512.9-4.663.631-5.111z"></path>
+    </svg>
+  </div>
+</div>
+
+    
+  </body>
+ </html>

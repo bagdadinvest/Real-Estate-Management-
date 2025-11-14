@@ -1,0 +1,51 @@
+{% extends 'newfrontend/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}404 — {% trans "Page Not Found" %}{% endblock %}
+
+{% block content %}
+  <div class="page-heading header-text" style="background-image: url('{% static 'newfront/assets/images/page-heading-bg.jpg' %}'); background-size: cover; background-position: center;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <span class="breadcrumb"><a href="{% url 'new_index' %}">{% trans "Home" %}</a> / 404</span>
+          <h3>404 — {% trans "Page Not Found" %}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section properties">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-12">
+          <div class="section-heading">
+            <h6>| {% trans "Oops" %}</h6>
+            <h2>{% trans "We can’t find the page you’re looking for" %}</h2>
+          </div>
+          <p>
+            {% trans "The link may be broken or the page might have been removed. You can go back home or explore our latest properties." %}
+          </p>
+
+
+      <ul class="properties-filter">
+        <li><a class="is_active" href="#!" data-filter="*">{% trans "Show All" %}</a></li>
+        <li><a href="#!" data-filter=".adv">{% trans "Apartment" %}</a></li>
+        <li><a href="#!" data-filter=".str">{% trans "Villa House" %}</a></li>
+        <li><a href="{% url 'new_map' %}" >{% trans "Map" %}</a></li>
+      </ul>
+
+        </div>
+
+        <div class="col-lg-5 mt-4 mt-lg-0">
+          {% include 'newfrontend/partials/earth_globe.html' with id='earth404' class='' style='width:100%;aspect-ratio:1/1' lat=41.0082 lon=28.9784 auto_rotate_speed=0.025 show_stars=True popup_selector='#popup' %}
+        </div>
+                </div>        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}

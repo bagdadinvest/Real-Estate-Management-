@@ -1,0 +1,34 @@
+{# Reusable Earth Globe partial #}
+{#
+  Usage:
+  {% include 'newfrontend/partials/earth_globe.html' with 
+      id='globe404' 
+      class='w-100' 
+      style='aspect-ratio:1/1' 
+      lat=41.0082 lon=28.9784 
+      popup_selector='#popup' 
+      auto_rotate_speed=0.025 
+      show_stars=True 
+  %}
+#}
+{% load static %}
+
+{% static 'build/three.module.min.js' as three_url %}
+{% static 'jsm/controls/OrbitControls.js' as orbit_url %}
+{% static 'textures/planets/' as textures_url %}
+  <div id="{{ id }}" class="js-earth-globe {{ class|default:'' }}" style="{{ style|default:'width:100%;aspect-ratio:1/1' }}; border-radius: 12px; overflow: hidden; background: radial-gradient(120% 120% at 30% 20%, #0b1b2a 0%, #061019 60%, #040a12 100%);"></div>
+
+  <script type="module">
+    import { initEarthGlobe } from "{% static 'newfront/assets/js/earth-globe-init.js' %}";
+    initEarthGlobe('#{{ id }}', {
+      threeUrl: "{{ three_url }}",
+      orbitUrl: "{{ orbit_url }}",
+      texturesBaseUrl: "{{ textures_url }}",
+      lat: {{ lat|default:'null' }},
+      lon: {{ lon|default:'null' }},
+      popupSelector: {% if popup_selector %}'{{ popup_selector }}'{% else %}null{% endif %},
+      autoRotateSpeed: {{ auto_rotate_speed|default:'0.025' }},
+      showStars: {{ show_stars|default:'true'|yesno:'true,false' }},
+      cloudsOpacity: {{ clouds_opacity|default:'0.7' }}
+    });
+  </script>

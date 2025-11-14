@@ -180,3 +180,8 @@ def map_data(request):
 def new_map_view(request):
 	"""Render the new frontend map page."""
 	return render(request, 'newfrontend/map.html')
+
+
+def new_map_view_copy(request):
+	"""Render the duplicate new frontend map page."""
+	return render(request, 'newfrontend/map_copy.html')

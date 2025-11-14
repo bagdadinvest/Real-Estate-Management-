@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import sys
 import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -49,7 +50,8 @@ INSTALLED_APPS = [
     'blog',
     'import_export',
     'graphene_django',
-]
+    'django_distill',
+    ]
 
 # Add Rosetta only if available to avoid startup failures when not installed
 try:
@@ -58,13 +60,16 @@ try:
 except Exception:
     pass
 
+# During static builds, drop debug_toolbar entirely so assets aren't collected
+if any(cmd in sys.argv for cmd in ('distill-local', 'distill-publish')):
+    INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'debug_toolbar']
+
 GRAPHENE = {
     'SCHEMA': 'blog.schema.schema'
 }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -95,6 +100,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION =  'coralcity.wsgi.application'
 
+import os
+DISTILL_DIR = os.path.join(BASE_DIR, 'distill_output')
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -179,15 +186,12 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
-# Show Django Debug Toolbar locally when DEBUG is True
-if DEBUG:
-    # Common local loopback addresses; helps when not using plain 127.0.0.1
+# Enable Debug Toolbar only during runserver (not during static builds)
+if DEBUG and ('runserver' in sys.argv or os.environ.get('ENABLE_DEBUG_TOOLBAR') == '1'):
+    MIDDLEWARE.insert(1, 'debug_toolbar.middleware.DebugToolbarMiddleware')
     INTERNAL_IPS = ['127.0.0.1', 'localhost', '::1']
-
-    # Ensure the toolbar shows whenever DEBUG is on, regardless of client IP
     def show_toolbar(request):
         return True
-
     DEBUG_TOOLBAR_CONFIG = {
         'SHOW_TOOLBAR_CALLBACK': show_toolbar,
     }

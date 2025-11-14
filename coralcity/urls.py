@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from django.views.decorators.clickjacking import xframe_options_exempt
 from listings import views as listing_views
 from graphene_django.views import GraphQLView
 from blog.schema import schema
@@ -32,6 +33,9 @@ try:
     _has_rosetta = True
 except Exception:
     _has_rosetta = False
+
+# Include django-distill URL patterns (static site generation)
+from coralcity import distill_urls as distill
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -61,6 +65,12 @@ prefixed_urlpatterns = i18n_patterns(
     path('new/listing/<int:listing_id>/', listing_views.new_listing_detail, name='new_listing_detail'),
     path('new/contact/', TemplateView.as_view(template_name='newfrontend/contact.html'), name='new_contact'),
     path('new/map/', listing_views.new_map_view, name='new_map'),
+    path('new/map-copy/', listing_views.new_map_view_copy, name='new_map_copy'),
+    path('new/map-simplified/', xframe_options_exempt(TemplateView.as_view(template_name='newfrontend/mapstandalone/simplified/index.html')), name='new_map_simplified'),
+    # 404 preview route so you can check the page without toggling DEBUG
+    path('new/404-preview/', TemplateView.as_view(template_name='newfrontend/page-404.html'), name='new_404_preview'),
+    # Include distill URL patterns so static generation covers all languages
+    *distill.urlpatterns,
 )
 
 # Combine non-prefixed and prefixed URLs
@@ -69,9 +79,14 @@ urlpatterns += prefixed_urlpatterns
 # Static and Debug Toolbar URLs remain outside i18n_patterns
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 
-# Django Debug Toolbar
-if settings.DEBUG:
+# Distill URL patterns are included inside i18n_patterns above for per-language output
+
+# Django Debug Toolbar (only if installed and debug)
+if settings.DEBUG and 'debug_toolbar' in settings.INSTALLED_APPS:
     import debug_toolbar
     urlpatterns += [
         path('__debug__/', include(debug_toolbar.urls)),
     ]
+
+# Custom error handlers
+handler404 = 'pages.views.custom_404'
