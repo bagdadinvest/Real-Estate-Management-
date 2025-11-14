@@ -68,7 +68,7 @@
       </div>
     </div>
 
-    <!-- Global Language Switcher (top-centered, outside nav) -->
+    <!-- Global Language Switcher (top-centered, outside nav) 
     {% get_current_language as LANGUAGE_CODE %}
     {% get_available_languages as LANGUAGES %}
     <div class="top-language-bar">
@@ -100,8 +100,43 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
 
+
+     <!-- Global Language Switcher (top-centered, outside nav) -->
+    {% get_current_language as LANGUAGE_CODE %}
+    {% get_available_languages as LANGUAGES %}
+    <div class="top-language-bar">
+      <div class="container">
+        <div class="top-language-inner">
+          <div class="lang-switcher" data-lang-current="{{ LANGUAGE_CODE }}">
+            {% with current_flag='flags/'|add:LANGUAGE_CODE|add:'.svg' %}
+              <button type="button" class="lang-current" aria-haspopup="true" aria-expanded="false" aria-label="{% trans 'Select language' %}">
+                <img class="flag" src="{% static current_flag %}" alt="{{ LANGUAGE_CODE }}">
+                <span class="code">{{ LANGUAGE_CODE|upper }}</span>
+                <span class="chev" aria-hidden="true">▾</span>
+              </button>
+            {% endwith %}
+            <div class="lang-menu" role="menu" aria-label="{% trans 'Available languages' %}">
+              {% for lang in LANGUAGES %}
+                {% with flag_file='flags/'|add:lang.0|add:'.svg' %}
+                <form action="{% url 'set_language' %}" method="post" class="lang-item">
+                  {% csrf_token %}
+                  <input name="next" type="hidden" value="{{ request.path }}">
+                  <input type="hidden" name="language" value="{{ lang.0 }}">
+                  <button type="submit" role="menuitem" aria-label="{{ lang.1 }}">
+                    <img class="flag" src="{% static flag_file %}" alt="" aria-hidden="true">
+                    <span class="label">{{ lang.1 }}</span>
+                  </button>
+                </form>
+                {% endwith %}
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
     <!-- Top sub-header -->
     <div class="sub-header">
       <div class="container">
