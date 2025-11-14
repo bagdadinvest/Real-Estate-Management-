@@ -186,17 +186,7 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
-# Enable Debug Toolbar only during runserver (not during static builds)
-if DEBUG and ('runserver' in sys.argv or os.environ.get('ENABLE_DEBUG_TOOLBAR') == '1'):
-    MIDDLEWARE.insert(1, 'debug_toolbar.middleware.DebugToolbarMiddleware')
-    INTERNAL_IPS = ['127.0.0.1', 'localhost', '::1']
-    def show_toolbar(request):
-        return True
-    DEBUG_TOOLBAR_CONFIG = {
-        'SHOW_TOOLBAR_CALLBACK': show_toolbar,
-    }
-
-
+# settings.py
 
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
