@@ -41,7 +41,7 @@
                     {% endif %}
                   {% endwith %}
                 </a>
-                <span class="category">{{ listing.property_type }}</span>
+                <span class="category">{{ listing.deal_type|default:'-'|title }} {{ listing.property_type }}</span>
                 <h6>₦{{ listing.price|intcomma }}</h6>
                 <h4>
                   <a href="{% url 'new_listing_detail' listing.id %}">{{ listing.title }}</a>
