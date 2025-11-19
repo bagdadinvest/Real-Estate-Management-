@@ -31,7 +31,15 @@
             <div class="col-lg-4 col-md-6 align-self-center mb-30 properties-items adv">
               <div class="item">
                 <a href="{% url 'new_listing_detail' listing.id %}">
-                  <img src="{{ listing.photo_main.url }}" alt="{{ listing.title }}">
+                  {% with imgs=listing.images.all %}
+                    {% if imgs %}
+                      {% for im in imgs|slice:':1' %}
+                        <img src="{{ im.image.url }}" alt="{{ listing.title }}">
+                      {% endfor %}
+                    {% else %}
+                      <img src="{% static 'newfront/assets/images/property-01.jpg' %}" alt="{{ listing.title }}">
+                    {% endif %}
+                  {% endwith %}
                 </a>
                 <span class="category">{{ listing.property_type }}</span>
                 <h6>₦{{ listing.price|intcomma }}</h6>

@@ -1,0 +1,43 @@
+this is the list of details thatwe need to extract using a managemetn command , and save them to the listings model
+
+Django-Real-Estate-Management-Webapp/listings/EŞYALI 1+1 DAİRE - Kiralık Daire İlanları sahibinden.com'da - 1284029407.html   is the target page
+
+
+so first off we update the models.py 
+
+
+Title	div.classifiedDetailTitle > h1	Text content
+Price	div.classifiedInfo ... .classified-price-wrapper	Text content (Clean " TL")
+
+City
+District
+Neighborhood
+
+Details	ul.classifiedInfoList > li	Loop: strong (Key) -> span (Value)
+
+İlan No	1284029407	li > strong:contains("İlan No") + span
+İlan Tarihi	19 Kasım 2025	li > strong:contains("İlan Tarihi") + span
+Emlak Tipi	Kiralık Daire	li > strong:contains("Emlak Tipi") + span
+m² (Brüt)	75	li > strong:contains("m² (Brüt)") + span
+m² (Net)	65	li > strong:contains("m² (Net)") + span
+Oda Sayısı	1+1	li > strong:contains("Oda Sayısı") + span
+Bina Yaşı	5	li > strong:contains("Bina Yaşı") + span
+Bulunduğu Kat	1	li > strong:contains("Bulunduğu Kat") + span
+Kat Sayısı	10	li > strong:contains("Kat Sayısı") + span
+Isıtma	Kombi (Doğalgaz)	li > strong:contains("Isıtma") + span
+Banyo Sayısı	1	li > strong:contains("Banyo Sayısı") + span
+Balkon	Var	li > strong:contains("Balkon") + span
+Eşyalı	Evet	li > strong:contains("Eşyalı") + span
+Aidat	1.500	li > strong:contains("Aidat") + span
+
+
+Map Link	div.getDirectionsButton > a	href attribute
+ and the address is within an element 
+
+
+
+<div class="getDirectionsButton"><a href="https://www.google.com/maps/dir/Current+Location/41.023690793489,28.648264129481714" target="_blank"><span>Nasıl Giderim?</span></a>             </div>
+
+Coordinates	Map Link URL	Regex parse lat,lon from URL string
+
+and 

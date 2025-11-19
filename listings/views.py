@@ -135,28 +135,14 @@ def map_data(request):
             "address": obj.address,
             "url": f"/listings/{obj.id}/",
         }
-        # Collect available photos for swipeable gallery in popup
+        # Collect available photos for swipeable gallery in popup from related images
         photos = []
         try:
-            if obj.photo_main:
-                photos.append(obj.photo_main.url)
+            for img in obj.images.order_by('order', 'id'):
+                if getattr(img, 'image', None):
+                    photos.append(img.image.url)
         except Exception:
             pass
-        for field in [
-            "photo_1",
-            "photo_2",
-            "photo_3",
-            "photo_4",
-            "photo_5",
-            "photo_6",
-        ]:
-            try:
-                img = getattr(obj, field)
-                if img:
-                    photos.append(img.url)
-            except Exception:
-                # Skip if file missing or storage not accessible
-                continue
         if photos:
             properties["photos"] = photos
             # Keep legacy single photo key for backward-compat

@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+{% load lang_links %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,7 +42,7 @@
       .lang-item { margin: 0; }
       .lang-item + .lang-item { margin-top: 2px; }
       .lang-item button { width: 100%; display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: transparent; border: 0; border-radius: 8px; cursor: pointer; font-size: 13px; color: #111827; text-align: left; }
-      .lang-item button .flag { width: 18px; height: 18px; border-radius: 2px; object-fit: cover; }
+      .lang-item a .flag { width: 18px; height: 18px; border-radius: 2px; object-fit: cover; }
       .lang-item button:hover { background: #f3f4f6; }
       @media (max-width: 768px) {
         .lang-menu { right: auto; left: 50%; transform: translateX(-50%); min-width: 220px; }
@@ -74,6 +75,7 @@
     <div class="top-language-bar">
       <div class="container">
         <div class="top-language-inner">
+          {% get_language_links as LANG_LINKS %}
           <div class="lang-switcher" data-lang-current="{{ LANGUAGE_CODE }}">
             {% with current_flag='flags/'|add:LANGUAGE_CODE|add:'.svg' %}
               <button type="button" class="lang-current" aria-haspopup="true" aria-expanded="false" aria-label="{% trans 'Select language' %}">
@@ -118,17 +120,14 @@
               </button>
             {% endwith %}
             <div class="lang-menu" role="menu" aria-label="{% trans 'Available languages' %}">
-              {% for lang in LANGUAGES %}
-                {% with flag_file='flags/'|add:lang.0|add:'.svg' %}
-                <form action="{% url 'set_language' %}" method="post" class="lang-item">
-                  {% csrf_token %}
-                  <input name="next" type="hidden" value="{{ request.path }}">
-                  <input type="hidden" name="language" value="{{ lang.0 }}">
-                  <button type="submit" role="menuitem" aria-label="{{ lang.1 }}">
-                    <img class="flag" src="{% static flag_file %}" alt="" aria-hidden="true">
-                    <span class="label">{{ lang.1 }}</span>
-                  </button>
-                </form>
+              {% for item in LANG_LINKS %}
+                {% with flag_file='flags/'|add:item.code|add:'.svg' %}
+                  <div class="lang-item">
+                    <a href="{{ item.url }}" role="menuitem" aria-label="{{ item.name }}" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="{% static flag_file %}" alt="{{ item.code }}">
+                      <span class="label">{{ item.name }}</span>
+                    </a>
+                  </div>
                 {% endwith %}
               {% endfor %}
             </div>

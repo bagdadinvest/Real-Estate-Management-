@@ -11,6 +11,10 @@ def get_all_listing_ids():
 
 # The list of URLs to distill
 urlpatterns = [
+    # Root index: redirect to English new homepage for static hosting
+    distill_path('',
+                 TemplateView.as_view(template_name='newfrontend/root_index.html'),
+                 name='root_index'),
     distill_path('new/',
                  TemplateView.as_view(template_name='newfrontend/index.html'),
                  name='new_index'),
@@ -33,6 +37,17 @@ urlpatterns = [
     distill_path('new/map/',
                  listing_views.new_map_view,
                  name='new_map'),
+    # Include the map copy and simplified standalone map in static build
+    distill_path('new/map-copy/',
+                 listing_views.new_map_view_copy,
+                 name='new_map_copy'),
+    distill_path('new/map-simplified/',
+                 TemplateView.as_view(template_name='newfrontend/mapstandalone/simplified/index.html'),
+                 name='new_map_simplified'),
+    # Generate static JSON for map data so the map works on the static site
+    distill_path('listings/map-data/',
+                 listing_views.map_data,
+                 name='listings_map_data'),
     distill_path('new/404-preview/',
                  TemplateView.as_view(template_name='newfrontend/page-404.html'),
                  name='new_404_preview'),

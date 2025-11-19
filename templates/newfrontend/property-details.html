@@ -2,9 +2,73 @@
 {% load static %}
 {% load humanize %}
 {% load i18n %}
+
 {% block nav_details_active %}active{% endblock %}
 {% block title %}{{ listing.title }} - {% trans "Property Details" %}{% endblock %}
+
 {% block content %}
+  <!-- 1. Styles -->
+  <style>
+    .swiper {
+      width: 100%;
+      height: 500px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Autoplay Progress Circle Styles */
+    .autoplay-progress {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      z-index: 10;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--swiper-theme-color);
+    }
+
+    .autoplay-progress svg {
+      --progress: 0;
+      position: absolute;
+      left: 0;
+      top: 0px;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      stroke-width: 4px;
+      stroke: var(--swiper-theme-color);
+      fill: none;
+      stroke-dashoffset: calc(125.6px * (1 - var(--progress)));
+      stroke-dasharray: 125.6;
+      transform: rotate(-90deg);
+    }
+
+    /* Pagination Styles Customization (Optional) */
+    .swiper-pagination-bullet-active {
+        background-color: var(--swiper-theme-color); 
+    }
+  </style>
+
   <div class="page-heading header-text">
     <div class="container">
       <div class="row">
@@ -20,15 +84,50 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8">
-          <div class="main-image">
-            <img src="{{ listing.photo_main.url }}" alt="{{ listing.title }}">
+          
+          <!-- 2. Swiper Structure -->
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              {% with imgs=listing.images.all %}
+                {% if imgs %}
+                  {% for im in imgs %}
+                    <div class="swiper-slide">
+                      <img src="{{ im.image.url }}" alt="{{ listing.title }}">
+                    </div>
+                  {% endfor %}
+                {% else %}
+                  <!-- Fallback image -->
+                  <div class="swiper-slide">
+                    <img src="{% static 'newfront/assets/images/property-01.jpg' %}" alt="{{ listing.title }}">
+                  </div>
+                {% endif %}
+              {% endwith %}
+            </div>
+            
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+
+            <!-- Pagination Dots (Added Here) -->
+            <div class="swiper-pagination"></div>
+            
+            <!-- Autoplay Progress Circle -->
+            <div class="autoplay-progress">
+              <svg viewBox="0 0 48 48">
+                <circle cx="24" cy="24" r="20"></circle>
+              </svg>
+              <span></span>
+            </div>
           </div>
+          <!-- End Swiper -->
+
           <div class="main-content">
             <span class="category">{{ listing.property_type }}</span>
             <h4>{{ listing.address }}</h4>
             <p>{{ listing.description }}</p>
           </div>
         </div>
+        
         <div class="col-lg-4">
           <div class="info-table">
             <ul>
@@ -54,4 +153,37 @@
       </div>
     </div>
   </div>
+
+  <!-- 3. Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <script>
+    const progressCircle = document.querySelector(".autoplay-progress svg");
+    const progressContent = document.querySelector(".autoplay-progress span");
+
+    var swiper = new Swiper(".mySwiper", {
+      spaceBetween: 30,
+      centeredSlides: true,
+      loop: true, // Enables continuous looping
+      autoplay: {
+        delay: 4000,
+        disableOnInteraction: false
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+        dynamicBullets: true, // Makes dots scale nicely if there are many images
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev"
+      },
+      on: {
+        autoplayTimeLeft(s, time, progress) {
+          progressCircle.style.setProperty("--progress", 1 - progress);
+          progressContent.textContent = `${Math.ceil(time / 1000)}s`;
+        }
+      }
+    });
+  </script>
 {% endblock %}

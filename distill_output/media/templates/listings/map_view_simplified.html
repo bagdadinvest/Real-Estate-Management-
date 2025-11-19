@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simplified Property Map</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+    
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#667eea', // Purple/Blue
+                        secondary: '#2ecc71', // Green
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Essential full-screen map setup */
+        html, body { 
+            height: 100%; 
+            margin: 0; 
+            overflow: hidden; /* Prevent body scroll */
+            font-family: 'Inter', sans-serif;
+        }
+        #map {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Info Panel */
+        .info-panel {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+            max-height: 80vh;
+            overflow-y: auto;
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            min-width: 300px;
+            max-width: 400px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .info-panel.is-visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .info-panel-header {
+            background-color: #667eea;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .info-panel-title {
+            margin: 0;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .info-panel-body {
+            font-size: 0.875rem;
+            padding: 1rem;
+        }
+        
+        .info-section {
+            margin-bottom: 1rem;
+        }
+        
+        .info-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .info-section-title {
+            font-weight: 600;
+            color: #667eea;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .info-item {
+            padding: 0.25rem 0;
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+        
+        .info-item strong {
+            color: #1f2937;
+            font-weight: 600;
+        }
+
+        /* Custom Leaflet Marker Styling */
+        .listing-photo-marker img {
+            transition: all 0.2s ease;
+        }
+        .listing-photo-marker img:hover {
+            filter: brightness(1.1) contrast(1.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+        .leaflet-marker { transition: opacity 0.3s ease; }
+
+        /* Swiper styles for listing popup carousel */
+        .listing-swiper {
+            width: 100%;
+            height: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+        
+        .listing-swiper .swiper-slide {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+        }
+        
+        .listing-swiper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .swiper-pagination {
+            position: relative !important;
+            margin-top: 8px;
+        }
+        
+        .swiper-pagination-bullet {
+            background-color: #667eea !important;
+            opacity: 0.6;
+        }
+        
+        .swiper-pagination-bullet-active {
+            opacity: 1 !important;
+        }
+        
+        /* Error message */
+        .error-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2000;
+            min-width: 300px;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            background-color: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fecaca;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div id="map"></div>
+        <!-- Leaflet JS -->
+
+    <!-- Toggle Button -->
+    <button id="toggleInfoPanel" class="absolute top-2.5 right-2.5 z-[1001] bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 transition-colors focus:outline-none">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+    </button>
+
+    <div class="info-panel" id="infoPanel" >
+        <div class="info-panel-header">
+            <h5 class="info-panel-title">📍 Simplified Map</h5>
+        </div>
+        <div class="info-panel-body" id="infoPanelContent">
+            <p>Loading data...</p>
+        </div>
+    </div>
+        
+    <!-- Leaflet JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    {% if inline_geojson_json %}
+    <script>
+        // Inline simplified data embedded at build-time
+        window.INLINE_SIMPLIFIED_DATA = {{ inline_geojson_json|safe }};
+    </script>
+    {% endif %}
+    
+    <script>
+        // Initialize map centered on Istanbul
+        const map = L.map('map').setView([41.0082, 28.9784], 11);
+        
+        // Add tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors',
+            maxZoom: 19
+        }).addTo(map);
+        
+        // Layer groups
+        const listingMarkers = L.layerGroup();
+        const stationMarkers = L.layerGroup();
+        const groceryMarkers = L.layerGroup();
+        const clothingMarkers = L.layerGroup();
+        
+        // Track all markers for bounds
+        const allMarkers = [];
+        
+        /**
+         * Create listing photo marker
+         */
+        function createListingMarker(imageUrl) {
+            let photoHtml;
+            if (imageUrl) {
+                photoHtml = `
+                    <div class="listing-photo-marker" style="
+                        width: 48px;
+                        height: 48px;
+                        border-radius: 50%;
+                        border: 3px solid white;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+                        overflow: hidden;
+                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                    ">
+                        <img src="${imageUrl}" style="
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                            border-radius: 47%;
+                        " onerror="this.style.display='none'" />
+                    </div>
+                `;
+            } else {
+                // Fallback SVG marker
+                photoHtml = `
+                    <div class="listing-photo-marker" style="
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                        border: 3px solid white;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+                        background-color: #667eea;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        font-size: 18px;
+                        font-weight: bold;
+                        cursor: pointer;
+                    ">
+                        🏠
+                    </div>
+                `;
+            }
+            
+            return L.divIcon({
+                html: photoHtml,
+                iconSize: imageUrl ? [48, 48] : [40, 40],
+                iconAnchor: imageUrl ? [24, 24] : [20, 20],
+                popupAnchor: [0, -24],
+                className: 'listing-photo-marker'
+            });
+        }
+        
+        /**
+         * Create metro station icon using Istanbul Metro logo
+         */
+        function createMetroIcon() {
+            return L.icon({
+                iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Istanbul_Metro_Logo.svg',
+                iconSize: [24, 24],
+                iconAnchor: [12, 12],
+                popupAnchor: [0, -12],
+                className: 'metro-icon',
+                crossOrigin: 'anonymous'
+            });
+        }
+
+        function createStoreMarker(color, size = 14) {
+            const html = `<div style="width: ${size}px; height: ${size}px; border-radius: 50%; background-color: ${color}; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>`;
+            
+            return L.divIcon({
+                html: html,
+                iconSize: [size + 4, size + 4],
+                iconAnchor: [(size + 4) / 2, (size + 4) / 2],
+                popupAnchor: [0, -(size + 4) / 2 - 8],
+                className: ''
+            });
+        }
+        
+        /**
+         * Fetch and display all data with markers
+         */
+        async function loadData() {
+            try {
+                let data;
+                if (window.INLINE_SIMPLIFIED_DATA) {
+                    data = window.INLINE_SIMPLIFIED_DATA;
+                } else {
+                    const response = await fetch('/api/listings-simplified.geojson');
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    data = await response.json();
+                }
+                
+                if (data.error) {
+                    showError(`Error: ${data.error}`);
+                    return;
+                }
+                
+                if (!data.features || data.features.length === 0) {
+                    document.getElementById('infoPanelContent').innerHTML = '<p class="text-gray-500">No listings found.</p>';
+                    return;
+                }
+                
+                let statsHtml = '';
+                let totalItems = 0;
+                
+                // Process each listing
+                data.features.forEach((feature, listingIndex) => {
+                    const props = feature.properties;
+                    const coord = feature.geometry.coordinates;
+                    
+                    // Add listing marker
+                    const listingMarker = L.marker(
+                        [coord[1], coord[0]],
+                        { icon: createListingMarker(props.image_url) }
+                    ).bindPopup(createListingPopup(props), { maxWidth: 320 });
+                    listingMarkers.addLayer(listingMarker);
+                    allMarkers.push(listingMarker);
+                    totalItems++;
+                    
+                    statsHtml += `<div class="info-section">
+                        <h6 class="info-section-title">Listing ${listingIndex + 1}</h6>
+                        <div class="info-item">
+                            <strong>₺${(props.price || 0).toLocaleString()}</strong> • ${props.size_sqm || 0} m²
+                        </div>`;
+                    
+                    // Add closest metro stations
+                    if (props.closest_stations && props.closest_stations.length > 0) {
+                        statsHtml += `<h6 class="info-section-title mt-2">Stations (${props.closest_stations.length})</h6>`;
+                        props.closest_stations.forEach((station, idx) => {
+                            if (station.location && station.location.coordinates) {
+                                const marker = L.marker(
+                                    [station.location.coordinates[1], station.location.coordinates[0]],
+                                    { icon: createMetroIcon() }
+                                ).bindPopup(`<div class="p-2"><div class="font-bold">🚇 ${station.name}</div><div>${station.distance_m ? (station.distance_m/1000).toFixed(2) : 'N/A'} km</div></div>`);
+                                stationMarkers.addLayer(marker);
+                                allMarkers.push(marker);
+                                totalItems++;
+                            }
+                            statsHtml += `<div class="info-item">${idx + 1}. ${station.name}<br/><small>${station.distance_m ? (station.distance_m/1000).toFixed(2) : 'N/A'} km</small></div>`;
+                        });
+                    }
+                    
+                    // Add closest grocery stores
+                    if (props.closest_grocery_stores && props.closest_grocery_stores.length > 0) {
+                        statsHtml += `<h6 class="info-section-title mt-2">Grocery (${props.closest_grocery_stores.length})</h6>`;
+                        props.closest_grocery_stores.forEach((store, idx) => {
+                            if (store.location && store.location.coordinates) {
+                                const marker = L.marker(
+                                    [store.location.coordinates[1], store.location.coordinates[0]],
+                                    { icon: createStoreMarker('#28a745', 14) }
+                                ).bindPopup(`<div class="p-2"><div class="font-bold">🛒 ${store.name}</div><div>${store.distance_m ? (store.distance_m/1000).toFixed(2) : 'N/A'} km</div></div>`);
+                                groceryMarkers.addLayer(marker);
+                                allMarkers.push(marker);
+                                totalItems++;
+                            }
+                            statsHtml += `<div class="info-item">${idx + 1}. ${store.name}<br/><small>${store.distance_m ? (store.distance_m/1000).toFixed(2) : 'N/A'} km</small></div>`;
+                        });
+                    }
+                    
+                    // Add closest clothing stores
+                    if (props.closest_clothing_stores && props.closest_clothing_stores.length > 0) {
+                        statsHtml += `<h6 class="info-section-title mt-2">Clothing (${props.closest_clothing_stores.length})</h6>`;
+                        props.closest_clothing_stores.forEach((store, idx) => {
+                            if (store.location && store.location.coordinates) {
+                                const marker = L.marker(
+                                    [store.location.coordinates[1], store.location.coordinates[0]],
+                                    { icon: createStoreMarker('#e83e8c', 14) }
+                                ).bindPopup(`<div class="p-2"><div class="font-bold">👕 ${store.name}</div><div>${store.distance_m ? (store.distance_m/1000).toFixed(2) : 'N/A'} km</div></div>`);
+                                clothingMarkers.addLayer(marker);
+                                allMarkers.push(marker);
+                                totalItems++;
+                            }
+                            statsHtml += `<div class="info-item">${idx + 1}. ${store.name}<br/><small>${store.distance_m ? (store.distance_m/1000).toFixed(2) : 'N/A'} km</small></div>`;
+                        });
+                    }
+                    
+                    statsHtml += `</div>`;
+                });
+                
+                // Add all layers to map
+                listingMarkers.addTo(map);
+                stationMarkers.addTo(map);
+                groceryMarkers.addTo(map);
+                clothingMarkers.addTo(map);
+                
+                // Fit map to all markers
+                if (allMarkers.length > 0) {
+                    const group = new L.featureGroup(allMarkers);
+                    map.fitBounds(group.getBounds().pad(0.1));
+                }
+                
+                // Add config info
+                const config = data.config || {};
+                statsHtml += `<div class="info-section">
+                    <h6 class="info-section-title">Configuration</h6>
+                    <div class="info-item">
+                        <strong>Listings:</strong> ${config.num_listings}<br/>
+                        <strong>Stations:</strong> ${config.num_stations}<br/>
+                        <strong>Grocery:</strong> ${config.num_grocery_stores}<br/>
+                        <strong>Clothing:</strong> ${config.num_clothing_stores}
+                    </div>
+                </div>`;
+                statsHtml += `<div class="info-section bg-gray-100 p-2 rounded-lg">
+                    <strong class="text-primary">Total Markers: ${totalItems}</strong>
+                </div>`;
+                
+                document.getElementById('infoPanelContent').innerHTML = statsHtml;
+                document.getElementById('infoPanel').classList.add('is-visible');
+                
+            } catch (error) {
+                console.error('Error loading data:', error);
+                showError(`Failed to load data: ${error.message}`);
+            }
+        }
+        
+        /**
+         * Create detailed popup for listing, adapted from mob view
+         */
+        function createListingPopup(props) {
+            const price = new Intl.NumberFormat('tr-TR').format(props.price);
+            const size = props.size_sqm || 0;
+            
+            // Adapt data from simplified API
+            const closestStation = props.closest_stations && props.closest_stations.length > 0 ? props.closest_stations[0] : null;
+            const dist = closestStation ? Math.round(closestStation.distance_m) : '-';
+            const station = closestStation ? closestStation.name : 'N/A';
+            const groceryCount = props.closest_grocery_stores ? props.closest_grocery_stores.length : 0;
+            const clothingCount = props.closest_clothing_stores ? props.closest_clothing_stores.length : 0;
+
+            let priceClass;
+            if (props.price < 500000) priceClass = 'bg-green-500';
+            else if (props.price < 1500000) priceClass = 'bg-yellow-500';
+            else priceClass = 'bg-red-500';
+
+            // Build image carousel (max 3 images)
+            let imageCarousel = '';
+            const images = props.images || (props.image_url ? [props.image_url] : []);
+            const imagesToShow = images.slice(0, 3);
+            
+            if (imagesToShow.length > 0) {
+                const swiperSlides = imagesToShow.map((img, idx) => 
+                    `<div class="swiper-slide"><img src="${img}" alt="Listing image ${idx + 1}" onerror="this.src='/media/1.png'" /></div>`
+                ).join('');
+                
+                imageCarousel = `
+                    <div class="swiper listing-swiper" data-swiper-index="${Math.random()}">
+                        <div class="swiper-wrapper">
+                            ${swiperSlides}
+                        </div>
+                        ${imagesToShow.length > 1 ? '<div class="swiper-pagination"></div>' : ''}
+                    </div>
+                `;
+            }
+
+            return `
+                <div class="font-sans p-1" style="max-width: 100%; width: 320px;">
+                    ${imageCarousel}
+                    <div class="p-2">
+                        <div class="font-bold text-base text-gray-800">${props.title || 'Listing'}</div>
+                        <div class="mt-2 flex items-center justify-between">
+                            <span class="text-xl font-extrabold text-primary">${price} TL</span>
+                            <span class="inline-block px-2 py-1 text-xs font-semibold rounded-full text-white ${priceClass}">${size} m²</span>
+                        </div>
+                        <hr class="my-2 border-gray-200" />
+                        <div class="text-sm space-y-1">
+                            <div class="flex items-center">
+                                <span class="font-semibold text-gray-600 w-20">Transit:</span> 
+                                <span class="text-sm">${dist}m to ${station}</span>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="font-semibold text-gray-600 w-20">Amenities:</span> 
+                                <span class="text-sm">🛒 ${groceryCount}, 👕 ${clothingCount}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        /**
+         * Show error message
+         */
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.innerHTML = `
+                <strong>⚠️ Error</strong>
+                <p>${message}</p>
+            `;
+            document.body.appendChild(errorDiv);
+            console.error(message);
+        }
+        
+        // Load data when page is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('toggleInfoPanel');
+            const infoPanel = document.getElementById('infoPanel');
+
+            toggleBtn.addEventListener('click', () => {
+                infoPanel.classList.toggle('is-visible');
+            });
+
+            loadData();
+        });
+        
+        // Initialize Swiper carousels for popups
+        function initializePopupSwiper() {
+            setTimeout(() => {
+                const swipers = document.querySelectorAll('.listing-swiper');
+                swipers.forEach(swiperEl => {
+                    if (!swiperEl.swiper) {
+                        new Swiper(swiperEl, {
+                            loop: swiperEl.querySelectorAll('.swiper-slide').length > 1,
+                            pagination: {
+                                el: swiperEl.querySelector('.swiper-pagination'),
+                                clickable: true,
+                                dynamicBullets: true
+                            },
+                        });
+                    }
+                });
+            }, 100);
+        }
+
+        // Hook into Leaflet popup events to initialize Swiper when popup opens
+        map.on('popupopen', function() {
+            initializePopupSwiper();
+        });
+    </script>
+</body>
+</html>

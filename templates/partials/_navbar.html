@@ -1,5 +1,6 @@
 {% load static %}
 {% load i18n %}
+{% load lang_links %}
 <!-- Navbar -->
  <header id="home">
 
@@ -60,7 +61,7 @@
                 </div>
                 <!-- Language Switcher -->
                 {% get_current_language as LANGUAGE_CODE %}
-                {% get_available_languages as LANGUAGES %}
+                {% get_language_links as LANG_LINKS %}
                 <div class="language-switcher">
                   <div class="lang-switcher" data-lang-current="{{ LANGUAGE_CODE }}">
                     {% with current_flag='flags/'|add:LANGUAGE_CODE|add:'.svg' %}
@@ -71,17 +72,14 @@
                       </button>
                     {% endwith %}
                     <div class="lang-menu" role="menu" aria-label="{% trans 'Available languages' %}">
-                      {% for lang in LANGUAGES %}
-                        {% with flag_file='flags/'|add:lang.0|add:'.svg' %}
-                        <form action="{% url 'set_language' %}" method="post" class="lang-item">
-                          {% csrf_token %}
-                          <input name="next" type="hidden" value="{{ request.path }}">
-                          <input type="hidden" name="language" value="{{ lang.0 }}">
-                          <button type="submit" role="menuitem" aria-label="{{ lang.1 }}">
-                            <img class="flag" src="{% static flag_file %}" alt="" aria-hidden="true">
-                            <span class="label">{{ lang.1 }}</span>
-                          </button>
-                        </form>
+                      {% for item in LANG_LINKS %}
+                        {% with flag_file='flags/'|add:item.code|add:'.svg' %}
+                          <div class="lang-item">
+                            <a href="{{ item.url }}" role="menuitem" aria-label="{{ item.name }}" class="lang-item-link">
+                              <img class="flag" src="{% static flag_file %}" alt="{{ item.code }}" aria-hidden="true">
+                              <span class="label">{{ item.name }}</span>
+                            </a>
+                          </div>
                         {% endwith %}
                       {% endfor %}
                     </div>

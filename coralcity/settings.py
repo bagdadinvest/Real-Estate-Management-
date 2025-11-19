@@ -62,7 +62,11 @@ except Exception:
 
 # During static builds, drop debug_toolbar entirely so assets aren't collected
 if any(cmd in sys.argv for cmd in ('distill-local', 'distill-publish')):
-    INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'debug_toolbar']
+    # Remove debug_toolbar and optional/incompatible apps for static builds
+    INSTALLED_APPS = [
+        app for app in INSTALLED_APPS
+        if app not in ('debug_toolbar', 'graphene_django')
+    ]
 
 GRAPHENE = {
     'SCHEMA': 'blog.schema.schema'
@@ -77,6 +81,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF =  'coralcity.urls'
@@ -139,7 +144,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'europe/istanbul'
 
 USE_I18N = True
 

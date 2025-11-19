@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -41,7 +42,7 @@
       .lang-item { margin: 0; }
       .lang-item + .lang-item { margin-top: 2px; }
       .lang-item button { width: 100%; display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: transparent; border: 0; border-radius: 8px; cursor: pointer; font-size: 13px; color: #111827; text-align: left; }
-      .lang-item button .flag { width: 18px; height: 18px; border-radius: 2px; object-fit: cover; }
+      .lang-item a .flag { width: 18px; height: 18px; border-radius: 2px; object-fit: cover; }
       .lang-item button:hover { background: #f3f4f6; }
       @media (max-width: 768px) {
         .lang-menu { right: auto; left: 50%; transform: translateX(-50%); min-width: 220px; }
@@ -68,12 +69,13 @@
       </div>
     </div>
 
-    <!-- Global Language Switcher (top-centered, outside nav) -->
+    <!-- Global Language Switcher (top-centered, outside nav) 
     
     
     <div class="top-language-bar">
       <div class="container">
         <div class="top-language-inner">
+          
           <div class="lang-switcher" data-lang-current="nl">
             
               <button type="button" class="lang-current" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
@@ -232,8 +234,148 @@
           </div>
         </div>
       </div>
-    </div>
+    </div>-->
 
+
+     <!-- Global Language Switcher (top-centered, outside nav) -->
+    
+    
+    <div class="top-language-bar">
+      <div class="container">
+        <div class="top-language-inner">
+          <div class="lang-switcher" data-lang-current="nl">
+            
+              <button type="button" class="lang-current" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
+                <img class="flag" src="/static/flags/nl.svg" alt="nl">
+                <span class="code">NL</span>
+                <span class="chev" aria-hidden="true">▾</span>
+              </button>
+            
+            <div class="lang-menu" role="menu" aria-label="Available languages">
+              
+                
+                  <div class="lang-item">
+                    <a href="/en/new/listing/2/" role="menuitem" aria-label="English" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/en.svg" alt="en">
+                      <span class="label">English</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/tr/new/listing/2/" role="menuitem" aria-label="Türkçe" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/tr.svg" alt="tr">
+                      <span class="label">Türkçe</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/fr/new/listing/2/" role="menuitem" aria-label="Français" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/fr.svg" alt="fr">
+                      <span class="label">Français</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/es/new/listing/2/" role="menuitem" aria-label="Español" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/es.svg" alt="es">
+                      <span class="label">Español</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/it/new/listing/2/" role="menuitem" aria-label="Italiano" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/it.svg" alt="it">
+                      <span class="label">Italiano</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/pl/new/listing/2/" role="menuitem" aria-label="Polski" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/pl.svg" alt="pl">
+                      <span class="label">Polski</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/pt/new/listing/2/" role="menuitem" aria-label="Português" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/pt.svg" alt="pt">
+                      <span class="label">Português</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/hu/new/listing/2/" role="menuitem" aria-label="Magyar" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/hu.svg" alt="hu">
+                      <span class="label">Magyar</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/ru/new/listing/2/" role="menuitem" aria-label="Русский" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/ru.svg" alt="ru">
+                      <span class="label">Русский</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/ar/new/listing/2/" role="menuitem" aria-label="العربية" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/ar.svg" alt="ar">
+                      <span class="label">العربية</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/de/new/listing/2/" role="menuitem" aria-label="Deutsch" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/de.svg" alt="de">
+                      <span class="label">Deutsch</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/bg/new/listing/2/" role="menuitem" aria-label="български" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/bg.svg" alt="bg">
+                      <span class="label">български</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/nl/new/listing/2/" role="menuitem" aria-label="Nederlands" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/nl.svg" alt="nl">
+                      <span class="label">Nederlands</span>
+                    </a>
+                  </div>
+                
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
     <!-- Top sub-header -->
     <div class="sub-header">
       <div class="container">

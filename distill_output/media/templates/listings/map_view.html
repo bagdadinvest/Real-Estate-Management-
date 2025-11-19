@@ -1,0 +1,877 @@
+{% load leaflet_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Istanbul GIL PropTech - Map</title>
+    {% leaflet_css %}
+    {% leaflet_js %}
+    <style>
+      html, body { height: 100%; margin: 0; }
+      .leaflet-container { height: 100vh; width: 100vw; }
+      .price { font-weight: bold; }
+      
+      /* Building photo markers */
+      .listing-photo-marker {
+        transition: all 0.2s ease;
+      }
+      
+      .listing-photo-marker img:hover {
+        filter: brightness(1.1) contrast(1.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      }
+      
+      /* Smooth fade transitions for layer visibility */
+      .leaflet-marker { transition: opacity 0.3s ease; }
+      
+      /* Radius Control Slider */
+      .radius-control {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000;
+        max-width: 500px;
+        width: calc(100% - 40px);
+        font-family: Arial, sans-serif;
+      }
+      
+      @media (max-width: 768px) {
+        .radius-control {
+          padding: 12px;
+          bottom: 15px;
+          max-width: 400px;
+          width: calc(100% - 30px);
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .radius-control {
+          padding: 10px;
+          bottom: 10px;
+          max-width: 95vw;
+          width: calc(100% - 20px);
+        }
+      }
+      
+      .radius-control h3 {
+        margin: 0 0 12px 0;
+        font-size: 14px;
+        font-weight: bold;
+        color: #333;
+      }
+      
+      @media (max-width: 480px) {
+        .radius-control h3 {
+          font-size: 12px;
+          margin-bottom: 8px;
+        }
+      }
+      
+      .radius-control input[type="range"] {
+        width: 100%;
+        height: 6px;
+        border-radius: 3px;
+        background: linear-gradient(to right, #3498db, #2ecc71);
+        outline: none;
+        -webkit-appearance: none;
+        appearance: none;
+        cursor: pointer;
+      }
+      
+      .radius-control input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: white;
+        border: 3px solid #667eea;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      }
+      
+      .radius-control input[type="range"]::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: white;
+        border: 3px solid #667eea;
+        cursor: pointer;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      }
+      
+      .radius-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 10px;
+        font-size: 12px;
+        color: #666;
+      }
+      
+      @media (max-width: 480px) {
+        .radius-info {
+          font-size: 11px;
+          margin-top: 8px;
+        }
+      }
+      
+      .radius-value {
+        font-weight: bold;
+        color: #667eea;
+        font-size: 14px;
+      }
+      
+      @media (max-width: 480px) {
+        .radius-value {
+          font-size: 12px;
+        }
+      }
+      
+      .listing-count {
+        background: #f0f0f0;
+        padding: 8px 12px;
+        border-radius: 6px;
+        margin-top: 10px;
+        font-size: 12px;
+        text-align: center;
+        color: #333;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      
+      @media (max-width: 480px) {
+        .listing-count {
+          padding: 6px 8px;
+          margin-top: 8px;
+          font-size: 11px;
+        }
+      }
+      
+      /* Price indicator styling in popup */
+      .price-badge {
+        display: inline-block;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: bold;
+        margin-top: 4px;
+      }
+      
+      .price-budget { background-color: #3498db; color: white; }
+      .price-moderate { background-color: #2ecc71; color: white; }
+      .price-premium { background-color: #f39c12; color: white; }
+      .price-luxury { background-color: #e74c3c; color: white; }
+
+      /* Store Filter Panel */
+      .store-filter-panel {
+        background: white;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 999;
+        max-width: 320px;
+        width: calc(100% - 40px);
+        font-family: Arial, sans-serif;
+        max-height: calc(100vh - 200px);
+        overflow-y: auto;
+      }
+
+      @media (max-width: 768px) {
+        .store-filter-panel {
+          top: 10px;
+          right: 10px;
+          max-width: 280px;
+          padding: 12px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .store-filter-panel {
+          top: 5px;
+          right: 5px;
+          max-width: 95vw;
+          padding: 10px;
+          max-height: calc(100vh - 150px);
+        }
+      }
+
+      .store-filter-panel h3 {
+        margin: 0 0 12px 0;
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      @media (max-width: 480px) {
+        .store-filter-panel h3 {
+          font-size: 14px;
+          margin-bottom: 10px;
+        }
+      }
+
+      .store-type-group {
+        margin-bottom: 12px;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 10px;
+      }
+
+      .store-type-group:last-child {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .store-type-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        padding: 8px;
+        margin: -8px -8px 0 -8px;
+        border-radius: 4px;
+        user-select: none;
+        transition: background-color 0.2s ease;
+      }
+
+      .store-type-header:hover {
+        background-color: #f5f5f5;
+      }
+
+      .store-type-toggle {
+        display: inline-flex;
+        width: 20px;
+        height: 20px;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        color: #667eea;
+        font-weight: bold;
+        min-width: 20px;
+      }
+
+      .store-type-name {
+        flex: 1;
+        font-weight: bold;
+        color: #333;
+        font-size: 14px;
+      }
+
+      .store-count {
+        font-size: 12px;
+        color: #999;
+        background: #f0f0f0;
+        padding: 2px 6px;
+        border-radius: 3px;
+        min-width: 30px;
+        text-align: center;
+      }
+
+      .store-names-list {
+        margin-top: 8px;
+        margin-left: 12px;
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .store-names-list.expanded {
+        display: flex;
+      }
+
+      .store-name-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        padding: 4px 6px;
+        border-radius: 3px;
+        transition: background-color 0.2s ease;
+      }
+
+      .store-name-item:hover {
+        background-color: #f9f9f9;
+      }
+
+      .store-name-item input[type="checkbox"] {
+        cursor: pointer;
+        accent-color: #667eea;
+      }
+
+      .store-name-item label {
+        cursor: pointer;
+        flex: 1;
+        user-select: none;
+        color: #555;
+      }
+
+      /* Scrollbar styling for the panel */
+      .store-filter-panel::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .store-filter-panel::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 3px;
+      }
+
+      .store-filter-panel::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 3px;
+      }
+
+      .store-filter-panel::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    </style>
+  </head>
+  <body>
+    {% leaflet_map "main_map" callback="window.initMap" %}
+    
+    <!-- Store Filter Panel -->
+    <div class="store-filter-panel" id="storeFilterPanel">
+      <h3>🛍️ Store Filter</h3>
+      <div id="storeTypesContainer"></div>
+    </div>
+
+    <!-- Radius Control Slider -->
+    <div class="radius-control">
+      <h3>📍 Search Radius</h3>
+      <input type="range" id="radiusSlider" min="100" max="5000" value="2000" step="100">
+      <div class="radius-info">
+        <span>Distance</span>
+        <span class="radius-value" id="radiusValue">2.0 km</span>
+      </div>
+      <div class="listing-count" id="listingCount">Loading listings...</div>
+    </div>
+
+    <script>
+      async function fetchJSON(url) {
+        const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+        if (!res.ok) throw new Error('Failed to fetch ' + url);
+        return res.json();
+      }
+
+      function listingPopup(props) {
+        const price = new Intl.NumberFormat('tr-TR').format(props.price);
+        const dist = props.distance_to_station_m != null ? Math.round(props.distance_to_station_m) : null;
+        const station = props.closest_station_name || 'N/A';
+        const groceryCount = props.grocery_stores_nearby || 0;
+        const clothingCount = props.clothing_stores_nearby || 0;
+        const totalStores = groceryCount + clothingCount;
+        const size = props.size_sqm || 0;
+        
+        return `
+          <div>
+            <div style="font-weight: bold; font-size: 14px; color: #333;">${props.title || 'Listing'}</div>
+            <div style="font-size: 13px; margin-top: 6px;">
+              <strong>Price:</strong> ${price} TL<br/>
+              <strong>Size:</strong> ${size} m²
+            </div>
+            <hr style="margin: 8px 0;" />
+            <div style="font-size: 12px;">
+              <strong>🚇 Transit:</strong> ${dist ?? '-'}m to ${station}
+            </div>
+            <div style="font-size: 12px; margin-top: 6px;">
+              <strong>🛍️ Amenities (5km):</strong><br/>
+              🛒 Grocery: ${groceryCount}<br/>
+              👕 Clothing: ${clothingCount}<br/>
+              Total: ${totalStores}
+            </div>
+          </div>
+        `;
+      }
+
+      window.initMap = async function(map, options) {
+        // Base layer is already set by django-leaflet defaults
+        const listingsData = await fetchJSON('/api/listings.geojson');
+        const transitData = await fetchJSON('/api/transit.geojson');
+        
+        // Fetch stores with error handling
+        let storesData = { type: 'FeatureCollection', features: [] };
+        try {
+          storesData = await fetchJSON('/api/stores.geojson');
+        } catch (error) {
+          console.warn('Failed to load stores data:', error);
+          // Continue without stores if endpoint fails
+        }
+
+        const listingsLayer = L.geoJSON(listingsData, {
+          pointToLayer: (feature, latlng) => {
+            const imageUrl = feature.properties.image_url;
+            
+            // If building photo exists, use it as a circular marker
+            if (imageUrl) {
+              const photoHtml = `
+                <div style="
+                  width: 48px;
+                  height: 48px;
+                  border-radius: 50%;
+                  border: 3px solid white;
+                  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+                  overflow: hidden;
+                  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  cursor: pointer;
+                  transition: all 0.2s ease;
+                ">
+                  <img src="${imageUrl}" style="
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    border-radius: 47%;
+                  " onerror="this.style.display='none'" />
+                </div>
+              `;
+              
+              const icon = L.divIcon({
+                html: photoHtml,
+                iconSize: [48, 48],
+                iconAnchor: [24, 24],
+                popupAnchor: [0, -24],
+                className: 'listing-photo-marker',
+              });
+              
+              return L.marker(latlng, { icon: icon });
+            } else {
+              // Fallback: neutral geometric marker if no image
+              const fallbackSvg = `
+                <svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="20" cy="20" r="19" fill="white" stroke="#667eea" stroke-width="2"/>
+                  <rect x="8" y="10" width="24" height="20" fill="none" stroke="#667eea" stroke-width="1.5"/>
+                  <circle cx="14" cy="14" r="2" fill="#667eea"/>
+                  <polyline points="8,26 14,18 20,24 32,10" fill="none" stroke="#667eea" stroke-width="1.5" stroke-linejoin="round"/>
+                </svg>
+              `;
+              
+              const svgDataUrl = 'data:image/svg+xml;base64,' + btoa(fallbackSvg);
+              const icon = L.icon({
+                iconUrl: svgDataUrl,
+                iconSize: [40, 40],
+                iconAnchor: [20, 20],
+                popupAnchor: [0, -20],
+              });
+              
+              return L.marker(latlng, { icon: icon });
+            }
+          },
+          onEachFeature: (feature, layer) => {
+            layer.bindPopup(listingPopup(feature.properties));
+            // Auto-popup on hover
+            layer.on('mouseover', function() {
+              this.openPopup();
+            });
+          }
+        });
+
+        const metroIcon = L.icon({
+          iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Istanbul_Metro_Logo.svg',
+          iconSize: [24, 24],
+          iconAnchor: [12, 12],
+          popupAnchor: [0, -12],
+          className: 'metro-icon',
+          crossOrigin: 'anonymous',
+        });
+
+        // Store brand icons - dynamically construct URL from store name
+        function getStoreIcon(name) {
+          // Convert name to icon filename (e.g., "Migros" -> "migros.png")
+          const iconFileName = name.toLowerCase().replace(/\s+/g, '_').replace(/[^\w_]/g, '') + '.png';
+          const iconUrl = `/static/store_icons/${iconFileName}`;
+          
+          // Create SVG placeholder for missing icons
+          const placeholderSvg = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23E8E8E8' rx='4'/%3E%3Ctext x='16' y='22' font-size='10' font-weight='bold' text-anchor='middle' fill='%23666' font-family='Arial'%3E${encodeURIComponent(name.substring(0, 2).toUpperCase())}%3C/text%3E%3Ccircle cx='16' cy='12' r='4' fill='%23999'/%3E%3C/svg%3E`;
+          
+          const icon = L.icon({
+            iconUrl: iconUrl,
+            iconSize: [10, 10],
+            iconAnchor: [12, 12],
+            popupAnchor: [0, -12],
+            crossOrigin: 'anonymous',
+            errorUrl: placeholderSvg,
+          });
+          
+          // Add error handling to fallback to placeholder if icon fails to load
+          const img = new Image();
+          img.onerror = function() {
+            icon.options.iconUrl = placeholderSvg;
+          };
+          img.src = iconUrl;
+          
+          return icon;
+        }
+
+        const transitLayer = L.geoJSON(transitData, {
+          pointToLayer: (f, latlng) => {
+            if (f.properties.mode === 'metro') {
+              return L.marker(latlng, { icon: metroIcon });
+            }
+            // bus default style
+            return L.circleMarker(latlng, {
+              radius: 6,
+              color: '#f59f00',
+              fillColor: '#f59f00',
+              fillOpacity: 0.9,
+            });
+          },
+          onEachFeature: (feature, layer) => layer.bindPopup(`<strong>${feature.properties.name}</strong>`)
+        });
+
+        const storesLayer = L.geoJSON(storesData, {
+          pointToLayer: (f, latlng) => {
+            try {
+              const icon = getStoreIcon(f.properties.name);
+              return L.marker(latlng, { icon: icon });
+            } catch (error) {
+              console.warn('Error creating store marker:', error);
+              // Fallback: create a generic grey marker
+              return L.circleMarker(latlng, {
+                radius: 8,
+                color: '#CCCCCC',
+                fillColor: '#E8E8E8',
+                fillOpacity: 0.8,
+                weight: 2,
+              });
+            }
+          },
+          onEachFeature: (feature, layer) => {
+            try {
+              const name = feature.properties.name || 'Unknown Store';
+              const type = feature.properties.store_type || 'store';
+              layer.bindPopup(`<strong>${name}</strong><br/><small>${type}</small>`);
+            } catch (error) {
+              console.warn('Error binding popup:', error);
+              layer.bindPopup('Store');
+            }
+          }
+        });
+
+        const overlays = {
+          'Listings': listingsLayer,
+          'Public Transit': transitLayer,
+          'Stores': storesLayer,
+        };
+
+        listingsLayer.addTo(map);
+        transitLayer.addTo(map);
+        // Stores NOT added by default - user must opt-in via layer control
+        L.control.layers({}, overlays).addTo(map);
+
+        // ============================================
+        // STORE FILTERING BY TYPE AND NAME
+        // ============================================
+        
+        // Structure to track store visibility
+        const storeVisibility = {
+          byType: {},    // { 'grocery': true, 'clothing': true }
+          byName: {},    // { 'Migros': true, 'A101': false, ... }
+        };
+        
+        // Initialize store visibility structure from GeoJSON data
+        function initializeStoreVisibility() {
+          const storesByType = {};
+          
+          storesData.features.forEach(feature => {
+            const storeType = feature.properties.store_type;
+            const storeName = feature.properties.name;
+            
+            if (!storesByType[storeType]) {
+              storesByType[storeType] = new Set();
+            }
+            storesByType[storeType].add(storeName);
+          });
+          
+          // Set all types and names to visible by default
+          Object.keys(storesByType).forEach(type => {
+            storeVisibility.byType[type] = true;
+            storesByType[type].forEach(name => {
+              storeVisibility.byName[name] = true;
+            });
+          });
+          
+          return storesByType;
+        }
+        
+        const storesByType = initializeStoreVisibility();
+        
+        // Render the store filter UI
+        function renderStoreFilterUI() {
+          const container = document.getElementById('storeTypesContainer');
+          container.innerHTML = '';
+          
+          Object.keys(storesByType).sort().forEach(storeType => {
+            const storeNames = Array.from(storesByType[storeType]).sort();
+            const typeId = `type-${storeType}`;
+            const isExpanded = storeVisibility.byType[storeType];
+            
+            // Store type group
+            const typeGroupDiv = document.createElement('div');
+            typeGroupDiv.className = 'store-type-group';
+            
+            // Store type header (clickable to expand/collapse)
+            const typeHeaderDiv = document.createElement('div');
+            typeHeaderDiv.className = 'store-type-header';
+            typeHeaderDiv.innerHTML = `
+              <div class="store-type-toggle">${isExpanded ? '▼' : '▶'}</div>
+              <div class="store-type-name">${storeType.charAt(0).toUpperCase() + storeType.slice(1)}</div>
+              <div class="store-count">${storeNames.length}</div>
+            `;
+            
+            typeHeaderDiv.addEventListener('click', function() {
+              toggleStoreType(storeType);
+              renderStoreFilterUI();
+            });
+            
+            typeGroupDiv.appendChild(typeHeaderDiv);
+            
+            // Store names list
+            const namesListDiv = document.createElement('div');
+            namesListDiv.className = `store-names-list ${isExpanded ? 'expanded' : ''}`;
+            
+            storeNames.forEach(storeName => {
+              const itemDiv = document.createElement('div');
+              itemDiv.className = 'store-name-item';
+              
+              const checkboxId = `store-${storeName}-${storeType}`;
+              const isChecked = storeVisibility.byName[storeName];
+              
+              itemDiv.innerHTML = `
+                <input type="checkbox" id="${checkboxId}" ${isChecked ? 'checked' : ''}>
+                <label for="${checkboxId}">${storeName}</label>
+              `;
+              
+              const checkbox = itemDiv.querySelector('input[type="checkbox"]');
+              checkbox.addEventListener('change', function() {
+                toggleStoreName(storeName);
+                updateStoreLayerVisibility();
+              });
+              
+              namesListDiv.appendChild(itemDiv);
+            });
+            
+            typeGroupDiv.appendChild(namesListDiv);
+            container.appendChild(typeGroupDiv);
+          });
+        }
+        
+        // Toggle entire store type visibility
+        function toggleStoreType(storeType) {
+          storeVisibility.byType[storeType] = !storeVisibility.byType[storeType];
+          
+          // Also toggle all stores of this type
+          const storeNames = Array.from(storesByType[storeType]);
+          storeNames.forEach(storeName => {
+            storeVisibility.byName[storeName] = storeVisibility.byType[storeType];
+          });
+          
+          updateStoreLayerVisibility();
+        }
+        
+        // Toggle individual store name visibility
+        function toggleStoreName(storeName) {
+          storeVisibility.byName[storeName] = !storeVisibility.byName[storeName];
+        }
+        
+        // Update actual marker visibility based on state
+        function updateStoreLayerVisibility() {
+          if (map.hasLayer(storesLayer)) {
+            storesLayer.eachLayer(function(layer) {
+              const storeName = layer.feature.properties.name;
+              const storeType = layer.feature.properties.store_type;
+              
+              const shouldShow = storeVisibility.byType[storeType] && 
+                                storeVisibility.byName[storeName];
+              
+              if (shouldShow) {
+                layer.setOpacity(1);
+              } else {
+                layer.setOpacity(0);
+              }
+            });
+          }
+          
+          // Re-render UI to update checkboxes state
+          renderStoreFilterUI();
+        }
+        
+        // Initial UI render
+        renderStoreFilterUI();
+
+        // Handle layer control changes for Stores layer
+        map.on('layeradd', function(e) {
+          if (e.layer === storesLayer) {
+            // Show the filter panel when stores are added
+            document.getElementById('storeFilterPanel').style.display = 'block';
+            updateStoreLayerVisibility();
+          }
+        });
+
+        map.on('layerremove', function(e) {
+          if (e.layer === storesLayer) {
+            // Hide all store markers when layer is removed
+            storesLayer.eachLayer(function(layer) {
+              layer.setOpacity(0);
+            });
+          }
+        });
+
+        // Zoom-based layer filtering
+        // Stores: Never displayed by default (user must enable via menu)
+        // Transit: Show at zoom level >= 12 (roughly 500m - 1km minimum visibility)
+        function updateLayerVisibility() {
+          const zoomLevel = map.getZoom();
+          
+          // Transit visibility: zoom level 12+ (district/area view)
+          // At lower zoom, transit gets too cluttered
+          if (zoomLevel >= 12) {
+            if (map.hasLayer(transitLayer) === false) {
+              map.addLayer(transitLayer);
+            }
+          } else {
+            if (map.hasLayer(transitLayer)) {
+              map.removeLayer(transitLayer);
+            }
+          }
+          
+          // Listings always visible
+          // Stores always hidden by default - only visible if user explicitly enables them
+        }
+
+        // Initial visibility check
+        updateLayerVisibility();
+        
+        // Update visibility on zoom change
+        map.on('zoomend', updateLayerVisibility);
+
+        // Radius filtering functionality - applies to ALL layers
+        const radiusSlider = document.getElementById('radiusSlider');
+        const radiusValue = document.getElementById('radiusValue');
+        const listingCount = document.getElementById('listingCount');
+        
+        let mapCenter = map.getCenter();
+        let currentRadius = 2000; // meters, default 2km
+        
+        // Haversine formula to calculate distance between two coordinates
+        function getDistance(lat1, lon1, lat2, lon2) {
+          const R = 6371000; // Earth's radius in meters
+          const dLat = (lat2 - lat1) * Math.PI / 180;
+          const dLon = (lon2 - lon1) * Math.PI / 180;
+          const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+                    Math.sin(dLon/2) * Math.sin(dLon/2);
+          const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+          return R * c;
+        }
+        
+        // Filter and display all markers within radius (listings, transit, stores)
+        function updateRadiusFilter() {
+          let visibleListings = 0;
+          let visibleTransit = 0;
+          let visibleStores = 0;
+          
+          // Filter listings
+          listingsLayer.eachLayer(function(layer) {
+            const latlng = layer.getLatLng();
+            const distance = getDistance(mapCenter.lat, mapCenter.lng, latlng.lat, latlng.lng);
+            
+            if (distance <= currentRadius) {
+              layer.setOpacity(1);
+              visibleListings++;
+            } else {
+              layer.setOpacity(0.1);
+            }
+          });
+          
+          // Filter transit
+          transitLayer.eachLayer(function(layer) {
+            const latlng = layer.getLatLng();
+            const distance = getDistance(mapCenter.lat, mapCenter.lng, latlng.lat, latlng.lng);
+            
+            if (distance <= currentRadius) {
+              layer.setOpacity(1);
+              visibleTransit++;
+            } else {
+              layer.setOpacity(0.1);
+            }
+          });
+          
+          // Filter stores (if visible)
+          if (map.hasLayer(storesLayer)) {
+            storesLayer.eachLayer(function(layer) {
+              const latlng = layer.getLatLng();
+              const distance = getDistance(mapCenter.lat, mapCenter.lng, latlng.lat, latlng.lng);
+              
+              if (distance <= currentRadius) {
+                layer.setOpacity(1);
+                visibleStores++;
+              } else {
+                layer.setOpacity(0.1);
+              }
+            });
+          }
+          
+          const totalVisible = visibleListings + visibleTransit + visibleStores;
+          listingCount.textContent = `${visibleListings} listings | ${visibleTransit} transit | ${visibleStores} stores`;
+        }
+        
+        // Update map center when user pans
+        map.on('dragend', function() {
+          mapCenter = map.getCenter();
+          updateRadiusFilter();
+        });
+        
+        // Handle radius slider changes
+        radiusSlider.addEventListener('input', function() {
+          currentRadius = parseFloat(this.value);
+          const radiusKm = (currentRadius / 1000).toFixed(1);
+          radiusValue.textContent = radiusKm + ' km';
+          updateRadiusFilter();
+        });
+        
+        // Draw visual circle on map to show search radius
+        let radiusCircle = L.circle(mapCenter, currentRadius, {
+          color: '#667eea',
+          fill: true,
+          fillColor: '#667eea',
+          fillOpacity: 0.1,
+          weight: 2,
+          dashArray: '5, 5'
+        }).addTo(map);
+        
+        // Update circle when map is panned
+        map.on('dragend', function() {
+          radiusCircle.setLatLng(mapCenter);
+        });
+        
+        // Update circle when radius slider changes
+        radiusSlider.addEventListener('input', function() {
+          radiusCircle.setRadius(currentRadius);
+        });
+        
+        // Initial filter display
+        updateRadiusFilter();
+
+        try {
+          map.fitBounds(listingsLayer.getBounds());
+        } catch (e) {
+          // No listings yet; leave default view
+        }
+      }
+    </script>
+  </body>
+  </html>

@@ -18,8 +18,13 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.views.decorators.clickjacking import xframe_options_exempt
 from listings import views as listing_views
-from graphene_django.views import GraphQLView
-from blog.schema import schema
+# Make GraphQL optional to avoid import errors during static builds or incompatible versions
+try:
+    from graphene_django.views import GraphQLView  # type: ignore
+    from blog.schema import schema  # noqa: F401
+    _has_graphql = True
+except Exception:
+    _has_graphql = False
 from pages import views as pages_views
 from django.conf.urls.i18n import i18n_patterns
 
@@ -40,9 +45,11 @@ from coralcity import distill_urls as distill
 urlpatterns = [
     path('admin/', admin.site.urls),
     # The 'i18n/' path is where Django handles setting the language and should usually not be prefixed.
-    path('i18n/', include('django.conf.urls.i18n')), 
-    path('graphql/', GraphQLView.as_view(graphiql=True)), # You might keep this non-prefixed or put it inside i18n_patterns if you need translated GraphQL endpoints. Keeping outside for this example.
+    path('i18n/', include('django.conf.urls.i18n')),
 ]
+
+if _has_graphql:
+    urlpatterns += [path('graphql/', GraphQLView.as_view(graphiql=True))]
 
 if _has_rosetta:
     urlpatterns += [path('rosetta/', include('rosetta.urls'))]

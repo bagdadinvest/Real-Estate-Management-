@@ -1,0 +1,33 @@
+# Netscape HTTP Cookie File
+# https://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file! Do not edit.
+
+.sahibinden.com	TRUE	/	TRUE	1778995525	vid	863
+.sahibinden.com	TRUE	/	TRUE	1778995525	cdid	6v8Ve74XbWGVDP2e691c0345
+.sahibinden.com	TRUE	/	TRUE	1778995525	csls	hwqtCI3V3KckdlYuwsLZPPmK0lWNexsckKpcVVCkGd2pD-z0MyfShtrh52cbYTdTAjdZ2cNglxnmxhLs7Qna0g
+.sahibinden.com	TRUE	/	TRUE	1778995525	cwt	KL2sHwYAvWtcRGk7L-9BpmmIlxQnSvhOyFiMPrcm3_-BDhYT6fQP_ouCKZ5lbE220z23UEvVUDeycRHAjrydf0bCrFwBxvHZbA
+.sahibinden.com	TRUE	/	FALSE	1779000094	nwsh	std
+.sahibinden.com	TRUE	/	FALSE	1778997565	MS1	https://www.sahibinden.com/ilan/emlak-konut-satilik-onay-life-te-1-plus1-satilik-daire-1279938482/detay
+.sahibinden.com	TRUE	/	FALSE	1778997579	userLastSearchSplashClosed	true
+www.sahibinden.com	FALSE	/	TRUE	1763572345	__cflb	0H28vudCb12J6LVB9qNuBCU3iDnBjmLgjopaBpiGjud
+.sahibinden.com	TRUE	/	FALSE	1763572347	geoipCity	istanbul
+.sahibinden.com	TRUE	/	FALSE	1763572347	geoipIsp	turk_telekom
+.sahibinden.com	TRUE	/	FALSE	1766163991	ulfuid	f9843977-ab75-41f8-aadc-d37537e56672
+.sahibinden.com	TRUE	/	TRUE	1763573927	csss	1WZulDL0EU1TFmiWR1KhXSw2A45VUWh-j8wPSkWcBpfk9bbIHxwWRlSe4gr3YrJ7yLnss3wHTnKCIUkvHhUZ7A
+.sahibinden.com	TRUE	/	TRUE	1763573791	__cf_bm	NPqhu6RtV1WtXOm6spOmjyZ7AK0FxzmE_F.bl2T4OeE-1763571991-1.0.1.1-eOfMrp44zYvMfApWrkl0ngoBFR8NwNoGSIs_idXcptM2G_Z1ZHGoLVTB_VygNaXkEH1N8RTBU7Mp1ILnhb0WJRvn3..yCBNHAI7y94mHC.gJNU1GEyiv2DWTqWhu1AXp
+.sahibinden.com	TRUE	/	FALSE	1763572891	dp	1280*800-landscape
+.sahibinden.com	TRUE	/	FALSE	1779124012	rememberedUserName	lkanouni1
+.sahibinden.com	TRUE	/	TRUE	1763658412	st	bd1768f8e0d8c4f50b53b8cfa4311ba31dc5a48599c28c3fc13e73eb391a248eb0ba230574196e71a15556fd428bb06a04570f1bc04691f46
+.sahibinden.com	TRUE	/	FALSE	0	xsrf-token	f3e432886d0230a8c7ca7af531ea124542679991
+.sahibinden.com	TRUE	/	FALSE	1779124018	acc_type	bireysel_uye
+.sahibinden.com	TRUE	/	FALSE	1779124018	kno	asDCx4O91w_Y5mZhTLo--RA
+.sahibinden.com	TRUE	/	FALSE	0	gcd	20251119200658
+.sahibinden.com	TRUE	/	FALSE	0	MDR	20251119
+.sahibinden.com	TRUE	/	FALSE	0	lastVisit	20251119
+.sahibinden.com	TRUE	/	FALSE	0	userType	yeni_bireysel
+.sahibinden.com	TRUE	/	FALSE	0	shuid	cFsHOqz9zG5mBeHlpvSui_g
+.sahibinden.com	TRUE	/	FALSE	0	dopingPurchase	false
+.sahibinden.com	TRUE	/	FALSE	0	getPurchase	false
+.sahibinden.com	TRUE	/	FALSE	0	mafuid	f174b372-d7bc-477e-9e4b-90e0a60248b7
+.sahibinden.com	TRUE	/	TRUE	1763573027	csid	02BEV8y7nmkQFuF-iHKxVycg1kpnNAmumjQohzm8D-RE0PsgWz2ZvdaSNr-EKKfQhi19ZHeSM7NJq-aTCbFKPBLgK1pIeP6WIUbYn5c6yXz5hFa4gCC4b-djbTXwZ29kx2pfRo0Rv9cU3_iFoivTpJ2w4lY3Rha66rBwm-plsvhT4NzJi335HuCf4geokGxRvz6rbqn2fQwLRa9YqxoupcQp3krCscbdolpflHWj05oOQQTov29NpTXcwEBrLmY_nmw1EDYTO2UZMLMg7q2nASTqsz7-AsdZhZ0nG4Ce1ZtogYneJ1cucOBCZhkpqMgLRvYl-sCUGKRk_a_rnR25PVb3FQyGzM_Xx5NVEp2G1G3J0MguuQFIzxjCF8XtZboh
+.sahibinden.com	TRUE	/	TRUE	1779123992	cf_clearance	1FDUn.MH8onCWg_MsZgWTbvhmgdCEYqqEHZ_nEcEjxQ-1763571992-1.2.1.1-62YU03mIFTWZ.BTLo3J52kcbscgIfSa8be9m.eL_EvfOYQcJlpSz3iXhc1URts3N0Rsc6WMCqoMSAHV8i2pY4kgIZidB2bI2RvgI0_m8oFiGeBb9IlffiNCuOSwtpv9dwUU9mjvKnUW_ISvq9Y_FoIOGv1z3_DALasG4.yUScRUlwuX373CpVOD8Y03A_A8w5CuwiUYvXpvSxx.OUYARuG86E_dcSpT4Prq5lq5Aw9I
