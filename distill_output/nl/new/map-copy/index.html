@@ -1,6 +1,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 
-    <title>Advertentiekaart</title>
+    <title>Listings Map</title>
 
     <!-- Vendor Bootstrap (shipped with newfront) -->
     <link href="/static/newfront/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +26,37 @@
     <link rel="stylesheet" href="/static/newfront/assets/css/typing-effect.css">
 
     
-
+    
+    
+    
+      <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&amp;display=swap" rel="stylesheet">
+    
+    
+    <!-- Dynamic theme overrides from admin -->
+    <style>
+      :root{
+        --theme-primary: #a38344;
+        --theme-accent: #a38344;
+        --theme-bg: #ffffff;
+        --theme-text: #1e1e1e;
+        --theme-font: Funnel Display, sans\u002Dserif;
+      }
+      html, body{ font-family: var(--theme-font) !important; color: var(--theme-text); }
+      body{ background-color: var(--theme-bg); }
+      ::selection{ background: var(--theme-accent); color:#fff; }
+      /* Accent / primary overrides */
+      .icon-button a i{ background-color: var(--theme-primary) !important; }
+      .main-button a:hover{ background-color: var(--theme-primary) !important; }
+      .properties .item h6{ color: var(--theme-primary) !important; }
+      .main-banner .owl-dots .active{ background-color: var(--theme-primary) !important; }
+      .sub-header ul.social-links li a:hover{ background-color: var(--theme-primary) !important; }
+      .single-property .accordion-button:not(.collapsed){ color: var(--theme-primary) !important; }
+      .properties ul.pagination li a:hover,
+      .properties ul.pagination li a.is_active{ background-color: var(--theme-primary) !important; }
+      .properties .item span.category{ background-color: color-mix(in srgb, var(--theme-primary) 30%, white) !important; }
+      a{ color: inherit; }
+      
+    </style>
     
     <style>
       /* Language switcher styles (global) */
@@ -57,16 +88,9 @@
     </style>
   </head>
   <body>
-    <!-- Preloader -->
-    <div id="js-preloader" class="js-preloader">
-      <div class="preloader-inner">
-        <span class="dot"></span>
-        <div class="dots">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+    <!-- Page Loader (Barba.js + responsive video) -->
+    <div id="page-loader" class="page-loader" aria-hidden="true">
+      <video id="loaderVideo" class="loader-video" muted playsinline preload="auto"></video>
     </div>
 
     <!-- Global Language Switcher (top-centered, outside nav) 
@@ -404,21 +428,27 @@
         <div class="row">
           <div class="col-12">
             <nav class="main-nav">
-              <a href="/nl/new/" class="logo"><h3>KUZEY EMLAK</h3></a>
+                          <a href="/nl/new/" class="logo" style="display:flex; align-items:center; justify-content:center; width:220px; height:50px; text-decoration:none;margin-top:15px;">
+                <img src="/static/logo.png" alt="Logo" style="max-height:50px; width:auto; display:block;" />
+              </a>
               <ul class="nav">
-                <li><a href="/nl/new/" class="">Home</a></li>
-                <li><a href="/nl/new/properties/" class="">Woningen</a></li>
-                <li><a href="/nl/new/map/" class="">Kaart</a></li>
+                <li><a href="/nl/new/" class="">Voorpagina</a></li>
+                <li><a href="/nl/new/properties/" class="">Properties</a></li>
+                <li><a href="/nl/new/map/" class="">Map</a></li>
                     <!-- Property Details 
 
-                <li><a href="/nl/new/properties/" class="">Woningdetails</a></li>    -->
+                <li><a href="/nl/new/properties/" class="">Property Details</a></li>    -->
 
-                <li><a href="/nl/new/contact/" class="">Neem contact op</a></li>
-                <li><a href="/nl/new/financing/" class="">Financiering</a></li>
+                <li><a href="/nl/new/contact/" class="">Contact Us</a></li>
+                <li><a href="/nl/new/financing/" class="">Financing</a></li>
 
                 <!-- Keep CTA as last-child styling -->
-                <li><a href="https://cal.com/hasan-gun-saqvh6"><i class="fa fa-calendar"></i> Plan een bezichtiging</a></li>
-              </ul>
+<li>
+    <a href="#" data-cal-link="hasan-gun-saqvh6" data-cal-config='{"layout":"month_view"}'>
+        <i class="fa fa-calendar" style="margin-right:5px;padding-right:5px;"></i> 
+        Schedule a visit
+    </a>
+</li>              </ul>
               <a class="menu-trigger"><span>Menu</span></a>
             </nav>
           </div>
@@ -426,7 +456,9 @@
       </div>
     </header>
 
-    
+    <div data-barba="wrapper">
+      <main data-barba="container" data-barba-namespace="page">
+        
 <link
   rel="stylesheet"
   href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -476,7 +508,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-              <span class="breadcrumb"><a href="/nl/new/">Home</a> / Kaart</span>
+              <span class="breadcrumb"><a href="/nl/new/">Voorpagina</a> / Map</span>
               <h3>Konsept Harita</h3>
             </div>
           </div>
@@ -601,10 +633,10 @@ cal.com/lotfi-kanouni-lbueh8"><i class="fa fa-calendar"></i> Ziyaret Planla</a>
             <div class="section properties">
     <div class="container">
       <ul class="properties-filter">
-        <li><a class="is_active" href="#!" data-filter="*">Alles tonen</a></li>
-        <li><a href="#!" data-filter=".adv">Appartement</a></li>
-        <li><a href="#!" data-filter=".str">Villa</a></li>
-        <li><a href="/nl/new/map-copy/" >Kaart</a></li>
+        <li><a class="is_active" href="#!" data-filter="*">Show All</a></li>
+        <li><a href="#!" data-filter=".adv">Apartment</a></li>
+        <li><a href="#!" data-filter=".str">Villa House</a></li>
+        <li><a href="/nl/new/map-copy/" >Map</a></li>
       </ul>
       <div class="mb-4">
         <iframe src="/nl/new/map-simplified/"
@@ -618,18 +650,214 @@ cal.com/lotfi-kanouni-lbueh8"><i class="fa fa-calendar"></i> Ziyaret Planla</a>
     </div>
 </div>
 
+      </main>
+    </div>
 
-    <footer>
-      <div class="container">
-        <div class="col-lg-12">
-            <p>Copyright © 2025 ∞ Lotfinity ∞ tech Co., Ltd. All rights reserved.
-            <!-- Scripts
+  
+   
 
-            Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
-             -->
+<div class="contact section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+          <div class="section-heading text-center">
+            <h6>            <h6>Contact Us</h6></h6>
+            <h2>Get In Touch With Our Agents</h2>
           </div>
+        </div>
       </div>
-    </footer>
+    </div>
+  </div>
+
+  <div class="contact-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <div id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.938750890858!2d28.6433741!3d40.982822000000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b55f007f3ca905%3A0x1fe95ce9196d458d!2sKuzey%20yap%C4%B1%20gayrimenkul!5e0!3m2!1str!2str!4v1763586470436!5m2!1str!2str" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+<div class="item phone">
+      <a href="https://wa.me/905423637436" target="_blank" style="text-decoration: none; color: inherit;">
+        <img src="/static/newfront/assets/images/phone-icon.png" alt="" style="max-width: 52px;">
+        <h6>+905423637436<br><span>Phone Number</span></h6>
+      </a>
+    </div>            </div>
+            <div class="col-lg-6">
+              <div class="item email">
+<a href="mailto:hasangun@kuzey-yapi-emlak.com" style="text-decoration: none; color: inherit;">
+        <img src="/static/newfront/assets/images/email-icon.png" alt="" style="max-width: 52px;">
+        <h6>hasangun@kuzey-yapi-emlak.com<br><span>Business Email</span></h6>
+      </a>              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <form id="contact-form" action="" method="post">
+            <div class="row">
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="name">Full Name</label>
+                  <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="email">Email Address</label>
+                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required="">
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="subject">Subject</label>
+                  <input type="subject" name="subject" id="subject" placeholder="Subject..." autocomplete="on" >
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="message">Message</label>
+                  <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <button type="submit" id="form-submit" class="orange-button">Send Message</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Footer Styles: Hover animasyonları için gerekli CSS -->
+<style>
+  /* Genel Geçiş Efekti: Tüm animasyonlu öğeler için yumuşak geçiş */
+  .footer-link, .social-icon, .footer-logo {
+    transition: all 0.3s ease;
+    display: inline-block; /* Kayma efektinin çalışması için gerekli */
+  }
+
+  /* 1. Link Hover Efekti (Sağa kayma ve renk değişimi) */
+  .footer-link {
+    text-decoration: none;
+  }
+  .footer-link:hover {
+    color: #ffffff !important; /* Üzerine gelince tam beyaz olur */
+    padding-left: 10px; /* Sağa doğru 10px kayar */
+    text-decoration: none;
+  }
+
+  /* 2. Sosyal Medya İkonları (Yukarı zıplama) */
+  .social-icon:hover {
+    transform: translateY(-5px); /* Yukarı doğru hareket */
+    color: #fff !important;
+  }
+
+  /* 3. Logo (Hafif solma) */
+  .footer-logo:hover {
+    opacity: 0.8;
+  }
+</style>
+
+<footer id="site-footer" style="
+    background: url('/static/footer-bg.png') no-repeat center center;
+    background-size: cover;
+    color:#e5e5e5;
+    padding:50px 0 25px;
+    margin-top:60px;">
+    <div class="container">
+
+    <!-- 1. SATIR: Marka (Sol) ve Navigasyon (Sağ) -->
+    <div class="row" style="align-items:flex-start; justify-content:space-between; margin-bottom: 20px;">
+
+      <!-- SOL: Brand / About -->
+ <div class="col-lg-4 col-md-6" style="margin-bottom:24px;">
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+
+    <video autoplay loop muted playsinline class="footer-logo" style="height:112px; width:auto; display:block;">
+        <source src="/static/footer.mp4" type="video/mp4">
+    </video>
+
+
+  </div>
+     <!-- 1. <h5 style="margin:0; color:#fff;">Kavakli</h5>-->
+  <p style="opacity:.85; font-size:14px; line-height:1.7;">Discover, rent or buy verified properties with modern tools and local expertise.</p>
+
+        <!-- Sosyal Medya İkonları -->
+
+      </div>
+
+      <!-- SAĞ: Navigation -->
+      <div class="col-lg-3 col-md-3" style="margin-bottom:24px;">
+        <h5 style="color:#fff; margin-bottom:12px;">Navigation</h5>
+        <ul style="list-style:none; margin:0; padding:0; line-height:2;">
+          <!-- Linklere 'footer-link' class'ı eklendi -->
+          <li><a href="/nl/new/" class="footer-link" style="color:#e5e5e5;">Voorpagina</   <div sta></li>
+          <li><a href="/nl/new/properties/" class="footer-link" style="color:#e5e5e5;">Properties</a></li>
+          <li><a href="/nl/new/map/" class="footer-link" style="color:#e5e5e5;">Map</a></li>
+          <li><a href="/nl/new/contact/" class="footer-link" style="color:#e5e5e5;">Contact</a></li>
+          <li><a href="/nl/new/financing/" class="footer-link" style="color:#e5e5e5;">Financing</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- 2. SATIR: İletişim (Hemen altında) -->
+    <div class="row">
+      <div class="col-lg-4 col-md-5" style="margin-bottom:24px;">
+        <h5 style="color:#fff; margin-bottom:12px;">Contact</h5>
+        <ul style="list-style:none; margin:0; padding:0; line-height:2;">
+          <li><i class="fa fa-map" aria-hidden="true" style="margin-right:8px; color:#999;"></i> Kavaklı, 34520 Beylikdüzü/İstanbul</li>
+
+          <!-- Mail Linki -->
+          <li>
+            <i class="fa fa-envelope" aria-hidden="true" style="margin-right:8px; color:#999;"></i>
+            <a href="mailto:hasangun@kuzey-yapi-emlak.com" class="footer-link" style="color:#e5e5e5;">hasangun@kuzey-yapi-emlak.com</a>
+          </li>
+
+          <li>
+            <i class="fab fa-whatsapp" aria-hidden="true" style="margin-right:8px; color:#999;"></i>
+            <a href="https://wa.me/905423637436" target="_blank" rel="noopener" class="footer-link" style="color:#e5e5e5;">
+              +905423637436
+            </a>
+          </li>
+          <!-- Takvim Linki -->
+          <li>
+            <a href="https://cal.com/hasan-gun-saqvh6" target="_blank" rel="noopener" class="footer-link" style="color:#e5e5e5;">
+              <i class="fa fa-calendar" style="margin-right:8px;"></i> Schedule a visit
+            </a>
+          </li>
+        </ul>
+      </div>
+          <div style="display:flex; gap:12px; margin-top:12px;">
+          <a href=" https://www.facebook.com/Koral-City-ltd-100737889187297" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
+            <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.instagram.com/koralcityltd/" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
+            <i class="fab fa-instagram fa-lg" aria-hidden="true"></i>
+          </a>
+          <a href="https://twitter.com/Koralcityltd" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
+            <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+          </a>
+        </div>
+    </div>
+
+    <hr style="border-color:#333; margin:10px 0 16px;">
+
+    <!-- Alt Bilgi -->
+    <div class="row">
+      <div class="col-12" style="text-align:center;">
+        <p style="margin:0; font-size:14px; color:#cfcfcf;">
+          &copy; 2025
+          <a href="https://explore.lotfinity.tech" target="_blank" rel="noopener" class="footer-link" style="color:#fff; text-decoration:underline;">&infin; Lotfinity &infin; tech Co.</a>, Ltd. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
 
     <!-- Scripts -->
     <script src="/static/newfront/vendor/jquery/jquery.min.js"></script>
@@ -639,6 +867,7 @@ cal.com/lotfi-kanouni-lbueh8"><i class="fa fa-calendar"></i> Ziyaret Planla</a>
     <script src="/static/newfront/assets/js/counter.js"></script>
     <script src="/static/newfront/assets/js/custom.js"></script>
     <script src="/static/newfront/assets/js/typing-effect.js"></script>
+    <script src="https://unpkg.com/@barba/core"></script>
 
     <script>
       // Language switcher interactions (global)
@@ -664,7 +893,90 @@ cal.com/lotfi-kanouni-lbueh8"><i class="fa fa-calendar"></i> Ziyaret Planla</a>
       });
     </script>
 
-    
+    <style>
+      .page-loader { position: fixed; inset: 0; background: #000; display: flex; align-items: center; justify-content: center; z-index: 2147483000; opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s ease; }
+      .page-loader.active { opacity: 1; visibility: visible; }
+      .loader-video { width: 100%; height: 100%; object-fit: cover; }
+    </style>
+
+    <script>
+      (function(){
+        var loader = document.getElementById('page-loader');
+        var video = document.getElementById('loaderVideo');
+        var SMALL_SRC = '/static/loader-sm-white-faster.mp4';
+        var BIG_SRC = '/static/loader-bg-white.mp4';
+
+        function pickSrc(){
+          try {
+            return (window.matchMedia && window.matchMedia('(max-width: 767px)').matches) ? SMALL_SRC : BIG_SRC;
+          } catch(e){ return BIG_SRC; }
+        }
+
+        function setVideoSource(){
+          var desired = pickSrc();
+          if (video.getAttribute('src') !== desired) {
+            video.setAttribute('src', desired);
+            try { video.load(); } catch(e){}
+          }
+        }
+
+        function showLoader(){
+          setVideoSource();
+          if (!loader.classList.contains('active')) loader.classList.add('active');
+          loader.setAttribute('aria-hidden', 'false');
+          // Hide when video ends (bind per-show)
+          var onEnd = function(){ hideLoader(); };
+          video.addEventListener('ended', onEnd, { once: true });
+          // Attempt autoplay; muted set to satisfy policies
+          try { video.currentTime = 0; video.play().catch(function(){ /* ignore */ }); } catch(e){}
+        }
+
+        function hideLoader(){
+          loader.classList.remove('active');
+          loader.setAttribute('aria-hidden', 'true');
+          try { video.pause(); } catch(e){}
+        }
+
+        // Initial load: show for full video duration
+        document.addEventListener('DOMContentLoaded', function(){
+          showLoader();
+        });
+
+        // Barba.js page transitions
+        document.addEventListener('DOMContentLoaded', function(){
+          if (!window.barba) return;
+          barba.init({
+            transitions: [{
+              name: 'video-loader',
+              leave() {
+                // Fade in loader then proceed; hide on video end only
+                showLoader();
+                return new Promise(function(res){ setTimeout(res, 250); });
+              },
+              enter() {
+                // Let the overlay stay until the video ends (handled globally)
+              }
+            }]
+          });
+        });
+
+        // Keep source in sync on resize/orientation changes
+        window.addEventListener('resize', function(){
+          var current = video.getAttribute('src');
+          var desired = pickSrc();
+          if (current !== desired) setVideoSource();
+        });
+      })();
+    </script>
+
+    <script>
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", {origin:"https://cal.com"});
+
+  // This instructs Cal.com to look for clicks on elements with the 'data-cal-link' attribute
+  Cal("ui", {"theme":"dark", "styles":{"branding":{"brandColor":"#000000"}}, "hideEventTypeDetails":false, "layout":"month_view"});
+</script>
+
     
 
 

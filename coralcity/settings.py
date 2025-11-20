@@ -92,6 +92,15 @@ if any(cmd in sys.argv for cmd in ('distill-local', 'distill-publish')):
         app for app in INSTALLED_APPS
         if app not in ('debug_toolbar', 'graphene_django')
     ]
+    # When building static output, it's usually preferable to emit collected
+    # assets into the distill folder so a single directory is deployable.
+    # You can still override via COLLECT_STATIC_TO_DISTILL=0.
+    if os.environ.get('COLLECT_STATIC_TO_DISTILL', '1') == '1':
+        try:
+            DISTILL_DIR  # ensure defined above
+            STATIC_ROOT = os.path.join(DISTILL_DIR, 'static')
+        except Exception:
+            pass
 
 GRAPHENE = {
     'SCHEMA': 'blog.schema.schema'
@@ -106,7 +115,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF =  'coralcity.urls'
@@ -206,13 +214,19 @@ ROSETTA_AUTO_COMPILE = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
+# Default static root (overridden during distill when enabled above)
 STATIC_ROOT = os.path.join(BASE_DIR , 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS=[(os.path.join(BASE_DIR, 'coralcity/static'))]
 
 
 # Media Folder Settings
+# Default media root (original uploads). For static exports, copy this to
+# os.path.join(DISTILL_DIR, 'media') using a helper command.
 MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+
+# Optional convenience path for static builds
+DISTILL_MEDIA_ROOT = os.path.join(DISTILL_DIR, 'media')
 MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

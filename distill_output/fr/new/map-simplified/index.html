@@ -1,563 +1,931 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simplified Property Map</title>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+
+    <title>Map</title>
+
+    <!-- Vendor Bootstrap (shipped with newfront) -->
+    <link href="/static/newfront/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link rel="stylesheet" href="/static/newfront/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/static/newfront/assets/css/templatemo-villa-agency.css">
+    <link rel="stylesheet" href="/static/newfront/assets/css/owl.css">
+    <link rel="stylesheet" href="/static/newfront/assets/css/animate.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/static/newfront/assets/css/typing-effect.css">
+
     
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
     
-    <!-- Swiper CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#667eea', // Purple/Blue
-                        secondary: '#2ecc71', // Green
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
+      <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&amp;display=swap" rel="stylesheet">
+    
+    
+    <!-- Dynamic theme overrides from admin -->
+    <style>
+      :root{
+        --theme-primary: #a38344;
+        --theme-accent: #a38344;
+        --theme-bg: #ffffff;
+        --theme-text: #1e1e1e;
+        --theme-font: Funnel Display, sans\u002Dserif;
+      }
+      html, body{ font-family: var(--theme-font) !important; color: var(--theme-text); }
+      body{ background-color: var(--theme-bg); }
+      ::selection{ background: var(--theme-accent); color:#fff; }
+      /* Accent / primary overrides */
+      .icon-button a i{ background-color: var(--theme-primary) !important; }
+      .main-button a:hover{ background-color: var(--theme-primary) !important; }
+      .properties .item h6{ color: var(--theme-primary) !important; }
+      .main-banner .owl-dots .active{ background-color: var(--theme-primary) !important; }
+      .sub-header ul.social-links li a:hover{ background-color: var(--theme-primary) !important; }
+      .single-property .accordion-button:not(.collapsed){ color: var(--theme-primary) !important; }
+      .properties ul.pagination li a:hover,
+      .properties ul.pagination li a.is_active{ background-color: var(--theme-primary) !important; }
+      .properties .item span.category{ background-color: color-mix(in srgb, var(--theme-primary) 30%, white) !important; }
+      a{ color: inherit; }
+      
+    </style>
     
     <style>
-        /* Essential full-screen map setup */
-        html, body { 
-            height: 100%; 
-            margin: 0; 
-            overflow: hidden; /* Prevent body scroll */
-            font-family: 'Inter', sans-serif;
-        }
-        #map {
-            width: 100%;
-            height: 100vh;
-            position: relative;
-            z-index: 1;
-        }
-        
-        /* Info Panel */
-        .info-panel {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 1000;
-            max-height: 80vh;
-            overflow-y: auto;
-            background-color: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            min-width: 300px;
-            max-width: 400px;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        
-        .info-panel.is-visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        
-        .info-panel-header {
-            background-color: #667eea;
-            padding: 0.75rem 1rem;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        
-        .info-panel-title {
-            margin: 0;
-            color: white;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-        
-        .info-panel-body {
-            font-size: 0.875rem;
-            padding: 1rem;
-        }
-        
-        .info-section {
-            margin-bottom: 1rem;
-        }
-        
-        .info-section:last-child {
-            margin-bottom: 0;
-        }
-        
-        .info-section-title {
-            font-weight: 600;
-            color: #667eea;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-            padding-bottom: 0.25rem;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        
-        .info-item {
-            padding: 0.25rem 0;
-            font-size: 0.875rem;
-            color: #4b5563;
-        }
-        
-        .info-item strong {
-            color: #1f2937;
-            font-weight: 600;
-        }
-
-        /* Custom Leaflet Marker Styling */
-        .listing-photo-marker img {
-            transition: all 0.2s ease;
-        }
-        .listing-photo-marker img:hover {
-            filter: brightness(1.1) contrast(1.1);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-        }
-        .leaflet-marker { transition: opacity 0.3s ease; }
-
-        /* Swiper styles for listing popup carousel */
-        .listing-swiper {
-            width: 100%;
-            height: 250px;
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 12px;
-        }
-        
-        .listing-swiper .swiper-slide {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f0f0f0;
-        }
-        
-        .listing-swiper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .swiper-pagination {
-            position: relative !important;
-            margin-top: 8px;
-        }
-        
-        .swiper-pagination-bullet {
-            background-color: #667eea !important;
-            opacity: 0.6;
-        }
-        
-        .swiper-pagination-bullet-active {
-            opacity: 1 !important;
-        }
-        
-        /* Error message */
-        .error-message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 2000;
-            min-width: 300px;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            background-color: #fef2f2;
-            color: #991b1b;
-            border: 1px solid #fecaca;
-        }
+      /* Language switcher styles (global) */
+      .top-language-bar { position: relative; z-index: 1000; background: #fff; }
+      .top-language-inner { display: flex; justify-content: center; padding: 8px 0; }
+      .lang-switcher { position: relative; }
+      .lang-current { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border: 1px solid #e5e7eb; border-radius: 999px; background: #fff; color: #111827; box-shadow: 0 2px 8px rgba(0,0,0,0.06); cursor: pointer; line-height: 1; }
+      .lang-current .flag { width: 18px; height: 18px; border-radius: 2px; object-fit: cover; }
+      .lang-current .code { font-weight: 600; font-size: 12px; letter-spacing: .3px; }
+      .lang-current .chev { font-size: 12px; opacity: .7; }
+      .lang-current:focus { outline: none; box-shadow: 0 0 0 3px rgba(59,130,246,.25); }
+      .lang-menu { position: absolute; right: 0; top: calc(100% + 8px); min-width: 200px; background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; box-shadow: 0 10px 28px rgba(0,0,0,0.12); padding: 6px; display: none; z-index: 100000; }
+      .lang-switcher.open .lang-menu { display: block; z-index: 100000; }
+      .lang-item { margin: 0; }
+      .lang-item + .lang-item { margin-top: 2px; }
+      .lang-item button { width: 100%; display: flex; align-items: center; gap: 10px; padding: 8px 10px; background: transparent; border: 0; border-radius: 8px; cursor: pointer; font-size: 13px; color: #111827; text-align: left; }
+      .lang-item a .flag { width: 18px; height: 18px; border-radius: 2px; object-fit: cover; }
+      .lang-item button:hover { background: #f3f4f6; }
+      @media (max-width: 768px) {
+        .lang-menu { right: auto; left: 50%; transform: translateX(-50%); min-width: 220px; }
+      }
+      
+      /* Tangerine Font for Banner Headings */
+      .tangerine-regular {
+        font-family: "Tangerine", cursive;
+        font-weight: 400;
+        font-style: normal;
+      }
     </style>
-</head>
-<body class="bg-gray-50">
-    <div id="map"></div>
-        <!-- Leaflet JS -->
+  </head>
+  <body>
+    <!-- Page Loader (Barba.js + responsive video) -->
+    <div id="page-loader" class="page-loader" aria-hidden="true">
+      <video id="loaderVideo" class="loader-video" muted playsinline preload="auto"></video>
+    </div>
 
-    <!-- Toggle Button -->
-    <button id="toggleInfoPanel" class="absolute top-2.5 right-2.5 z-[1001] bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 transition-colors focus:outline-none">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-        </svg>
-    </button>
-
-    <div class="info-panel" id="infoPanel" >
-        <div class="info-panel-header">
-            <h5 class="info-panel-title">📍 Simplified Map</h5>
+    <!-- Global Language Switcher (top-centered, outside nav) 
+    
+    
+    <div class="top-language-bar">
+      <div class="container">
+        <div class="top-language-inner">
+          
+          <div class="lang-switcher" data-lang-current="fr">
+            
+              <button type="button" class="lang-current" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
+                <img class="flag" src="/static/flags/fr.svg" alt="fr">
+                <span class="code">FR</span>
+                <span class="chev" aria-hidden="true">▾</span>
+              </button>
+            
+            <div class="lang-menu" role="menu" aria-label="Available languages">
+              
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/fr/new/map-simplified/" role="menuitem" aria-label="Anglais" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/en.svg" alt="en">
+                        <span class="name">Anglais</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/fr/new/map-simplified/" role="menuitem" aria-label="Türkçe" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/tr.svg" alt="tr">
+                        <span class="name">Türkçe</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/fr/new/map-simplified/" role="menuitem" aria-label="Français" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/fr.svg" alt="fr">
+                        <span class="name">Français</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/fr/new/map-simplified/" role="menuitem" aria-label="Español" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/es.svg" alt="es">
+                        <span class="name">Español</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/fr/new/map-simplified/" role="menuitem" aria-label="Italiano" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/it.svg" alt="it">
+                        <span class="name">Italiano</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/fr/new/map-simplified/" role="menuitem" aria-label="Polski" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/pl.svg" alt="pl">
+                        <span class="name">Polski</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/fr/new/map-simplified/" role="menuitem" aria-label="Português" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/pt.svg" alt="pt">
+                        <span class="name">Português</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/fr/new/map-simplified/" role="menuitem" aria-label="Magyar" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/hu.svg" alt="hu">
+                        <span class="name">Magyar</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/fr/new/map-simplified/" role="menuitem" aria-label="Русский" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/ru.svg" alt="ru">
+                        <span class="name">Русский</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/fr/new/map-simplified/" role="menuitem" aria-label="العربية" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/ar.svg" alt="ar">
+                        <span class="name">العربية</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/fr/new/map-simplified/" role="menuitem" aria-label="Deutsch" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/de.svg" alt="de">
+                        <span class="name">Deutsch</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/fr/new/map-simplified/" role="menuitem" aria-label="български" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/bg.svg" alt="bg">
+                        <span class="name">български</span>
+                      </a>
+                    </div>
+                  
+                
+              
+                
+                  
+                    <div class="lang-item">
+                      <a href="/fr/new/map-simplified/" role="menuitem" aria-label="Nederlands" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                        <img class="flag" src="/static/flags/nl.svg" alt="nl">
+                        <span class="name">Nederlands</span>
+                      </a>
+                    </div>
+                  
+                
+              
+            </div>
+          </div>
         </div>
-        <div class="info-panel-body" id="infoPanelContent">
-            <p>Loading data...</p>
+      </div>
+    </div>-->
+
+
+     <!-- Global Language Switcher (top-centered, outside nav) -->
+    
+    
+    <div class="top-language-bar">
+      <div class="container">
+        <div class="top-language-inner">
+          <div class="lang-switcher" data-lang-current="fr">
+            
+              <button type="button" class="lang-current" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
+                <img class="flag" src="/static/flags/fr.svg" alt="fr">
+                <span class="code">FR</span>
+                <span class="chev" aria-hidden="true">▾</span>
+              </button>
+            
+            <div class="lang-menu" role="menu" aria-label="Available languages">
+              
+                
+                  <div class="lang-item">
+                    <a href="/en/new/map-simplified/" role="menuitem" aria-label="English" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/en.svg" alt="en">
+                      <span class="label">English</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/tr/new/map-simplified/" role="menuitem" aria-label="Türkçe" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/tr.svg" alt="tr">
+                      <span class="label">Türkçe</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/fr/new/map-simplified/" role="menuitem" aria-label="Français" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/fr.svg" alt="fr">
+                      <span class="label">Français</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/es/new/map-simplified/" role="menuitem" aria-label="Español" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/es.svg" alt="es">
+                      <span class="label">Español</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/it/new/map-simplified/" role="menuitem" aria-label="Italiano" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/it.svg" alt="it">
+                      <span class="label">Italiano</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/pl/new/map-simplified/" role="menuitem" aria-label="Polski" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/pl.svg" alt="pl">
+                      <span class="label">Polski</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/pt/new/map-simplified/" role="menuitem" aria-label="Português" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/pt.svg" alt="pt">
+                      <span class="label">Português</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/hu/new/map-simplified/" role="menuitem" aria-label="Magyar" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/hu.svg" alt="hu">
+                      <span class="label">Magyar</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/ru/new/map-simplified/" role="menuitem" aria-label="Русский" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/ru.svg" alt="ru">
+                      <span class="label">Русский</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/ar/new/map-simplified/" role="menuitem" aria-label="العربية" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/ar.svg" alt="ar">
+                      <span class="label">العربية</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/de/new/map-simplified/" role="menuitem" aria-label="Deutsch" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/de.svg" alt="de">
+                      <span class="label">Deutsch</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/bg/new/map-simplified/" role="menuitem" aria-label="български" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/bg.svg" alt="bg">
+                      <span class="label">български</span>
+                    </a>
+                  </div>
+                
+              
+                
+                  <div class="lang-item">
+                    <a href="/nl/new/map-simplified/" role="menuitem" aria-label="Nederlands" class="lang-item-link" style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#111827;">
+                      <img class="flag" src="/static/flags/nl.svg" alt="nl">
+                      <span class="label">Nederlands</span>
+                    </a>
+                  </div>
+                
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <!-- Top sub-header -->
+    <div class="sub-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-8">
+            <ul class="info">
+              <li><i class="fa fa-envelope"></i> hasangun@kuzey-yapi-emlak.com</li>
+              <li><i class="fa fa-map"></i> Kavaklı, 34520 Beylikdüzü/İstanbul</li>
+            </ul>
+          </div>
+          <div class="col-lg-4 col-md-4">
+            <ul class="social-links">
+              <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+              <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+              <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main header/nav -->
+    <header class="header-area header-sticky">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav class="main-nav">
+                          <a href="/fr/new/" class="logo" style="display:flex; align-items:center; justify-content:center; width:220px; height:50px; text-decoration:none;margin-top:15px;">
+                <img src="/static/logo.png" alt="Logo" style="max-height:50px; width:auto; display:block;" />
+              </a>
+              <ul class="nav">
+                <li><a href="/fr/new/" class="">Accueil</a></li>
+                <li><a href="/fr/new/properties/" class="">Properties</a></li>
+                <li><a href="/fr/new/map/" class="active">Map</a></li>
+                    <!-- Property Details 
+
+                <li><a href="/fr/new/properties/" class="">Property Details</a></li>    -->
+
+                <li><a href="/fr/new/contact/" class="">Contact Us</a></li>
+                <li><a href="/fr/new/financing/" class="">Financing</a></li>
+
+                <!-- Keep CTA as last-child styling -->
+<li>
+    <a href="#" data-cal-link="hasan-gun-saqvh6" data-cal-config='{"layout":"month_view"}'>
+        <i class="fa fa-calendar" style="margin-right:5px;padding-right:5px;"></i> 
+        Schedule a visit
+    </a>
+</li>              </ul>
+              <a class="menu-trigger"><span>Menu</span></a>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div data-barba="wrapper">
+      <main data-barba="container" data-barba-namespace="page">
+        
+  <div class="page-heading header-text">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <span class="breadcrumb"><a href="/fr/new/">Accueil</a> / Map</span>
+          <h3>Map</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section" style="padding-top: 40px; padding-bottom: 80px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div style="border: 1px solid #e5e7eb; border-radius: 12px; padding: 24px; background: #fff;">
+            <h4 style="margin-bottom: 12px;">Simplified Map</h4>
+            <p style="margin-bottom: 16px; color: #6b7280;">
+              This is a simplified standalone map placeholder for static builds.
+            </p>
+            <div style="width: 100%; height: 520px; border-radius: 12px; background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%); display: flex; align-items: center; justify-content: center; color: #9ca3af;">
+              <span>Map canvas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+      </main>
+    </div>
+
+  
+   
+
+<div class="contact section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+          <div class="section-heading text-center">
+            <h6>            <h6>Contact Us</h6></h6>
+            <h2>Get In Touch With Our Agents</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <div id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.938750890858!2d28.6433741!3d40.982822000000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b55f007f3ca905%3A0x1fe95ce9196d458d!2sKuzey%20yap%C4%B1%20gayrimenkul!5e0!3m2!1str!2str!4v1763586470436!5m2!1str!2str" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+<div class="item phone">
+      <a href="https://wa.me/905423637436" target="_blank" style="text-decoration: none; color: inherit;">
+        <img src="/static/newfront/assets/images/phone-icon.png" alt="" style="max-width: 52px;">
+        <h6>+905423637436<br><span>Phone Number</span></h6>
+      </a>
+    </div>            </div>
+            <div class="col-lg-6">
+              <div class="item email">
+<a href="mailto:hasangun@kuzey-yapi-emlak.com" style="text-decoration: none; color: inherit;">
+        <img src="/static/newfront/assets/images/email-icon.png" alt="" style="max-width: 52px;">
+        <h6>hasangun@kuzey-yapi-emlak.com<br><span>Business Email</span></h6>
+      </a>              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <form id="contact-form" action="" method="post">
+            <div class="row">
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="name">Full Name</label>
+                  <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="email">Email Address</label>
+                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required="">
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="subject">Subject</label>
+                  <input type="subject" name="subject" id="subject" placeholder="Subject..." autocomplete="on" >
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="message">Message</label>
+                  <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <button type="submit" id="form-submit" class="orange-button">Send Message</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Footer Styles: Hover animasyonları için gerekli CSS -->
+<style>
+  /* Genel Geçiş Efekti: Tüm animasyonlu öğeler için yumuşak geçiş */
+  .footer-link, .social-icon, .footer-logo {
+    transition: all 0.3s ease;
+    display: inline-block; /* Kayma efektinin çalışması için gerekli */
+  }
+
+  /* 1. Link Hover Efekti (Sağa kayma ve renk değişimi) */
+  .footer-link {
+    text-decoration: none;
+  }
+  .footer-link:hover {
+    color: #ffffff !important; /* Üzerine gelince tam beyaz olur */
+    padding-left: 10px; /* Sağa doğru 10px kayar */
+    text-decoration: none;
+  }
+
+  /* 2. Sosyal Medya İkonları (Yukarı zıplama) */
+  .social-icon:hover {
+    transform: translateY(-5px); /* Yukarı doğru hareket */
+    color: #fff !important;
+  }
+
+  /* 3. Logo (Hafif solma) */
+  .footer-logo:hover {
+    opacity: 0.8;
+  }
+</style>
+
+<footer id="site-footer" style="
+    background: url('/static/footer-bg.png') no-repeat center center;
+    background-size: cover;
+    color:#e5e5e5;
+    padding:50px 0 25px;
+    margin-top:60px;">
+    <div class="container">
+
+    <!-- 1. SATIR: Marka (Sol) ve Navigasyon (Sağ) -->
+    <div class="row" style="align-items:flex-start; justify-content:space-between; margin-bottom: 20px;">
+
+      <!-- SOL: Brand / About -->
+ <div class="col-lg-4 col-md-6" style="margin-bottom:24px;">
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+
+    <video autoplay loop muted playsinline class="footer-logo" style="height:112px; width:auto; display:block;">
+        <source src="/static/footer.mp4" type="video/mp4">
+    </video>
+
+
+  </div>
+     <!-- 1. <h5 style="margin:0; color:#fff;">Kavakli</h5>-->
+  <p style="opacity:.85; font-size:14px; line-height:1.7;">Discover, rent or buy verified properties with modern tools and local expertise.</p>
+
+        <!-- Sosyal Medya İkonları -->
+
+      </div>
+
+      <!-- SAĞ: Navigation -->
+      <div class="col-lg-3 col-md-3" style="margin-bottom:24px;">
+        <h5 style="color:#fff; margin-bottom:12px;">Navigation</h5>
+        <ul style="list-style:none; margin:0; padding:0; line-height:2;">
+          <!-- Linklere 'footer-link' class'ı eklendi -->
+          <li><a href="/fr/new/" class="footer-link" style="color:#e5e5e5;">Accueil</   <div sta></li>
+          <li><a href="/fr/new/properties/" class="footer-link" style="color:#e5e5e5;">Properties</a></li>
+          <li><a href="/fr/new/map/" class="footer-link" style="color:#e5e5e5;">Map</a></li>
+          <li><a href="/fr/new/contact/" class="footer-link" style="color:#e5e5e5;">Contact</a></li>
+          <li><a href="/fr/new/financing/" class="footer-link" style="color:#e5e5e5;">Financing</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- 2. SATIR: İletişim (Hemen altında) -->
+    <div class="row">
+      <div class="col-lg-4 col-md-5" style="margin-bottom:24px;">
+        <h5 style="color:#fff; margin-bottom:12px;">Contact</h5>
+        <ul style="list-style:none; margin:0; padding:0; line-height:2;">
+          <li><i class="fa fa-map" aria-hidden="true" style="margin-right:8px; color:#999;"></i> Kavaklı, 34520 Beylikdüzü/İstanbul</li>
+
+          <!-- Mail Linki -->
+          <li>
+            <i class="fa fa-envelope" aria-hidden="true" style="margin-right:8px; color:#999;"></i>
+            <a href="mailto:hasangun@kuzey-yapi-emlak.com" class="footer-link" style="color:#e5e5e5;">hasangun@kuzey-yapi-emlak.com</a>
+          </li>
+
+          <li>
+            <i class="fab fa-whatsapp" aria-hidden="true" style="margin-right:8px; color:#999;"></i>
+            <a href="https://wa.me/905423637436" target="_blank" rel="noopener" class="footer-link" style="color:#e5e5e5;">
+              +905423637436
+            </a>
+          </li>
+          <!-- Takvim Linki -->
+          <li>
+            <a href="https://cal.com/hasan-gun-saqvh6" target="_blank" rel="noopener" class="footer-link" style="color:#e5e5e5;">
+              <i class="fa fa-calendar" style="margin-right:8px;"></i> Schedule a visit
+            </a>
+          </li>
+        </ul>
+      </div>
+          <div style="display:flex; gap:12px; margin-top:12px;">
+          <a href=" https://www.facebook.com/Koral-City-ltd-100737889187297" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
+            <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.instagram.com/koralcityltd/" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
+            <i class="fab fa-instagram fa-lg" aria-hidden="true"></i>
+          </a>
+          <a href="https://twitter.com/Koralcityltd" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
+            <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+          </a>
         </div>
     </div>
-        
-    <!-- Leaflet JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
-    <!-- Swiper JS -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    
-    
+
+    <hr style="border-color:#333; margin:10px 0 16px;">
+
+    <!-- Alt Bilgi -->
+    <div class="row">
+      <div class="col-12" style="text-align:center;">
+        <p style="margin:0; font-size:14px; color:#cfcfcf;">
+          &copy; 2025
+          <a href="https://explore.lotfinity.tech" target="_blank" rel="noopener" class="footer-link" style="color:#fff; text-decoration:underline;">&infin; Lotfinity &infin; tech Co.</a>, Ltd. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+    <!-- Scripts -->
+    <script src="/static/newfront/vendor/jquery/jquery.min.js"></script>
+    <script src="/static/newfront/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/newfront/assets/js/isotope.min.js"></script>
+    <script src="/static/newfront/assets/js/owl-carousel.js"></script>
+    <script src="/static/newfront/assets/js/counter.js"></script>
+    <script src="/static/newfront/assets/js/custom.js"></script>
+    <script src="/static/newfront/assets/js/typing-effect.js"></script>
+    <script src="https://unpkg.com/@barba/core"></script>
+
     <script>
-        // Initialize map centered on Istanbul
-        const map = L.map('map').setView([41.0082, 28.9784], 11);
-        
-        // Add tile layer
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors',
-            maxZoom: 19
-        }).addTo(map);
-        
-        // Layer groups
-        const listingMarkers = L.layerGroup();
-        const stationMarkers = L.layerGroup();
-        const groceryMarkers = L.layerGroup();
-        const clothingMarkers = L.layerGroup();
-        
-        // Track all markers for bounds
-        const allMarkers = [];
-        
-        /**
-         * Create listing photo marker
-         */
-        function createListingMarker(imageUrl) {
-            let photoHtml;
-            if (imageUrl) {
-                photoHtml = `
-                    <div class="listing-photo-marker" style="
-                        width: 48px;
-                        height: 48px;
-                        border-radius: 50%;
-                        border: 3px solid white;
-                        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-                        overflow: hidden;
-                        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        cursor: pointer;
-                    ">
-                        <img src="${imageUrl}" style="
-                            width: 100%;
-                            height: 100%;
-                            object-fit: cover;
-                            border-radius: 47%;
-                        " onerror="this.style.display='none'" />
-                    </div>
-                `;
-            } else {
-                // Fallback SVG marker
-                photoHtml = `
-                    <div class="listing-photo-marker" style="
-                        width: 40px;
-                        height: 40px;
-                        border-radius: 50%;
-                        border: 3px solid white;
-                        box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-                        background-color: #667eea;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        color: white;
-                        font-size: 18px;
-                        font-weight: bold;
-                        cursor: pointer;
-                    ">
-                        🏠
-                    </div>
-                `;
-            }
-            
-            return L.divIcon({
-                html: photoHtml,
-                iconSize: imageUrl ? [48, 48] : [40, 40],
-                iconAnchor: imageUrl ? [24, 24] : [20, 20],
-                popupAnchor: [0, -24],
-                className: 'listing-photo-marker'
-            });
+      // Language switcher interactions (global)
+      document.addEventListener('DOMContentLoaded', function() {
+        var langSwitcher = document.querySelector('.top-language-bar .lang-switcher') || document.querySelector('.lang-switcher');
+        if (!langSwitcher) return;
+        var langButton = langSwitcher.querySelector('.lang-current');
+        var isTouch = false;
+        function onFirstTouch(){ isTouch = true; window.removeEventListener('touchstart', onFirstTouch); }
+        window.addEventListener('touchstart', onFirstTouch);
+        function closeMenu(){ langSwitcher.classList.remove('open'); langButton && langButton.setAttribute('aria-expanded', 'false'); }
+        function openMenu(){ langSwitcher.classList.add('open'); langButton && langButton.setAttribute('aria-expanded', 'true'); }
+        function closeMenuOutside(event){ if (!langSwitcher.contains(event.target)) { closeMenu(); } }
+        if (langButton) {
+          langButton.addEventListener('click', function(){
+            var isOpen = langSwitcher.classList.contains('open');
+            if (isOpen) closeMenu(); else openMenu();
+          });
         }
-        
-        /**
-         * Create metro station icon using Istanbul Metro logo
-         */
-        function createMetroIcon() {
-            return L.icon({
-                iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Istanbul_Metro_Logo.svg',
-                iconSize: [24, 24],
-                iconAnchor: [12, 12],
-                popupAnchor: [0, -12],
-                className: 'metro-icon',
-                crossOrigin: 'anonymous'
-            });
-        }
-
-        function createStoreMarker(color, size = 14) {
-            const html = `<div style="width: ${size}px; height: ${size}px; border-radius: 50%; background-color: ${color}; border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3);"></div>`;
-            
-            return L.divIcon({
-                html: html,
-                iconSize: [size + 4, size + 4],
-                iconAnchor: [(size + 4) / 2, (size + 4) / 2],
-                popupAnchor: [0, -(size + 4) / 2 - 8],
-                className: ''
-            });
-        }
-        
-        /**
-         * Fetch and display all data with markers
-         */
-        async function loadData() {
-            try {
-                let data;
-                if (window.INLINE_SIMPLIFIED_DATA) {
-                    data = window.INLINE_SIMPLIFIED_DATA;
-                } else {
-                    const response = await fetch('/api/listings-simplified.geojson');
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    data = await response.json();
-                }
-                
-                if (data.error) {
-                    showError(`Error: ${data.error}`);
-                    return;
-                }
-                
-                if (!data.features || data.features.length === 0) {
-                    document.getElementById('infoPanelContent').innerHTML = '<p class="text-gray-500">No listings found.</p>';
-                    return;
-                }
-                
-                let statsHtml = '';
-                let totalItems = 0;
-                
-                // Process each listing
-                data.features.forEach((feature, listingIndex) => {
-                    const props = feature.properties;
-                    const coord = feature.geometry.coordinates;
-                    
-                    // Add listing marker
-                    const listingMarker = L.marker(
-                        [coord[1], coord[0]],
-                        { icon: createListingMarker(props.image_url) }
-                    ).bindPopup(createListingPopup(props), { maxWidth: 320 });
-                    listingMarkers.addLayer(listingMarker);
-                    allMarkers.push(listingMarker);
-                    totalItems++;
-                    
-                    statsHtml += `<div class="info-section">
-                        <h6 class="info-section-title">Listing ${listingIndex + 1}</h6>
-                        <div class="info-item">
-                            <strong>₺${(props.price || 0).toLocaleString()}</strong> • ${props.size_sqm || 0} m²
-                        </div>`;
-                    
-                    // Add closest metro stations
-                    if (props.closest_stations && props.closest_stations.length > 0) {
-                        statsHtml += `<h6 class="info-section-title mt-2">Stations (${props.closest_stations.length})</h6>`;
-                        props.closest_stations.forEach((station, idx) => {
-                            if (station.location && station.location.coordinates) {
-                                const marker = L.marker(
-                                    [station.location.coordinates[1], station.location.coordinates[0]],
-                                    { icon: createMetroIcon() }
-                                ).bindPopup(`<div class="p-2"><div class="font-bold">🚇 ${station.name}</div><div>${station.distance_m ? (station.distance_m/1000).toFixed(2) : 'N/A'} km</div></div>`);
-                                stationMarkers.addLayer(marker);
-                                allMarkers.push(marker);
-                                totalItems++;
-                            }
-                            statsHtml += `<div class="info-item">${idx + 1}. ${station.name}<br/><small>${station.distance_m ? (station.distance_m/1000).toFixed(2) : 'N/A'} km</small></div>`;
-                        });
-                    }
-                    
-                    // Add closest grocery stores
-                    if (props.closest_grocery_stores && props.closest_grocery_stores.length > 0) {
-                        statsHtml += `<h6 class="info-section-title mt-2">Grocery (${props.closest_grocery_stores.length})</h6>`;
-                        props.closest_grocery_stores.forEach((store, idx) => {
-                            if (store.location && store.location.coordinates) {
-                                const marker = L.marker(
-                                    [store.location.coordinates[1], store.location.coordinates[0]],
-                                    { icon: createStoreMarker('#28a745', 14) }
-                                ).bindPopup(`<div class="p-2"><div class="font-bold">🛒 ${store.name}</div><div>${store.distance_m ? (store.distance_m/1000).toFixed(2) : 'N/A'} km</div></div>`);
-                                groceryMarkers.addLayer(marker);
-                                allMarkers.push(marker);
-                                totalItems++;
-                            }
-                            statsHtml += `<div class="info-item">${idx + 1}. ${store.name}<br/><small>${store.distance_m ? (store.distance_m/1000).toFixed(2) : 'N/A'} km</small></div>`;
-                        });
-                    }
-                    
-                    // Add closest clothing stores
-                    if (props.closest_clothing_stores && props.closest_clothing_stores.length > 0) {
-                        statsHtml += `<h6 class="info-section-title mt-2">Clothing (${props.closest_clothing_stores.length})</h6>`;
-                        props.closest_clothing_stores.forEach((store, idx) => {
-                            if (store.location && store.location.coordinates) {
-                                const marker = L.marker(
-                                    [store.location.coordinates[1], store.location.coordinates[0]],
-                                    { icon: createStoreMarker('#e83e8c', 14) }
-                                ).bindPopup(`<div class="p-2"><div class="font-bold">👕 ${store.name}</div><div>${store.distance_m ? (store.distance_m/1000).toFixed(2) : 'N/A'} km</div></div>`);
-                                clothingMarkers.addLayer(marker);
-                                allMarkers.push(marker);
-                                totalItems++;
-                            }
-                            statsHtml += `<div class="info-item">${idx + 1}. ${store.name}<br/><small>${store.distance_m ? (store.distance_m/1000).toFixed(2) : 'N/A'} km</small></div>`;
-                        });
-                    }
-                    
-                    statsHtml += `</div>`;
-                });
-                
-                // Add all layers to map
-                listingMarkers.addTo(map);
-                stationMarkers.addTo(map);
-                groceryMarkers.addTo(map);
-                clothingMarkers.addTo(map);
-                
-                // Fit map to all markers
-                if (allMarkers.length > 0) {
-                    const group = new L.featureGroup(allMarkers);
-                    map.fitBounds(group.getBounds().pad(0.1));
-                }
-                
-                // Add config info
-                const config = data.config || {};
-                statsHtml += `<div class="info-section">
-                    <h6 class="info-section-title">Configuration</h6>
-                    <div class="info-item">
-                        <strong>Listings:</strong> ${config.num_listings}<br/>
-                        <strong>Stations:</strong> ${config.num_stations}<br/>
-                        <strong>Grocery:</strong> ${config.num_grocery_stores}<br/>
-                        <strong>Clothing:</strong> ${config.num_clothing_stores}
-                    </div>
-                </div>`;
-                statsHtml += `<div class="info-section bg-gray-100 p-2 rounded-lg">
-                    <strong class="text-primary">Total Markers: ${totalItems}</strong>
-                </div>`;
-                
-                document.getElementById('infoPanelContent').innerHTML = statsHtml;
-                document.getElementById('infoPanel').classList.add('is-visible');
-                
-            } catch (error) {
-                console.error('Error loading data:', error);
-                showError(`Failed to load data: ${error.message}`);
-            }
-        }
-        
-        /**
-         * Create detailed popup for listing, adapted from mob view
-         */
-        function createListingPopup(props) {
-            const price = new Intl.NumberFormat('tr-TR').format(props.price);
-            const size = props.size_sqm || 0;
-            
-            // Adapt data from simplified API
-            const closestStation = props.closest_stations && props.closest_stations.length > 0 ? props.closest_stations[0] : null;
-            const dist = closestStation ? Math.round(closestStation.distance_m) : '-';
-            const station = closestStation ? closestStation.name : 'N/A';
-            const groceryCount = props.closest_grocery_stores ? props.closest_grocery_stores.length : 0;
-            const clothingCount = props.closest_clothing_stores ? props.closest_clothing_stores.length : 0;
-
-            let priceClass;
-            if (props.price < 500000) priceClass = 'bg-green-500';
-            else if (props.price < 1500000) priceClass = 'bg-yellow-500';
-            else priceClass = 'bg-red-500';
-
-            // Build image carousel (max 3 images)
-            let imageCarousel = '';
-            const images = props.images || (props.image_url ? [props.image_url] : []);
-            const imagesToShow = images.slice(0, 3);
-            
-            if (imagesToShow.length > 0) {
-                const swiperSlides = imagesToShow.map((img, idx) => 
-                    `<div class="swiper-slide"><img src="${img}" alt="Listing image ${idx + 1}" onerror="this.src='/media/1.png'" /></div>`
-                ).join('');
-                
-                imageCarousel = `
-                    <div class="swiper listing-swiper" data-swiper-index="${Math.random()}">
-                        <div class="swiper-wrapper">
-                            ${swiperSlides}
-                        </div>
-                        ${imagesToShow.length > 1 ? '<div class="swiper-pagination"></div>' : ''}
-                    </div>
-                `;
-            }
-
-            return `
-                <div class="font-sans p-1" style="max-width: 100%; width: 320px;">
-                    ${imageCarousel}
-                    <div class="p-2">
-                        <div class="font-bold text-base text-gray-800">${props.title || 'Listing'}</div>
-                        <div class="mt-2 flex items-center justify-between">
-                            <span class="text-xl font-extrabold text-primary">${price} TL</span>
-                            <span class="inline-block px-2 py-1 text-xs font-semibold rounded-full text-white ${priceClass}">${size} m²</span>
-                        </div>
-                        <hr class="my-2 border-gray-200" />
-                        <div class="text-sm space-y-1">
-                            <div class="flex items-center">
-                                <span class="font-semibold text-gray-600 w-20">Transit:</span> 
-                                <span class="text-sm">${dist}m to ${station}</span>
-                            </div>
-                            <div class="flex items-center">
-                                <span class="font-semibold text-gray-600 w-20">Amenities:</span> 
-                                <span class="text-sm">🛒 ${groceryCount}, 👕 ${clothingCount}</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-        
-        /**
-         * Show error message
-         */
-        function showError(message) {
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'error-message';
-            errorDiv.innerHTML = `
-                <strong>⚠️ Error</strong>
-                <p>${message}</p>
-            `;
-            document.body.appendChild(errorDiv);
-            console.error(message);
-        }
-        
-        // Load data when page is ready
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggleBtn = document.getElementById('toggleInfoPanel');
-            const infoPanel = document.getElementById('infoPanel');
-
-            toggleBtn.addEventListener('click', () => {
-                infoPanel.classList.toggle('is-visible');
-            });
-
-            loadData();
-        });
-        
-        // Initialize Swiper carousels for popups
-        function initializePopupSwiper() {
-            setTimeout(() => {
-                const swipers = document.querySelectorAll('.listing-swiper');
-                swipers.forEach(swiperEl => {
-                    if (!swiperEl.swiper) {
-                        new Swiper(swiperEl, {
-                            loop: swiperEl.querySelectorAll('.swiper-slide').length > 1,
-                            pagination: {
-                                el: swiperEl.querySelector('.swiper-pagination'),
-                                clickable: true,
-                                dynamicBullets: true
-                            },
-                        });
-                    }
-                });
-            }, 100);
-        }
-
-        // Hook into Leaflet popup events to initialize Swiper when popup opens
-        map.on('popupopen', function() {
-            initializePopupSwiper();
-        });
+        // Hover disabled on desktop; click only
+        document.addEventListener('click', closeMenuOutside);
+        window.addEventListener('unload', function(){ document.removeEventListener('click', closeMenuOutside); });
+      });
     </script>
-</body>
-</html>
+
+    <style>
+      .page-loader { position: fixed; inset: 0; background: #000; display: flex; align-items: center; justify-content: center; z-index: 2147483000; opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s ease; }
+      .page-loader.active { opacity: 1; visibility: visible; }
+      .loader-video { width: 100%; height: 100%; object-fit: cover; }
+    </style>
+
+    <script>
+      (function(){
+        var loader = document.getElementById('page-loader');
+        var video = document.getElementById('loaderVideo');
+        var SMALL_SRC = '/static/loader-sm-white-faster.mp4';
+        var BIG_SRC = '/static/loader-bg-white.mp4';
+
+        function pickSrc(){
+          try {
+            return (window.matchMedia && window.matchMedia('(max-width: 767px)').matches) ? SMALL_SRC : BIG_SRC;
+          } catch(e){ return BIG_SRC; }
+        }
+
+        function setVideoSource(){
+          var desired = pickSrc();
+          if (video.getAttribute('src') !== desired) {
+            video.setAttribute('src', desired);
+            try { video.load(); } catch(e){}
+          }
+        }
+
+        function showLoader(){
+          setVideoSource();
+          if (!loader.classList.contains('active')) loader.classList.add('active');
+          loader.setAttribute('aria-hidden', 'false');
+          // Hide when video ends (bind per-show)
+          var onEnd = function(){ hideLoader(); };
+          video.addEventListener('ended', onEnd, { once: true });
+          // Attempt autoplay; muted set to satisfy policies
+          try { video.currentTime = 0; video.play().catch(function(){ /* ignore */ }); } catch(e){}
+        }
+
+        function hideLoader(){
+          loader.classList.remove('active');
+          loader.setAttribute('aria-hidden', 'true');
+          try { video.pause(); } catch(e){}
+        }
+
+        // Initial load: show for full video duration
+        document.addEventListener('DOMContentLoaded', function(){
+          showLoader();
+        });
+
+        // Barba.js page transitions
+        document.addEventListener('DOMContentLoaded', function(){
+          if (!window.barba) return;
+          barba.init({
+            transitions: [{
+              name: 'video-loader',
+              leave() {
+                // Fade in loader then proceed; hide on video end only
+                showLoader();
+                return new Promise(function(res){ setTimeout(res, 250); });
+              },
+              enter() {
+                // Let the overlay stay until the video ends (handled globally)
+              }
+            }]
+          });
+        });
+
+        // Keep source in sync on resize/orientation changes
+        window.addEventListener('resize', function(){
+          var current = video.getAttribute('src');
+          var desired = pickSrc();
+          if (current !== desired) setVideoSource();
+        });
+      })();
+    </script>
+
+    <script>
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", {origin:"https://cal.com"});
+
+  // This instructs Cal.com to look for clicks on elements with the 'data-cal-link' attribute
+  Cal("ui", {"theme":"dark", "styles":{"branding":{"brandColor":"#000000"}}, "hideEventTypeDetails":false, "layout":"month_view"});
+</script>
+
+    
+
+
+<style>
+  /* WhatsApp widget styles (inlined for efficiency) */
+  .WA_Chat_Widget *{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",sans-serif}
+  .WA_Chat_Widget .WA_FloatingButton{position:fixed;width:70px;height:70px;display:flex;justify-content:center;align-items:center;box-shadow:0 4px 10px 0 rgba(0,0,0,.185);border-radius:50%;background:#fff;cursor:pointer;z-index:1000}
+  .WA_Chat_Widget .WA_FloatingButton svg{width:40px;height:40px;fill:#4fce5d}
+  .WA_Chat_Widget[data-position^="top-"] .WA_FloatingButton{top:20px}
+  .WA_Chat_Widget[data-position^="bottom-"] .WA_FloatingButton{bottom:20px}
+  .WA_Chat_Widget[data-position$="-left"] .WA_FloatingButton{left:20px}
+  .WA_Chat_Widget[data-position$="-right"] .WA_FloatingButton{right:20px}
+  .WA_Chat_Widget[data-position$="-center"] .WA_FloatingButton{left:50%;transform:translateX(-50%)}
+  .WA_Chat_Widget[data-position^="top-"] .WA_ChatBox{top:110px}
+  .WA_Chat_Widget[data-position^="bottom-"] .WA_ChatBox{bottom:110px}
+  .WA_Chat_Widget[data-position$="-left"] .WA_ChatBox{left:30px}
+  .WA_Chat_Widget[data-position$="-right"] .WA_ChatBox{right:30px}
+  .WA_Chat_Widget[data-position$="-center"] .WA_ChatBox{left:50%;transform:translateX(-50%)}
+  .WA_Chat_Widget .WA_ChatBox{position:fixed;width:360px;height:auto;overflow:hidden;border-radius:8px;background-color:#fff;box-shadow:0 5px 25px 0 rgba(0,0,0,.1);display:none;z-index:9999}
+  .WA_Chat_Widget .WA_ChatBox[style*="display: block"] {z-index:99999}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header{width:auto;background:#095e54;padding:20px;display:flex;justify-content:flex-start;align-items:center;flex-wrap:wrap;gap:20px}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header .avatarBox{width:65px;height:65px;border-radius:50%;overflow:hidden}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header .avatarBox img{width:100%;height:100%;object-fit:cover}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header .infoBox .name{color:#fff;font-weight:600}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header .infoBox .answer_time{color:#e4e4e4;font-size:14px}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header .WA_Close{background:transparent;color:#fff;border:none;outline:none;font-size:20px;position:absolute;top:10px;right:10px;cursor:pointer}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header .WA_Close svg{fill:#fff}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Body{padding:20px;background:#e6ddd4;position:relative}
+  /* Background pattern removed to avoid missing asset */
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Body .message{max-width:280px;background:#fff;padding:20px 20px 10px;border-radius:8px;z-index:1;position:relative}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Body .message::before{content:"";position:absolute;width:20px;height:20px;background:#fff;left:-10px;top:0;border-radius:3px;clip-path:polygon(100% 0,0 0,100% 100%)}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Body .message .username{color:darkgray;font-weight:500}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Body .message .message_content{font-size:14px;color:#000}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Footer{padding:20px;background-color:#fff;width:100%}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Footer .btn{width:100%;outline:none;border:none;padding:10px;border-radius:1000px;font-size:16px;cursor:pointer;text-decoration:none}
+  .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Footer .btn.btn-whatsapp{background:#095e54;color:#fff;display:block;text-align:center}
+
+  /* Responsive styles for small screens */
+  @media screen and (max-width: 480px) {
+    .WA_Chat_Widget .WA_ChatBox {
+      width: 300px;
+      margin: 0 10px;
+    }
+    .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header {
+      padding: 15px;
+      gap: 10px;
+    }
+    .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Header .avatarBox {
+      width: 50px;
+      height: 50px;
+    }
+    .WA_Chat_Widget .WA_ChatBox .WA_ChatBox_Body .message {
+      max-width: 230px;
+    }
+    .WA_Chat_Widget .WA_FloatingButton {
+      width: 60px;
+      height: 60px;
+    }
+    .WA_Chat_Widget .WA_FloatingButton svg {
+      width: 35px;
+      height: 35px;
+    }
+    .WA_Chat_Widget[data-position$="-left"] .WA_FloatingButton,
+    .WA_Chat_Widget[data-position$="-right"] .WA_FloatingButton {
+      bottom: 15px;
+    }
+    .WA_Chat_Widget[data-position$="-left"] .WA_ChatBox,
+    .WA_Chat_Widget[data-position$="-right"] .WA_ChatBox {
+      left: 50%;
+      transform: translateX(-50%);
+      right: auto;
+      bottom: 90px;
+    }
+  }
+</style>
+
+<div class="WA_Chat_Widget" data-position="bottom-right" aria-live="polite">
+  <div class="WA_ChatBox" role="dialog" aria-label="WhatsApp Chat">
+    <div class="WA_ChatBox_Header">
+      <div class="avatarBox">
+        <img src="/static/newfront/assets/images/property-01.jpg" alt="Chat avatar">
+      </div>
+      <div class="infoBox">
+        <h4 class="name">Lotfi Kanouni</h4>
+        <span class="answer_time">Typically replies within a day</span>
+      </div>
+      <button class="WA_Close" type="button" aria-label="Close chat" onclick="(function(){var el=document.querySelector('.WA_Chat_Widget .WA_ChatBox'); if(el){el.style.display='none';}})()">
+        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+          <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s-9.4-24.6 0-33.9l-47-47 47-47c-9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"/>
+        </svg>
+      </button>
+    </div>
+    <div class="WA_ChatBox_Body">
+      <div class="message">
+        <h4 class="username">Lotfi Kanouni</h4>
+        <div class="message_content">
+          <p>Hey There, How can I help you?</p>
+        </div>
+      </div>
+    </div>
+    <div class="WA_ChatBox_Footer">
+      <a class="btn btn-whatsapp" href="http://wa.me/905380546393" target="_blank" rel="noopener">Start Chat</a>
+    </div>
+  </div>
+  <div class="WA_FloatingButton" role="button" tabindex="0" aria-label="Open WhatsApp chat" onclick="(function(){var el=document.querySelector('.WA_Chat_Widget .WA_ChatBox'); if(el){el.style.display=(el.style.display==='block'?'none':'block');}})()" onkeydown="(function(e){if(e.key==='Enter' || e.key===' '){var el=document.querySelector('.WA_Chat_Widget .WA_ChatBox'); if(el){el.style.display=(el.style.display==='block'?'none':'block');} e.preventDefault();}})(event)">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#4FCE5D" viewBox="0 0 90 90">
+      <path d="M90 43.841c0 24.213-19.779 43.841-44.182 43.841a44.256 44.256 0 01-21.357-5.455L0 90l7.975-23.522a43.38 43.38 0 01-6.34-22.637C1.635 19.628 21.416 0 45.818 0 70.223 0 90 19.628 90 43.841zM45.818 6.982c-20.484 0-37.146 16.535-37.146 36.859 0 8.065 2.629 15.534 7.076 21.61L11.107 79.14l14.275-4.537A37.122 37.122 0 0045.819 80.7c20.481 0 37.146-16.533 37.146-36.857S66.301 6.982 45.818 6.982zm22.311 46.956c-.273-.447-.994-.717-2.076-1.254-1.084-.537-6.41-3.138-7.4-3.495-.993-.358-1.717-.538-2.438.537-.721 1.076-2.797 3.495-3.43 4.212-.632.719-1.263.809-2.347.271-1.082-.537-4.571-1.673-8.708-5.333-3.219-2.848-5.393-6.364-6.025-7.441-.631-1.075-.066-1.656.475-2.191.488-.482 1.084-1.255 1.625-1.882.543-.628.723-1.075 1.082-1.793.363-.717.182-1.344-.09-1.883-.27-.537-2.438-5.825-3.34-7.977-.902-2.15-1.803-1.792-2.436-1.792-.631 0-1.354-.09-2.076-.09s-1.896.269-2.889 1.344c-.992 1.076-3.789 3.676-3.789 8.963 0 5.288 3.879 10.397 4.422 11.113.541.716 7.49 11.92 18.5 16.223C58.2 65.771 58.2 64.336 60.186 64.156c1.984-.179 6.406-2.599 7.312-5.107.9-2.512.9-4.663.631-5.111z"></path>
+    </svg>
+  </div>
+</div>
+
+    
+  </body>
+ </html>

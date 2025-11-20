@@ -43,7 +43,7 @@
                 </a>
                 <span class="category">{{ listing.property_type }}</span>
                 {% if listing.deal_type %}<span class="category">{{ listing.deal_type|title }}</span>{% endif %}
-                <h6>₦{{ listing.price|intcomma }}</h6>
+                <h6>₺{{ listing.price|intcomma }}</h6>
                 <h4>
                   <a href="{% url 'new_listing_detail' listing.id %}">{{ listing.title }}</a>
                 </h4>
@@ -71,25 +71,60 @@
         <div class="col-lg-12">
           {% if listings.has_other_pages %}
             <ul class="pagination">
-              {% if listings.has_previous %}
-                <li><a href="?page={{ listings.previous_page_number }}">&laquo;</a></li>
-              {% else %}
-                <li class="disabled"><a>&laquo;</a></li>
-              {% endif %}
-
-              {% for i in listings.paginator.page_range %}
-                {% if listings.number == i %}
-                  <li><a class="is_active" href="?page={{ i }}">{{ i }}</a></li>
+              {% with cur=listings.number last=listings.paginator.num_pages %}
+                {# Prev #}
+                {% if listings.has_previous %}
+                  {% with prev=listings.previous_page_number %}
+                    <li>
+                      <a href="{% if prev == 1 %}{% url 'new_properties' %}{% else %}{% url 'new_properties_page' prev %}{% endif %}">&laquo;</a>
+                    </li>
+                  {% endwith %}
                 {% else %}
-                  <li><a href="?page={{ i }}">{{ i }}</a></li>
+                  <li class="disabled"><a>&laquo;</a></li>
                 {% endif %}
-              {% endfor %}
 
-              {% if listings.has_next %}
-                <li><a href="?page={{ listings.next_page_number }}">&raquo;</a></li>
-              {% else %}
-                <li class="disabled"><a>&raquo;</a></li>
-              {% endif %}
+                {# First page #}
+                <li><a class="{% if cur == 1 %}is_active{% endif %}" href="{% url 'new_properties' %}">1</a></li>
+
+                {# Left ellipsis if needed (show when cur > 4) #}
+                {% if cur|add:'-3' > 1 %}
+                  <li class="disabled"><a>&hellip;</a></li>
+                {% endif %}
+
+                {# Window pages: from max(2, cur-2) to min(last-1, cur+2) #}
+                {% for i in listings.paginator.page_range %}
+                  {% if i > 1 and i < last %}
+                    {% if i >= cur|add:'-2' and i <= cur|add:'2' %}
+                      <li>
+                        <a class="{% if cur == i %}is_active{% endif %}" href="{% url 'new_properties_page' i %}">{{ i }}</a>
+                      </li>
+                    {% endif %}
+                  {% endif %}
+                {% endfor %}
+
+                {# Right ellipsis if needed (show when cur < last-3) #}
+                {% if cur|add:'3' < last %}
+                  <li class="disabled"><a>&hellip;</a></li>
+                {% endif %}
+
+                {# Last page (if more than one) #}
+                {% if last > 1 %}
+                  <li>
+                    <a class="{% if cur == last %}is_active{% endif %}" href="{% url 'new_properties_page' last %}">{{ last }}</a>
+                  </li>
+                {% endif %}
+
+                {# Next #}
+                {% if listings.has_next %}
+                  {% with next=listings.next_page_number %}
+                    <li>
+                      <a href="{% if next == 1 %}{% url 'new_properties' %}{% else %}{% url 'new_properties_page' next %}{% endif %}">&raquo;</a>
+                    </li>
+                  {% endwith %}
+                {% else %}
+                  <li class="disabled"><a>&raquo;</a></li>
+                {% endif %}
+              {% endwith %}
             </ul>
           {% endif %}
         </div>

@@ -1,6 +1,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,7 +26,7 @@
     <link rel="stylesheet" href="/static/newfront/assets/css/typing-effect.css">
 
     
-
+    
     
 <style>
   /* Page-specific polish for financing page */
@@ -43,6 +44,36 @@
   }
 </style>
 
+    
+      <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&amp;display=swap" rel="stylesheet">
+    
+    
+    <!-- Dynamic theme overrides from admin -->
+    <style>
+      :root{
+        --theme-primary: #a38344;
+        --theme-accent: #a38344;
+        --theme-bg: #ffffff;
+        --theme-text: #1e1e1e;
+        --theme-font: Funnel Display, sans\u002Dserif;
+      }
+      html, body{ font-family: var(--theme-font) !important; color: var(--theme-text); }
+      body{ background-color: var(--theme-bg); }
+      ::selection{ background: var(--theme-accent); color:#fff; }
+      /* Accent / primary overrides */
+      .icon-button a i{ background-color: var(--theme-primary) !important; }
+      .main-button a:hover{ background-color: var(--theme-primary) !important; }
+      .properties .item h6{ color: var(--theme-primary) !important; }
+      .main-banner .owl-dots .active{ background-color: var(--theme-primary) !important; }
+      .sub-header ul.social-links li a:hover{ background-color: var(--theme-primary) !important; }
+      .single-property .accordion-button:not(.collapsed){ color: var(--theme-primary) !important; }
+      .properties ul.pagination li a:hover,
+      .properties ul.pagination li a.is_active{ background-color: var(--theme-primary) !important; }
+      .properties .item span.category{ background-color: color-mix(in srgb, var(--theme-primary) 30%, white) !important; }
+      a{ color: inherit; }
+      
+    </style>
+    
     <style>
       /* Language switcher styles (global) */
       .top-language-bar { position: relative; z-index: 1000; background: #fff; }
@@ -73,16 +104,9 @@
     </style>
   </head>
   <body>
-    <!-- Preloader -->
-    <div id="js-preloader" class="js-preloader">
-      <div class="preloader-inner">
-        <span class="dot"></span>
-        <div class="dots">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+    <!-- Page Loader (Barba.js + responsive video) -->
+    <div id="page-loader" class="page-loader" aria-hidden="true">
+      <video id="loaderVideo" class="loader-video" muted playsinline preload="auto"></video>
     </div>
 
     <!-- Global Language Switcher (top-centered, outside nav) 
@@ -94,13 +118,13 @@
           
           <div class="lang-switcher" data-lang-current="ar">
             
-              <button type="button" class="lang-current" aria-haspopup="true" aria-expanded="false" aria-label="اختر اللغة">
+              <button type="button" class="lang-current" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
                 <img class="flag" src="/static/flags/ar.svg" alt="ar">
                 <span class="code">AR</span>
                 <span class="chev" aria-hidden="true">▾</span>
               </button>
             
-            <div class="lang-menu" role="menu" aria-label="اللغات المتاحة">
+            <div class="lang-menu" role="menu" aria-label="Available languages">
               
               
                 
@@ -261,13 +285,13 @@
         <div class="top-language-inner">
           <div class="lang-switcher" data-lang-current="ar">
             
-              <button type="button" class="lang-current" aria-haspopup="true" aria-expanded="false" aria-label="اختر اللغة">
+              <button type="button" class="lang-current" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
                 <img class="flag" src="/static/flags/ar.svg" alt="ar">
                 <span class="code">AR</span>
                 <span class="chev" aria-hidden="true">▾</span>
               </button>
             
-            <div class="lang-menu" role="menu" aria-label="اللغات المتاحة">
+            <div class="lang-menu" role="menu" aria-label="Available languages">
               
                 
                   <div class="lang-item">
@@ -420,21 +444,27 @@
         <div class="row">
           <div class="col-12">
             <nav class="main-nav">
-              <a href="/ar/new/" class="logo"><h3>KUZEY EMLAK</h3></a>
+                          <a href="/ar/new/" class="logo" style="display:flex; align-items:center; justify-content:center; width:220px; height:50px; text-decoration:none;margin-top:15px;">
+                <img src="/static/logo.png" alt="Logo" style="max-height:50px; width:auto; display:block;" />
+              </a>
               <ul class="nav">
                 <li><a href="/ar/new/" class="">الرئيسية</a></li>
-                <li><a href="/ar/new/properties/" class="">العقارات</a></li>
-                <li><a href="/ar/new/map/" class="">الخريطة</a></li>
+                <li><a href="/ar/new/properties/" class="">Properties</a></li>
+                <li><a href="/ar/new/map/" class="">Map</a></li>
                     <!-- Property Details 
 
-                <li><a href="/ar/new/properties/" class="">تفاصيل العقار</a></li>    -->
+                <li><a href="/ar/new/properties/" class="">Property Details</a></li>    -->
 
-                <li><a href="/ar/new/contact/" class="">اتصل بنا</a></li>
-                <li><a href="/ar/new/financing/" class="active">التمويل</a></li>
+                <li><a href="/ar/new/contact/" class="">Contact Us</a></li>
+                <li><a href="/ar/new/financing/" class="active">Financing</a></li>
 
                 <!-- Keep CTA as last-child styling -->
-                <li><a href="https://cal.com/hasan-gun-saqvh6"><i class="fa fa-calendar"></i> حدد موعد زيارة</a></li>
-              </ul>
+<li>
+    <a href="#" data-cal-link="hasan-gun-saqvh6" data-cal-config='{"layout":"month_view"}'>
+        <i class="fa fa-calendar" style="margin-right:5px;padding-right:5px;"></i> 
+        Schedule a visit
+    </a>
+</li>              </ul>
               <a class="menu-trigger"><span>Menu</span></a>
             </nav>
           </div>
@@ -442,13 +472,15 @@
       </div>
     </header>
 
-    
+    <div data-barba="wrapper">
+      <main data-barba="container" data-barba-namespace="page">
+        
   <div class="page-heading header-text">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <span class="breadcrumb"><a href="/ar/new/">الرئيسية</a> / الخدمات المصرفية في تركيا</span>
-          <h3>الخدمات المصرفية والرهون العقارية لشراء العقارات في تركيا</h3>
+          <span class="breadcrumb"><a href="/ar/new/">الرئيسية</a> / Banking in Turkey</span>
+          <h3>Banking & Mortgages for Buying Property in Turkey</h3>
         </div>
       </div>
     </div>
@@ -456,47 +488,47 @@
   <div class="section properties">
     <div class="container">
       <ul class="properties-filter">
-        <li><a class="is_active" href="#!" data-filter="*">عرض الكل</a></li>
-        <li><a href="#!" data-filter=".adv">شقة</a></li>
-        <li><a href="#!" data-filter=".str">فيلا</a></li>
-        <li><a href="/ar/new/map/" >الخريطة</a></li>
+        <li><a class="is_active" href="#!" data-filter="*">Show All</a></li>
+        <li><a href="#!" data-filter=".adv">Apartment</a></li>
+        <li><a href="#!" data-filter=".str">Villa House</a></li>
+        <li><a href="/ar/new/map/" >Map</a></li>
       </ul>
              
 
 
-<section class="loan-calculator card p-4" id="loan-calculator" aria-label="حاسبة قرض المنزل">
-  <h3 class="mb-3">حاسبة قرض المنزل</h3>
-  <p class="text-muted mb-4">احسب الدفعة الشهرية واعرض جدول الإهلاك.</p>
+<section class="loan-calculator card p-4" id="loan-calculator" aria-label="Home Loan Calculator">
+  <h3 class="mb-3">Home Loan Calculator</h3>
+  <p class="text-muted mb-4">Estimate your monthly payment and view an amortization schedule.</p>
 
   <div class="row g-3 align-items-end">
     <div class="col-md-6">
-      <label for="lc-amount" class="form-label">مبلغ القرض (₺)</label>
+      <label for="lc-amount" class="form-label">Loan Amount (₺)</label>
       <div class="d-flex align-items-center gap-2">
-        <input type="range" class="form-range flex-grow-1" id="lc-amount-range" min="10000" max="20000000" step="1000" value="500000" aria-label="شريط تمرير مبلغ القرض">
+        <input type="range" class="form-range flex-grow-1" id="lc-amount-range" min="10000" max="20000000" step="1000" value="500000" aria-label="Loan amount slider">
         <input type="text" class="form-control" id="lc-amount" value="500000" inputmode="numeric" aria-describedby="lc-amount-help" autocomplete="off" spellcheck="false">
       </div>
-      <div id="lc-amount-help" class="form-text">اسحب شريط التمرير أو أدخل قيمة.</div>
+      <div id="lc-amount-help" class="form-text">Drag the slider or type a value.</div>
     </div>
 
     <div class="col-md-3">
-      <label for="lc-term" class="form-label">المدة (أشهر)</label>
+      <label for="lc-term" class="form-label">Term (months)</label>
       <div class="d-flex align-items-center gap-2">
-        <input type="range" class="form-range flex-grow-1" id="lc-term-range" min="12" max="240" step="1" value="120" aria-label="شريط تمرير المدة">
+        <input type="range" class="form-range flex-grow-1" id="lc-term-range" min="12" max="240" step="1" value="120" aria-label="Term slider">
         <input type="text" class="form-control" id="lc-term" value="120" inputmode="numeric" autocomplete="off" spellcheck="false">
       </div>
     </div>
 
     <div class="col-md-3">
-      <label for="lc-rate" class="form-label">سعر الفائدة (%)</label>
+      <label for="lc-rate" class="form-label">Interest Rate (%)</label>
       <div class="input-group">
         <span class="input-group-text">%</span>
         <input type="text" class="form-control" id="lc-rate" value="3,25" inputmode="decimal" aria-describedby="lc-rate-help" autocomplete="off" spellcheck="false" placeholder="3,25">
       </div>
-      <div id="lc-rate-help" class="form-text">الفائدة الاسمية السنوية.</div>
+      <div id="lc-rate-help" class="form-text">Annual nominal interest.</div>
     </div>
 
     <div class="col-12 d-flex justify-content-end mt-2">
-      <button type="button" class="btn btn-primary" id="lc-calc-btn">احسب</button>
+      <button type="button" class="btn btn-primary" id="lc-calc-btn">Calculate</button>
     </div>
   </div>
 
@@ -505,29 +537,29 @@
   <div id="lc-results" class="row g-3" aria-live="polite">
     <div class="col-md-4">
       <div class="p-3 border rounded-3 bg-light h-100">
-        <div class="small text-muted">الدفعة الشهرية</div>
+        <div class="small text-muted">Monthly Payment</div>
         <div class="fs-4 fw-semibold" id="lc-monthly">—</div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="p-3 border rounded-3 bg-light h-100">
-        <div class="small text-muted">إجمالي الفوائد</div>
+        <div class="small text-muted">Total Interest</div>
         <div class="fs-5" id="lc-total-interest">—</div>
       </div>
     </div>
     <div class="col-md-4">
       <div class="p-3 border rounded-3 bg-light h-100">
-        <div class="small text-muted">إجمالي المدفوع</div>
+        <div class="small text-muted">Total Paid</div>
         <div class="fs-5" id="lc-total-paid">—</div>
       </div>
     </div>
   </div>
 
   <div class="d-flex justify-content-between align-items-center mt-4">
-    <h5 class="mb-0">جدول الإهلاك</h5>
+    <h5 class="mb-0">Amortization Schedule</h5>
     <div class="d-flex gap-2">
-      <button class="btn btn-outline-secondary btn-sm" id="lc-toggle-table" type="button">إظهار/إخفاء</button>
-      <button class="btn btn-outline-primary btn-sm" id="lc-download-csv" type="button">تنزيل CSV</button>
+      <button class="btn btn-outline-secondary btn-sm" id="lc-toggle-table" type="button">Show/Hide</button>
+      <button class="btn btn-outline-primary btn-sm" id="lc-download-csv" type="button">Download CSV</button>
     </div>
   </div>
 
@@ -536,10 +568,10 @@
       <thead>
         <tr>
           <th scope="col">#</th>
-          <th scope="col" class="text-end">الدفع</th>
-          <th scope="col" class="text-end">الأصل</th>
-          <th scope="col" class="text-end">الفائدة</th>
-          <th scope="col" class="text-end">الرصيد</th>
+          <th scope="col" class="text-end">Payment</th>
+          <th scope="col" class="text-end">Principal</th>
+          <th scope="col" class="text-end">Interest</th>
+          <th scope="col" class="text-end">Balance</th>
         </tr>
       </thead>
       <tbody id="lc-tbody"></tbody>
@@ -564,11 +596,11 @@
 
     // i18n strings for JS-generated content
     const i18n = {
-      payment: "الدفع",
-      principal: "الأصل",
-      interest: "الفائدة",
-      balance: "الرصيد",
-      csvName: "الإهلاك",
+      payment: "Payment",
+      principal: "Principal",
+      interest: "Interest",
+      balance: "Balance",
+      csvName: "amortization",
     };
 
     const el = {
@@ -727,101 +759,101 @@
     <div class="container">
       <div class="row">
           <div class="section-heading">
-            <h6>| نظرة عامة</h6>
-            <h2>كيف يعمل التمويل لشراء العقارات في تركيا</h2>
+            <h6>| Overview</h6>
+            <h2>How financing works for property purchases in Turkey</h2>
           </div>
           <p>
-            توفر تركيا رهونًا عقارية بنكية وخطط أقساط من المطورين لكلٍ من المقيمين والمشترين الأجانب. تختلف الشروط والمستندات والمبالغ القصوى حسب البنك وملف المشتري وتقييم العقار. فيما يلي ملخص عملي لمساعدتك على الاستعداد.
+            Turkey offers bank mortgages and developer installments for both residents and foreign buyers. Terms, documentation, and maximum loan amounts vary by bank, buyer profile, and property valuation. Below is a practical summary to help you prepare.
           </p>
 
-          <h4 class="mt-4">من يمكنه التقديم</h4>
+          <h4 class="mt-4">Who can apply</h4>
           <ul>
-            <li>المواطنون والمقيمون الأتراك: خيارات وشروط مصرفية واسعة.</li>
-            <li>المشترون الأجانب: تتوفر الرهون العقارية لدى بعض البنوك، وفقًا للتقييم والسياسة المحلية.</li>
+            <li>Turkish citizens and residents: broad bank options and terms.</li>
+            <li>Foreign buyers: mortgages are available at selected banks, subject to valuation and local policy.</li>
           </ul>
 
-          <h4 class="mt-4">شروط القرض النموذجية</h4>
+          <h4 class="mt-4">Typical loan terms</h4>
           <ul>
-            <li>العملة: غالبًا قروض مقومة بالليرة التركية؛ القروض بالعملات الأجنبية محدودة.</li>
-            <li>المدة: عادة 5–10 سنوات حسب البنك والملف.</li>
-            <li>نسبة القرض إلى القيمة (LTV): تُحدد بتقييم البنك؛ غالبًا ما يحصل الأجانب على نسب أقل من المقيمين.</li>
-            <li>الفائدة: تختلف حسب البنك والسوق؛ اطلب عرضًا محدثًا.</li>
+            <li>Currency: mostly TRY-denominated mortgages; FX loans are limited.</li>
+            <li>Tenor: commonly 5–10 years depending on bank and profile.</li>
+            <li>Loan-to-Value (LTV): determined by the bank’s appraisal; foreigners often qualify for lower LTVs than residents.</li>
+            <li>Interest: variable by bank and market; request an up-to-date quote.</li>
           </ul>
 
-          <h4 class="mt-4">المستندات المطلوبة (الشائعة)</h4>
+          <h4 class="mt-4">Required documents (common)</h4>
           <ul>
-            <li>جواز السفر/الهوية وصورة بيومترية</li>
-            <li>الرقم الضريبي التركي (Vergi Numarası)</li>
-            <li>إثبات الدخل (قسائم الرواتب، الإقرارات الضريبية، كشوف الحساب البنكي)</li>
-            <li>إثبات العنوان (فاتورة خدمات أو مستند إقامة)</li>
-            <li>تقرير تقييم العقار (تقييم SPK) عبر البنك</li>
+            <li>Passport/ID and biometric photo</li>
+            <li>Turkish tax number (Vergi Numarası)</li>
+            <li>Proof of income (salary slips, tax returns, bank statements)</li>
+            <li>Address proof (utility bill or residency document)</li>
+            <li>Property appraisal report (SPK valuation) arranged via bank</li>
           </ul>
 
-          <h4 class="mt-4">العملية باختصار</h4>
+          <h4 class="mt-4">Process at a glance</h4>
           <ol>
-            <li>ما قبل التأهيل: ناقش الميزانية، ونسبة LTV، والأسعار التقديرية مع البنك.</li>
-            <li>افتح حسابًا بنكيًا تركيًا واحصل على رقم ضريبي إن لم يكن لديك.</li>
-            <li>قدّم المستندات؛ يطلب البنك تقييماً مستقلاً للعقار.</li>
-            <li>الموافقة النهائية: يحدد مبلغ القرض بناءً على تقرير التقييم.</li>
-            <li>التوقيع والصرف: عادة ما يُطلب تأمين الزلازل (DASK) قبل نقل الملكية.</li>
+            <li>Pre-qualification: discuss budget, LTV, and estimated rates with the bank.</li>
+            <li>Open a Turkish bank account and obtain a tax number if you don’t have one.</li>
+            <li>Submit documents; bank orders independent valuation of the property.</li>
+            <li>Final approval: the loan amount is set based on the valuation report.</li>
+            <li>Signing and disbursement: earthquake insurance (DASK) is typically required before deed transfer.</li>
           </ol>
 
-          <h4 class="mt-4">الرسوم والمتطلبات الإلزامية</h4>
+          <h4 class="mt-4">Fees and mandatory items</h4>
           <ul>
-            <li>رسوم التقييم</li>
-            <li>رسوم فتح/معالجة القرض (تختلف حسب البنك)</li>
-            <li>تأمين الزلازل DASK (إلزامي) وتأمين العقار</li>
-            <li>ضرائب سند الملكية وأتعاب الكاتب بالعدل (تدفع عند النقل)</li>
+            <li>Appraisal (valuation) fee</li>
+            <li>Loan allocation/processing fee (varies by bank)</li>
+            <li>DASK earthquake insurance (mandatory) and property insurance</li>
+            <li>Title deed taxes and notary fees (paid at transfer)</li>
           </ul>
 
-          <h4 class="mt-4">التحويلات المالية</h4>
+          <h4 class="mt-4">Money transfers</h4>
           <p>
-            يموّل المشترون الدوليون عادة الدفعة الأولى والإغلاق عبر تحويلات SWIFT بالعملة الأجنبية. قد تطلب البنوك مستندات مصدر الأموال. تتم تحويلات العملة ووثائق الدفع لمكتب السجل بالتنسيق مع بنكك وكاتب العدل.
+            International buyers typically fund down payments and closing via SWIFT transfers in foreign currency. Banks may request source-of-funds documentation. Currency conversion and payment documentation for the title office are handled in coordination with your bank and notary.
           </p>
 
-          <h4 class="mt-4">بدائل الرهن العقاري البنكي</h4>
+          <h4 class="mt-4">Alternatives to bank mortgages</h4>
           <ul>
-            <li>خطط أقساط المطوّر: دفعات مرحلية أثناء البناء أو جداول قصيرة بعد التسليم.</li>
-            <li>قروض شخصية أو تمويل مقابل المنزل في بلدك (إن وُجد).</li>
+            <li>Developer installment plans: staged payments during constrinsuction or short-term post-handover schedules.</li>
+            <li>Personal loans or home equity from your home country (if applicable).</li>
           </ul>
 
           <div class="mt-5 p-4 info-box">
-            <h4 class="mb-3">بنوك شائعة يُنصح بالنظر فيها</h4>
-            <p class="mb-2">أهم المؤسسات النشطة في الرهون العقارية للأفراد تشمل:</p>
+            <h4 class="mb-3">Popular banks to consider</h4>
+            <p class="mb-2">Major institutions active in retail mortgages include:</p>
             <ul class="mb-0">
               <li>Ziraat Bankası, VakıfBank, Halkbank</li>
               <li>İşbank, Garanti BBVA, Akbank, Yapı Kredi</li>
             </ul>
-            <small class="d-block mt-2 text-muted">تختلف الإتاحة والشروط للمشترين الأجانب حسب الفرع والسياسة؛ يرجى التأكيد محليًا.</small>
+            <small class="d-block mt-2 text-muted">Availability and terms for foreign buyers vary by branch and policy; please confirm locally.</small>
           </div>
           
                               <!-- ON hOLD FOR NOW - Property Details 
 
           
           <div class="section-heading mt-5">
-            <h6>| ذات صلة</h6>
-            <h2>عقارات مميزة يمكنك تمويلها</h2>
+            <h6>| Related</h6>
+            <h2>Featured properties you can finance</h2>
           </div>
           <div class="row properties-box">
             
               <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
                 <div class="item">
-                  <a href="/ar/new/listing/1/">
-                    <img src="/media/photos/2025/11/09/portfolio_image_a4fa1e350022fc10ae2709db0c5ee4df_8w4i7pW.webp" alt="Bosphorus View Apartment">
+                  <a href="/ar/new/listing/9/">
+                    <img src="" alt="EŞYALI 1+1 DAİRE">
                   </a>
-                  <span class="category">Apartment</span>
-                  <h6>₺9500000</h6>
+                  <span class="category">Daire</span>
+                  <h6>₺15500</h6>
                   <h4>
-                    <a href="/ar/new/listing/1/">Bosphorus View Apartment</a>
+                    <a href="/ar/new/listing/9/">EŞYALI 1+1 DAİRE</a>
                   </h4>
                   <ul>
-                    <li>غرف النوم: <span>2</span></li>
-                    <li>الحمامات: <span>1</span></li>
-                    <li>المدينة: <span>Istanbul</span></li>
-                    <li>الولاية: <span>Istanbul</span></li>
+                    <li>Bedrooms: <span>1</span></li>
+                    <li>Bathrooms: <span>1</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Esenyurt</span></li>
                   </ul>
                   <div class="main-button">
-                    <a href="/ar/new/listing/1/">المزيد من المعلومات</a>
+                    <a href="/ar/new/listing/9/">More Info</a>
                     <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
                   </div>
                 </div>
@@ -829,22 +861,22 @@
             
               <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
                 <div class="item">
-                  <a href="/ar/new/listing/2/">
-                    <img src="/media/photos/2025/11/09/portfolio_image_a4fa1e350022fc10ae2709db0c5ee4df.webp" alt="Kadıköy Modern Flat">
+                  <a href="/ar/new/listing/17/">
+                    <img src="" alt="KİRALIKDAİRE ESENYURT METROBÜSE YAKIN 1+1">
                   </a>
-                  <span class="category">Apartment</span>
-                  <h6>₺12500000</h6>
+                  <span class="category">Daire</span>
+                  <h6>₺13000</h6>
                   <h4>
-                    <a href="/ar/new/listing/2/">Kadıköy Modern Flat</a>
+                    <a href="/ar/new/listing/17/">KİRALIKDAİRE ESENYURT METROBÜSE YAKIN 1+1</a>
                   </h4>
                   <ul>
-                    <li>غرف النوم: <span>3</span></li>
-                    <li>الحمامات: <span>2</span></li>
-                    <li>المدينة: <span>Istanbul</span></li>
-                    <li>الولاية: <span>Istanbul</span></li>
+                    <li>Bedrooms: <span>1</span></li>
+                    <li>Bathrooms: <span>1</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Esenyurt</span></li>
                   </ul>
                   <div class="main-button">
-                    <a href="/ar/new/listing/2/">المزيد من المعلومات</a>
+                    <a href="/ar/new/listing/17/">More Info</a>
                     <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
                   </div>
                 </div>
@@ -852,22 +884,22 @@
             
               <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
                 <div class="item">
-                  <a href="/ar/new/listing/3/">
-                    <img src="/media/photos/2025/11/09/portfolio_image_964e5d1fb1f830ec29661411a3b39aa6.webp" alt="Beşiktaş Penthouse">
+                  <a href="/ar/new/listing/18/">
+                    <img src="" alt="BEYLİKDÜZÜ SATILIK 4+2 DUBLEKS - FİYAT DÜŞTÜ">
                   </a>
-                  <span class="category">Penthouse</span>
-                  <h6>₺18500000</h6>
+                  <span class="category">Daire</span>
+                  <h6>₺8700000</h6>
                   <h4>
-                    <a href="/ar/new/listing/3/">Beşiktaş Penthouse</a>
+                    <a href="/ar/new/listing/18/">BEYLİKDÜZÜ SATILIK 4+2 DUBLEKS - FİYAT DÜŞTÜ</a>
                   </h4>
                   <ul>
-                    <li>غرف النوم: <span>4</span></li>
-                    <li>الحمامات: <span>3</span></li>
-                    <li>المدينة: <span>Istanbul</span></li>
-                    <li>الولاية: <span>Istanbul</span></li>
+                    <li>Bedrooms: <span>4</span></li>
+                    <li>Bathrooms: <span>3</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Beylikdüzü</span></li>
                   </ul>
                   <div class="main-button">
-                    <a href="/ar/new/listing/3/">المزيد من المعلومات</a>
+                    <a href="/ar/new/listing/18/">More Info</a>
                     <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
                   </div>
                 </div>
@@ -875,22 +907,482 @@
             
               <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
                 <div class="item">
-                  <a href="/ar/new/listing/4/">
-                    <img src="/media/photos/2025/11/09/nisantasi-koru-terrace-view.webp" alt="Nişantaşı Luxury Residence">
+                  <a href="/ar/new/listing/22/">
+                    <img src="" alt="HADIMKÖY YANINDA KARAAĞAÇDA KİRALIK FABRİKA DEPO ÜRETİM ALANI">
                   </a>
-                  <span class="category">Apartment</span>
-                  <h6>₺21000000</h6>
+                  <span class="category"></span>
+                  <h6>₺400000</h6>
                   <h4>
-                    <a href="/ar/new/listing/4/">Nişantaşı Luxury Residence</a>
+                    <a href="/ar/new/listing/22/">HADIMKÖY YANINDA KARAAĞAÇDA KİRALIK FABRİKA DEPO ÜRETİM ALANI</a>
                   </h4>
                   <ul>
-                    <li>غرف النوم: <span>2</span></li>
-                    <li>الحمامات: <span>2</span></li>
-                    <li>المدينة: <span>Istanbul</span></li>
-                    <li>الولاية: <span>Istanbul</span></li>
+                    <li>Bedrooms: <span>0</span></li>
+                    <li>Bathrooms: <span>0</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Büyükçekmece</span></li>
                   </ul>
                   <div class="main-button">
-                    <a href="/ar/new/listing/4/">المزيد من المعلومات</a>
+                    <a href="/ar/new/listing/22/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/38/">
+                    <img src="" alt="BAHÇEŞEHİR MAXİMOON EVLERİNDE 2+1 DAİRE TEMİZ EŞYALI SİTE İÇİNDE">
+                  </a>
+                  <span class="category">Daire</span>
+                  <h6>₺20000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/38/">BAHÇEŞEHİR MAXİMOON EVLERİNDE 2+1 DAİRE TEMİZ EŞYALI SİTE İÇİNDE</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>2</span></li>
+                    <li>Bathrooms: <span>1</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Esenyurt</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/38/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/19/">
+                    <img src="" alt="ESENYURT 3+1 SATILIK SIFIR DAİRE - KELEPİR">
+                  </a>
+                  <span class="category">Daire</span>
+                  <h6>₺5500000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/19/">ESENYURT 3+1 SATILIK SIFIR DAİRE - KELEPİR</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>3</span></li>
+                    <li>Bathrooms: <span>1</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Esenyurt</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/19/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/40/">
+                    <img src="" alt="Atatürk Mahallesinde İki Balkonlu Kiralık 2+1 Daire">
+                  </a>
+                  <span class="category">Daire</span>
+                  <h6>₺16500</h6>
+                  <h4>
+                    <a href="/ar/new/listing/40/">Atatürk Mahallesinde İki Balkonlu Kiralık 2+1 Daire</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>2</span></li>
+                    <li>Bathrooms: <span>1</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Esenyurt</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/40/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/20/">
+                    <img src="" alt="ESENYURT SATLIK DAİRE 2+1 BAHÇEKATI">
+                  </a>
+                  <span class="category">Daire</span>
+                  <h6>₺1900000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/20/">ESENYURT SATLIK DAİRE 2+1 BAHÇEKATI</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>2</span></li>
+                    <li>Bathrooms: <span>1</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Esenyurt</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/20/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/21/">
+                    <img src="" alt="EŞYALI KİRALIK DAİRE ESENYURT">
+                  </a>
+                  <span class="category">Daire</span>
+                  <h6>₺18000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/21/">EŞYALI KİRALIK DAİRE ESENYURT</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>2</span></li>
+                    <li>Bathrooms: <span>1</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Esenyurt</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/21/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/23/">
+                    <img src="" alt="ESENYURT 1+1 SATILIK DAİRE SİTE İÇERİSİNDE">
+                  </a>
+                  <span class="category">Daire</span>
+                  <h6>₺2250000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/23/">ESENYURT 1+1 SATILIK DAİRE SİTE İÇERİSİNDE</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>1</span></li>
+                    <li>Bathrooms: <span>1</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Esenyurt</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/23/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/39/">
+                    <img src="" alt="CROWN TOWER SİTESİNDE 1+1 BOŞ KİRALIK DAİRE">
+                  </a>
+                  <span class="category">Daire</span>
+                  <h6>₺15000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/39/">CROWN TOWER SİTESİNDE 1+1 BOŞ KİRALIK DAİRE</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>1</span></li>
+                    <li>Bathrooms: <span>1</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Esenyurt</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/39/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/25/">
+                    <img src="" alt="ESENYURT ACİL SATILIK 3+1 GENİŞ YENİ DAİRE - MERKEZİ LOKASYONDA">
+                  </a>
+                  <span class="category">Daire</span>
+                  <h6>₺3900000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/25/">ESENYURT ACİL SATILIK 3+1 GENİŞ YENİ DAİRE - MERKEZİ LOKASYONDA</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>3</span></li>
+                    <li>Bathrooms: <span>1</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Esenyurt</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/25/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/30/">
+                    <img src="" alt="ESENYURT ACİL SATILIK 3+1 GENİŞ YENİ DAİRE - MERKEZİ LOKASYONDA">
+                  </a>
+                  <span class="category">Daire</span>
+                  <h6>₺3900000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/30/">ESENYURT ACİL SATILIK 3+1 GENİŞ YENİ DAİRE - MERKEZİ LOKASYONDA</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>3</span></li>
+                    <li>Bathrooms: <span>1</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Esenyurt</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/30/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/26/">
+                    <img src="" alt="ESENYURT MEHMET AKİFERSOY MH BAHÇEKATI KİRALIK METOBÜSE YAKIN">
+                  </a>
+                  <span class="category">Daire</span>
+                  <h6>₺11000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/26/">ESENYURT MEHMET AKİFERSOY MH BAHÇEKATI KİRALIK METOBÜSE YAKIN</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>2</span></li>
+                    <li>Bathrooms: <span>1</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Esenyurt</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/26/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/28/">
+                    <img src="" alt="EŞYALI KİRALIK VİLLA BEYLİKDÜZÜ">
+                  </a>
+                  <span class="category">Villa</span>
+                  <h6>₺70000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/28/">EŞYALI KİRALIK VİLLA BEYLİKDÜZÜ</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>3</span></li>
+                    <li>Bathrooms: <span>2</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Beylikdüzü</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/28/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/27/">
+                    <img src="" alt="KİRALIK 1+1 EŞYALI , METROBÜSE 6 DK YÜRÜME MESAFESİNDE">
+                  </a>
+                  <span class="category">Daire</span>
+                  <h6>₺25000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/27/">KİRALIK 1+1 EŞYALI , METROBÜSE 6 DK YÜRÜME MESAFESİNDE</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>1</span></li>
+                    <li>Bathrooms: <span>1</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Esenyurt</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/27/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/31/">
+                    <img src="" alt="METROBÜSE YAKIN SATILIK DAİRE 2+1">
+                  </a>
+                  <span class="category">Daire</span>
+                  <h6>₺2850000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/31/">METROBÜSE YAKIN SATILIK DAİRE 2+1</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>2</span></li>
+                    <li>Bathrooms: <span>2</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Esenyurt</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/31/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/33/">
+                    <img src="" alt="YALOVA TERMAL AKKÖYDE SATILIK ARSA">
+                  </a>
+                  <span class="category">Arsa</span>
+                  <h6>₺3750000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/33/">YALOVA TERMAL AKKÖYDE SATILIK ARSA</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>0</span></li>
+                    <li>Bathrooms: <span>0</span></li>
+                    <li>City: <span>Yalova</span></li>
+                    <li>State: <span>Termal</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/33/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/32/">
+                    <img src="" alt="KAVAKLI MERKEZDE KİRALIK DÜKKAN 2 KATLI - 110 M2">
+                  </a>
+                  <span class="category"></span>
+                  <h6>₺55000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/32/">KAVAKLI MERKEZDE KİRALIK DÜKKAN 2 KATLI - 110 M2</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>0</span></li>
+                    <li>Bathrooms: <span>0</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Beylikdüzü</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/32/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/34/">
+                    <img src="" alt="ESENYURT MEHMET AKİFERSOY MH SATILIK DAİRE">
+                  </a>
+                  <span class="category">Daire</span>
+                  <h6>₺1950000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/34/">ESENYURT MEHMET AKİFERSOY MH SATILIK DAİRE</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>2</span></li>
+                    <li>Bathrooms: <span>1</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Esenyurt</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/34/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/35/">
+                    <img src="" alt="EŞYALI KİRALIK DAİRE 2+1">
+                  </a>
+                  <span class="category">Daire</span>
+                  <h6>₺20000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/35/">EŞYALI KİRALIK DAİRE 2+1</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>2</span></li>
+                    <li>Bathrooms: <span>1</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Esenyurt</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/35/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/29/">
+                    <img src="" alt="METROBÜSE YAKIN 3+1 SATILIK DAİRE ESENYURT">
+                  </a>
+                  <span class="category">Daire</span>
+                  <h6>₺3500000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/29/">METROBÜSE YAKIN 3+1 SATILIK DAİRE ESENYURT</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>3</span></li>
+                    <li>Bathrooms: <span>1</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Esenyurt</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/29/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/36/">
+                    <img src="" alt="1+1 KİRALIK EŞYALIK DAİRE , HAMAM , SAUNA , SPOR SALONLU SİTEDE">
+                  </a>
+                  <span class="category">Daire</span>
+                  <h6>₺20000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/36/">1+1 KİRALIK EŞYALIK DAİRE , HAMAM , SAUNA , SPOR SALONLU SİTEDE</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>1</span></li>
+                    <li>Bathrooms: <span>1</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Beylikdüzü</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/36/">More Info</a>
+                    <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="col-lg-6 col-md-6 align-self-center mb-30 properties-items">
+                <div class="item">
+                  <a href="/ar/new/listing/37/">
+                    <img src="" alt="KİRALIK VİLLA GÜLPINAR DEREAĞZI MH">
+                  </a>
+                  <span class="category">Villa</span>
+                  <h6>₺40000</h6>
+                  <h4>
+                    <a href="/ar/new/listing/37/">KİRALIK VİLLA GÜLPINAR DEREAĞZI MH</a>
+                  </h4>
+                  <ul>
+                    <li>Bedrooms: <span>4</span></li>
+                    <li>Bathrooms: <span>2</span></li>
+                    <li>City: <span>İstanbul</span></li>
+                    <li>State: <span>Beylikdüzü</span></li>
+                  </ul>
+                  <div class="main-button">
+                    <a href="/ar/new/listing/37/">More Info</a>
                     <a href="/ar/new/map/"><i class="fa fa-map"></i></a>
                   </div>
                 </div>
@@ -901,12 +1393,12 @@
         </div>
         <div class="col-lg-4">
           <div class="p-4 info-box aside">
-            <h4 class="mb-3">معلومات سريعة</h4>
+            <h4 class="mb-3">Quick facts</h4>
             <ul style="margin-bottom: 0;">
-              <li>التقييم المستقل يحدد الحد الأقصى للقرض.</li>
-              <li>تأمين الزلازل (DASK) إلزامي.</li>
-              <li>أحضر رقمًا ضريبيًا وكشوف حساب بنكية حديثة.</li>
-              <li>توقع 2–4 أسابيع للموافقة الكاملة والصرف.</li>
+              <li>Independent valuation sets the maximum loanable amount.</li>
+              <li>Earthquake insurance (DASK) is mandatory.</li>
+              <li>Bring a tax number and recent bank statements.</li>
+              <li>Expect 2–4 weeks for full approval and disbursement.</li>
             </ul>
           </div>
         </div>
@@ -920,10 +1412,10 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="section-heading">
-            <h6>| طلب تمويل</h6>
-            <h2>تواصل معنا بخصوص الرهون العقارية في تركيا</h2>
+            <h6>| Financing Inquiry</h6>
+            <h2>Get in touch about mortgages in Turkey</h2>
           </div>
-          <p>نرشدك خلال مرحلة ما قبل الموافقة البنكية، والتقييم، ونقل الملكية، ونتعاون مع المقرضين والمطورين للحصول على خيار تمويل مناسب لشراءك في تركيا.</p>
+          <p>We guide you through bank pre-approval, valuation, and deed transfer, and coordinate with lenders and developers to secure a suitable financing option for your purchase in Turkey.</p>
           <div class="row">
             <div class="col-lg-12">
               <div class="item phone">
@@ -944,31 +1436,31 @@
             <div class="row">
               <div class="col-lg-12">
                 <fieldset>
-                  <label for="name">الاسم الكامل</label>
+                  <label for="name">Full Name</label>
                   <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
                 </fieldset>
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <label for="email">البريد الإلكتروني</label>
+                  <label for="email">Email Address</label>
                   <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required="">
                 </fieldset>
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <label for="subject">الموضوع</label>
+                  <label for="subject">Subject</label>
                   <input type="subject" name="subject" id="subject" placeholder="Subject..." autocomplete="on" >
                 </fieldset>
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <label for="message">الرسالة</label>
+                  <label for="message">Message</label>
                   <textarea name="message" id="message" placeholder="Your Message"></textarea>
                 </fieldset>
               </div>
               <div class="col-lg-12">
                 <fieldset>
-                  <button type="submit" id="form-submit" class="orange-button">إرسال الرسالة</button>
+                  <button type="submit" id="form-submit" class="orange-button">Send Message</button>
                 </fieldset>
               </div>
             </div>
@@ -984,18 +1476,214 @@
   </div>
 
 
+      </main>
+    </div>
 
-    <footer>
-      <div class="container">
-        <div class="col-lg-12">
-            <p>Copyright © 2025 ∞ Lotfinity ∞ tech Co., Ltd. All rights reserved.
-            <!-- Scripts
+  
+   
 
-            Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
-             -->
+<div class="contact section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+          <div class="section-heading text-center">
+            <h6>            <h6>Contact Us</h6></h6>
+            <h2>Get In Touch With Our Agents</h2>
           </div>
+        </div>
       </div>
-    </footer>
+    </div>
+  </div>
+
+  <div class="contact-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <div id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.938750890858!2d28.6433741!3d40.982822000000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b55f007f3ca905%3A0x1fe95ce9196d458d!2sKuzey%20yap%C4%B1%20gayrimenkul!5e0!3m2!1str!2str!4v1763586470436!5m2!1str!2str" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+<div class="item phone">
+      <a href="https://wa.me/905423637436" target="_blank" style="text-decoration: none; color: inherit;">
+        <img src="/static/newfront/assets/images/phone-icon.png" alt="" style="max-width: 52px;">
+        <h6>+905423637436<br><span>Phone Number</span></h6>
+      </a>
+    </div>            </div>
+            <div class="col-lg-6">
+              <div class="item email">
+<a href="mailto:hasangun@kuzey-yapi-emlak.com" style="text-decoration: none; color: inherit;">
+        <img src="/static/newfront/assets/images/email-icon.png" alt="" style="max-width: 52px;">
+        <h6>hasangun@kuzey-yapi-emlak.com<br><span>Business Email</span></h6>
+      </a>              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <form id="contact-form" action="" method="post">
+            <div class="row">
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="name">Full Name</label>
+                  <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="email">Email Address</label>
+                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required="">
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="subject">Subject</label>
+                  <input type="subject" name="subject" id="subject" placeholder="Subject..." autocomplete="on" >
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="message">Message</label>
+                  <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <button type="submit" id="form-submit" class="orange-button">Send Message</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Footer Styles: Hover animasyonları için gerekli CSS -->
+<style>
+  /* Genel Geçiş Efekti: Tüm animasyonlu öğeler için yumuşak geçiş */
+  .footer-link, .social-icon, .footer-logo {
+    transition: all 0.3s ease;
+    display: inline-block; /* Kayma efektinin çalışması için gerekli */
+  }
+
+  /* 1. Link Hover Efekti (Sağa kayma ve renk değişimi) */
+  .footer-link {
+    text-decoration: none;
+  }
+  .footer-link:hover {
+    color: #ffffff !important; /* Üzerine gelince tam beyaz olur */
+    padding-left: 10px; /* Sağa doğru 10px kayar */
+    text-decoration: none;
+  }
+
+  /* 2. Sosyal Medya İkonları (Yukarı zıplama) */
+  .social-icon:hover {
+    transform: translateY(-5px); /* Yukarı doğru hareket */
+    color: #fff !important;
+  }
+
+  /* 3. Logo (Hafif solma) */
+  .footer-logo:hover {
+    opacity: 0.8;
+  }
+</style>
+
+<footer id="site-footer" style="
+    background: url('/static/footer-bg.png') no-repeat center center;
+    background-size: cover;
+    color:#e5e5e5;
+    padding:50px 0 25px;
+    margin-top:60px;">
+    <div class="container">
+
+    <!-- 1. SATIR: Marka (Sol) ve Navigasyon (Sağ) -->
+    <div class="row" style="align-items:flex-start; justify-content:space-between; margin-bottom: 20px;">
+
+      <!-- SOL: Brand / About -->
+ <div class="col-lg-4 col-md-6" style="margin-bottom:24px;">
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+
+    <video autoplay loop muted playsinline class="footer-logo" style="height:112px; width:auto; display:block;">
+        <source src="/static/footer.mp4" type="video/mp4">
+    </video>
+
+
+  </div>
+     <!-- 1. <h5 style="margin:0; color:#fff;">Kavakli</h5>-->
+  <p style="opacity:.85; font-size:14px; line-height:1.7;">Discover, rent or buy verified properties with modern tools and local expertise.</p>
+
+        <!-- Sosyal Medya İkonları -->
+
+      </div>
+
+      <!-- SAĞ: Navigation -->
+      <div class="col-lg-3 col-md-3" style="margin-bottom:24px;">
+        <h5 style="color:#fff; margin-bottom:12px;">Navigation</h5>
+        <ul style="list-style:none; margin:0; padding:0; line-height:2;">
+          <!-- Linklere 'footer-link' class'ı eklendi -->
+          <li><a href="/ar/new/" class="footer-link" style="color:#e5e5e5;">الرئيسية</   <div sta></li>
+          <li><a href="/ar/new/properties/" class="footer-link" style="color:#e5e5e5;">Properties</a></li>
+          <li><a href="/ar/new/map/" class="footer-link" style="color:#e5e5e5;">Map</a></li>
+          <li><a href="/ar/new/contact/" class="footer-link" style="color:#e5e5e5;">Contact</a></li>
+          <li><a href="/ar/new/financing/" class="footer-link" style="color:#e5e5e5;">Financing</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- 2. SATIR: İletişim (Hemen altında) -->
+    <div class="row">
+      <div class="col-lg-4 col-md-5" style="margin-bottom:24px;">
+        <h5 style="color:#fff; margin-bottom:12px;">Contact</h5>
+        <ul style="list-style:none; margin:0; padding:0; line-height:2;">
+          <li><i class="fa fa-map" aria-hidden="true" style="margin-right:8px; color:#999;"></i> Kavaklı, 34520 Beylikdüzü/İstanbul</li>
+
+          <!-- Mail Linki -->
+          <li>
+            <i class="fa fa-envelope" aria-hidden="true" style="margin-right:8px; color:#999;"></i>
+            <a href="mailto:hasangun@kuzey-yapi-emlak.com" class="footer-link" style="color:#e5e5e5;">hasangun@kuzey-yapi-emlak.com</a>
+          </li>
+
+          <li>
+            <i class="fab fa-whatsapp" aria-hidden="true" style="margin-right:8px; color:#999;"></i>
+            <a href="https://wa.me/905423637436" target="_blank" rel="noopener" class="footer-link" style="color:#e5e5e5;">
+              +905423637436
+            </a>
+          </li>
+          <!-- Takvim Linki -->
+          <li>
+            <a href="https://cal.com/hasan-gun-saqvh6" target="_blank" rel="noopener" class="footer-link" style="color:#e5e5e5;">
+              <i class="fa fa-calendar" style="margin-right:8px;"></i> Schedule a visit
+            </a>
+          </li>
+        </ul>
+      </div>
+          <div style="display:flex; gap:12px; margin-top:12px;">
+          <a href=" https://www.facebook.com/Koral-City-ltd-100737889187297" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
+            <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.instagram.com/koralcityltd/" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
+            <i class="fab fa-instagram fa-lg" aria-hidden="true"></i>
+          </a>
+          <a href="https://twitter.com/Koralcityltd" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
+            <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+          </a>
+        </div>
+    </div>
+
+    <hr style="border-color:#333; margin:10px 0 16px;">
+
+    <!-- Alt Bilgi -->
+    <div class="row">
+      <div class="col-12" style="text-align:center;">
+        <p style="margin:0; font-size:14px; color:#cfcfcf;">
+          &copy; 2025
+          <a href="https://explore.lotfinity.tech" target="_blank" rel="noopener" class="footer-link" style="color:#fff; text-decoration:underline;">&infin; Lotfinity &infin; tech Co.</a>, Ltd. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
 
     <!-- Scripts -->
     <script src="/static/newfront/vendor/jquery/jquery.min.js"></script>
@@ -1005,6 +1693,7 @@
     <script src="/static/newfront/assets/js/counter.js"></script>
     <script src="/static/newfront/assets/js/custom.js"></script>
     <script src="/static/newfront/assets/js/typing-effect.js"></script>
+    <script src="https://unpkg.com/@barba/core"></script>
 
     <script>
       // Language switcher interactions (global)
@@ -1030,7 +1719,90 @@
       });
     </script>
 
-    
+    <style>
+      .page-loader { position: fixed; inset: 0; background: #000; display: flex; align-items: center; justify-content: center; z-index: 2147483000; opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s ease; }
+      .page-loader.active { opacity: 1; visibility: visible; }
+      .loader-video { width: 100%; height: 100%; object-fit: cover; }
+    </style>
+
+    <script>
+      (function(){
+        var loader = document.getElementById('page-loader');
+        var video = document.getElementById('loaderVideo');
+        var SMALL_SRC = '/static/loader-sm-white-faster.mp4';
+        var BIG_SRC = '/static/loader-bg-white.mp4';
+
+        function pickSrc(){
+          try {
+            return (window.matchMedia && window.matchMedia('(max-width: 767px)').matches) ? SMALL_SRC : BIG_SRC;
+          } catch(e){ return BIG_SRC; }
+        }
+
+        function setVideoSource(){
+          var desired = pickSrc();
+          if (video.getAttribute('src') !== desired) {
+            video.setAttribute('src', desired);
+            try { video.load(); } catch(e){}
+          }
+        }
+
+        function showLoader(){
+          setVideoSource();
+          if (!loader.classList.contains('active')) loader.classList.add('active');
+          loader.setAttribute('aria-hidden', 'false');
+          // Hide when video ends (bind per-show)
+          var onEnd = function(){ hideLoader(); };
+          video.addEventListener('ended', onEnd, { once: true });
+          // Attempt autoplay; muted set to satisfy policies
+          try { video.currentTime = 0; video.play().catch(function(){ /* ignore */ }); } catch(e){}
+        }
+
+        function hideLoader(){
+          loader.classList.remove('active');
+          loader.setAttribute('aria-hidden', 'true');
+          try { video.pause(); } catch(e){}
+        }
+
+        // Initial load: show for full video duration
+        document.addEventListener('DOMContentLoaded', function(){
+          showLoader();
+        });
+
+        // Barba.js page transitions
+        document.addEventListener('DOMContentLoaded', function(){
+          if (!window.barba) return;
+          barba.init({
+            transitions: [{
+              name: 'video-loader',
+              leave() {
+                // Fade in loader then proceed; hide on video end only
+                showLoader();
+                return new Promise(function(res){ setTimeout(res, 250); });
+              },
+              enter() {
+                // Let the overlay stay until the video ends (handled globally)
+              }
+            }]
+          });
+        });
+
+        // Keep source in sync on resize/orientation changes
+        window.addEventListener('resize', function(){
+          var current = video.getAttribute('src');
+          var desired = pickSrc();
+          if (current !== desired) setVideoSource();
+        });
+      })();
+    </script>
+
+    <script>
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", {origin:"https://cal.com"});
+
+  // This instructs Cal.com to look for clicks on elements with the 'data-cal-link' attribute
+  Cal("ui", {"theme":"dark", "styles":{"branding":{"brandColor":"#000000"}}, "hideEventTypeDetails":false, "layout":"month_view"});
+</script>
+
     
 
 
@@ -1115,7 +1887,7 @@
       </div>
       <div class="infoBox">
         <h4 class="name">Lotfi Kanouni</h4>
-        <span class="answer_time">يرد عادة خلال يوم</span>
+        <span class="answer_time">Typically replies within a day</span>
       </div>
       <button class="WA_Close" type="button" aria-label="Close chat" onclick="(function(){var el=document.querySelector('.WA_Chat_Widget .WA_ChatBox'); if(el){el.style.display='none';}})()">
         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
@@ -1127,7 +1899,7 @@
       <div class="message">
         <h4 class="username">Lotfi Kanouni</h4>
         <div class="message_content">
-          <p>مرحبًا، كيف يمكنني مساعدتك؟</p>
+          <p>Hey There, How can I help you?</p>
         </div>
       </div>
     </div>

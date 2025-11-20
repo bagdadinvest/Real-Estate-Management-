@@ -6,6 +6,7 @@ from geopy.exc import GeocoderTimedOut, GeocoderServiceError
 import time
 
 from realtors.models import Realtor
+from django.utils.translation import gettext_lazy as _
 import os
 
 # Create your models here.
@@ -200,3 +201,45 @@ def _listing_visible_images(self):
     return self.images.filter(is_visible=True).order_by('order', 'id')
 
 Listing.visible_images = property(_listing_visible_images)
+
+
+class ListingImportJob(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('running', 'Running'),
+        ('success', 'Success'),
+        ('failed', 'Failed'),
+    ]
+
+    realtor = models.ForeignKey(Realtor, on_delete=models.PROTECT, related_name='import_jobs', verbose_name=_('Realtor'))
+    # Either provide a single URL or a CSV file; if both, CSV wins
+    single_url = models.URLField(blank=True, verbose_name=_('Single URL'))
+    csv_file = models.FileField(upload_to='admin_imports/', blank=True, verbose_name=_('CSV file'))
+    cookie_file = models.FileField(upload_to='admin_imports/', blank=True, verbose_name=_('Cookie file'))
+
+    # Options
+    delay = models.FloatField(default=2.0, verbose_name=_('Delay (seconds)'))
+    debug = models.BooleanField(default=False, verbose_name=_('Debug'))
+    skip_geocode = models.BooleanField(default=False, verbose_name=_('Skip geocoding'))
+    headed = models.BooleanField(default=False, verbose_name=_('Headed (show browser)'))
+    no_images = models.BooleanField(default=False, verbose_name=_('No images'))
+    images_max = models.PositiveIntegerField(default=15, verbose_name=_('Max images'))
+
+    # Execution bookkeeping
+    status = models.CharField(max_length=16, choices=STATUS_CHOICES, default='pending', db_index=True, verbose_name=_('Status'))
+    log = models.TextField(blank=True, verbose_name=_('Log'))
+    created_by = models.ForeignKey('auth.User', on_delete=models.SET_NULL, null=True, blank=True, related_name='listing_import_jobs', verbose_name=_('Created by'))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_('Created at'))
+    started_at = models.DateTimeField(null=True, blank=True, verbose_name=_('Started at'))
+    finished_at = models.DateTimeField(null=True, blank=True, verbose_name=_('Finished at'))
+
+    # Cache of the CSV path that was used (for audit/debug)
+    csv_path_cached = models.CharField(max_length=500, blank=True, verbose_name=_('CSV path (cached)'))
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = _('Listing import job')
+        verbose_name_plural = _('Listing import jobs')
+
+    def __str__(self):
+        return f"Import Job #{self.pk or 'new'} for {getattr(self.realtor, 'name', 'realtor')}"

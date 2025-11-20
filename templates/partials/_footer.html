@@ -121,34 +121,25 @@
  <div class="col-lg-4 col-md-6" style="margin-bottom:24px;">
   <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
 
-    <video autoplay loop muted playsinline class="footer-logo" style="height:48px; width:auto; display:block;">
+    <video autoplay loop muted playsinline class="footer-logo" style="height:112px; width:auto; display:block;">
         <source src="{% static 'footer.mp4' %}" type="video/mp4">
     </video>
 
-    <h5 style="margin:0; color:#fff;">Kavakli</h5>
+
   </div>
+     <!-- 1. <h5 style="margin:0; color:#fff;">Kavakli</h5>-->
   <p style="opacity:.85; font-size:14px; line-height:1.7;">{% trans "Discover, rent or buy verified properties with modern tools and local expertise." %}</p>
 
         <!-- Sosyal Medya İkonları -->
-        <div style="display:flex; gap:12px; margin-top:12px;">
-          <a href=" https://www.facebook.com/Koral-City-ltd-100737889187297" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
-            <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
-          </a>
-          <a href="https://www.instagram.com/koralcityltd/" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
-            <i class="fab fa-instagram fa-lg" aria-hidden="true"></i>
-          </a>
-          <a href="https://twitter.com/Koralcityltd" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
-            <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
-          </a>
-        </div>
+
       </div>
 
       <!-- SAĞ: Navigation -->
       <div class="col-lg-3 col-md-3" style="margin-bottom:24px;">
-        <h6 style="color:#fff; margin-bottom:12px;">{% trans "Navigation" %}</h6>
+        <h5 style="color:#fff; margin-bottom:12px;">{% trans "Navigation" %}</h5>
         <ul style="list-style:none; margin:0; padding:0; line-height:2;">
           <!-- Linklere 'footer-link' class'ı eklendi -->
-          <li><a href="{% url 'new_index' %}" class="footer-link" style="color:#e5e5e5;">{% trans "Home" %}</a></li>
+          <li><a href="{% url 'new_index' %}" class="footer-link" style="color:#e5e5e5;">{% trans "Home" %}</   <div sta></li>
           <li><a href="{% url 'new_properties' %}" class="footer-link" style="color:#e5e5e5;">{% trans "Properties" %}</a></li>
           <li><a href="{% url 'new_map' %}" class="footer-link" style="color:#e5e5e5;">{% trans "Map" %}</a></li>
           <li><a href="{% url 'new_contact' %}" class="footer-link" style="color:#e5e5e5;">{% trans "Contact" %}</a></li>
@@ -161,7 +152,7 @@
     <!-- 2. SATIR: İletişim (Hemen altında) -->
     <div class="row">
       <div class="col-lg-4 col-md-5" style="margin-bottom:24px;">
-        <h6 style="color:#fff; margin-bottom:12px;">{% trans "Contact" %}</h6>
+        <h5 style="color:#fff; margin-bottom:12px;">{% trans "Contact" %}</h5>
         <ul style="list-style:none; margin:0; padding:0; line-height:2;">
           <li><i class="fa fa-map" aria-hidden="true" style="margin-right:8px; color:#999;"></i> Kavaklı, 34520 Beylikdüzü/İstanbul</li>
 
@@ -185,6 +176,17 @@
           </li>
         </ul>
       </div>
+          <div style="display:flex; gap:12px; margin-top:12px;">
+          <a href=" https://www.facebook.com/Koral-City-ltd-100737889187297" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
+            <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.instagram.com/koralcityltd/" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
+            <i class="fab fa-instagram fa-lg" aria-hidden="true"></i>
+          </a>
+          <a href="https://twitter.com/Koralcityltd" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
+            <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+          </a>
+        </div>
     </div>
 
     <hr style="border-color:#333; margin:10px 0 16px;">

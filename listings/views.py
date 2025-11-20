@@ -16,18 +16,76 @@ def index(request):
 	return render(request,'listings/listings.html',{'listings' : paged_listings})
 
 
-def new_properties(request):
-	"""Render the new frontend properties page with the same listings data/pagination."""
-	listings = Listing.objects.all().order_by('-list_date').filter(is_published=True)
-	paginator = Paginator(listings, 6)
-	page = request.GET.get('page')
-	paged_listings = paginator.get_page(page)
-	return render(request, 'newfrontend/properties.html', {'listings': paged_listings})
+def new_properties(request, page=None):
+    """Render the new frontend properties page with the same listings data/pagination."""
+    listings = Listing.objects.all().order_by('-list_date').filter(is_published=True)
+    paginator = Paginator(listings, 6)
+    # Accept page from path or querystring for flexibility (works in static and dynamic)
+    # Resolve page number robustly (tolerate None/invalid/zero)
+    raw = page if page is not None else request.GET.get('page')
+    try:
+        page_num = int(raw) if raw is not None else 1
+    except (TypeError, ValueError):
+        page_num = 1
+    if page_num < 1:
+        page_num = 1
+    paged_listings = paginator.get_page(page_num)
+    return render(request, 'newfrontend/properties.html', {'listings': paged_listings})
 
 
 def new_listing_detail(request, listing_id):
 	listing = get_object_or_404(Listing, pk=listing_id)
 	return render(request, 'newfrontend/property-details.html', {'listing': listing})
+
+
+def new_property_details_preview(request):
+    """Preview page for new property details without specifying an ID.
+
+    - If there is a published listing, render that.
+    - Otherwise, render a lightweight demo listing so templates don't fail.
+    This supports static builds (django-distill) where a fixed route exists.
+    """
+    listing = Listing.objects.filter(is_published=True).order_by('-list_date').first()
+    if not listing:
+        # Build a simple stand-in object with the attributes used by the template
+        from types import SimpleNamespace
+        listing = SimpleNamespace(
+            id=0,
+            title="Sample Property",
+            address="123 Demo Street",
+            description="Demo property for preview.",
+            deal_type="rent",
+            property_type=" Apartment",
+            city="Istanbul",
+            state="TR",
+            price=0,
+            bedrooms=0,
+            bathrooms=0,
+            m2_gross=None,
+            m2_net=None,
+            rooms_text="",
+            building_age=None,
+            floor_number=None,
+            floors_total=None,
+            heating="",
+            kitchen_type="",
+            balcony="",
+            parking_area="",
+            usage_status="",
+            in_complex=None,
+            complex_name="",
+            elevator=None,
+            furnished=None,
+            maintenance_fee=None,
+            deposit=None,
+            deed_status="",
+            from_whom="",
+            external_id=None,
+            ad_date=None,
+            list_date=None,
+            visible_images=[],
+        )
+    return render(request, 'newfrontend/property-details.html', {'listing': listing})
 
 
 def listing(request , listing_id):

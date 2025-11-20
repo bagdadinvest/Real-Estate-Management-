@@ -1,6 +1,7 @@
 
 
 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
 
-    <title> - Detalles de la propiedad</title>
+    <title>EŞYALI 1+1 DAİRE - Property Details</title>
 
     <!-- Vendor Bootstrap (shipped with newfront) -->
     <link href="/static/newfront/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +26,37 @@
     <link rel="stylesheet" href="/static/newfront/assets/css/typing-effect.css">
 
     
-
+    
+    
+    
+      <link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&amp;display=swap" rel="stylesheet">
+    
+    
+    <!-- Dynamic theme overrides from admin -->
+    <style>
+      :root{
+        --theme-primary: #a38344;
+        --theme-accent: #a38344;
+        --theme-bg: #ffffff;
+        --theme-text: #1e1e1e;
+        --theme-font: Funnel Display, sans\u002Dserif;
+      }
+      html, body{ font-family: var(--theme-font) !important; color: var(--theme-text); }
+      body{ background-color: var(--theme-bg); }
+      ::selection{ background: var(--theme-accent); color:#fff; }
+      /* Accent / primary overrides */
+      .icon-button a i{ background-color: var(--theme-primary) !important; }
+      .main-button a:hover{ background-color: var(--theme-primary) !important; }
+      .properties .item h6{ color: var(--theme-primary) !important; }
+      .main-banner .owl-dots .active{ background-color: var(--theme-primary) !important; }
+      .sub-header ul.social-links li a:hover{ background-color: var(--theme-primary) !important; }
+      .single-property .accordion-button:not(.collapsed){ color: var(--theme-primary) !important; }
+      .properties ul.pagination li a:hover,
+      .properties ul.pagination li a.is_active{ background-color: var(--theme-primary) !important; }
+      .properties .item span.category{ background-color: color-mix(in srgb, var(--theme-primary) 30%, white) !important; }
+      a{ color: inherit; }
+      
+    </style>
     
     <style>
       /* Language switcher styles (global) */
@@ -57,16 +88,9 @@
     </style>
   </head>
   <body>
-    <!-- Preloader -->
-    <div id="js-preloader" class="js-preloader">
-      <div class="preloader-inner">
-        <span class="dot"></span>
-        <div class="dots">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+    <!-- Page Loader (Barba.js + responsive video) -->
+    <div id="page-loader" class="page-loader" aria-hidden="true">
+      <video id="loaderVideo" class="loader-video" muted playsinline preload="auto"></video>
     </div>
 
     <!-- Global Language Switcher (top-centered, outside nav) 
@@ -78,13 +102,13 @@
           
           <div class="lang-switcher" data-lang-current="es">
             
-              <button type="button" class="lang-current" aria-haspopup="true" aria-expanded="false" aria-label="Seleccionar idioma">
+              <button type="button" class="lang-current" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
                 <img class="flag" src="/static/flags/es.svg" alt="es">
                 <span class="code">ES</span>
                 <span class="chev" aria-hidden="true">▾</span>
               </button>
             
-            <div class="lang-menu" role="menu" aria-label="Idiomas disponibles">
+            <div class="lang-menu" role="menu" aria-label="Available languages">
               
               
                 
@@ -245,13 +269,13 @@
         <div class="top-language-inner">
           <div class="lang-switcher" data-lang-current="es">
             
-              <button type="button" class="lang-current" aria-haspopup="true" aria-expanded="false" aria-label="Seleccionar idioma">
+              <button type="button" class="lang-current" aria-haspopup="true" aria-expanded="false" aria-label="Select language">
                 <img class="flag" src="/static/flags/es.svg" alt="es">
                 <span class="code">ES</span>
                 <span class="chev" aria-hidden="true">▾</span>
               </button>
             
-            <div class="lang-menu" role="menu" aria-label="Idiomas disponibles">
+            <div class="lang-menu" role="menu" aria-label="Available languages">
               
                 
                   <div class="lang-item">
@@ -404,21 +428,27 @@
         <div class="row">
           <div class="col-12">
             <nav class="main-nav">
-              <a href="/es/new/" class="logo"><h3>KUZEY EMLAK</h3></a>
+                          <a href="/es/new/" class="logo" style="display:flex; align-items:center; justify-content:center; width:220px; height:50px; text-decoration:none;margin-top:15px;">
+                <img src="/static/logo.png" alt="Logo" style="max-height:50px; width:auto; display:block;" />
+              </a>
               <ul class="nav">
                 <li><a href="/es/new/" class="">Inicio</a></li>
-                <li><a href="/es/new/properties/" class="">Propiedades</a></li>
-                <li><a href="/es/new/map/" class="">Mapa</a></li>
+                <li><a href="/es/new/properties/" class="">Properties</a></li>
+                <li><a href="/es/new/map/" class="">Map</a></li>
                     <!-- Property Details 
 
-                <li><a href="/es/new/properties/" class="active">Detalles de la propiedad</a></li>    -->
+                <li><a href="/es/new/properties/" class="active">Property Details</a></li>    -->
 
-                <li><a href="/es/new/contact/" class="">Contáctanos</a></li>
-                <li><a href="/es/new/financing/" class="">Financiación</a></li>
+                <li><a href="/es/new/contact/" class="">Contact Us</a></li>
+                <li><a href="/es/new/financing/" class="">Financing</a></li>
 
                 <!-- Keep CTA as last-child styling -->
-                <li><a href="https://cal.com/hasan-gun-saqvh6"><i class="fa fa-calendar"></i> Programar una visita</a></li>
-              </ul>
+<li>
+    <a href="#" data-cal-link="hasan-gun-saqvh6" data-cal-config='{"layout":"month_view"}'>
+        <i class="fa fa-calendar" style="margin-right:5px;padding-right:5px;"></i> 
+        Schedule a visit
+    </a>
+</li>              </ul>
               <a class="menu-trigger"><span>Menu</span></a>
             </nav>
           </div>
@@ -426,13 +456,87 @@
       </div>
     </header>
 
-    
+    <div data-barba="wrapper">
+      <main data-barba="container" data-barba-namespace="page">
+        
+  <!-- 1. Styles -->
+  <style>
+    .swiper {
+      width: 100%;
+      height: 500px;
+      border-radius: 50px;
+      margin-bottom: 30px;
+    }
+
+    .swiper-wrapper { display: flex; transition: transform 400ms ease; }
+    .swiper-slide { min-width: 100%;
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Autoplay Progress Circle Styles */
+    .autoplay-progress {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      z-index: 10;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--swiper-theme-color);
+    }
+
+    .autoplay-progress svg {
+      --progress: 0;
+      position: absolute;
+      left: 0;
+      top: 0px;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      stroke-width: 4px;
+      stroke: var(--swiper-theme-color);
+      fill: none;
+      stroke-dashoffset: calc(125.6px * (1 - var(--progress)));
+      stroke-dasharray: 125.6;
+      transform: rotate(-90deg);
+      color: #a38344
+    }
+
+    /* Simple pagination dots */
+    .swiper-pagination-bullet-active {
+        background-color: var(--swiper-theme-color);
+    }
+    .swiper-button-next, .swiper-button-prev {
+      position: absolute; z-index: 5; top: 50%; transform: translateY(-50%);
+      width: 38px; height: 38px; border-radius: 50%; background: rgba(255,255,255,.85);
+      display: grid; place-items: center; cursor: pointer; user-select: none;
+      box-shadow: 0 2px 10px rgba(0,0,0,.15);
+    }
+    .swiper-button-next { right: 12px; color: #a38344 }
+    .swiper-button-prev { left: 12px; color: #a38344 }
+  </style>
+
   <div class="page-heading header-text">
     <div class="container">
       <div class="row">
         <div class="col-lg-12">
-          <span class="breadcrumb"><a href="/es/new/">Inicio</a>  /  Propiedad</span>
-          <h3></h3>
+          <span class="breadcrumb"><a href="/es/new/">Inicio</a>  /  Property</span>
+          <h3>EŞYALI 1+1 DAİRE</h3>
         </div>
       </div>
     </div>
@@ -442,33 +546,182 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8">
-          <div class="main-image">
-            <img src="" alt="">
+
+          <!-- 2. Swiper Structure -->
+          <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+              
+                
+                  
+                    <div class="swiper-slide">
+                      <img src="/media/photos/listing_1284029407/listing_1284029407_1_a9kFk9d.jpg" alt="EŞYALI 1+1 DAİRE">
+                    </div>
+                  
+                    <div class="swiper-slide">
+                      <img src="/media/photos/listing_1284029407/listing_1284029407_2_4XoRmip.jpg" alt="EŞYALI 1+1 DAİRE">
+                    </div>
+                  
+                    <div class="swiper-slide">
+                      <img src="/media/photos/listing_1284029407/listing_1284029407_3_DdpIDiI.jpg" alt="EŞYALI 1+1 DAİRE">
+                    </div>
+                  
+                    <div class="swiper-slide">
+                      <img src="/media/photos/listing_1284029407/listing_1284029407_4_zVx8fiA.jpg" alt="EŞYALI 1+1 DAİRE">
+                    </div>
+                  
+                    <div class="swiper-slide">
+                      <img src="/media/photos/listing_1284029407/listing_1284029407_5_BVsdx1T.jpg" alt="EŞYALI 1+1 DAİRE">
+                    </div>
+                  
+                    <div class="swiper-slide">
+                      <img src="/media/photos/listing_1284029407/listing_1284029407_6_VcslWNq.jpg" alt="EŞYALI 1+1 DAİRE">
+                    </div>
+                  
+                    <div class="swiper-slide">
+                      <img src="/media/photos/listing_1284029407/listing_1284029407_7_bafl81e.jpg" alt="EŞYALI 1+1 DAİRE">
+                    </div>
+                  
+                    <div class="swiper-slide">
+                      <img src="/media/photos/listing_1284029407/listing_1284029407_8_kSSyaXb.jpg" alt="EŞYALI 1+1 DAİRE">
+                    </div>
+                  
+                    <div class="swiper-slide">
+                      <img src="/media/photos/listing_1284029407/listing_1284029407_9_XnPoy3E.jpg" alt="EŞYALI 1+1 DAİRE">
+                    </div>
+                  
+                    <div class="swiper-slide">
+                      <img src="/media/photos/listing_1284029407/listing_1284029407_10_nLDRIC7.jpg" alt="EŞYALI 1+1 DAİRE">
+                    </div>
+                  
+                    <div class="swiper-slide">
+                      <img src="/media/photos/listing_1284029407/listing_1284029407_11_3Gi8XpN.jpg" alt="EŞYALI 1+1 DAİRE">
+                    </div>
+                  
+                    <div class="swiper-slide">
+                      <img src="/media/photos/listing_1284029407/listing_1284029407_12_XXJGf4c.jpg" alt="EŞYALI 1+1 DAİRE">
+                    </div>
+                  
+                    <div class="swiper-slide">
+                      <img src="/media/photos/listing_1284029407/listing_1284029407_13_I7DHO7w.jpg" alt="EŞYALI 1+1 DAİRE">
+                    </div>
+                  
+                    <div class="swiper-slide">
+                      <img src="/media/photos/listing_1284029407/listing_1284029407_14_yElh6qr.jpg" alt="EŞYALI 1+1 DAİRE">
+                    </div>
+                  
+                    <div class="swiper-slide">
+                      <img src="/media/photos/listing_1284029407/listing_1284029407_15_hMwFHL8.jpg" alt="EŞYALI 1+1 DAİRE">
+                    </div>
+                  
+                
+              
+            </div>
+
+            <!-- Navigation Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+
+            <!-- Pagination Dots (Added Here) -->
+            <div class="swiper-pagination"></div>
+
+            <!-- Autoplay Progress Circle -->
+            <div class="autoplay-progress">
+              <svg viewBox="0 0 48 48">
+                <circle cx="24" cy="24" r="20"></circle>
+              </svg>
+              <span></span>
+            </div>
           </div>
+          <!-- End Swiper -->
+
           <div class="main-content">
-            <span class="category"></span>
-            <h4></h4>
-            <p></p>
+            <span class="category">RentDaire</span>
+            <h4>Piri Reis Mh.</h4>
+            <p>Bina Yaşı: 5 | Bulunduğu Kat: 1 | Kat Sayısı: 10 | Isıtma: Kombi (Doğalgaz) | Balkon: Var | Eşyalı: Evet</p>
+          </div>
+
+          <!-- Property details accordion styled by templatemo-villa-agency.css -->
+          <div class="accordion" id="propertyAccordion">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingDetails">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetails" aria-expanded="true" aria-controls="collapseDetails">
+                  Property Details
+                </button>
+              </h2>
+              <div id="collapseDetails" class="accordion-collapse collapse show" aria-labelledby="headingDetails" data-bs-parent="#propertyAccordion">
+                <div class="accordion-body">
+                  <div class="row g-3">
+                    <div class="col-6"><i class="fa fa-tags" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Deal Type:</strong> Rent</div>
+                    <div class="col-6"><i class="fa fa-home" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Type:</strong> Daire</div>
+                    <div class="col-6"><i class="fa fa-th-large" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Rooms:</strong> 1+1</div>
+                    <div class="col-6"><i class="fa fa-bed" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Bedrooms:</strong> 1</div>
+                    <div class="col-6"><i class="fa fa-bath" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Bathrooms:</strong> 1</div>
+                    <div class="col-6"><i class="fa fa-ruler-combined" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Net m²:</strong> 65</div>
+                    <div class="col-6"><i class="fa fa-ruler-combined" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Gross m²:</strong> 75</div>
+                    <div class="col-6"><i class="fa fa-ruler" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Area (sqft):</strong> 807</div>
+                    <div class="col-6"><i class="fa fa-hourglass-half" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Building Age:</strong> 5</div>
+                    <div class="col-6"><i class="fa fa-building" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Floor:</strong> 1 / 10</div>
+                    <div class="col-6"><i class="fa fa-fire" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Heating:</strong> Kombi (Doğalgaz)</div>
+                    <div class="col-6"><i class="fa fa-utensils" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Kitchen:</strong> Açık (Amerikan)</div>
+                    <div class="col-6"><i class="fa fa-door-open" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Balcony:</strong> Var</div>
+                    <div class="col-6"><i class="fa fa-parking" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Parking:</strong> Açık &amp; Kapalı Otopark</div>
+                    <div class="col-6"><i class="fa fa-info-circle" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Usage Status:</strong> Boş</div>
+                    <div class="col-6"><i class="fa fa-city" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Complex:</strong> Sí — Belirtilmemiş</div>
+                    <div class="col-6"><i class="fa fa-caret-square-up" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Elevator:</strong> Sí</div>
+                    <div class="col-6"><i class="fa fa-couch" aria-hidden="true" style="margin-right:6px; color: #a38344"></i><strong>Furnished:</strong> Sí</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingFees">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFees" aria-expanded="false" aria-controls="collapseFees">
+                  Fees & Listing Info
+                </button>
+              </h2>
+              <div id="collapseFees" class="accordion-collapse collapse" aria-labelledby="headingFees" data-bs-parent="#propertyAccordion">
+                <div class="accordion-body">
+                  <div class="row g-3">
+                    <div class="col-6"><strong>Maintenance Fee (Aidat):</strong> -</div>
+                    <div class="col-6"><strong>Deposit:</strong> 31000</div>
+                    <div class="col-6"><strong>Deed Status:</strong> Kat Mülkiyetli</div>
+                    <div class="col-6"><strong>From Whom:</strong> Emlak Ofisinden</div>
+                    <div class="col-6"><strong>Listing ID:</strong> 1284029407</div>
+                    <div class="col-6"><strong>Ad Date:</strong> 2025-11-19</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
         <div class="col-lg-4">
           <div class="info-table">
             <ul>
               <li>
                 <img src="/static/newfront/assets/images/info-icon-01.png" alt="" style="max-width: 52px;">
-                <h4>Precio<br><span>₦</span></h4>
+                <h4>Price<br><span>₺15 500</span></h4>
               </li>
               <li>
                 <img src="/static/newfront/assets/images/info-icon-02.png" alt="" style="max-width: 52px;">
-                <h4>Dormitorios<br><span></span></h4>
+                <h4>Bedrooms<br><span>1</span></h4>
               </li>
               <li>
                 <img src="/static/newfront/assets/images/info-icon-03.png" alt="" style="max-width: 52px;">
-                <h4>Bathrooms<br><span></span></h4>
+                <h4>Bathrooms<br><span>1</span></h4>
               </li>
               <li>
                 <img src="/static/newfront/assets/images/info-icon-04.png" alt="" style="max-width: 52px;">
-                <h4>Ubicación<br><span>, </span></h4>
+                <h4>Ubicación<br><span>İstanbul, Esenyurt</span></h4>
+              </li>
+              <li>
+                <img src="/static/newfront/assets/images/info-icon-01.png" alt="" style="max-width: 52px;">
+                <h4>Size (Gross m²)<br><span>75</span></h4>
+              </li>
+              <li>
+                <img src="/static/newfront/assets/images/info-icon-01.png" alt="" style="max-width: 52px;">
+                <h4>Elevator<br><span>Sí</span></h4>
               </li>
             </ul>
           </div>
@@ -477,18 +730,266 @@
     </div>
   </div>
 
+  <!-- 3. Lightweight Carousel (no external deps) -->
+  <script>
+    (function(){
+      var root = document.querySelector('.mySwiper');
+      if (!root) return;
+      var wrapper = root.querySelector('.swiper-wrapper');
+      var slides = wrapper ? Array.from(wrapper.children) : [];
+      if (!wrapper || !slides.length) return;
 
-    <footer>
-      <div class="container">
-        <div class="col-lg-12">
-            <p>Copyright © 2025 ∞ Lotfinity ∞ tech Co., Ltd. All rights reserved.
-            <!-- Scripts
+      var btnNext = root.querySelector('.swiper-button-next');
+      var btnPrev = root.querySelector('.swiper-button-prev');
+      var dotsWrap = root.querySelector('.swiper-pagination');
+      if (btnNext && !btnNext.textContent.trim()) btnNext.textContent = '›';
+      if (btnPrev && !btnPrev.textContent.trim()) btnPrev.textContent = '‹';
 
-            Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
-             -->
+      var index = 0;
+      function update(){
+        wrapper.style.transform = 'translateX(' + (-index * 100) + '%)';
+        if (!dotsWrap) return;
+        var dots = dotsWrap.querySelectorAll('.swiper-pagination-bullet');
+        dots.forEach(function(d,i){ d.classList.toggle('swiper-pagination-bullet-active', i===index); });
+      }
+
+      // Build dots
+      if (dotsWrap){
+        dotsWrap.innerHTML = slides.map(function(_,i){ return '<span class="swiper-pagination-bullet'+(i===0?' swiper-pagination-bullet-active':'')+'"></span>'; }).join('');
+        dotsWrap.querySelectorAll('.swiper-pagination-bullet').forEach(function(d,i){ d.addEventListener('click', function(){ index=i; update(); }); });
+      }
+
+      function go(delta){ index = (index + delta + slides.length) % slides.length; update(); }
+      if (btnNext) btnNext.addEventListener('click', function(){ go(1); });
+      if (btnPrev) btnPrev.addEventListener('click', function(){ go(-1); });
+
+      // Autoplay with progress
+      var progressCircle = document.querySelector('.autoplay-progress svg');
+      var progressContent = document.querySelector('.autoplay-progress span');
+      var delay = 4000; var started = Date.now();
+      function tick(){
+        var t = (Date.now() - started) % delay;
+        var left = delay - t;
+        var progress = t / delay;
+        if (progressCircle) progressCircle.style.setProperty('--progress', 1 - progress);
+        if (progressContent) progressContent.textContent = Math.ceil(left / 1000) + 's';
+        if (t < 50) { go(1); }
+        requestAnimationFrame(tick);
+      }
+      // Kick off autoplay after first cycle boundary
+      setTimeout(function(){ started = Date.now(); requestAnimationFrame(tick); }, delay);
+      update();
+    })();
+  </script>
+
+      </main>
+    </div>
+
+  
+   
+
+<div class="contact section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+          <div class="section-heading text-center">
+            <h6>            <h6>Contact Us</h6></h6>
+            <h2>Get In Touch With Our Agents</h2>
           </div>
+        </div>
       </div>
-    </footer>
+    </div>
+  </div>
+
+  <div class="contact-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-7">
+          <div id="map">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.938750890858!2d28.6433741!3d40.982822000000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b55f007f3ca905%3A0x1fe95ce9196d458d!2sKuzey%20yap%C4%B1%20gayrimenkul!5e0!3m2!1str!2str!4v1763586470436!5m2!1str!2str" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+<div class="item phone">
+      <a href="https://wa.me/905423637436" target="_blank" style="text-decoration: none; color: inherit;">
+        <img src="/static/newfront/assets/images/phone-icon.png" alt="" style="max-width: 52px;">
+        <h6>+905423637436<br><span>Phone Number</span></h6>
+      </a>
+    </div>            </div>
+            <div class="col-lg-6">
+              <div class="item email">
+<a href="mailto:hasangun@kuzey-yapi-emlak.com" style="text-decoration: none; color: inherit;">
+        <img src="/static/newfront/assets/images/email-icon.png" alt="" style="max-width: 52px;">
+        <h6>hasangun@kuzey-yapi-emlak.com<br><span>Business Email</span></h6>
+      </a>              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
+          <form id="contact-form" action="" method="post">
+            <div class="row">
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="name">Full Name</label>
+                  <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="email">Email Address</label>
+                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required="">
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="subject">Subject</label>
+                  <input type="subject" name="subject" id="subject" placeholder="Subject..." autocomplete="on" >
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <label for="message">Message</label>
+                  <textarea name="message" id="message" placeholder="Your Message"></textarea>
+                </fieldset>
+              </div>
+              <div class="col-lg-12">
+                <fieldset>
+                  <button type="submit" id="form-submit" class="orange-button">Send Message</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Footer Styles: Hover animasyonları için gerekli CSS -->
+<style>
+  /* Genel Geçiş Efekti: Tüm animasyonlu öğeler için yumuşak geçiş */
+  .footer-link, .social-icon, .footer-logo {
+    transition: all 0.3s ease;
+    display: inline-block; /* Kayma efektinin çalışması için gerekli */
+  }
+
+  /* 1. Link Hover Efekti (Sağa kayma ve renk değişimi) */
+  .footer-link {
+    text-decoration: none;
+  }
+  .footer-link:hover {
+    color: #ffffff !important; /* Üzerine gelince tam beyaz olur */
+    padding-left: 10px; /* Sağa doğru 10px kayar */
+    text-decoration: none;
+  }
+
+  /* 2. Sosyal Medya İkonları (Yukarı zıplama) */
+  .social-icon:hover {
+    transform: translateY(-5px); /* Yukarı doğru hareket */
+    color: #fff !important;
+  }
+
+  /* 3. Logo (Hafif solma) */
+  .footer-logo:hover {
+    opacity: 0.8;
+  }
+</style>
+
+<footer id="site-footer" style="
+    background: url('/static/footer-bg.png') no-repeat center center;
+    background-size: cover;
+    color:#e5e5e5;
+    padding:50px 0 25px;
+    margin-top:60px;">
+    <div class="container">
+
+    <!-- 1. SATIR: Marka (Sol) ve Navigasyon (Sağ) -->
+    <div class="row" style="align-items:flex-start; justify-content:space-between; margin-bottom: 20px;">
+
+      <!-- SOL: Brand / About -->
+ <div class="col-lg-4 col-md-6" style="margin-bottom:24px;">
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+
+    <video autoplay loop muted playsinline class="footer-logo" style="height:112px; width:auto; display:block;">
+        <source src="/static/footer.mp4" type="video/mp4">
+    </video>
+
+
+  </div>
+     <!-- 1. <h5 style="margin:0; color:#fff;">Kavakli</h5>-->
+  <p style="opacity:.85; font-size:14px; line-height:1.7;">Discover, rent or buy verified properties with modern tools and local expertise.</p>
+
+        <!-- Sosyal Medya İkonları -->
+
+      </div>
+
+      <!-- SAĞ: Navigation -->
+      <div class="col-lg-3 col-md-3" style="margin-bottom:24px;">
+        <h5 style="color:#fff; margin-bottom:12px;">Navigation</h5>
+        <ul style="list-style:none; margin:0; padding:0; line-height:2;">
+          <!-- Linklere 'footer-link' class'ı eklendi -->
+          <li><a href="/es/new/" class="footer-link" style="color:#e5e5e5;">Inicio</   <div sta></li>
+          <li><a href="/es/new/properties/" class="footer-link" style="color:#e5e5e5;">Properties</a></li>
+          <li><a href="/es/new/map/" class="footer-link" style="color:#e5e5e5;">Map</a></li>
+          <li><a href="/es/new/contact/" class="footer-link" style="color:#e5e5e5;">Contact</a></li>
+          <li><a href="/es/new/financing/" class="footer-link" style="color:#e5e5e5;">Financing</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- 2. SATIR: İletişim (Hemen altında) -->
+    <div class="row">
+      <div class="col-lg-4 col-md-5" style="margin-bottom:24px;">
+        <h5 style="color:#fff; margin-bottom:12px;">Contact</h5>
+        <ul style="list-style:none; margin:0; padding:0; line-height:2;">
+          <li><i class="fa fa-map" aria-hidden="true" style="margin-right:8px; color:#999;"></i> Kavaklı, 34520 Beylikdüzü/İstanbul</li>
+
+          <!-- Mail Linki -->
+          <li>
+            <i class="fa fa-envelope" aria-hidden="true" style="margin-right:8px; color:#999;"></i>
+            <a href="mailto:hasangun@kuzey-yapi-emlak.com" class="footer-link" style="color:#e5e5e5;">hasangun@kuzey-yapi-emlak.com</a>
+          </li>
+
+          <li>
+            <i class="fab fa-whatsapp" aria-hidden="true" style="margin-right:8px; color:#999;"></i>
+            <a href="https://wa.me/905423637436" target="_blank" rel="noopener" class="footer-link" style="color:#e5e5e5;">
+              +905423637436
+            </a>
+          </li>
+          <!-- Takvim Linki -->
+          <li>
+            <a href="https://cal.com/hasan-gun-saqvh6" target="_blank" rel="noopener" class="footer-link" style="color:#e5e5e5;">
+              <i class="fa fa-calendar" style="margin-right:8px;"></i> Schedule a visit
+            </a>
+          </li>
+        </ul>
+      </div>
+          <div style="display:flex; gap:12px; margin-top:12px;">
+          <a href=" https://www.facebook.com/Koral-City-ltd-100737889187297" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
+            <i class="fab fa-facebook fa-lg" aria-hidden="true"></i>
+          </a>
+          <a href="https://www.instagram.com/koralcityltd/" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
+            <i class="fab fa-instagram fa-lg" aria-hidden="true"></i>
+          </a>
+          <a href="https://twitter.com/Koralcityltd" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
+            <i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+          </a>
+        </div>
+    </div>
+
+    <hr style="border-color:#333; margin:10px 0 16px;">
+
+    <!-- Alt Bilgi -->
+    <div class="row">
+      <div class="col-12" style="text-align:center;">
+        <p style="margin:0; font-size:14px; color:#cfcfcf;">
+          &copy; 2025
+          <a href="https://explore.lotfinity.tech" target="_blank" rel="noopener" class="footer-link" style="color:#fff; text-decoration:underline;">&infin; Lotfinity &infin; tech Co.</a>, Ltd. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
 
     <!-- Scripts -->
     <script src="/static/newfront/vendor/jquery/jquery.min.js"></script>
@@ -498,6 +999,7 @@
     <script src="/static/newfront/assets/js/counter.js"></script>
     <script src="/static/newfront/assets/js/custom.js"></script>
     <script src="/static/newfront/assets/js/typing-effect.js"></script>
+    <script src="https://unpkg.com/@barba/core"></script>
 
     <script>
       // Language switcher interactions (global)
@@ -523,7 +1025,90 @@
       });
     </script>
 
-    
+    <style>
+      .page-loader { position: fixed; inset: 0; background: #000; display: flex; align-items: center; justify-content: center; z-index: 2147483000; opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s ease; }
+      .page-loader.active { opacity: 1; visibility: visible; }
+      .loader-video { width: 100%; height: 100%; object-fit: cover; }
+    </style>
+
+    <script>
+      (function(){
+        var loader = document.getElementById('page-loader');
+        var video = document.getElementById('loaderVideo');
+        var SMALL_SRC = '/static/loader-sm-white-faster.mp4';
+        var BIG_SRC = '/static/loader-bg-white.mp4';
+
+        function pickSrc(){
+          try {
+            return (window.matchMedia && window.matchMedia('(max-width: 767px)').matches) ? SMALL_SRC : BIG_SRC;
+          } catch(e){ return BIG_SRC; }
+        }
+
+        function setVideoSource(){
+          var desired = pickSrc();
+          if (video.getAttribute('src') !== desired) {
+            video.setAttribute('src', desired);
+            try { video.load(); } catch(e){}
+          }
+        }
+
+        function showLoader(){
+          setVideoSource();
+          if (!loader.classList.contains('active')) loader.classList.add('active');
+          loader.setAttribute('aria-hidden', 'false');
+          // Hide when video ends (bind per-show)
+          var onEnd = function(){ hideLoader(); };
+          video.addEventListener('ended', onEnd, { once: true });
+          // Attempt autoplay; muted set to satisfy policies
+          try { video.currentTime = 0; video.play().catch(function(){ /* ignore */ }); } catch(e){}
+        }
+
+        function hideLoader(){
+          loader.classList.remove('active');
+          loader.setAttribute('aria-hidden', 'true');
+          try { video.pause(); } catch(e){}
+        }
+
+        // Initial load: show for full video duration
+        document.addEventListener('DOMContentLoaded', function(){
+          showLoader();
+        });
+
+        // Barba.js page transitions
+        document.addEventListener('DOMContentLoaded', function(){
+          if (!window.barba) return;
+          barba.init({
+            transitions: [{
+              name: 'video-loader',
+              leave() {
+                // Fade in loader then proceed; hide on video end only
+                showLoader();
+                return new Promise(function(res){ setTimeout(res, 250); });
+              },
+              enter() {
+                // Let the overlay stay until the video ends (handled globally)
+              }
+            }]
+          });
+        });
+
+        // Keep source in sync on resize/orientation changes
+        window.addEventListener('resize', function(){
+          var current = video.getAttribute('src');
+          var desired = pickSrc();
+          if (current !== desired) setVideoSource();
+        });
+      })();
+    </script>
+
+    <script>
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", {origin:"https://cal.com"});
+
+  // This instructs Cal.com to look for clicks on elements with the 'data-cal-link' attribute
+  Cal("ui", {"theme":"dark", "styles":{"branding":{"brandColor":"#000000"}}, "hideEventTypeDetails":false, "layout":"month_view"});
+</script>
+
     
 
 
@@ -608,7 +1193,7 @@
       </div>
       <div class="infoBox">
         <h4 class="name">Lotfi Kanouni</h4>
-        <span class="answer_time">Suele responder en un día</span>
+        <span class="answer_time">Typically replies within a day</span>
       </div>
       <button class="WA_Close" type="button" aria-label="Close chat" onclick="(function(){var el=document.querySelector('.WA_Chat_Widget .WA_ChatBox'); if(el){el.style.display='none';}})()">
         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
@@ -620,7 +1205,7 @@
       <div class="message">
         <h4 class="username">Lotfi Kanouni</h4>
         <div class="message_content">
-          <p>Hola, ¿en qué puedo ayudarte?</p>
+          <p>Hey There, How can I help you?</p>
         </div>
       </div>
     </div>

@@ -76,8 +76,9 @@ prefixed_urlpatterns = i18n_patterns(
     # New frontend demo routes
     path('new/', TemplateView.as_view(template_name='newfrontend/index.html'), name='new_index'),
     path('new/properties/', listing_views.new_properties, name='new_properties'),
+    path('new/properties/page/<int:page>/', listing_views.new_properties, name='new_properties_page'),
     path('new/financing/', pages_views.financing, name='new_financing'),
-    path('new/property-details/', TemplateView.as_view(template_name='newfrontend/property-details.html'), name='new_property_details'),
+    path('new/property-details/', listing_views.new_property_details_preview, name='new_property_details'),
     path('new/listing/<int:listing_id>/', listing_views.new_listing_detail, name='new_listing_detail'),
     path('new/contact/', TemplateView.as_view(template_name='newfrontend/contact.html'), name='new_contact'),
     path('new/map/', listing_views.new_map_view, name='new_map'),

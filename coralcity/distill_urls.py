@@ -4,6 +4,8 @@ from listings import views as listing_views
 from pages import views as pages_views
 from listings.models import Listing
 
+PER_PAGE = 6
+
 def get_all_listing_ids():
     # Return a list of dictionaries, one for each listing
     # The key, 'listing_id', matches the name of the parameter in the URL
@@ -21,11 +23,18 @@ urlpatterns = [
     distill_path('new/properties/',
                  listing_views.new_properties,
                  name='new_properties'),
+    # Additional paginated static pages: /new/properties/page/<n>/
+    distill_path('new/properties/page/<int:page>/',
+                 listing_views.new_properties,
+                 name='new_properties_page',
+                 distill_func=lambda: (
+                     [{'page': p} for p in range(2, max(2, (Listing.objects.filter(is_published=True).count() - 1) // PER_PAGE + 2))]
+                 )),
     distill_path('new/financing/',
                  pages_views.financing,
                  name='new_financing'),
     distill_path('new/property-details/',
-                 TemplateView.as_view(template_name='newfrontend/property-details.html'),
+                 listing_views.new_property_details_preview,
                  name='new_property_details'),
     distill_path('new/listing/<int:listing_id>/',
                  listing_views.new_listing_detail,

@@ -102,10 +102,12 @@
       catch (e) { return n; }
     }
 
+    var LANG_PREFIX = '/{{ LANGUAGE_CODE }}/';
+
     function buildPopupHTML(p) {
       var photos = Array.isArray(p.photos) && p.photos.length ? p.photos : (p.photo_url ? [p.photo_url] : []);
       var id = p.id || Math.random().toString(36).slice(2);
-      var openUrl = '/new/listing/' + (p.id || '') + '/';
+      var openUrl = LANG_PREFIX + 'new/listing/' + (p.id || '') + '/';
       var take = Math.min(3, photos.length || 0);
       var imgSlides = photos.slice(0,take).map(function(src){ return '<div class="carousel-slide"><img src="' + src + '" alt="photo"></div>'; }).join('');
       var moreSlide = '<div class="carousel-slide more-slide">' +

@@ -1,10 +1,11 @@
 # Turkish translations for CoralCity newfrontend
-#: templates/newfrontend/index.html:238
+#: templates/newfrontend/index.html:243
+#: templates/newfrontend/properties.html:176
 msgid ""
 msgstr ""
 "Project-Id-Version: coralcity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-11 03:39+0000\n"
+"POT-Creation-Date: 2025-11-20 19:37+0300\n"
 "PO-Revision-Date: 2025-01-01 00:00+0000\n"
 "Last-Translator: \n"
 "Language-Team: tr\n"
@@ -13,6 +14,120 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n>1);\n"
+
+# Admin import job UI strings
+#: listings/admin.py:55
+msgid "Preview"
+msgstr "Önizleme"
+
+#: listings/admin.py:78 listings/admin.py:114
+msgid "Source"
+msgstr "Kaynak"
+
+#: listings/admin.py:81
+msgid "Original URL"
+msgstr "Orijinal URL"
+
+#: listings/admin.py:98
+msgid "Provide either a single URL or upload a CSV file."
+msgstr "Tek bir URL girin veya bir CSV yükleyin."
+
+#: listings/admin.py:117
+msgid "Options"
+msgstr "Seçenekler"
+
+#: listings/admin.py:120
+msgid "Execution"
+msgstr "Yürütme"
+
+#: listings/admin.py:127
+msgid "CSV path used"
+msgstr "Kullanılan CSV yolu"
+
+#: listings/admin.py:145
+msgid "Import job started."
+msgstr "İçe aktarma görevi başlatıldı."
+
+#: listings/admin.py:147
+#, python-format
+msgid "Failed to start job: %s"
+msgstr "Görev başlatılamadı: %s"
+
+#: listings/models.py:214 templates/pages/about.html:98
+msgid "Realtor"
+msgstr "Emlak Danışmanı"
+
+#: listings/models.py:216
+msgid "Single URL"
+msgstr "Tek URL"
+
+#: listings/models.py:217
+msgid "CSV file"
+msgstr "CSV dosyası"
+
+#: listings/models.py:218
+msgid "Cookie file"
+msgstr "Çerez dosyası"
+
+#: listings/models.py:221
+msgid "Delay (seconds)"
+msgstr "Gecikme (saniye)"
+
+#: listings/models.py:222
+msgid "Debug"
+msgstr "Hata ayıklama"
+
+#: listings/models.py:223
+msgid "Skip geocoding"
+msgstr "Jeokodlamayı atla"
+
+#: listings/models.py:224
+msgid "Headed (show browser)"
+msgstr "Görünür (tarayıcıyı göster)"
+
+#: listings/models.py:225
+msgid "No images"
+msgstr "Resim yok"
+
+#: listings/models.py:226
+msgid "Max images"
+msgstr "Maksimum resim"
+
+#: listings/models.py:229
+msgid "Status"
+msgstr "Durum"
+
+#: listings/models.py:230
+msgid "Log"
+msgstr "Kayıt"
+
+#: listings/models.py:231
+msgid "Created by"
+msgstr "Oluşturan"
+
+#: listings/models.py:232
+msgid "Created at"
+msgstr "Oluşturulma"
+
+#: listings/models.py:233
+msgid "Started at"
+msgstr "Başlangıç"
+
+#: listings/models.py:234
+msgid "Finished at"
+msgstr "Bitiş"
+
+#: listings/models.py:237
+msgid "CSV path (cached)"
+msgstr "CSV yolu (önbelleğe alınmış)"
+
+#: listings/models.py:241
+msgid "Listing import job"
+msgstr "İlan içe aktarma görevi"
+
+#: listings/models.py:242
+msgid "Listing import jobs"
+msgstr "İlan içe aktarma görevleri"
 
 #: templates/accounts/dashborad.html:5
 msgid "Dashboard"
@@ -36,7 +151,7 @@ msgstr "Sorguladığınız emlak ilanları burada"
 
 # Detail page
 #: templates/accounts/dashborad.html:33
-#: templates/newfrontend/property-details.html:12
+#: templates/newfrontend/property-details.html:76
 msgid "Property"
 msgstr "İlan"
 
@@ -48,8 +163,7 @@ msgstr "İlanı Görüntüle"
 msgid "You Don't Have Any Inquiries"
 msgstr "Hiç Sorgunuz Yok"
 
-#: templates/accounts/login.html:13 templates/partials/_footer.html:25
-#: templates/partials/_navbar.html:53
+#: templates/accounts/login.html:13 templates/partials/_navbar.html:54
 msgid "Agents"
 msgstr "Danışmanlar"
 
@@ -60,17 +174,19 @@ msgstr "Emlak danışmanı olmak ister misiniz? İşte yapmanız gerekenler."
 # Navigation
 #: templates/accounts/login.html:20 templates/accounts/register.html:23
 #: templates/listings/listing.html:18 templates/listings/listings.html:20
-#: templates/newfrontend/base.html:135 templates/newfrontend/contact.html:11
-#: templates/newfrontend/financing.html:29 templates/newfrontend/map.html:54
+#: templates/newfrontend/base.html:196 templates/newfrontend/contact.html:11
+#: templates/newfrontend/financing.html:29 templates/newfrontend/map.html:59
+#: templates/newfrontend/map_copy.html:55
+#: templates/newfrontend/page-404.html:12
 #: templates/newfrontend/properties.html:12
-#: templates/newfrontend/property-details.html:12 templates/pages/about.html:25
-#: templates/pages/agesverification.html:20 templates/partials/_navbar.html:42
+#: templates/newfrontend/property-details.html:76 templates/pages/about.html:25
+#: templates/pages/agesverification.html:20 templates/partials/_footer.html:151
+#: templates/partials/_navbar.html:43
 msgid "Home"
 msgstr "Anasayfa"
 
 #: templates/accounts/login.html:22 templates/pages/about.html:27
-#: templates/pages/agesverification.html:22 templates/partials/_footer.html:30
-#: templates/partials/_navbar.html:43
+#: templates/pages/agesverification.html:22 templates/partials/_navbar.html:44
 msgid "About"
 msgstr "Hakkımızda"
 
@@ -139,11 +255,11 @@ msgstr ""
 "Koralcity Limited olarak, potansiyel müşterilere yönelik kiralık mülklerin "
 "işletme, danışmanlık, bakım<br> ve idaresini yürütüyoruz."
 
-#: templates/accounts/login.html:97 templates/partials/_footer.html:42
+#: templates/accounts/login.html:97
 msgid "Renting"
 msgstr "Kiralama"
 
-#: templates/accounts/login.html:100 templates/partials/_footer.html:43
+#: templates/accounts/login.html:100
 msgid "Selling"
 msgstr "Satış"
 
@@ -227,10 +343,8 @@ msgstr "giriş yapın"
 msgid "to your account"
 msgstr "hesabınıza"
 
-#: templates/blog/blog_detail.html:48 templates/newfrontend/contact.html:74
-#: templates/newfrontend/financing.html:214
-#: templates/newfrontend/index.html:368 templates/newfrontend/map.html:265
-#: templates/newfrontend/properties.html:137
+#: templates/blog/blog_detail.html:48 templates/newfrontend/financing.html:214
+#: templates/newfrontend/properties.html:278 templates/partials/_footer.html:63
 msgid "Message"
 msgstr "Mesaj"
 
@@ -303,9 +417,10 @@ msgid "There were no results matching your search"
 msgstr "Aramanızla eşleşen sonuç bulunamadı"
 
 #: templates/listings/listing.html:13 templates/listings/listings.html:15
-#: templates/listings/listings.html:22 templates/newfrontend/base.html:136
+#: templates/listings/listings.html:22 templates/newfrontend/base.html:197
 #: templates/newfrontend/properties.html:12
-#: templates/newfrontend/properties.html:13 templates/partials/_navbar.html:45
+#: templates/newfrontend/properties.html:13 templates/partials/_footer.html:152
+#: templates/partials/_navbar.html:46
 msgid "Properties"
 msgstr "İlanlar"
 
@@ -323,14 +438,17 @@ msgid "Asking Price:"
 msgstr "İstenen Fiyat:"
 
 #: templates/listings/listing.html:96
+#: templates/newfrontend/property-details.html:144
 msgid "Bedrooms:"
 msgstr "Yatak Odası:"
 
 #: templates/listings/listing.html:100
+#: templates/newfrontend/property-details.html:145
 msgid "Bathrooms:"
 msgstr "Banyo:"
 
 #: templates/listings/listing.html:104
+#: templates/newfrontend/property-details.html:142
 msgid "Type:"
 msgstr "Tür:"
 
@@ -416,13 +534,13 @@ msgstr "Yatak Odası"
 
 #: templates/listings/listings.html:71 templates/listings/search.html:106
 #: templates/newfrontend/financing.html:142
-#: templates/newfrontend/properties.html:48 templates/pages/index.html:96
+#: templates/newfrontend/properties.html:58 templates/pages/index.html:96
 msgid "More Info"
 msgstr "Detaylar"
 
 #: templates/listings/listings.html:79 templates/listings/search.html:114
-#: templates/newfrontend/index.html:304
-#: templates/newfrontend/properties.html:56 templates/pages/index.html:104
+#: templates/newfrontend/index.html:314
+#: templates/newfrontend/properties.html:66 templates/pages/index.html:104
 msgid "No Listings Available"
 msgstr "İlan bulunamadı"
 
@@ -440,14 +558,12 @@ msgstr "Anahtar kelime (Havuz, Garaj vb.)"
 
 #: templates/listings/search.html:24 templates/listings/search.html:25
 #: templates/newfrontend/financing.html:138
-#: templates/newfrontend/index.html:292
-#: templates/newfrontend/properties.html:44
+#: templates/newfrontend/index.html:302
 msgid "City"
 msgstr "Şehir"
 
 #: templates/listings/search.html:29 templates/newfrontend/financing.html:139
-#: templates/newfrontend/index.html:293
-#: templates/newfrontend/properties.html:45
+#: templates/newfrontend/index.html:303
 msgid "State"
 msgstr "Eyalet"
 
@@ -457,9 +573,9 @@ msgstr "Eyalet (Tümü)"
 
 #: templates/listings/search.html:43 templates/listings/search.html:101
 #: templates/newfrontend/financing.html:136
-#: templates/newfrontend/index.html:290
-#: templates/newfrontend/properties.html:42
-#: templates/newfrontend/property-details.html:41
+#: templates/newfrontend/index.html:300
+#: templates/newfrontend/properties.html:51
+#: templates/newfrontend/property-details.html:195
 msgid "Bedrooms"
 msgstr "Yatak Odası"
 
@@ -480,102 +596,82 @@ msgid "Sqft"
 msgstr "ft²"
 
 #: templates/listings/search.html:103 templates/newfrontend/financing.html:137
-#: templates/newfrontend/index.html:291
-#: templates/newfrontend/properties.html:43
-#: templates/newfrontend/property-details.html:45
+#: templates/newfrontend/index.html:301
+#: templates/newfrontend/properties.html:52
+#: templates/newfrontend/property-details.html:199
 msgid "Bathrooms"
 msgstr "Banyo"
 
-#: templates/newfrontend/base.html:79 templates/partials/_navbar.html:67
+#: templates/newfrontend/base.html:105 templates/newfrontend/base.html:141
+#: templates/partials/_navbar.html:68
 msgid "Select language"
 msgstr "Dil seçin"
 
-#: templates/newfrontend/base.html:85 templates/partials/_navbar.html:73
+#: templates/newfrontend/base.html:111 templates/newfrontend/base.html:147
+#: templates/partials/_navbar.html:74
 msgid "Available languages"
 msgstr "Mevcut diller"
 
-#: templates/newfrontend/base.html:137 templates/newfrontend/contact.html:23
+#: templates/newfrontend/base.html:198 templates/newfrontend/contact.html:23
 #: templates/newfrontend/financing.html:41 templates/newfrontend/index.html:188
-#: templates/newfrontend/map.html:54 templates/newfrontend/map.html:67
+#: templates/newfrontend/map.html:59 templates/newfrontend/map.html:72
+#: templates/newfrontend/map_copy.html:55
+#: templates/newfrontend/map_copy.html:183
+#: templates/newfrontend/page-404.html:36
 #: templates/newfrontend/properties.html:25
+#: templates/newfrontend/properties.html:121
+#: templates/partials/_footer.html:153
 msgid "Map"
 msgstr "Harita"
 
-#: templates/newfrontend/base.html:140
-#: templates/newfrontend/property-details.html:6
+#: templates/newfrontend/base.html:201
+#: templates/newfrontend/property-details.html:7
+#: templates/newfrontend/property-details.html:135
 msgid "Property Details"
 msgstr "İlan Detayları"
 
-#: templates/newfrontend/base.html:142 templates/newfrontend/contact.html:11
-#: templates/newfrontend/contact.html:12 templates/newfrontend/contact.html:32
-#: templates/newfrontend/index.html:315 templates/newfrontend/map.html:223
-#: templates/newfrontend/properties.html:95
+#: templates/newfrontend/base.html:203 templates/newfrontend/contact.html:11
+#: templates/newfrontend/contact.html:12
+#: templates/newfrontend/properties.html:225 templates/partials/_footer.html:8
 msgid "Contact Us"
 msgstr "İletişim"
 
-#: templates/newfrontend/base.html:143
+#: templates/newfrontend/base.html:204 templates/partials/_footer.html:155
 msgid "Financing"
 msgstr "Finansman"
 
-#: templates/newfrontend/base.html:146 templates/newfrontend/index.html:213
-#: templates/newfrontend/index.html:263 templates/newfrontend/index.html:296
+#: templates/newfrontend/base.html:210 templates/newfrontend/index.html:216
+#: templates/newfrontend/index.html:271 templates/newfrontend/index.html:306
+#: templates/newfrontend/properties.html:149
+#: templates/newfrontend/properties.html:204
+#: templates/partials/_footer.html:183
 msgid "Schedule a visit"
 msgstr "Ziyaret planla"
 
 # Properties list
 #: templates/newfrontend/contact.html:20
-#: templates/newfrontend/financing.html:38 templates/newfrontend/map.html:64
+#: templates/newfrontend/financing.html:38 templates/newfrontend/map.html:69
+#: templates/newfrontend/map_copy.html:180
+#: templates/newfrontend/page-404.html:33
 #: templates/newfrontend/properties.html:22
 msgid "Show All"
 msgstr "Hepsini Göster"
 
 #: templates/newfrontend/contact.html:21
 #: templates/newfrontend/financing.html:39 templates/newfrontend/index.html:182
-#: templates/newfrontend/map.html:65 templates/newfrontend/properties.html:23
-#: templates/partials/_footer.html:37
+#: templates/newfrontend/map.html:70 templates/newfrontend/map_copy.html:181
+#: templates/newfrontend/page-404.html:34
+#: templates/newfrontend/properties.html:115
 msgid "Apartment"
 msgstr "Daire"
 
 #: templates/newfrontend/contact.html:22
 #: templates/newfrontend/financing.html:40 templates/newfrontend/index.html:185
-#: templates/newfrontend/map.html:66 templates/newfrontend/properties.html:24
+#: templates/newfrontend/map.html:71 templates/newfrontend/map_copy.html:182
+#: templates/newfrontend/page-404.html:35
+#: templates/newfrontend/properties.html:118
 msgid "Villa House"
 msgstr "Villa"
-
-# Contact page
-#: templates/newfrontend/contact.html:33 templates/newfrontend/index.html:316
-#: templates/newfrontend/map.html:224 templates/newfrontend/properties.html:96
-msgid "Get In Touch With Our Agents"
-msgstr "Danışmanlarımızla İletişime Geçin"
-
-#: templates/newfrontend/contact.html:56
-#: templates/newfrontend/financing.html:196
-#: templates/newfrontend/index.html:350 templates/newfrontend/map.html:247
-#: templates/newfrontend/properties.html:119
-#: templates/pages/agesverification.html:47
-msgid "Full Name"
-msgstr "Ad Soyad"
-
-#: templates/newfrontend/contact.html:62
-#: templates/newfrontend/financing.html:202
-#: templates/newfrontend/index.html:356 templates/newfrontend/map.html:253
-#: templates/newfrontend/properties.html:125
-msgid "Email Address"
-msgstr "E-posta Adresi"
-
-#: templates/newfrontend/contact.html:68
-#: templates/newfrontend/financing.html:208
-#: templates/newfrontend/index.html:362 templates/newfrontend/map.html:259
-#: templates/newfrontend/properties.html:131
-msgid "Subject"
-msgstr "Konu"
-
-#: templates/newfrontend/contact.html:80
-#: templates/newfrontend/financing.html:220
-#: templates/newfrontend/index.html:374 templates/newfrontend/map.html:271
-#: templates/newfrontend/properties.html:143
-msgid "Send Message"
-msgstr "Mesaj Gönder"
 
 #: templates/newfrontend/financing.html:29
 msgid "Banking in Turkey"
@@ -599,7 +695,11 @@ msgid ""
 "and foreign buyers. Terms, documentation, and maximum loan amounts vary by "
 "bank, buyer profile, and property valuation. Below is a practical summary to "
 "help you prepare."
-msgstr "Türkiye, hem yerleşikler hem de yabancı alıcılar için banka konut kredileri ve müteahhit taksitleri sunar. Koşullar, belgeler ve azami kredi tutarı; bankaya, alıcı profiline ve değerlemeye göre değişir. Aşağıda hazırlık yapmanıza yardımcı olacak pratik bir özet yer almaktadır."
+msgstr ""
+"Türkiye, hem yerleşikler hem de yabancı alıcılar için banka konut kredileri "
+"ve müteahhit taksitleri sunar. Koşullar, belgeler ve azami kredi tutarı; "
+"bankaya, alıcı profiline ve değerlemeye göre değişir. Aşağıda hazırlık "
+"yapmanıza yardımcı olacak pratik bir özet yer almaktadır."
 
 #: templates/newfrontend/financing.html:55
 msgid "Who can apply"
@@ -607,13 +707,16 @@ msgstr "Kimler başvurabilir"
 
 #: templates/newfrontend/financing.html:57
 msgid "Turkish citizens and residents: broad bank options and terms."
-msgstr "T.C. vatandaşları ve ikamet edenler: geniş banka seçenekleri ve koşullar."
+msgstr ""
+"T.C. vatandaşları ve ikamet edenler: geniş banka seçenekleri ve koşullar."
 
 #: templates/newfrontend/financing.html:58
 msgid ""
 "Foreign buyers: mortgages are available at selected banks, subject to "
 "valuation and local policy."
-msgstr "Yabancı alıcılar: değerleme ve yerel politikalara tabi olmak üzere seçili bankalarda konut kredileri mevcuttur."
+msgstr ""
+"Yabancı alıcılar: değerleme ve yerel politikalara tabi olmak üzere seçili "
+"bankalarda konut kredileri mevcuttur."
 
 #: templates/newfrontend/financing.html:61
 msgid "Typical loan terms"
@@ -621,7 +724,9 @@ msgstr "Tipik kredi koşulları"
 
 #: templates/newfrontend/financing.html:63
 msgid "Currency: mostly TRY-denominated mortgages; FX loans are limited."
-msgstr "Para birimi: çoğunlukla TL cinsinden konut kredileri; döviz kredileri sınırlıdır."
+msgstr ""
+"Para birimi: çoğunlukla TL cinsinden konut kredileri; döviz kredileri "
+"sınırlıdır."
 
 #: templates/newfrontend/financing.html:64
 msgid "Tenor: commonly 5–10 years depending on bank and profile."
@@ -631,7 +736,9 @@ msgstr "Vade: bankaya ve profile bağlı olarak genellikle 5–10 yıl."
 msgid ""
 "Loan-to-Value (LTV): determined by the bank’s appraisal; foreigners often "
 "qualify for lower LTVs than residents."
-msgstr "Kredi-Değer Oranı (LTV): bankanın ekspertiziyle belirlenir; yabancılar genellikle ikamet edenlere kıyasla daha düşük LTV alır."
+msgstr ""
+"Kredi-Değer Oranı (LTV): bankanın ekspertiziyle belirlenir; yabancılar "
+"genellikle ikamet edenlere kıyasla daha düşük LTV alır."
 
 #: templates/newfrontend/financing.html:66
 msgid "Interest: variable by bank and market; request an up-to-date quote."
@@ -651,7 +758,8 @@ msgstr "Türkiye vergi numarası (Vergi Numarası)"
 
 #: templates/newfrontend/financing.html:73
 msgid "Proof of income (salary slips, tax returns, bank statements)"
-msgstr "Gelir belgesi (maaş bordrosu, vergi beyannamesi, banka hesap dökümleri)"
+msgstr ""
+"Gelir belgesi (maaş bordrosu, vergi beyannamesi, banka hesap dökümleri)"
 
 #: templates/newfrontend/financing.html:74
 msgid "Address proof (utility bill or residency document)"
@@ -659,7 +767,8 @@ msgstr "Adres teyidi (fatura veya ikamet belgesi)"
 
 #: templates/newfrontend/financing.html:75
 msgid "Property appraisal report (SPK valuation) arranged via bank"
-msgstr "Banka aracılığıyla düzenlenen gayrimenkul değerleme raporu (SPK ekspertizi)"
+msgstr ""
+"Banka aracılığıyla düzenlenen gayrimenkul değerleme raporu (SPK ekspertizi)"
 
 #: templates/newfrontend/financing.html:78
 msgid "Process at a glance"
@@ -687,7 +796,9 @@ msgstr "Nihai onay: kredi tutarı değerleme raporuna göre belirlenir."
 msgid ""
 "Signing and disbursement: earthquake insurance (DASK) is typically required "
 "before deed transfer."
-msgstr "İmza ve kullandırım: tapu devrinden önce genellikle DASK deprem sigortası gerekir."
+msgstr ""
+"İmza ve kullandırım: tapu devrinden önce genellikle DASK deprem sigortası "
+"gerekir."
 
 #: templates/newfrontend/financing.html:87
 msgid "Fees and mandatory items"
@@ -719,7 +830,11 @@ msgid ""
 "transfers in foreign currency. Banks may request source-of-funds "
 "documentation. Currency conversion and payment documentation for the title "
 "office are handled in coordination with your bank and notary."
-msgstr "Uluslararası alıcılar genellikle peşinat ve kapanış ödemelerini yabancı para cinsinden SWIFT transferleriyle yapar. Bankalar, fon kaynağına ilişkin belgeler isteyebilir. Döviz bozdurma ve tapu müdürlüğü için ödeme evrakları banka ve noterinizle koordinasyon içinde yürütülür."
+msgstr ""
+"Uluslararası alıcılar genellikle peşinat ve kapanış ödemelerini yabancı para "
+"cinsinden SWIFT transferleriyle yapar. Bankalar, fon kaynağına ilişkin "
+"belgeler isteyebilir. Döviz bozdurma ve tapu müdürlüğü için ödeme evrakları "
+"banka ve noterinizle koordinasyon içinde yürütülür."
 
 #: templates/newfrontend/financing.html:100
 msgid "Alternatives to bank mortgages"
@@ -729,11 +844,14 @@ msgstr "Banka kredilerine alternatifler"
 msgid ""
 "Developer installment plans: staged payments during constrinsuction or short-"
 "term post-handover schedules."
-msgstr "Müteahhit taksit planları: inşaat sırasında kademeli ödemeler veya teslim sonrası kısa vadeli planlar."
+msgstr ""
+"Müteahhit taksit planları: inşaat sırasında kademeli ödemeler veya teslim "
+"sonrası kısa vadeli planlar."
 
 #: templates/newfrontend/financing.html:103
 msgid "Personal loans or home equity from your home country (if applicable)."
-msgstr "Kişisel krediler veya kendi ülkenizdeki konut teminatlı krediler (uygunsa)."
+msgstr ""
+"Kişisel krediler veya kendi ülkenizdeki konut teminatlı krediler (uygunsa)."
 
 #: templates/newfrontend/financing.html:107
 msgid "Popular banks to consider"
@@ -755,12 +873,13 @@ msgstr "İşbank, Garanti BBVA, Akbank, Yapı Kredi"
 msgid ""
 "Availability and terms for foreign buyers vary by branch and policy; please "
 "confirm locally."
-msgstr "Yabancı alıcılar için uygunluk ve koşullar şube ve politikalara göre değişir; lütfen yerelde teyit edin."
+msgstr ""
+"Yabancı alıcılar için uygunluk ve koşullar şube ve politikalara göre "
+"değişir; lütfen yerelde teyit edin."
 
 #: templates/newfrontend/financing.html:120
 msgid "Related"
-msgstr ""
-"İlgili"
+msgstr "İlgili"
 
 #: templates/newfrontend/financing.html:121
 msgid "Featured properties you can finance"
@@ -799,7 +918,31 @@ msgid ""
 "We guide you through bank pre-approval, valuation, and deed transfer, and "
 "coordinate with lenders and developers to secure a suitable financing option "
 "for your purchase in Turkey."
-msgstr "Banka ön onayı, değerleme ve tapu devri süreçlerinde sizi yönlendirir; Türkiye’deki satın alımınız için uygun finansmanı sağlamak üzere banka ve müteahhitlerle koordinasyonu yürütürüz."
+msgstr ""
+"Banka ön onayı, değerleme ve tapu devri süreçlerinde sizi yönlendirir; "
+"Türkiye’deki satın alımınız için uygun finansmanı sağlamak üzere banka ve "
+"müteahhitlerle koordinasyonu yürütürüz."
+
+#: templates/newfrontend/financing.html:196
+#: templates/newfrontend/properties.html:260
+#: templates/pages/agesverification.html:47 templates/partials/_footer.html:45
+msgid "Full Name"
+msgstr "Ad Soyad"
+
+#: templates/newfrontend/financing.html:202
+#: templates/newfrontend/properties.html:266 templates/partials/_footer.html:51
+msgid "Email Address"
+msgstr "E-posta Adresi"
+
+#: templates/newfrontend/financing.html:208
+#: templates/newfrontend/properties.html:272 templates/partials/_footer.html:57
+msgid "Subject"
+msgstr "Konu"
+
+#: templates/newfrontend/financing.html:220
+#: templates/newfrontend/properties.html:284 templates/partials/_footer.html:69
+msgid "Send Message"
+msgstr "Mesaj Gönder"
 
 # Index page
 #: templates/newfrontend/index.html:6
@@ -848,7 +991,10 @@ msgid ""
 "apartments, and luxury residences across Istanbul, Antalya, and Ankara. Each "
 "property is carefully selected to meet the highest standards of quality and "
 "location."
-msgstr "İstanbul, Antalya ve Ankara genelinde villalar, daireler ve lüks konutlar dahil geniş bir seçki sunuyoruz. Her mülk, kalite ve konum açısından en yüksek standartları karşılayacak şekilde özenle seçilir."
+msgstr ""
+"İstanbul, Antalya ve Ankara genelinde villalar, daireler ve lüks konutlar "
+"dahil geniş bir seçki sunuyoruz. Her mülk, kalite ve konum açısından en "
+"yüksek standartları karşılayacak şekilde özenle seçilir."
 
 #: templates/newfrontend/index.html:61
 msgid "How do I schedule a property viewing?"
@@ -859,7 +1005,10 @@ msgid ""
 "Scheduling a viewing is simple. Click the 'Schedule a visit' button on any "
 "property listing, or contact our team directly via phone or email. Our "
 "agents are available 24/7 to assist you."
-msgstr "Ziyaret planlamak çok kolaydır. Herhangi bir ilanda 'Ziyaret planla' düğmesine tıklayın veya ekibimizle telefon ya da e‑posta yoluyla doğrudan iletişime geçin. Danışmanlarımız 7/24 yardımcı olmak için hazırdır."
+msgstr ""
+"Ziyaret planlamak çok kolaydır. Herhangi bir ilanda 'Ziyaret planla' "
+"düğmesine tıklayın veya ekibimizle telefon ya da e‑posta yoluyla doğrudan "
+"iletişime geçin. Danışmanlarımız 7/24 yardımcı olmak için hazırdır."
 
 #: templates/newfrontend/index.html:73
 msgid "What financing options are available?"
@@ -870,7 +1019,10 @@ msgid ""
 "We work with leading financial institutions to offer flexible payment plans "
 "and bank financing options. Our team can guide you through the entire "
 "process to make your property purchase seamless."
-msgstr "Önde gelen finans kuruluşlarıyla çalışarak esnek ödeme planları ve banka finansmanı seçenekleri sunuyoruz. Ekibimiz, satın alma sürecinizi sorunsuz hale getirmek için sizi baştan sona yönlendirebilir."
+msgstr ""
+"Önde gelen finans kuruluşlarıyla çalışarak esnek ödeme planları ve banka "
+"finansmanı seçenekleri sunuyoruz. Ekibimiz, satın alma sürecinizi sorunsuz "
+"hale getirmek için sizi baştan sona yönlendirebilir."
 
 #: templates/newfrontend/index.html:89
 msgid "Total Flat Space"
@@ -935,25 +1087,50 @@ msgid "Won 2023"
 msgstr "2023'te Kazanıldı"
 
 #: templates/newfrontend/index.html:172
+#: templates/newfrontend/properties.html:105
 msgid "Best Deal"
 msgstr "En İyi Fırsat"
 
 #: templates/newfrontend/index.html:173
+#: templates/newfrontend/properties.html:106
 msgid "Find Your Best Deal Right Now!"
 msgstr "En İyi Fırsatı Hemen Bul!"
 
 #: templates/newfrontend/index.html:210
+#: templates/newfrontend/properties.html:143
 msgid "All Info About Apartment"
 msgstr "Daire Hakkında Tüm Bilgiler"
 
 # Map page
-#: templates/newfrontend/map.html:4
+#: templates/newfrontend/map.html:4 templates/newfrontend/map_copy.html:4
 msgid "Listings Map"
 msgstr "İlan Haritası"
 
-#: templates/newfrontend/map.html:55
+#: templates/newfrontend/map.html:60
 msgid "Map of Listings"
 msgstr "İlanların Haritası"
+
+#: templates/newfrontend/map_copy.html:56
+msgid "Konsept Harita"
+msgstr ""
+
+#: templates/newfrontend/page-404.html:5 templates/newfrontend/page-404.html:13
+msgid "Page Not Found"
+msgstr ""
+
+#: templates/newfrontend/page-404.html:24
+msgid "Oops"
+msgstr ""
+
+#: templates/newfrontend/page-404.html:25
+msgid "We can’t find the page you’re looking for"
+msgstr ""
+
+#: templates/newfrontend/page-404.html:28
+msgid ""
+"The link may be broken or the page might have been removed. You can go back "
+"home or explore our latest properties."
+msgstr ""
 
 #: templates/newfrontend/partials/loan_calculator.html:4
 #: templates/newfrontend/partials/loan_calculator.html:5
@@ -1043,19 +1220,176 @@ msgstr "Bakiye"
 msgid ""
 "This calculator provides estimates for illustration only and does not "
 "constitute a loan offer."
-msgstr "Bu hesaplayıcı yalnızca örnek amaçlı tahminler sunar ve bir kredi teklifi niteliği taşımaz."
+msgstr ""
+"Bu hesaplayıcı yalnızca örnek amaçlı tahminler sunar ve bir kredi teklifi "
+"niteliği taşımaz."
 
 #: templates/newfrontend/partials/loan_calculator.html:108
 msgid "amortization"
 msgstr "amortisman"
 
-#: templates/newfrontend/property-details.html:37
+#: templates/newfrontend/properties.html:23
+#, fuzzy
+#| msgid "Renting"
+msgid "Rent"
+msgstr "Kiralama"
+
+#: templates/newfrontend/properties.html:24
+msgid "Sale"
+msgstr ""
+
+#: templates/newfrontend/properties.html:53
+msgid "Gross m²"
+msgstr ""
+
+#: templates/newfrontend/properties.html:54
+msgid "Floor"
+msgstr ""
+
+#: templates/newfrontend/properties.html:55
+#: templates/newfrontend/property-details.html:203
+msgid "Location"
+msgstr "Konum"
+
+# Contact page
+#: templates/newfrontend/properties.html:226 templates/partials/_footer.html:9
+msgid "Get In Touch With Our Agents"
+msgstr "Danışmanlarımızla İletişime Geçin"
+
+#: templates/newfrontend/property-details.html:141
+#, fuzzy
+#| msgid "Type:"
+msgid "Deal Type:"
+msgstr "İşlem Türü:"
+
+#: templates/newfrontend/property-details.html:143
+#, fuzzy
+#| msgid "Bedrooms:"
+msgid "Rooms:"
+msgstr "Oda Sayısı:"
+
+#: templates/newfrontend/property-details.html:146
+msgid "Net m²:"
+msgstr ""
+
+#: templates/newfrontend/property-details.html:147
+msgid "Gross m²:"
+msgstr ""
+
+#: templates/newfrontend/property-details.html:148
+msgid "Area (sqft):"
+msgstr ""
+
+#: templates/newfrontend/property-details.html:149
+#, fuzzy
+#| msgid "Building"
+msgid "Building Age:"
+msgstr "İnşaat"
+
+#: templates/newfrontend/property-details.html:150
+msgid "Floor:"
+msgstr ""
+
+#: templates/newfrontend/property-details.html:151
+#, fuzzy
+#| msgid "Renting"
+msgid "Heating:"
+msgstr "Isıtma:"
+
+#: templates/newfrontend/property-details.html:152
+msgid "Kitchen:"
+msgstr ""
+
+#: templates/newfrontend/property-details.html:153
+msgid "Balcony:"
+msgstr ""
+
+#: templates/newfrontend/property-details.html:154
+msgid "Parking:"
+msgstr ""
+
+#: templates/newfrontend/property-details.html:155
+#, fuzzy
+#| msgid "Status"
+msgid "Usage Status:"
+msgstr "Durum"
+
+#: templates/newfrontend/property-details.html:156
+msgid "Complex:"
+msgstr "Site:"
+
+#: templates/newfrontend/property-details.html:156
+#: templates/newfrontend/property-details.html:157
+#: templates/newfrontend/property-details.html:158
+#: templates/newfrontend/property-details.html:211
+#, fuzzy
+#| msgid "Years"
+msgid "Yes"
+msgstr "Evet"
+
+#: templates/newfrontend/property-details.html:156
+#: templates/newfrontend/property-details.html:157
+#: templates/newfrontend/property-details.html:158
+#: templates/newfrontend/property-details.html:211
+msgid "No"
+msgstr "Hayır"
+
+#: templates/newfrontend/property-details.html:157
+#, fuzzy
+#| msgid "Realtor:"
+msgid "Elevator:"
+msgstr "Asansör:"
+
+#: templates/newfrontend/property-details.html:158
+#, fuzzy
+#| msgid "Finished at"
+msgid "Furnished:"
+msgstr "Eşyalı:"
+
+#: templates/newfrontend/property-details.html:167
+msgid "Fees & Listing Info"
+msgstr "Ücretler ve İlan Bilgileri"
+
+#: templates/newfrontend/property-details.html:173
+msgid "Maintenance Fee (Aidat):"
+msgstr "Aidat:"
+
+#: templates/newfrontend/property-details.html:174
+msgid "Deposit:"
+msgstr "Depozito:"
+
+#: templates/newfrontend/property-details.html:175
+#, fuzzy
+#| msgid "Status"
+msgid "Deed Status:"
+msgstr "Tapu Durumu:"
+
+#: templates/newfrontend/property-details.html:176
+msgid "From Whom:"
+msgstr "Kimden:"
+
+# Map page
+#: templates/newfrontend/property-details.html:177
+#, fuzzy
+#| msgid "Listing Date:"
+msgid "Listing ID:"
+msgstr "İlan No:"
+
+#: templates/newfrontend/property-details.html:178
+msgid "Ad Date:"
+msgstr "İlan Tarihi:"
+
+#: templates/newfrontend/property-details.html:191
 msgid "Price"
 msgstr "Fiyat"
 
-#: templates/newfrontend/property-details.html:49
-msgid "Location"
-msgstr "Konum"
+#: templates/newfrontend/property-details.html:207
+msgid "Size (Gross m²)"
+msgstr "Büyüklük (Brüt m²)"
+
+#: templates/newfrontend/property-details.html:211
+msgid "Elevator"
+msgstr "Asansör"
 
 #: templates/newfrontend/whatsappwidget.html:85
 msgid "Typically replies within a day"
@@ -1145,10 +1479,6 @@ msgstr ""
 "hizmetlerden birini sunarlar.<br> Müşteri memnuniyeti bir numaralı "
 "öncelikleridir."
 
-#: templates/pages/about.html:98
-msgid "Realtor"
-msgstr "Emlak Danışmanı"
-
 #: templates/pages/about.html:117
 msgid "No Realtors Available"
 msgstr "Emlak danışmanı bulunamadı"
@@ -1156,9 +1486,9 @@ msgstr "Emlak danışmanı bulunamadı"
 #
 #: templates/pages/agesverification.html:13
 #: templates/pages/agesverification.html:39 templates/pages/index.html:38
-#: templates/partials/_footer.html:44 templates/partials/_navbar.html:47
+#: templates/partials/_navbar.html:48
 msgid "Verification"
-msgstr "Konum"
+msgstr "Doğrulama"
 
 #: templates/pages/agesverification.html:17
 msgid "Upload your documents and fill the contact form."
@@ -1254,58 +1584,67 @@ msgstr ""
 msgid "Error:"
 msgstr "Hata:"
 
-#: templates/partials/_footer.html:10
-msgid "Explore Real Estate"
-msgstr "Emlakları Keşfedin"
+#: templates/partials/_footer.html:130
+msgid ""
+"Discover, rent or buy verified properties with modern tools and local "
+"expertise."
+msgstr ""
+"Doğrulanmış mülkleri modern araçlar ve yerel uzmanlıkla keşfedin, kiralayın "
+"veya satın alın."
 
-#: templates/partials/_footer.html:13
-msgid "Subscribe To Our Newsletter"
-msgstr "Bültenimize Abone Olun"
-
-#: templates/partials/_footer.html:20
-msgid "All Right Reserved"
-msgstr "Tüm Hakları Saklıdır"
-
-#: templates/partials/_footer.html:26 templates/partials/_navbar.html:58
-msgid "Become an agent"
-msgstr "Danışman Ol"
-
-#: templates/partials/_footer.html:29
-msgid "COMPANY"
-msgstr "ŞİRKET"
-
-#: templates/partials/_footer.html:31
-msgid "FAQ"
-msgstr "SSS"
+#: templates/partials/_footer.html:148
+#, fuzzy
+#| msgid "amortization"
+msgid "Navigation"
+msgstr "Gezinti"
 
 #
-#: templates/partials/_footer.html:32 templates/partials/_navbar.html:48
+#: templates/partials/_footer.html:154 templates/partials/_footer.html:164
+#: templates/partials/_navbar.html:49
 msgid "Contact"
 msgstr "İletişim"
 
-#: templates/partials/_footer.html:33
-msgid "Social"
-msgstr "Sosyal"
+#: templates/partials/_footer.html:197
+#, fuzzy
+#| msgid "All Right Reserved"
+msgid "All rights reserved."
+msgstr "Tüm Hakları Saklıdır"
 
-#: templates/partials/_footer.html:36
-msgid "PRODUCT"
-msgstr "ÜRÜN"
-
-#: templates/partials/_footer.html:38
-msgid "How It Works"
-msgstr "Nasıl Çalışır"
-
-#: templates/partials/_footer.html:41
-msgid "SERVICES"
-msgstr "HİZMETLER"
-
-#: templates/partials/_navbar.html:44
+#: templates/partials/_navbar.html:45
 msgid "Blog"
 msgstr "Blog"
+
+#: templates/partials/_navbar.html:59
+msgid "Become an agent"
+msgstr "Danışman Ol"
 
 #: templates/partials/_topbar.html:8
 msgid "inquiries@coralcity.com"
 msgstr "inquiries@coralcity.com"
+
+#~ msgid "Explore Real Estate"
+#~ msgstr "Emlakları Keşfedin"
+
+#~ msgid "Subscribe To Our Newsletter"
+#~ msgstr "Bültenimize Abone Olun"
+
+#~ msgid "COMPANY"
+#~ msgstr "ŞİRKET"
+
+#~ msgid "FAQ"
+#~ msgstr "SSS"
+
+#~ msgid "Social"
+#~ msgstr "Sosyal"
+
+#~ msgid "PRODUCT"
+#~ msgstr "ÜRÜN"
+
+#~ msgid "How It Works"
+#~ msgstr "Nasıl Çalışır"
+
+#~ msgid "SERVICES"
+#~ msgstr "HİZMETLER"
 
 #~ msgid "Best useful links ?"
 #~ msgstr "En faydalı bağlantılar?"
