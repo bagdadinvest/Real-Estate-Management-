@@ -33,6 +33,9 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    # Baton (if installed) must precede 'django.contrib.admin' to style the admin
+    # We'll insert it dynamically below if available
+    'baton',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,7 +54,22 @@ INSTALLED_APPS = [
     'import_export',
     'graphene_django',
     'django_distill',
+    'baton.autodiscover',
+
 ]
+
+# Add Rosetta only if available to avoid startup failures when not installed
+try:
+    import baton  # noqa: F401
+    # Insert 'baton' before 'django.contrib.admin' to override admin templates
+    if 'baton' not in INSTALLED_APPS:
+        admin_index = INSTALLED_APPS.index('django.contrib.admin') if 'django.contrib.admin' in INSTALLED_APPS else 0
+        INSTALLED_APPS.insert(admin_index, 'baton')
+    # Autodiscover app configs to allow Baton to tweak admin apps
+    if 'baton.autodiscover' not in INSTALLED_APPS:
+        INSTALLED_APPS.append('baton.autodiscover')
+except Exception:
+    pass
 
 # Add Rosetta only if available to avoid startup failures when not installed
 try:
@@ -212,3 +230,13 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 if 'DATABASE_URL' in os.environ:
     import dj_database_url
     DATABASES = {'default': dj_database_url.config()}
+
+# Optional Baton configuration (safe if baton not installed)
+BATON = {
+    'SITE_HEADER': 'CoralCity Admin',
+    'SITE_TITLE': 'CoralCity Admin',
+    'INDEX_TITLE': 'Site administration',
+    'SUPPORT_HREF': '#',
+    'CONFIRM_UNSAVED_CHANGES': True,
+    'ENABLE_IMAGES_PREVIEW': True,
+}

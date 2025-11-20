@@ -106,21 +106,29 @@
   }
 </style>
 
-<footer id="site-footer" style="background:#242424; color:#e5e5e5; padding:50px 0 25px; margin-top:60px;">
-  <div class="container">
-    
+<footer id="site-footer" style="
+    background: url('{% static 'footer-bg.png' %}') no-repeat center center;
+    background-size: cover;
+    color:#e5e5e5;
+    padding:50px 0 25px;
+    margin-top:60px;">
+    <div class="container">
+
     <!-- 1. SATIR: Marka (Sol) ve Navigasyon (Sağ) -->
     <div class="row" style="align-items:flex-start; justify-content:space-between; margin-bottom: 20px;">
-      
+
       <!-- SOL: Brand / About -->
-      <div class="col-lg-4 col-md-6" style="margin-bottom:24px;">
-        <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
-          <!-- Logo'ya class eklendi -->
-          <img src="{% static 'logo.png' %}" alt="Logo" class="footer-logo" style="height:48px; width:auto; display:block;" />
-          <h5 style="margin:0; color:#fff;">Kavakli</h5>
-        </div>
-        <p style="opacity:.85; font-size:14px; line-height:1.7;">{% trans "Discover, rent or buy verified properties with modern tools and local expertise." %}</p>
-        
+ <div class="col-lg-4 col-md-6" style="margin-bottom:24px;">
+  <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px;">
+
+    <video autoplay loop muted playsinline class="footer-logo" style="height:48px; width:auto; display:block;">
+        <source src="{% static 'footer.mp4' %}" type="video/mp4">
+    </video>
+
+    <h5 style="margin:0; color:#fff;">Kavakli</h5>
+  </div>
+  <p style="opacity:.85; font-size:14px; line-height:1.7;">{% trans "Discover, rent or buy verified properties with modern tools and local expertise." %}</p>
+
         <!-- Sosyal Medya İkonları -->
         <div style="display:flex; gap:12px; margin-top:12px;">
           <a href=" https://www.facebook.com/Koral-City-ltd-100737889187297" class="social-icon" target="_blank" rel="noopener" style="color:#e5e5e5;">
@@ -148,7 +156,7 @@
         </ul>
       </div>
 
-    </div> 
+    </div>
 
     <!-- 2. SATIR: İletişim (Hemen altında) -->
     <div class="row">
@@ -156,19 +164,19 @@
         <h6 style="color:#fff; margin-bottom:12px;">{% trans "Contact" %}</h6>
         <ul style="list-style:none; margin:0; padding:0; line-height:2;">
           <li><i class="fa fa-map" aria-hidden="true" style="margin-right:8px; color:#999;"></i> Kavaklı, 34520 Beylikdüzü/İstanbul</li>
-          
+
           <!-- Mail Linki -->
           <li>
-            <i class="fa fa-envelope" aria-hidden="true" style="margin-right:8px; color:#999;"></i> 
+            <i class="fa fa-envelope" aria-hidden="true" style="margin-right:8px; color:#999;"></i>
             <a href="mailto:hasangun@kuzey-yapi-emlak.com" class="footer-link" style="color:#e5e5e5;">hasangun@kuzey-yapi-emlak.com</a>
           </li>
-          
+
           <li>
-            <i class="fab fa-whatsapp" aria-hidden="true" style="margin-right:8px; color:#999;"></i> 
+            <i class="fab fa-whatsapp" aria-hidden="true" style="margin-right:8px; color:#999;"></i>
             <a href="https://wa.me/905423637436" target="_blank" rel="noopener" class="footer-link" style="color:#e5e5e5;">
               +905423637436
             </a>
-          </li>          
+          </li>
           <!-- Takvim Linki -->
           <li>
             <a href="https://cal.com/hasan-gun-saqvh6" target="_blank" rel="noopener" class="footer-link" style="color:#e5e5e5;">
@@ -180,7 +188,7 @@
     </div>
 
     <hr style="border-color:#333; margin:10px 0 16px;">
-    
+
     <!-- Alt Bilgi -->
     <div class="row">
       <div class="col-12" style="text-align:center;">

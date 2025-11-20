@@ -243,6 +243,7 @@ class Command(BaseCommand):
 
         created = 0
         skipped = 0
+        updated = 0
 
         # Default headers (applied to every request). User-specified headers override these.
         default_headers = {
@@ -347,6 +348,27 @@ class Command(BaseCommand):
                     dbg("Session cookies added to context")
                 except Exception as e:
                     dbg(f"Failed to add cookies: {e}")
+
+            # Helper to run ORM lookups safely outside async context
+            def find_existing(external_id_value: str | None, original_url_value: str | None):
+                result = {"obj": None}
+
+                def _lookup():
+                    try:
+                        close_old_connections()
+                        obj = None
+                        if external_id_value:
+                            obj = Listing.objects.filter(external_id=external_id_value).first()
+                        if obj is None and original_url_value:
+                            obj = Listing.objects.filter(original_url=original_url_value).first()
+                        result["obj"] = obj
+                    finally:
+                        close_old_connections()
+
+                t = threading.Thread(target=_lookup, name="listing-lookup-thread", daemon=True)
+                t.start()
+                t.join()
+                return result["obj"]
 
             for idx, url in enumerate(urls, start=1):
                 dbg(f"[{idx}/{len(urls)}] Goto: {url}")
@@ -486,22 +508,18 @@ class Command(BaseCommand):
                             time.sleep(delay)
                         continue
 
-                # Skip if this listing already exists in DB by external_id
-                if external_id:
-                    try:
-                        if Listing.objects.filter(external_id=external_id).exists():
-                            self.stdout.write(self.style.WARNING(f"[{idx}] SKIP existing listing external_id={external_id}"))
-                            skipped += 1
-                            try:
-                                page.close()
-                            except Exception:
-                                pass
-                            # Keep pacing similar to normal path
-                            if delay > 0:
-                                time.sleep(delay)
-                            continue
-                    except Exception as e:
-                        dbg(f"Existence check failed: {e}")
+                # Check if this listing already exists (by external_id or original_url)
+                existing_listing = None
+                lookup_source = None
+                try:
+                    existing_listing = find_existing(external_id, url)
+                    if existing_listing:
+                        if existing_listing.external_id:
+                            lookup_source = f"external_id={existing_listing.external_id}"
+                        elif existing_listing.original_url:
+                            lookup_source = "original_url"
+                except Exception as e:
+                    dbg(f"Existing lookup failed: {e}")
 
                 # Map link
                 lat = lon = None
@@ -567,76 +585,167 @@ class Command(BaseCommand):
                         description_parts.append(f"{k}: {v}")
                 description = " | ".join(description_parts)
 
-                dbg("Constructing Listing model instance")
-                listing = Listing(
-                    realtor=realtor,
-                    title=title,
-                    address=address,
-                    city=city,
-                    state=state,
-                    zipcode=zipcode,
-                    description=description,
-                    price=price,
-                    bedrooms=bedrooms,
-                    deal_type=deal_type or "",
-                    property_type=property_type,
-                    bathrooms=bathrooms,
-                    sqft=sqft,
-                    lot_size=Decimal("0.0"),
-                    external_id=external_id,
-                    ad_date=list_date.date() if isinstance(list_date, datetime) else list_date,
-                    m2_gross=m2_brut or None,
-                    m2_net=clean_int_from_text(details.get("m² (Net)", "") or details.get("m2 (Net)", "")) or None,
-                    rooms_text=(details.get("Oda Sayısı", "") or details.get("Oda Sayisi", "")).strip(),
-                    building_age=building_age,
-                    floor_number=floor_number,
-                    floors_total=floors_total,
-                    heating=heating,
-                    kitchen_type=kitchen_type,
-                    balcony=balcony,
-                    elevator=elevator,
-                    parking_area=parking_area,
-                    furnished=furnished,
-                    usage_status=usage_status,
-                    in_complex=in_complex,
-                    complex_name=complex_name,
-                    maintenance_fee=maintenance_fee,
-                    deposit=deposit,
-                    deed_status=deed_status,
-                    from_whom=from_whom,
-                )
-                if lat is not None and lon is not None:
-                    listing.latitude = lat
-                    listing.longitude = lon
-                if list_date:
-                    listing.list_date = list_date
+                dbg("Constructing Listing model instance or updating existing")
+                if existing_listing:
+                    listing = existing_listing
+                    # Minimal non-destructive updates
+                    if not listing.original_url:
+                        listing.original_url = url
+                    if (listing.latitude is None or listing.longitude is None) and (lat is not None and lon is not None):
+                        listing.latitude = lat
+                        listing.longitude = lon
+                    # Optionally update price or other fields only if missing; avoid overwriting user's edits
+                    if not listing.description and description:
+                        listing.description = description
+                    if not listing.property_type and property_type:
+                        listing.property_type = property_type
+                    if not listing.deal_type and deal_type:
+                        listing.deal_type = deal_type
+                else:
+                    listing = Listing(
+                        realtor=realtor,
+                        title=title,
+                        address=address,
+                        city=city,
+                        state=state,
+                        zipcode=zipcode,
+                        description=description,
+                        price=price,
+                        bedrooms=bedrooms,
+                        deal_type=deal_type or "",
+                        property_type=property_type,
+                        bathrooms=bathrooms,
+                        sqft=sqft,
+                        lot_size=Decimal("0.0"),
+                        external_id=external_id,
+                        ad_date=list_date.date() if isinstance(list_date, datetime) else list_date,
+                        m2_gross=m2_brut or None,
+                        m2_net=clean_int_from_text(details.get("m² (Net)", "") or details.get("m2 (Net)", "")) or None,
+                        rooms_text=(details.get("Oda Sayısı", "") or details.get("Oda Sayisi", "")).strip(),
+                        building_age=building_age,
+                        floor_number=floor_number,
+                        floors_total=floors_total,
+                        heating=heating,
+                        kitchen_type=kitchen_type,
+                        balcony=balcony,
+                        elevator=elevator,
+                        parking_area=parking_area,
+                        furnished=furnished,
+                        usage_status=usage_status,
+                        in_complex=in_complex,
+                        complex_name=complex_name,
+                        maintenance_fee=maintenance_fee,
+                        deposit=deposit,
+                        deed_status=deed_status,
+                        from_whom=from_whom,
+                        original_url=url,
+                    )
+                    if lat is not None and lon is not None:
+                        listing.latitude = lat
+                        listing.longitude = lon
+                    if list_date:
+                        listing.list_date = list_date
 
-                # Collect image URLs via <source class="avif-source"> entries, prefer JPG by extension
+                # Collect image URLs from within .classifiedDetailPhotos (all pictures)
+                # - Consider both <img> (src or data-src) and <source> (srcset)
+                # - Prefer non-AVIF URLs; if AVIF, attempt .jpg fallback as site supports both
                 image_urls: list[str] = []
+                skip_image_download = False
                 if not no_images:
+                    # Fast pre-check: if existing listing already has valid images, skip collection and downloads
+                    if existing_listing:
+                        try:
+                            imgs = list(listing.images.all())
+                            if imgs:
+                                all_ok = True
+                                for im in imgs:
+                                    f = getattr(im, 'image', None)
+                                    name = getattr(f, 'name', None) if f else None
+                                    if not f or not name:
+                                        all_ok = False
+                                        break
+                                    try:
+                                        if not f.storage.exists(name):
+                                            all_ok = False
+                                            break
+                                    except Exception:
+                                        all_ok = False
+                                        break
+                                if all_ok:
+                                    skip_image_download = True
+                                    dbg("Existing listing images are valid; skipping image collection and download")
+                        except Exception:
+                            pass
+
                     try:
-                        nodes = page.locator("source.avif-source")
-                        count = nodes.count()
-                        seen = set()
-                        for i_img in range(count):
-                            srcset = nodes.nth(i_img).get_attribute("srcset")
-                            if not srcset:
-                                continue
-                            avif_url = srcset.strip()
-                            if not avif_url or avif_url in seen:
-                                continue
-                            seen.add(avif_url)
-                            jpg_url = re.sub(r"\\.avif(?:\\?.*)?$", ".jpg", avif_url)
-                            image_urls.append(jpg_url)
+                        if skip_image_download:
+                            raise Exception("skip-image-collection")
+                        seen: set[str] = set()
+                        container = page.locator("div.classifiedDetailPhotos")
+
+                        # Helper to normalize a single URL (prefer JPG if AVIF)
+                        def normalize_url(u: str) -> str:
+                            u = (u or "").strip()
+                            if not u:
+                                return ""
+                            # If srcset provides descriptors (e.g., "... 1x"), take just the URL
+                            first_part = u.split()[0]
+                            # Convert .avif to .jpg (server provides jpg fallback)
+                            return re.sub(r"\.avif(?:\?.*)?$", ".jpg", first_part)
+
+                        # 1) <img> elements (prefer data-src when present)
+                        try:
+                            imgs = container.locator("img") if container.count() else page.locator(".classifiedDetailPhotos img")
+                            for i in range(imgs.count()):
+                                node = imgs.nth(i)
+                                cand = node.get_attribute("data-src") or node.get_attribute("src")
+                                if not cand:
+                                    continue
+                                cand = normalize_url(cand)
+                                if not cand:
+                                    continue
+                                # Skip placeholders and non-http
+                                if cand.startswith("data:") or "blank" in cand or not cand.startswith("http"):
+                                    continue
+                                if cand not in seen:
+                                    seen.add(cand)
+                                    image_urls.append(cand)
+                        except Exception:
+                            pass
+
+                        # 2) <source> elements (any type, parse srcset)
+                        try:
+                            sources = container.locator("source") if container.count() else page.locator(".classifiedDetailPhotos source")
+                            for i in range(sources.count()):
+                                srcset = sources.nth(i).get_attribute("srcset")
+                                if not srcset:
+                                    continue
+                                # srcset may contain multiple entries separated by commas
+                                for part in srcset.split(','):
+                                    cand = normalize_url(part)
+                                    if not cand:
+                                        continue
+                                    if cand.startswith("data:") or "blank" in cand or not cand.startswith("http"):
+                                        continue
+                                    if cand not in seen:
+                                        seen.add(cand)
+                                        image_urls.append(cand)
+                        except Exception:
+                            pass
+
+                        # Respect max images
                         if images_max > 0:
                             image_urls = image_urls[:images_max]
-                        dbg(f"Found {len(image_urls)} image candidates")
+                        dbg(f"Found {len(image_urls)} image candidates inside .classifiedDetailPhotos")
                     except Exception as e:
-                        dbg(f"Image extraction failed: {e}")
+                        if str(e) == "skip-image-collection":
+                            pass
+                        else:
+                            dbg(f"Image extraction failed: {e}")
 
                 # Pre-download image bytes so DB writes can happen in a safe thread
                 downloaded_images: list[tuple[str, bytes]] = []
-                if image_urls and not dry_run:
+                if image_urls and not dry_run and not skip_image_download:
                     try:
                         sess = requests.Session()
                         req_headers = {
@@ -670,28 +779,70 @@ class Command(BaseCommand):
                     if connection.in_atomic_block:
                         transaction.set_rollback(True)
                 else:
-                    dbg("Saving to DB")
-                    # Execute the ORM save in a dedicated background thread to avoid
-                    # Django's SynchronousOnlyOperation when an event loop is running.
+                    dbg("Saving to DB and ensuring images" if existing_listing else "Saving new listing to DB")
                     exc_holder = {}
 
                     def _thread_target():
                         try:
-                            # Ensure proper DB connection handling in this thread
                             close_old_connections()
                             listing.save(skip_geocode=skip_geocode)
-                            if downloaded_images:
-                                for i_img, (fname, data) in enumerate(downloaded_images):
-                                    try:
-                                        img = ListingImage(listing=listing, order=i_img, is_primary=(i_img == 0))
-                                        img.image.save(fname, ContentFile(data), save=True)
-                                    except Exception:
-                                        # Continue on image errors without aborting the listing
-                                        pass
-                        except BaseException as e:  # capture to re-raise in caller thread
+                            # If existing, verify images; if missing or broken, (re)attach
+                            def images_need_fix(l):
+                                try:
+                                    imgs = list(l.images.all())
+                                    if not imgs:
+                                        return True
+                                    for im in imgs:
+                                        f = getattr(im, 'image', None)
+                                        name = getattr(f, 'name', None) if f else None
+                                        if not f or not name:
+                                            return True
+                                        try:
+                                            if not f.storage.exists(name):
+                                                return True
+                                        except Exception:
+                                            return True
+                                    return False
+                                except Exception:
+                                    return True
+
+                            if not no_images:
+                                if existing_listing:
+                                    if images_need_fix(listing) and downloaded_images:
+                                        # Remove broken images only (or all if none valid)
+                                        for im in list(listing.images.all()):
+                                            try:
+                                                f = getattr(im, 'image', None)
+                                                name = getattr(f, 'name', None) if f else None
+                                                missing = (not f or not name)
+                                                try:
+                                                    if not missing:
+                                                        missing = not f.storage.exists(name)
+                                                except Exception:
+                                                    missing = True
+                                                if missing:
+                                                    im.delete()
+                                            except Exception:
+                                                pass
+                                        # If still no images, attach downloads
+                                        if listing.images.count() == 0:
+                                            for i_img, (fname, data) in enumerate(downloaded_images):
+                                                try:
+                                                    img = ListingImage(listing=listing, order=i_img, is_primary=(i_img == 0))
+                                                    img.image.save(fname, ContentFile(data), save=True)
+                                                except Exception:
+                                                    pass
+                                else:
+                                    if downloaded_images:
+                                        for i_img, (fname, data) in enumerate(downloaded_images):
+                                            try:
+                                                img = ListingImage(listing=listing, order=i_img, is_primary=(i_img == 0))
+                                                img.image.save(fname, ContentFile(data), save=True)
+                                            except Exception:
+                                                pass
+                        except BaseException as e:
                             exc_holder["exc"] = e
                         finally:
-                            # Close any connections opened in this thread
                             close_old_connections()
 
                     t = threading.Thread(target=_thread_target, name="listing-save-thread", daemon=True)
@@ -699,8 +850,12 @@ class Command(BaseCommand):
                     t.join()
                     if "exc" in exc_holder:
                         raise exc_holder["exc"]
-                    created += 1
-                    self.stdout.write(self.style.SUCCESS(f"[{idx}] Created listing id={listing.id} title='{listing.title}'"))
+                    if existing_listing:
+                        updated += 1
+                        self.stdout.write(self.style.SUCCESS(f"[{idx}] Updated listing id={listing.id} ({lookup_source}) images verified"))
+                    else:
+                        created += 1
+                        self.stdout.write(self.style.SUCCESS(f"[{idx}] Created listing id={listing.id} title='{listing.title}'"))
 
                 # Close page and delay between requests with tick logs in debug mode
                 try:
@@ -723,4 +878,4 @@ class Command(BaseCommand):
             context.close()
             browser.close()
 
-        self.stdout.write(self.style.SUCCESS(f"Done. Created={created}, skipped={skipped}, total={len(urls)}"))
+        self.stdout.write(self.style.SUCCESS(f"Done. Created={created}, Updated={updated}, Skipped={skipped}, Total={len(urls)}"))

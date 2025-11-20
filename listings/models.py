@@ -33,6 +33,8 @@ class Listing(models.Model):
     # New reference fields from source
     external_id = models.CharField(max_length=64, blank=True, db_index=True)
     ad_date = models.DateField(null=True, blank=True)
+    # Source page URL from which this listing was scraped
+    original_url = models.URLField(max_length=500, blank=True)
     # Details
     m2_gross = models.IntegerField(null=True, blank=True)
     m2_net = models.IntegerField(null=True, blank=True)

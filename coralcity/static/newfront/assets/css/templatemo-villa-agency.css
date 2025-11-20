@@ -171,7 +171,7 @@ body {
 }
 
 .icon-button a i {
-  background-color: #c3476c;
+  background-color: #a38344;
   height: 50px;
   width: 50px;
   text-align: center;
@@ -204,7 +204,7 @@ body {
 }
 
 .main-button a:hover {
-  background-color: #c3476c;
+  background-color: #a38344;
   color: #fff;
 }
 
@@ -281,7 +281,7 @@ Pre-loader Style
   height: 16px;
   top: 12px;
   left: 15px;
-  background: #c3476c;
+  background: #a38344;
   border-radius: 50%;
   -webkit-transform: translateX(0);
   transform: translateX(0);
@@ -304,7 +304,7 @@ Pre-loader Style
   width: 16px;
   height: 16px;
   margin-left: 16px;
-  background: #c3476c;
+  background: #a38344;
   border-radius: 50%;
 }
 
@@ -348,7 +348,7 @@ Header Style
 }
 
 .sub-header ul.social-links li a:hover {
-  background-color: #c3476c;
+  background-color: #a38344;
 }
 
 .sub-header ul.info li {
@@ -367,7 +367,7 @@ Header Style
 
 .sub-header ul.info li i {
   font-size: 20px;
-  color: #c3476c;
+  color: #a38344;
   margin-right: 8px;
 }
 
@@ -474,7 +474,7 @@ Header Style
 }
 
 .header-area .main-nav .nav li:last-child a i {
-  background-color: #c3476c;
+  background-color: #a38344;
   display: inline-block;
   width: 40px;
   height: 40px;
@@ -494,16 +494,16 @@ Header Style
 }
 
 .header-area .main-nav .nav li:hover a {
-  color: #c3476c;
+  color: #a38344;
 }
 
 .header-area .main-nav .nav li a.active {
-  color: #c3476c;
+  color: #a38344;
 }
 
 
 .background-header .main-nav .nav li a.active {
-  color: #c3476c;
+  color: #a38344;
 }
 
 .header-area .main-nav .menu-trigger {
@@ -788,7 +788,7 @@ Banner Style
 
 .main-banner .item span.category em {
   font-style: normal;
-  color: #c3476c;
+  color: #a38344;
 }
 
 .main-banner .item h2 {
@@ -816,7 +816,7 @@ Banner Style
 }
 
 .main-banner .owl-dots .active {
-  background-color: #c3476c;
+  background-color: #a38344;
 }
 
 .main-banner .owl-nav {
@@ -877,7 +877,7 @@ Featured Style
   width: 110px;
   height: 110px;
   line-height: 110px;
-  background-color: #c3476c;
+  background-color: #a38344;
   border-radius: 50%;
   text-align: center;
   position: absolute;
@@ -917,7 +917,7 @@ Featured Style
 }
 
 .featured .accordion-button:not(.collapsed) {
-  color: #c3476c;
+  color: #a38344;
   background-color: #fafafa;
   outline: none;
 }
@@ -1014,7 +1014,7 @@ Video Style
   display: inline-block;
   text-align: center;
   line-height: 52px;
-  color: #c3476c;
+  color: #a38344;
   outline: 15px solid rgba(254, 85, 37, 0.5);
   font-size: 18px;
 }
@@ -1056,14 +1056,14 @@ Fun Facts Style
 .fun-facts .counter h2 {
   margin-right: 25px;
   font-size: 40px;
-  color: #c3476c;
+  color: #a38344;
 }
 
 .fun-facts .counter:after {
   position: absolute;
   width: 50px;
   height: 50px;
-  background-color: #c3476c;
+  background-color: #a38344;
   border-radius: 50%;
   content: '';
   right: -25px;
@@ -1099,7 +1099,7 @@ Best Deal Style
 }
 
 .best-deal .tabs-content .nav-tabs .nav-link.active {
-  background-color: #c3476c !important;
+  background-color: #a38344 !important;
   color: #fff;
 }
 
@@ -1221,7 +1221,7 @@ Properties Style
 
 .properties .item h6 {
   font-size: 20px;
-  color: #c3476c;
+  color: #a38344;
   margin-top: 6px;
   display: inline-block;
   float: right;
@@ -1346,7 +1346,7 @@ Contact Style
 }
 
 .contact-content #contact-form button:hover {
-  background-color: #c3476c;
+  background-color: #a38344;
 }
 
 
@@ -1455,7 +1455,7 @@ Properties Style
 }
 
 .properties ul.properties-filter li a.is_active {
-  background-color: #c3476c;
+  background-color: #a38344;
   color: #fff;
 }
 
@@ -1464,7 +1464,7 @@ Properties Style
 }
 
 .properties ul.properties-filter li a:hover {
-  color: #c3476c;
+  color: #a38344;
 }
 
 .properties ul.pagination {
@@ -1495,7 +1495,7 @@ Properties Style
 
 .properties ul.pagination li a:hover,
 .properties ul.pagination li a.is_active {
-  background-color: #c3476c;
+  background-color: #a38344;
   color: #fff;
 }
 
@@ -1552,7 +1552,7 @@ Single Page Style
 }
 
 .single-property .accordion-button:not(.collapsed) {
-  color: #c3476c;
+  color: #a38344;
   background-color: #fafafa;
   outline: none;
 }
@@ -1706,7 +1706,7 @@ Contact Page Style
 }
 
 .contact-page #contact-form button:hover {
-  background-color: #c3476c;
+  background-color: #a38344;
 }
 
 

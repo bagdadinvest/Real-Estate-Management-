@@ -88,16 +88,9 @@
     </style>
   </head>
   <body>
-    <!-- Preloader -->
-    <div id="js-preloader" class="js-preloader">
-      <div class="preloader-inner">
-        <span class="dot"></span>
-        <div class="dots">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+    <!-- Page Loader (Barba.js + responsive video) -->
+    <div id="page-loader" class="page-loader" aria-hidden="true">
+      <video id="loaderVideo" class="loader-video" muted playsinline preload="auto"></video>
     </div>
 
     <!-- Global Language Switcher (top-centered, outside nav) 
@@ -223,7 +216,11 @@
       </div>
     </header>
 
-    {% block content %}{% endblock %}
+    <div data-barba="wrapper">
+      <main data-barba="container" data-barba-namespace="{{ request.resolver_match.url_name|default:'page' }}">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
 
   
    {% include 'partials/_footer.html' %}
@@ -235,6 +232,7 @@
     <script src="{% static 'newfront/assets/js/counter.js' %}"></script>
     <script src="{% static 'newfront/assets/js/custom.js' %}"></script>
     <script src="{% static 'newfront/assets/js/typing-effect.js' %}"></script>
+    <script src="https://unpkg.com/@barba/core"></script>
 
     <script>
       // Language switcher interactions (global)
@@ -258,6 +256,82 @@
         document.addEventListener('click', closeMenuOutside);
         window.addEventListener('unload', function(){ document.removeEventListener('click', closeMenuOutside); });
       });
+    </script>
+
+    <style>
+      .page-loader { position: fixed; inset: 0; background: #000; display: flex; align-items: center; justify-content: center; z-index: 2147483000; opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s ease; }
+      .page-loader.active { opacity: 1; visibility: visible; }
+      .loader-video { width: 100%; height: 100%; object-fit: cover; }
+    </style>
+
+    <script>
+      (function(){
+        var loader = document.getElementById('page-loader');
+        var video = document.getElementById('loaderVideo');
+        var SMALL_SRC = '/static/loader-sm-white-faster.mp4';
+        var BIG_SRC = '/static/loader-bg-white.mp4';
+
+        function pickSrc(){
+          try {
+            return (window.matchMedia && window.matchMedia('(max-width: 767px)').matches) ? SMALL_SRC : BIG_SRC;
+          } catch(e){ return BIG_SRC; }
+        }
+
+        function setVideoSource(){
+          var desired = pickSrc();
+          if (video.getAttribute('src') !== desired) {
+            video.setAttribute('src', desired);
+            try { video.load(); } catch(e){}
+          }
+        }
+
+        function showLoader(){
+          setVideoSource();
+          if (!loader.classList.contains('active')) loader.classList.add('active');
+          loader.setAttribute('aria-hidden', 'false');
+          // Hide when video ends (bind per-show)
+          var onEnd = function(){ hideLoader(); };
+          video.addEventListener('ended', onEnd, { once: true });
+          // Attempt autoplay; muted set to satisfy policies
+          try { video.currentTime = 0; video.play().catch(function(){ /* ignore */ }); } catch(e){}
+        }
+
+        function hideLoader(){
+          loader.classList.remove('active');
+          loader.setAttribute('aria-hidden', 'true');
+          try { video.pause(); } catch(e){}
+        }
+
+        // Initial load: show for full video duration
+        document.addEventListener('DOMContentLoaded', function(){
+          showLoader();
+        });
+
+        // Barba.js page transitions
+        document.addEventListener('DOMContentLoaded', function(){
+          if (!window.barba) return;
+          barba.init({
+            transitions: [{
+              name: 'video-loader',
+              leave() {
+                // Fade in loader then proceed; hide on video end only
+                showLoader();
+                return new Promise(function(res){ setTimeout(res, 250); });
+              },
+              enter() {
+                // Let the overlay stay until the video ends (handled globally)
+              }
+            }]
+          });
+        });
+
+        // Keep source in sync on resize/orientation changes
+        window.addEventListener('resize', function(){
+          var current = video.getAttribute('src');
+          var desired = pickSrc();
+          if (current !== desired) setVideoSource();
+        });
+      })();
     </script>
 
     <script>

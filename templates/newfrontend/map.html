@@ -46,6 +46,11 @@
   .popup-title { font-weight: 700; font-size: 15px; margin: 0 0 4px; }
   .popup-price { color: #0f766e; font-weight: 700; }
   .popup-meta { color: #475569; font-size: 12px; }
+  .orange-button { background: #f97316; color: #fff; border: 0; padding: 10px 16px; border-radius: 6px; }
+  /* Fourth slide – view more tile */
+  .more-slide { position: relative; display: grid; place-items: center; background: #0b1120; color: #fff; }
+  .more-slide a { position: absolute; inset: 0; display: grid; place-items: center; color: #fff; text-decoration: none; background: rgba(0,0,0,0.45); font-weight: 700; letter-spacing: .3px; }
+  .more-slide a:hover { background: rgba(0,0,0,0.55); }
 </style>
 <div class="page-heading header-text">
 <div class="container">
@@ -93,28 +98,34 @@
     var bounds = L.latLngBounds();
 
     function fmtCurrency(n) {
-      try { return new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n); }
+      try { return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: 0 }).format(n); }
       catch (e) { return n; }
     }
 
     function buildPopupHTML(p) {
       var photos = Array.isArray(p.photos) && p.photos.length ? p.photos : (p.photo_url ? [p.photo_url] : []);
       var id = p.id || Math.random().toString(36).slice(2);
-      var slides = photos.map(function(src){ return '<div class="carousel-slide"><img src="' + src + '" alt="photo"></div>'; }).join('');
-      var dots = photos.map(function(_,i){ return '<div class="carousel-dot' + (i===0?' active':'') + '"></div>'; }).join('');
-      var addr = [p.address, p.city, p.state].filter(Boolean).join(', ');
       var openUrl = '/new/listing/' + (p.id || '') + '/';
+      var take = Math.min(3, photos.length || 0);
+      var imgSlides = photos.slice(0,take).map(function(src){ return '<div class="carousel-slide"><img src="' + src + '" alt="photo"></div>'; }).join('');
+      var moreSlide = '<div class="carousel-slide more-slide">' +
+                        '<a href="' + openUrl + '" target="_self" aria-label="View more photos">View more photos</a>' +
+                      '</div>';
+      var slides = imgSlides + moreSlide;
+      var slidesCount = 1 + take; // N images + 1 more tile
+      var dots = Array.from({length: slidesCount}).map(function(_,i){ return '<div class="carousel-dot' + (i===0?' active':'') + '"></div>'; }).join('');
+      var addr = [p.address, p.city, p.state].filter(Boolean).join(', ');
       var html = ''+
         '<div class="popup-card" data-listing-id="' + id + '">' +
           '<div class="popup-carousel js-carousel">' +
             '<div class="carousel-track">' + slides + '</div>' +
-            (photos.length>1 ? (
+            (
               '<div class="carousel-nav">' +
                 '<button class="carousel-btn js-prev" aria-label="Previous">&#10094;</button>' +
                 '<button class="carousel-btn js-next" aria-label="Next">&#10095;</button>' +
               '</div>' +
               '<div class="carousel-dots">' + dots + '</div>'
-            ) : '') +
+            ) +
           '</div>' +
           '<div class="popup-meta" style="padding:8px 4px 0; line-height:1.25">' +
             '<div class="popup-title">' + (p.title || 'Listing') + '</div>' +
@@ -157,9 +168,12 @@
       })
       .catch(function (e) { console.warn('Map data error', e); });
 
-    document.getElementById('fit-btn').addEventListener('click', function () {
-      if (bounds.isValid()) map.fitBounds(bounds.pad(0.08));
-    });
+    var fitBtn = document.getElementById('fit-btn');
+    if (fitBtn) {
+      fitBtn.addEventListener('click', function () {
+        if (bounds.isValid()) map.fitBounds(bounds.pad(0.08));
+      });
+    }
 
     // Initialize carousel when popup opens
     map.on('popupopen', function(e){
@@ -212,200 +226,7 @@
       update();
     }
   })();
-</script>
+  </script>
 
-   <div class="section best-deal">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4">
-          <div class="section-heading">
-            <h6>| {% trans "Best Deal" %}</h6>
-            <h2>{% trans "Find Your Best Deal Right Now!" %}</h2>
-          </div>
-        </div>
-        <div class="col-lg-12">
-          <div class="tabs-content">
-            <div class="row">
-              <div class="nav-wrapper ">
-                <ul class="nav nav-tabs" role="tablist">
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link active" id="appartment-tab" data-bs-toggle="tab" data-bs-target="#appartment" type="button" role="tab" aria-controls="appartment" aria-selected="true">{% trans "Apartment" %}</button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="villa-tab" data-bs-toggle="tab" data-bs-target="#villa" type="button" role="tab" aria-controls="villa" aria-selected="false">{% trans "Villa House" %}</button>
-                  </li>
-                  <li class="nav-item" role="presentation">
-                    <button class="nav-link" id="Map-tab" data-bs-toggle="tab" data-bs-target="#Map" type="button" role="tab" aria-controls="Map" aria-selected="false">{% trans "Map" %}</button>
-                  </li>
-                </ul>
-              </div>              
-              <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="appartment" role="tabpanel" aria-labelledby="appartment-tab">
-                  <div class="row">
-                    <div class="col-lg-3">
-                      <div class="info-table">
-                        <ul>
-                          <li>Total Flat Space <span>540 m2</span></li>
-                          <li>Floor number <span>3</span></li>
-                          <li>Number of rooms <span>8</span></li>
-                          <li>Parking Available <span>Yes</span></li>
-                          <li>Payment Process <span>Bank</span></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <img src="{% static 'newfront/assets/images/deal-01.jpg' %}" alt="">
-                    </div>
-                    <div class="col-lg-3">
-                      <h4>{% trans "All Info About Apartment" %}</h4>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor pack incididunt ut labore et dolore magna aliqua quised ipsum suspendisse. <br><br>Swag fanny pack lyft blog twee. JOMO ethical copper mug, succulents typewriter shaman DIY kitsch twee taiyaki fixie hella venmo after messenger poutine next level humblebrag swag franzen.</p>
-                      <div class="icon-button">
-                       <li>
-    <a href="#" data-cal-link="hasan-gun-saqvh6" data-cal-config='{"layout":"month_view"}'>
-        <i class="fa fa-calendar" style="margin-right:5px;padding-right:5px;"></i> 
-        {% trans "Schedule a visit" %}
-    </a>
-</li>      
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="villa" role="tabpanel" aria-labelledby="villa-tab">
-                  <div class="row">
-                    <div class="col-lg-3">
-                      <div class="info-table">
-                        <ul>
-                          <li>Total Flat Space <span>250 m2</span></li>
-                          <li>Floor number <span>26th</span></li>
-                          <li>Number of rooms <span>5</span></li>
-                          <li>Parking Available <span>Yes</span></li>
-                          <li>Payment Process <span>Bank</span></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <img src="{% static 'newfront/assets/images/deal-02.jpg' %}" alt="">
-                    </div>
-                    <div class="col-lg-3">
-                      <h4>Detail Info About New Villa</h4>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor pack incididunt ut labore et dolore magna aliqua quised ipsum suspendisse. <br><br>Swag fanny pack lyft blog twee. JOMO ethical copper mug, succulents typewriter shaman DIY kitsch twee taiyaki fixie hella venmo after messenger poutine next level humblebrag swag franzen.</p>
-                      <div class="icon-button">
-                        <a href="https://cal.com/hasan-gun-saqvh6"><i class="fa fa-calendar"></i> {% trans "" %}</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="Map" role="tabpanel" aria-labelledby="Map-tab">
-                  <div class="row">
-                    <div class="col-lg-3">
-                      <div class="info-table">
-                        <ul>
-                          <li>Total Flat Space <span>320 m2</span></li>
-                          <li>Floor number <span>34th</span></li>
-                          <li>Number of rooms <span>6</span></li>
-                          <li>Parking Available <span>Yes</span></li>
-                          <li>Payment Process <span>Bank</span></li>
-                        </ul>
-                      </div>
-                    </div>
-                    <div class="col-lg-6">
-                      <img src="{% static 'newfront/assets/images/deal-03.jpg' %}" alt="">
-                    </div>
-                    <div class="col-lg-3">
-                      <h4>Extra Info About Map</h4>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, do eiusmod tempor pack incididunt ut Kinfolk tonx seitan crucifix 3 wolf moon bicycle rights keffiyeh snackwave wolf same vice, chillwave vexillologistlabore et dolore magna aliqua quised ipsum suspendisse. <br><br>Swag fanny pack lyft blog twee. JOMO ethical copper mug, succulents typewriter shaman DIY kitsch twee taiyaki fixie hella venmo after messenger poutine next level humblebrag swag franzen.</p>
-                      <div class="icon-button">
-                       <li>
-    <a href="#" data-cal-link="hasan-gun-saqvh6" data-cal-config='{"layout":"month_view"}'>
-        <i class="fa fa-calendar" style="margin-right:5px;padding-right:5px;"></i> 
-        {% trans "Schedule a visit" %}
-    </a>
-</li>      
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
- <div class="contact section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 offset-lg-4">
-          <div class="section-heading text-center">
-            <h6>            <h6>{% trans "Contact Us" %}</h6></h6>
-            <h2>{% trans "Get In Touch With Our Agents" %}</h2>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="contact-content">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-7">
-          <div id="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.938750890858!2d28.6433741!3d40.982822000000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b55f007f3ca905%3A0x1fe95ce9196d458d!2sKuzey%20yap%C4%B1%20gayrimenkul!5e0!3m2!1str!2str!4v1763586470436!5m2!1str!2str" width="100%" height="500px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-          </div>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="item phone">
-                <img src="{% static 'newfront/assets/images/phone-icon.png' %}" alt="" style="max-width: 52px;">
-                <h6>+90 542 363 74 36<br><span>Phone Number</span></h6>
-              </div>
-            </div>
-            <div class="col-lg-6">
-              <div class="item email">
-                <img src="{% static 'newfront/assets/images/email-icon.png' %}" alt="" style="max-width: 52px;">
-                <h6>hasangun@kuzey-yapi<br><span>Business Email</span></h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-5">
-          <form id="contact-form" action="" method="post">
-            <div class="row">
-              <div class="col-lg-12">
-                <fieldset>
-                  <label for="name">{% trans "Full Name" %}</label>
-                  <input type="name" name="name" id="name" placeholder="Your Name..." autocomplete="on" required>
-                </fieldset>
-              </div>
-              <div class="col-lg-12">
-                <fieldset>
-                  <label for="email">{% trans "Email Address" %}</label>
-                  <input type="text" name="email" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your E-mail..." required="">
-                </fieldset>
-              </div>
-              <div class="col-lg-12">
-                <fieldset>
-                  <label for="subject">{% trans "Subject" %}</label>
-                  <input type="subject" name="subject" id="subject" placeholder="Subject..." autocomplete="on" >
-                </fieldset>
-              </div>
-              <div class="col-lg-12">
-                <fieldset>
-                  <label for="message">{% trans "Message" %}</label>
-                  <textarea name="message" id="message" placeholder="Your Message"></textarea>
-                </fieldset>
-              </div>  
-              <div class="col-lg-12">
-                <fieldset>
-                  <button type="submit" id="form-submit" class="orange-button">{% trans "Send Message" %}</button>
-                </fieldset>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
 
 {% endblock %}

@@ -27,6 +27,11 @@ except Exception:
     _has_graphql = False
 from pages import views as pages_views
 from django.conf.urls.i18n import i18n_patterns
+try:
+    import baton  # noqa: F401
+    _has_baton = True
+except Exception:
+    _has_baton = False
 
 
 from django.conf.urls.static import static
@@ -44,6 +49,10 @@ from coralcity import distill_urls as distill
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # Baton URLs (conditionally included)
+    # If django-baton is installed, this exposes its assets and views
+    # and styles the default Django admin.
+    *([path('baton/', include('baton.urls'))] if _has_baton else []),
     # The 'i18n/' path is where Django handles setting the language and should usually not be prefixed.
     path('i18n/', include('django.conf.urls.i18n')),
 ]

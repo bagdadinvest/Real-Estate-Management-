@@ -120,7 +120,7 @@
 
     function fmtCurrency(n) {
       try {
-        return new Intl.NumberFormat(undefined, { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n);
+        return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: 0 }).format(n);
       } catch (e) {
         return n;
       }
