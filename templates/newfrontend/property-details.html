@@ -12,7 +12,7 @@
     .swiper {
       width: 100%;
       height: 500px;
-      border-radius: 10px;
+      border-radius: 50px;
       margin-bottom: 30px;
     }
 
@@ -88,7 +88,7 @@
           <!-- 2. Swiper Structure -->
           <div class="swiper mySwiper">
             <div class="swiper-wrapper">
-              {% with imgs=listing.images.all %}
+              {% with imgs=listing.visible_images %}
                 {% if imgs %}
                   {% for im in imgs %}
                     <div class="swiper-slide">
@@ -122,7 +122,7 @@
           <!-- End Swiper -->
 
           <div class="main-content">
-            <span class="category">{{ listing.deal_type|default:'-'|title }} {{ listing.property_type }}</span>
+            <span class="category">{{ listing.deal_type|default:'-'|title }}{{ listing.property_type }}</span>
             <h4>{{ listing.address }}</h4>
             <p>{{ listing.description }}</p>
           </div>
@@ -138,24 +138,24 @@
               <div id="collapseDetails" class="accordion-collapse collapse show" aria-labelledby="headingDetails" data-bs-parent="#propertyAccordion">
                 <div class="accordion-body">
                   <div class="row g-3">
-                    <div class="col-6"><strong>Deal Type:</strong> {{ listing.deal_type|default:'-'|title }}</div>
-                    <div class="col-6"><strong>Type:</strong> {{ listing.property_type|default:'-' }}</div>
-                    <div class="col-6"><strong>Rooms:</strong> {{ listing.rooms_text|default:'-' }}</div>
-                    <div class="col-6"><strong>Bedrooms:</strong> {{ listing.bedrooms|default:'-' }}</div>
-                    <div class="col-6"><strong>Bathrooms:</strong> {{ listing.bathrooms|default:'-' }}</div>
-                    <div class="col-6"><strong>Net m²:</strong> {{ listing.m2_net|default:'-' }}</div>
-                    <div class="col-6"><strong>Gross m²:</strong> {{ listing.m2_gross|default:'-' }}</div>
-                    <div class="col-6"><strong>Area (sqft):</strong> {{ listing.sqft|default:'-' }}</div>
-                    <div class="col-6"><strong>Building Age:</strong> {{ listing.building_age|default:'-' }}</div>
-                    <div class="col-6"><strong>Floor:</strong> {{ listing.floor_number|default:'-' }} / {{ listing.floors_total|default:'-' }}</div>
-                    <div class="col-6"><strong>Heating:</strong> {{ listing.heating|default:'-' }}</div>
-                    <div class="col-6"><strong>Kitchen:</strong> {{ listing.kitchen_type|default:'-' }}</div>
-                    <div class="col-6"><strong>Balcony:</strong> {{ listing.balcony|default:'-' }}</div>
-                    <div class="col-6"><strong>Parking:</strong> {{ listing.parking_area|default:'-' }}</div>
-                    <div class="col-6"><strong>Usage Status:</strong> {{ listing.usage_status|default:'-' }}</div>
-                    <div class="col-6"><strong>Complex:</strong> {% if listing.in_complex %}Yes{% else %}No{% endif %}{% if listing.complex_name %} — {{ listing.complex_name }}{% endif %}</div>
-                    <div class="col-6"><strong>Elevator:</strong> {% if listing.elevator %}Yes{% elif listing.elevator is not None %}No{% else %}-{% endif %}</div>
-                    <div class="col-6"><strong>Furnished:</strong> {% if listing.furnished %}Yes{% elif listing.furnished is not None %}No{% else %}-{% endif %}</div>
+                    <div class="col-6"><i class="fa fa-tags" aria-hidden="true" style="margin-right:6px;"></i><strong>Deal Type:</strong> {{ listing.deal_type|default:'-'|title }}</div>
+                    <div class="col-6"><i class="fa fa-home" aria-hidden="true" style="margin-right:6px;"></i><strong>Type:</strong> {{ listing.property_type|default:'-' }}</div>
+                    <div class="col-6"><i class="fa fa-th-large" aria-hidden="true" style="margin-right:6px;"></i><strong>Rooms:</strong> {{ listing.rooms_text|default:'-' }}</div>
+                    <div class="col-6"><i class="fa fa-bed" aria-hidden="true" style="margin-right:6px;"></i><strong>Bedrooms:</strong> {{ listing.bedrooms|default:'-' }}</div>
+                    <div class="col-6"><i class="fa fa-bath" aria-hidden="true" style="margin-right:6px;"></i><strong>Bathrooms:</strong> {{ listing.bathrooms|default:'-' }}</div>
+                    <div class="col-6"><i class="fa fa-ruler-combined" aria-hidden="true" style="margin-right:6px;"></i><strong>Net m²:</strong> {{ listing.m2_net|default:'-' }}</div>
+                    <div class="col-6"><i class="fa fa-ruler-combined" aria-hidden="true" style="margin-right:6px;"></i><strong>Gross m²:</strong> {{ listing.m2_gross|default:'-' }}</div>
+                    <div class="col-6"><i class="fa fa-ruler" aria-hidden="true" style="margin-right:6px;"></i><strong>Area (sqft):</strong> {{ listing.sqft|default:'-' }}</div>
+                    <div class="col-6"><i class="fa fa-hourglass-half" aria-hidden="true" style="margin-right:6px;"></i><strong>Building Age:</strong> {{ listing.building_age|default:'-' }}</div>
+                    <div class="col-6"><i class="fa fa-building" aria-hidden="true" style="margin-right:6px;"></i><strong>Floor:</strong> {{ listing.floor_number|default:'-' }} / {{ listing.floors_total|default:'-' }}</div>
+                    <div class="col-6"><i class="fa fa-fire" aria-hidden="true" style="margin-right:6px;"></i><strong>Heating:</strong> {{ listing.heating|default:'-' }}</div>
+                    <div class="col-6"><i class="fa fa-utensils" aria-hidden="true" style="margin-right:6px;"></i><strong>Kitchen:</strong> {{ listing.kitchen_type|default:'-' }}</div>
+                    <div class="col-6"><i class="fa fa-door-open" aria-hidden="true" style="margin-right:6px;"></i><strong>Balcony:</strong> {{ listing.balcony|default:'-' }}</div>
+                    <div class="col-6"><i class="fa fa-parking" aria-hidden="true" style="margin-right:6px;"></i><strong>Parking:</strong> {{ listing.parking_area|default:'-' }}</div>
+                    <div class="col-6"><i class="fa fa-info-circle" aria-hidden="true" style="margin-right:6px;"></i><strong>Usage Status:</strong> {{ listing.usage_status|default:'-' }}</div>
+                    <div class="col-6"><i class="fa fa-city" aria-hidden="true" style="margin-right:6px;"></i><strong>Complex:</strong> {% if listing.in_complex %}Yes{% else %}No{% endif %}{% if listing.complex_name %} — {{ listing.complex_name }}{% endif %}</div>
+                    <div class="col-6"><i class="fa fa-caret-square-up" aria-hidden="true" style="margin-right:6px;"></i><strong>Elevator:</strong> {% if listing.elevator %}Yes{% elif listing.elevator is not None %}No{% else %}-{% endif %}</div>
+                    <div class="col-6"><i class="fa fa-couch" aria-hidden="true" style="margin-right:6px;"></i><strong>Furnished:</strong> {% if listing.furnished %}Yes{% elif listing.furnished is not None %}No{% else %}-{% endif %}</div>
                   </div>
                 </div>
               </div>

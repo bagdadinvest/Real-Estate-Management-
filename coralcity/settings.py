@@ -51,12 +51,19 @@ INSTALLED_APPS = [
     'import_export',
     'graphene_django',
     'django_distill',
-    ]
+]
 
 # Add Rosetta only if available to avoid startup failures when not installed
 try:
     import rosetta  # noqa: F401
     INSTALLED_APPS.append('rosetta')
+except Exception:
+    pass
+
+# Optionally enable image_uploader_widget for nicer admin image uploads
+try:
+    import image_uploader_widget  # noqa: F401
+    INSTALLED_APPS.append('image_uploader_widget')
 except Exception:
     pass
 
@@ -98,6 +105,7 @@ TEMPLATES = [
                 'django.template.context_processors.i18n',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'pages.context_processors.theme_settings',
             ],
         },
     },

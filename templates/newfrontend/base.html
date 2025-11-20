@@ -1,6 +1,7 @@
 {% load static %}
 {% load i18n %}
 {% load lang_links %}
+{% load theme_filters %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -25,8 +26,38 @@
     <link rel="stylesheet" href="{% static 'newfront/assets/css/typing-effect.css' %}">
 
     
-
+    
     {% block extra_css %}{% endblock %}
+    {% if theme and theme.font_import_url %}
+      <link href="{{ theme.font_import_url|font_href }}" rel="stylesheet">
+    {% endif %}
+    {% if theme %}
+    <!-- Dynamic theme overrides from admin -->
+    <style>
+      :root{
+        --theme-primary: {{ theme.primary_color }};
+        --theme-accent: {{ theme.accent_color }};
+        --theme-bg: {{ theme.background_color }};
+        --theme-text: {{ theme.text_color }};
+        --theme-font: {{ theme.font_family|escapejs }};
+      }
+      {{ theme.font_selectors }}{ font-family: var(--theme-font) !important; color: var(--theme-text); }
+      body{ background-color: var(--theme-bg); }
+      ::selection{ background: var(--theme-accent); color:#fff; }
+      /* Accent / primary overrides */
+      .icon-button a i{ background-color: var(--theme-primary) !important; }
+      .main-button a:hover{ background-color: var(--theme-primary) !important; }
+      .properties .item h6{ color: var(--theme-primary) !important; }
+      .main-banner .owl-dots .active{ background-color: var(--theme-primary) !important; }
+      .sub-header ul.social-links li a:hover{ background-color: var(--theme-primary) !important; }
+      .single-property .accordion-button:not(.collapsed){ color: var(--theme-primary) !important; }
+      .properties ul.pagination li a:hover,
+      .properties ul.pagination li a.is_active{ background-color: var(--theme-primary) !important; }
+      .properties .item span.category{ background-color: color-mix(in srgb, var(--theme-primary) 30%, white) !important; }
+      a{ color: inherit; }
+      {{ theme.custom_css|safe }}
+    </style>
+    {% endif %}
     <style>
       /* Language switcher styles (global) */
       .top-language-bar { position: relative; z-index: 1000; background: #fff; }
@@ -142,8 +173,8 @@
         <div class="row">
           <div class="col-lg-8 col-md-8">
             <ul class="info">
-              <li><i class="fa fa-envelope"></i> info@company.com</li>
-              <li><i class="fa fa-map"></i> Beylikduzu, IS. TR 33160</li>
+              <li><i class="fa fa-envelope"></i> hasangun@kuzey-yapi-emlak.com</li>
+              <li><i class="fa fa-map"></i> Kavaklı, 34520 Beylikdüzü/İstanbul</li>
             </ul>
           </div>
           <div class="col-lg-4 col-md-4">
@@ -164,7 +195,9 @@
         <div class="row">
           <div class="col-12">
             <nav class="main-nav">
-              <a href="{% url 'new_index' %}" class="logo"><h3>KUZEY EMLAK</h3></a>
+                          <a href="{% url 'new_index' %}" class="logo" style="display:flex; align-items:center; justify-content:center; width:220px; height:50px; text-decoration:none;margin-top:15px;">
+                <img src="{% static 'logo.png' %}" alt="Logo" style="max-height:50px; width:auto; display:block;" />
+              </a>
               <ul class="nav">
                 <li><a href="{% url 'new_index' %}" class="{% block nav_home_active %}{% endblock %}">{% trans "Home" %}</a></li>
                 <li><a href="{% url 'new_properties' %}" class="{% block nav_properties_active %}{% endblock %}">{% trans "Properties" %}</a></li>
@@ -177,8 +210,12 @@
                 <li><a href="{% url 'new_financing' %}" class="{% block nav_financing_active %}{% endblock %}">{% trans "Financing" %}</a></li>
 
                 <!-- Keep CTA as last-child styling -->
-                <li><a href="https://cal.com/lotfi-kanouni-lbueh8"><i class="fa fa-calendar"></i> {% trans "Schedule a visit" %}</a></li>
-              </ul>
+<li>
+    <a href="#" data-cal-link="hasan-gun-saqvh6" data-cal-config='{"layout":"month_view"}'>
+        <i class="fa fa-calendar" style="margin-right:5px;padding-right:5px;"></i> 
+        {% trans "Schedule a visit" %}
+    </a>
+</li>              </ul>
               <a class="menu-trigger"><span>Menu</span></a>
             </nav>
           </div>
@@ -188,18 +225,8 @@
 
     {% block content %}{% endblock %}
 
-    <footer>
-      <div class="container">
-        <div class="col-lg-12">
-            <p>Copyright © 2025 ∞ Lotfinity ∞ tech Co., Ltd. All rights reserved.
-            <!-- Scripts
-
-            Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a></p>
-             -->
-          </div>
-      </div>
-    </footer>
-
+  
+   {% include 'partials/_footer.html' %}
     <!-- Scripts -->
     <script src="{% static 'newfront/vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'newfront/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
@@ -233,7 +260,14 @@
       });
     </script>
 
-    
+    <script>
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = api) && p(api, ar) : p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", {origin:"https://cal.com"});
+
+  // This instructs Cal.com to look for clicks on elements with the 'data-cal-link' attribute
+  Cal("ui", {"theme":"dark", "styles":{"branding":{"brandColor":"#000000"}}, "hideEventTypeDetails":false, "layout":"month_view"});
+</script>
+
     {% include 'newfrontend/whatsappwidget.html' %}
     {% block extra_js %}{% endblock %}
   </body>

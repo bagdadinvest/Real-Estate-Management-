@@ -804,7 +804,7 @@ msgstr "Banka ön onayı, değerleme ve tapu devri süreçlerinde sizi yönlendi
 # Index page
 #: templates/newfrontend/index.html:6
 msgid "Villa Agency - Home"
-msgstr "Villa Ajansı - Anasayfa"
+msgstr "Kuzey Yapi Emlak - Anasayfa"
 
 #: templates/newfrontend/index.html:13
 msgid "Hurry!"
@@ -1315,7 +1315,7 @@ msgstr "inquiries@coralcity.com"
 
 # Index page
 #~ msgid "Why is Villa Agency the best ?"
-#~ msgstr "Villa Ajansı neden en iyisi?"
+#~ msgstr "Kuzey Yapi Emlak neden en iyisi?"
 
 #~ msgid "Fit to Results"
 #~ msgstr "Sonuçlara Sığdır"

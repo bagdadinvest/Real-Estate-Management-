@@ -155,6 +155,8 @@ class Command(BaseCommand):
         parser.add_argument("--save-html-dir", type=str, default="", help="If set, saves page HTML for each URL")
         parser.add_argument("--debug", action="store_true", help="Verbose step-by-step logs")
         parser.add_argument("--dry-run", action="store_true", help="Parse only; do not save to DB")
+        parser.add_argument("--retries", type=int, default=2, help="Retries per URL when blocked or placeholder page is detected")
+        parser.add_argument("--cooldown", type=float, default=5.0, help="Seconds to sleep before retrying a blocked page")
         parser.add_argument("--skip-geocode", action="store_true", help="Do not geocode during save; leave coordinates missing")
         parser.add_argument("--defer-geocode", action="store_true", help="Alias of --skip-geocode; geocode later via geocode_missing_listings command")
         parser.add_argument("--default-city", type=str, default="", help="Fallback city if breadcrumb missing")
@@ -209,6 +211,8 @@ class Command(BaseCommand):
         save_dir = Path(options.get("save_html_dir") or "") if options.get("save_html_dir") else None
         debug = bool(options.get("debug"))
         dry_run = bool(options.get("dry_run"))
+        retries = int(options.get("retries") or 0)
+        cooldown = float(options.get("cooldown") or 0.0)
         skip_geocode = bool(options.get("skip_geocode")) or bool(options.get("defer_geocode"))
         default_city = options.get("default_city") or ""
         default_state = options.get("default_state") or ""
@@ -372,15 +376,18 @@ class Command(BaseCommand):
                 except Exception:
                     dbg("Title selector not found within timeout; proceeding with current DOM")
 
-                # Extract title
-                title = ""
-                try:
-                    title = (page.locator("div.classifiedDetailTitle > h1").first.inner_text().strip())
-                except Exception:
-                    pass
+                # Extract title with short, non-blocking calls
+                def quick_text(sel: str, ms: int = 1500) -> str:
+                    try:
+                        t = page.locator(sel).first.text_content(timeout=ms)
+                        return (t or "").strip()
+                    except Exception:
+                        return ""
+
+                title = quick_text("div.classifiedDetailTitle > h1") or quick_text("h1")
                 if not title:
                     try:
-                        title = page.locator("h1").first.inner_text().strip()
+                        title = (page.title() or "").strip()
                     except Exception:
                         title = ""
                 dbg(f"Title: {title!r}")
@@ -425,6 +432,76 @@ class Command(BaseCommand):
                 ad_date = list_date
                 external_id = (details.get("İlan No") or details.get("Ilan No") or "").strip()
                 dbg(f"Type: {property_type_raw!r}->{property_type!r}; Beds: {bedrooms}; Baths: {bathrooms}; m2={m2_brut} sqft={sqft}; date={list_date}")
+
+                # Bail early if page likely blocked/placeholder, with lightweight retries
+                if not external_id or not title or title.lower() == "www.sahibinden.com":
+                    blocked = True
+                    attempts = 0
+                    while blocked and attempts < retries:
+                        attempts += 1
+                        self.stdout.write(self.style.WARNING(f"[{idx}] Blocked/invalid page; retry {attempts}/{retries} after {cooldown:.1f}s"))
+                        if cooldown > 0:
+                            time.sleep(cooldown)
+                        try:
+                            page.reload(wait_until="domcontentloaded")
+                        except Exception:
+                            break
+                        # Re-extract title and external_id quickly
+                        def quick_text(sel: str, ms: int = 1500) -> str:
+                            try:
+                                t = page.locator(sel).first.text_content(timeout=ms)
+                                return (t or "").strip()
+                            except Exception:
+                                return ""
+                        title = quick_text("div.classifiedDetailTitle > h1") or quick_text("h1")
+                        if not title:
+                            try:
+                                title = (page.title() or "").strip()
+                            except Exception:
+                                title = ""
+                        details = {}
+                        try:
+                            lis = page.locator("ul.classifiedInfoList > li")
+                            for i in range(lis.count()):
+                                li = lis.nth(i)
+                                try:
+                                    key = li.locator("strong").first.inner_text().strip()
+                                    val = li.locator("span").first.inner_text().strip()
+                                except Exception:
+                                    continue
+                                if key:
+                                    details[key] = val
+                        except Exception:
+                            pass
+                        external_id = (details.get("İlan No") or details.get("Ilan No") or "").strip()
+                        blocked = (not external_id) or (not title) or (title.strip().lower() == "www.sahibinden.com")
+                    if blocked:
+                        self.stdout.write(self.style.WARNING(f"[{idx}] SKIP: missing/invalid listing markers after retries."))
+                        try:
+                            page.close()
+                        except Exception:
+                            pass
+                        skipped += 1
+                        if delay > 0:
+                            time.sleep(delay)
+                        continue
+
+                # Skip if this listing already exists in DB by external_id
+                if external_id:
+                    try:
+                        if Listing.objects.filter(external_id=external_id).exists():
+                            self.stdout.write(self.style.WARNING(f"[{idx}] SKIP existing listing external_id={external_id}"))
+                            skipped += 1
+                            try:
+                                page.close()
+                            except Exception:
+                                pass
+                            # Keep pacing similar to normal path
+                            if delay > 0:
+                                time.sleep(delay)
+                            continue
+                    except Exception as e:
+                        dbg(f"Existence check failed: {e}")
 
                 # Map link
                 lat = lon = None
@@ -625,7 +702,11 @@ class Command(BaseCommand):
                     created += 1
                     self.stdout.write(self.style.SUCCESS(f"[{idx}] Created listing id={listing.id} title='{listing.title}'"))
 
-                # Delay between requests with tick logs in debug mode
+                # Close page and delay between requests with tick logs in debug mode
+                try:
+                    page.close()
+                except Exception:
+                    pass
                 if delay > 0:
                     if debug and delay >= 1.0:
                         secs = int(delay)

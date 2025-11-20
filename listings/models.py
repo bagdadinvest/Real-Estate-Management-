@@ -123,8 +123,14 @@ class ListingImage(models.Model):
     title = models.CharField(max_length=255, blank=True)
     order = models.PositiveIntegerField(default=0)
     is_primary = models.BooleanField(default=False)
+    is_visible = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    # Optional manual crop box (pixels) applied on save if set
+    crop_x = models.PositiveIntegerField(null=True, blank=True)
+    crop_y = models.PositiveIntegerField(null=True, blank=True)
+    crop_width = models.PositiveIntegerField(null=True, blank=True)
+    crop_height = models.PositiveIntegerField(null=True, blank=True)
 
     class Meta:
         ordering = ["order", "created_at"]
@@ -137,4 +143,58 @@ class ListingImage(models.Model):
             ListingImage.objects.filter(listing=self.listing, is_primary=True).exclude(
                 pk=self.pk
             ).update(is_primary=False)
+
+        # If a crop is requested, attempt to crop using Pillow before saving
+        did_crop = False
+        try:
+            if self.image and all([
+                self.crop_x is not None,
+                self.crop_y is not None,
+                self.crop_width is not None,
+                self.crop_height is not None,
+            ]):
+                from PIL import Image
+                import os
+                img_path = self.image.path
+                with Image.open(img_path) as im:
+                    x = int(self.crop_x or 0)
+                    y = int(self.crop_y or 0)
+                    w = int(self.crop_width or 0)
+                    h = int(self.crop_height or 0)
+                    if w > 0 and h > 0:
+                        # Clamp crop box within image bounds
+                        W, H = im.size
+                        x = max(0, min(x, W - 1))
+                        y = max(0, min(y, H - 1))
+                        w = max(1, min(w, W - x))
+                        h = max(1, min(h, H - y))
+                        box = (x, y, x + w, y + h)
+                        im_cropped = im.crop(box)
+                        # Overwrite original file
+                        im_cropped.save(img_path)
+                        did_crop = True
+        except Exception:
+            pass
+
+        # Clear crop fields after successful crop to avoid re-cropping on next save
+        if did_crop:
+            self.crop_x = self.crop_y = self.crop_width = self.crop_height = None
+
         super().save(*args, **kwargs)
+
+
+    # Convenience property to filter visible images from templates via listing.visible_images
+    @property
+    def is_croppable(self):
+        return all([
+            self.crop_x is not None,
+            self.crop_y is not None,
+            self.crop_width is not None,
+            self.crop_height is not None,
+        ])
+
+
+def _listing_visible_images(self):
+    return self.images.filter(is_visible=True).order_by('order', 'id')
+
+Listing.visible_images = property(_listing_visible_images)
